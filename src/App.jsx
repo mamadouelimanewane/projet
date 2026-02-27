@@ -172,6 +172,11 @@ const INITIAL_DATA = {
     { id: "0x4b7E...1Fd9", projet: "Refonte SI Comptable", montant: 45000000, date: "2026-03-15", statut: "En attente", condition: "UAT Réussis" },
     { id: "0x1a9C...8Ec5", projet: "App Mobile RH", montant: 25500000, date: "2026-04-10", statut: "Bloqué", condition: "Validation Client" },
   ],
+  okrs: [
+    { id: 1, objectif: "Leader SaaS Comptable 2026", progression: 65, type: "Stratégique", projets: ["Refonte SI Comptable"], statut: "En bonne voie" },
+    { id: 2, objectif: "Zéro Dette Technique", progression: 10, type: "Opérationnel", projets: ["Migration Cloud"], statut: "En retard" },
+    { id: 3, objectif: "Modernisation RH Mobile", progression: 30, type: "Innovation", projets: ["App Mobile RH"], statut: "En cours" },
+  ],
   methode: "Hybride",
 };
 
@@ -232,6 +237,8 @@ const MODULES = [
   { id: "warroom", label: "War Room Virtuelle", icon: "🌐" },
   { id: "copilote", label: "Copilote IA", icon: "🧠" },
   { id: "smartcontracts", label: "Smart Contracts", icon: "⛓" },
+  { id: "portfolio", label: "Portfolio Financier", icon: "📈" },
+  { id: "okr", label: "Stratégie OKR", icon: "🎯" },
 ];
 
 // ═══════════════════════════════════════════
@@ -2192,6 +2199,201 @@ const SmartContracts = ({ data }) => {
 };
 
 // ═══════════════════════════════════════════
+// NEW: PORTFOLIO FINANCIER (ANALYSE ROI)
+// ═══════════════════════════════════════════
+const PortfolioFinancier = ({ data }) => {
+  const caTotal = data.factures.filter(f => f.statut === "Payé").reduce((s, f) => s + f.montant, 0);
+  const coutsTotaux = data.couts.reduce((s, c) => s + c.reel, 0);
+  const marge = caTotal - coutsTotaux;
+  const margePct = caTotal > 0 ? Math.round((marge / caTotal) * 100) : 0;
+  const burnRateActuel = Math.round(coutsTotaux / 180); // Faux burn rate sur 6 mois
+
+  const cashflowData = [
+    { mois: "Jan", Revenus: 10000000, Sorties: 12000000 },
+    { mois: "Fév", Revenus: 45000000, Sorties: 28000000 },
+    { mois: "Mar", Revenus: 25000000, Sorties: 18000000 },
+    { mois: "Avr", Revenus: 15000000, Sorties: 15000000 },
+    { mois: "Mai", Revenus: 30000000, Sorties: 10000000 },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Portfolio & Intelligence Financière" subtitle="Analyse de rentabilité macroscopique et prévisions de trésorerie" action={<Btn size="md">Exporter Bilan</Btn>} />
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <StatCard label="Chiffre d'Affaires" value={`${(caTotal / 1000000).toFixed(1)}M`} sub="FCFA Encaissés" color="#10b981" icon="📥" />
+        <StatCard label="Coûts Dépensés" value={`${(coutsTotaux / 1000000).toFixed(1)}M`} sub="FCFA Sortis" color="#ef4444" icon="📤" />
+        <StatCard label="Marge Nette" value={`${margePct}%`} sub={`${(marge / 1000000).toFixed(1)}M FCFA bénéfice`} color="#6366f1" icon="💎" />
+        <StatCard label="Burn Rate Moyen" value={`${(burnRateActuel / 1000).toFixed(0)}k/j`} sub="FCFA consommés par jour" color="#f59e0b" icon="🔥" />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 bg-slate-800/60 border border-slate-700/50 rounded-xl p-6">
+          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider flex items-center gap-2">🔄 Projection du Cashflow (FCFA)</h3>
+          <ResponsiveContainer width="100%" height={260}>
+            <AreaChart data={cashflowData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
+              <XAxis dataKey="mois" tick={{ fill: "#94a3b8", fontSize: 11 }} />
+              <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={v => `${(v / 1000000).toFixed(0)}M`} />
+              <Tooltip contentStyle={{ backgroundColor: "#1e293b", border: "1px solid #475569", borderRadius: 8 }} formatter={v => `${v.toLocaleString()}`} />
+              <Legend />
+              <Area type="monotone" dataKey="Revenus" stackId="1" stroke="#10b981" fill="#10b981" fillOpacity={0.3} />
+              <Area type="monotone" dataKey="Sorties" stackId="2" stroke="#ef4444" fill="#ef4444" fillOpacity={0.3} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 flex flex-col">
+          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Analyse de Rentabilité par Projet</h3>
+          <div className="space-y-4 flex-1">
+            {data.projets.map(p => {
+              const prev = p.budget;
+              const dep = p.budgetReel;
+              const isProfit = dep <= prev;
+              return (
+                <div key={p.id} className="border-b border-slate-700/50 pb-3 last:border-0">
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-sm font-bold text-white truncate w-40">{p.nom}</span>
+                    <span className={`text-xs font-bold px-2 py-0.5 rounded ${isProfit ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>
+                      {isProfit ? "+" : "-"}{Math.abs(prev - dep).toLocaleString()} F
+                    </span>
+                  </div>
+                  <ProgressBar value={(dep / prev) * 100} color={isProfit ? "#10b981" : "#ef4444"} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// NEW: STRATÉGIE ET OKR
+// ═══════════════════════════════════════════
+const StrategieOKR = ({ data }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Alignement Stratégique (OKRs)" subtitle="Connectez l'exécution de vos projets à la vision globale de l'entreprise" action={<Btn size="md">+ Nouvel Objectif</Btn>} />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {data.okrs.map(okr => (
+          <div key={okr.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 relative overflow-hidden group hover:border-indigo-500 transition-all">
+            <div className={`absolute top-0 right-0 w-24 h-24 blur-2xl -mt-6 -mr-6 transition-all group-hover:opacity-100 opacity-30 ${okr.progression >= 50 ? 'bg-indigo-600' : 'bg-fuchsia-600'}`} />
+
+            <div className="relative z-10">
+              <div className="flex justify-between items-start mb-4">
+                <Badge value={okr.type} map={{ "Stratégique": "#6366f1", "Opérationnel": "#f59e0b", "Innovation": "#ec4899" }} />
+                <Badge value={okr.statut} map={{ "En bonne voie": "#10b981", "En cours": "#f59e0b", "En retard": "#ef4444" }} />
+              </div>
+
+              <h3 className="text-xl font-black text-white mb-2 leading-tight">{okr.objectif}</h3>
+
+              <div className="mt-6 space-y-2">
+                <div className="flex justify-between text-xs">
+                  <span className="text-slate-400 font-bold uppercase tracking-wider">Progression Clé</span>
+                  <span className="text-indigo-400 font-black">{okr.progression}%</span>
+                </div>
+                <ProgressBar value={okr.progression} color={okr.progression >= 50 ? "#6366f1" : "#ec4899"} />
+              </div>
+
+              <div className="mt-5 pt-4 border-t border-slate-700/50">
+                <p className="text-[10px] text-slate-500 uppercase font-black mb-2 tracking-widest">Projets liés</p>
+                <div className="flex flex-wrap gap-2">
+                  {okr.projets.map(p => (
+                    <span key={p} className="text-xs bg-slate-700/50 border border-slate-600 px-2 py-1 rounded-md text-slate-300">🔗 {p}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// NEW: GÉNÉRATION DOCS IA (REMPLACE RAPPORTS)
+// ═══════════════════════════════════════════
+const GenerationIA = () => {
+  const [loading, setLoading] = useState(false);
+  const [doc, setDoc] = useState(null);
+
+  const generateDoc = (type) => {
+    setLoading(true);
+    setTimeout(() => {
+      setDoc({ type, date: new Date().toLocaleString() });
+      setLoading(false);
+    }, 1500);
+  };
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Studio de Génération IA" subtitle="Laissez le Copilote rédiger vos livrables officiels instantanément" />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6">
+          <h3 className="text-base font-bold text-white mb-6">Sélectionnez le type de document à produire</h3>
+          <div className="space-y-3">
+            {[
+              { id: "charte", label: "Charte de Projet Complète", icon: "📐", desc: "Objectifs, périmètre, ressources et planning initial." },
+              { id: "copil", label: "Support Comité de Pilotage (PDF)", icon: "📊", desc: "Synthèse des KPI, Budget et Risques du mois." },
+              { id: "cr", label: "Compte-Rendu de Réunion Auto", icon: "📝", desc: "Résumé des tâches terminées depuis 7 jours." },
+              { id: "risque", label: "Matrice des Risques Détaillée", icon: "⛨", desc: "Analyse d'impact et plans de contingence." }
+            ].map(d => (
+              <button key={d.id} onClick={() => generateDoc(d.label)} disabled={loading}
+                className="w-full text-left bg-slate-900/50 hover:bg-indigo-900/40 border border-slate-700 hover:border-indigo-500 p-4 rounded-xl transition-all flex items-start gap-4 group">
+                <span className="text-2xl opacity-80 group-hover:scale-110 transition-transform">{d.icon}</span>
+                <div>
+                  <h4 className="text-sm font-bold text-white group-hover:text-indigo-400">{d.label}</h4>
+                  <p className="text-xs text-slate-400 mt-1">{d.desc}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-slate-900 border border-indigo-500/30 rounded-xl p-6 flex flex-col items-center justify-center relative overflow-hidden">
+          {loading ? (
+            <div className="text-center">
+              <div className="w-16 h-16 border-4 border-slate-700 border-t-indigo-500 rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-indigo-400 font-bold animate-pulse">L'IA rédige votre document...</p>
+              <p className="text-xs text-slate-500 mt-2">Analyse des jalons et du budget en cours.</p>
+            </div>
+          ) : doc ? (
+            <div className="text-center w-full">
+              <div className="text-6xl mb-4">📄</div>
+              <h3 className="text-lg font-bold text-white mb-2">{doc.type}</h3>
+              <p className="text-xs text-emerald-400 bg-emerald-400/10 px-3 py-1 rounded inline-block mb-6">✔ Généré avec succès le {doc.date}</p>
+              <div className="flex justify-center gap-3">
+                <Btn className="bg-indigo-600 hover:bg-indigo-500 max-w-xs">Télécharger PDF</Btn>
+                <Btn variant="ghost">Enregistrer dans la GED</Btn>
+              </div>
+              <div className="mt-8 pt-6 border-t border-slate-800 text-left">
+                <p className="text-[10px] text-slate-500 uppercase font-black mb-2">Aperçu du contenu (Snippet)</p>
+                <div className="bg-slate-800 p-4 rounded text-xs text-slate-300 font-mono leading-relaxed h-32 overflow-hidden relative">
+                  "Le projet Refonte SI Comptable affiche actuellement un taux d'avancement global de 65%.
+                  Le budget consommé est maîtrisé à hauteur de 78M FCFA sur les 120M prévus... "
+                  <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-800 to-transparent" />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center opacity-40">
+              <div className="text-5xl mb-4">✨</div>
+              <p className="text-sm text-white">Sélectionnez un modèle à gauche pour tester la magie de l'IA.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+// ═══════════════════════════════════════════
 // MAIN APP
 // ═══════════════════════════════════════════
 export default function App() {
@@ -2251,10 +2453,12 @@ export default function App() {
       case "docs": return <DocumentsGED data={data.documents} setData={update("documents")} />;
       case "factures": return <Facturation data={data.factures} setData={update("factures")} />;
       case "workflows": return <Workflows data={data.workflows} setData={update("workflows")} />;
-      case "rapports": return <Rapports />;
+      case "rapports": return <GenerationIA />;
       case "warroom": return <WarRoom />;
       case "copilote": return <CopilotePredictif data={data} />;
       case "smartcontracts": return <SmartContracts data={data.smartcontracts} />;
+      case "portfolio": return <PortfolioFinancier data={data} />;
+      case "okr": return <StrategieOKR data={data} />;
       default: return null;
     }
   };
