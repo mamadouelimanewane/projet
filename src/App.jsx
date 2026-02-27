@@ -140,6 +140,13 @@ const INITIAL_DATA = {
     { id: 5, tache: "Phase 5 - Déploiement", debut: "2026-06-01", fin: "2026-06-30", responsable: "Jean D.", progression: 0, dependance: 4, couleur: "#7c3aed" },
     { id: 6, tache: "Formation utilisateurs", debut: "2026-06-15", fin: "2026-06-30", responsable: "Marie C.", progression: 0, dependance: 4, couleur: "#5b21b6" },
   ],
+  cycle: [
+    { id: "init", phase: "Initiation", statut: "Terminé", progression: 100, livrable: "Charte de projet", description: "Définition de la vision et des objectifs." },
+    { id: "plan", phase: "Planification", statut: "En cours", progression: 75, livrable: "Plan de management", description: "Établissement du périmètre, budget et délais." },
+    { id: "exec", phase: "Exécution", statut: "A venir", progression: 20, livrable: "Dévrables techniques", description: "Mise en œuvre des tâches planifiées." },
+    { id: "monit", phase: "Monitoring", statut: "A venir", progression: 0, livrable: "Rapports d'avancement", description: "Contrôle et ajustement du projet." },
+    { id: "close", phase: "Clôture", statut: "A venir", progression: 0, livrable: "Bilan projet", description: "Réception finale et archivage." },
+  ],
 };
 
 // ═══════════════════════════════════════════
@@ -173,6 +180,8 @@ const MODULES = [
   { id: "kanban", label: "Kanban", icon: "▦" },
   { id: "ressources", label: "Ressources", icon: "⚙" },
   { id: "gantt", label: "Gantt", icon: "▬" },
+  { id: "cycle", label: "Cycle de Vie", icon: "⎔" },
+  { id: "assistant", label: "Assistance IA", icon: "✧" },
 ];
 
 // ═══════════════════════════════════════════
@@ -1616,6 +1625,109 @@ const Gantt = ({ data, setData }) => {
 };
 
 // ═══════════════════════════════════════════
+// MODULE: CYCLE DE VIE
+// ═══════════════════════════════════════════
+const CycleVie = ({ data, setData }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Cycle de Vie du Projet" subtitle="Suivez les étapes cruciales de la méthodologie projet" />
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        {data.map((step, i) => (
+          <div key={step.id} className="relative">
+            <div className={`p-4 rounded-xl border transition-all h-full flex flex-col ${step.statut === "Terminé" ? "bg-emerald-500/10 border-emerald-500/50" : step.statut === "En cours" ? "bg-indigo-500/10 border-indigo-500/50 shadow-lg shadow-indigo-500/10 scale-105 z-10" : "bg-slate-800/40 border-slate-700/50 opacity-60"}`}>
+              <div className="flex justify-between items-start mb-3">
+                <span className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${step.statut === "Terminé" ? "bg-emerald-500 text-white" : "bg-indigo-600 text-white"}`}>{i + 1}</span>
+                <Badge value={step.statut} map={{ "Terminé": "#10b981", "En cours": "#6366f1", "A venir": "#475569" }} />
+              </div>
+              <h3 className="text-sm font-bold text-white mb-2">{step.phase}</h3>
+              <p className="text-xs text-slate-400 mb-3 flex-1">{step.description}</p>
+              <div className="space-y-2 mt-auto">
+                <p className="text-[10px] text-slate-500 uppercase font-black">Livrable clé</p>
+                <div className="text-xs text-slate-200 bg-slate-700/50 p-2 rounded">{step.livrable}</div>
+                <ProgressBar value={step.progression} color={step.statut === "Terminé" ? "#10b981" : "#6366f1"} />
+              </div>
+            </div>
+            {i < data.length - 1 && (
+              <div className="hidden md:block absolute top-1/2 -right-2 text-slate-700 translate-x-1/2 z-0">▶</div>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6">
+        <h3 className="text-base font-bold text-white mb-4">Guide d'Assistance Méthodologique</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-indigo-400 uppercase tracking-widest">Étape Actuelle : Planification</h4>
+            <div className="bg-slate-700/30 rounded-lg p-4 border-l-2 border-indigo-500">
+              <p className="text-sm text-slate-300 italic">"Vous êtes dans la phase critique où vous devez aligner les ressources avec les objectifs de temps."</p>
+            </div>
+            <ul className="space-y-2 ml-2">
+              {["Valider le budget prévisionnel", "Assigner les chefs de lot", "Identifier les risques majeurs"].map(item => (
+                <li key={item} className="text-xs text-slate-400 flex items-center gap-2">
+                  <span className="text-indigo-500">○</span> {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-indigo-600/10 rounded-xl p-5 border border-indigo-500/20 text-center flex flex-col justify-center">
+            <p className="text-2xl mb-2">💡</p>
+            <p className="text-sm font-bold text-white mb-1">Besoin d'aide ?</p>
+            <p className="text-xs text-slate-400">Consultez l'Assistant Élite pour générer un template de plan de management projet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: ASSISTANT ÉLITE
+// ═══════════════════════════════════════════
+const AssistantElite = () => {
+  const [messages, setMessages] = useState([
+    { role: "ai", text: "Bonjour ! Je suis votre Assistant Élite. Comment puis-je vous aider dans la gestion de vos projets aujourd'hui ?" }
+  ]);
+  const [input, setInput] = useState("");
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    const newMsg = [...messages, { role: "user", text: input }];
+    setMessages(newMsg);
+    setInput("");
+
+    // Fake AI response
+    setTimeout(() => {
+      setMessages([...newMsg, { role: "ai", text: "J'analyse votre demande... Basé sur vos données actuelles (65% d'avancement sur le SI Comptable), je recommande de vérifier les risques de budget." }]);
+    }, 1000);
+  };
+
+  return (
+    <div className="flex flex-col h-[calc(100vh-180px)]">
+      <SectionHeader title="Assistant Élite" subtitle="Votre conseiller stratégique en gestion de projet" />
+      <div className="flex-1 bg-slate-900/50 border border-slate-800 rounded-2xl p-4 overflow-y-auto mb-4 space-y-4 custom-scrollbar">
+        {messages.map((m, i) => (
+          <div key={i} className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
+            <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${m.role === "user" ? "bg-indigo-600 text-white rounded-tr-none" : "bg-slate-800 border border-slate-700 text-slate-200 rounded-tl-none"}`}>
+              {m.text}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex gap-2">
+        <input
+          className="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500"
+          placeholder="Posez une question à l'assistant..."
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleSend()}
+        />
+        <Btn onClick={handleSend} size="lg" className="px-6">Envoyer</Btn>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
 // MAIN APP
 // ═══════════════════════════════════════════
 export default function App() {
@@ -1666,6 +1778,8 @@ export default function App() {
       case "kanban": return <Kanban data={data.kanban} setData={update("kanban")} />;
       case "ressources": return <Ressources data={data.ressources} setData={update("ressources")} />;
       case "gantt": return <Gantt data={data.gantt} setData={update("gantt")} />;
+      case "cycle": return <CycleVie data={data.cycle} setData={update("cycle")} />;
+      case "assistant": return <AssistantElite />;
       default: return null;
     }
   };
