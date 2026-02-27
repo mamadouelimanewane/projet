@@ -13,10 +13,10 @@ const INITIAL_DATA = {
     { id: 5, tache: "Déploiement production", responsable: "Jean D.", dateLimite: "2026-05-01", statut: "À faire", priorite: "Haute" },
   ],
   projets: [
-    { id: 1, nom: "Refonte SI Comptable", chef: "Jean D.", debut: "2026-01-01", fin: "2026-06-30", avancement: 65, statut: "En cours", budget: 120000, budgetReel: 78000 },
-    { id: 2, nom: "App Mobile RH", chef: "Marie C.", debut: "2026-02-01", fin: "2026-07-31", avancement: 30, statut: "En cours", budget: 85000, budgetReel: 25500 },
-    { id: 3, nom: "Migration Cloud", chef: "Paul M.", debut: "2026-03-01", fin: "2026-09-30", avancement: 10, statut: "Planifié", budget: 200000, budgetReel: 20000 },
-    { id: 4, nom: "Portail Client", chef: "Sophie L.", debut: "2025-09-01", fin: "2026-02-28", avancement: 100, statut: "Terminé", budget: 60000, budgetReel: 62000 },
+    { id: 1, nom: "Refonte SI Comptable", chef: "Jean D.", debut: "2026-01-01", fin: "2026-06-30", avancement: 65, statut: "En cours", budget: 120000000, budgetReel: 78000000 },
+    { id: 2, nom: "App Mobile RH", chef: "Marie C.", debut: "2026-02-01", fin: "2026-07-31", avancement: 30, statut: "En cours", budget: 85000000, budgetReel: 25500000 },
+    { id: 3, nom: "Migration Cloud", chef: "Paul M.", debut: "2026-03-01", fin: "2026-09-30", avancement: 10, statut: "Planifié", budget: 200000000, budgetReel: 20000000 },
+    { id: 4, nom: "Portail Client", chef: "Sophie L.", debut: "2025-09-01", fin: "2026-02-28", avancement: 100, statut: "Terminé", budget: 60000000, budgetReel: 62000000 },
   ],
   taches: [
     { id: 1, projet: "Refonte SI Comptable", tache: "Audit existant", responsable: "Jean D.", debut: "2026-01-01", fin: "2026-01-31", statut: "Fait", priorite: "Haute", progression: 100 },
@@ -27,12 +27,12 @@ const INITIAL_DATA = {
     { id: 6, projet: "Migration Cloud", tache: "Audit infrastructure", responsable: "Paul M.", debut: "2026-03-01", fin: "2026-03-31", statut: "En cours", priorite: "Moyenne", progression: 20 },
   ],
   couts: [
-    { id: 1, phase: "Conception", prevu: 15000, reel: 14200, statut: "Sous budget" },
-    { id: 2, phase: "Développement", prevu: 60000, reel: 63000, statut: "Dépassement" },
-    { id: 3, phase: "Tests & QA", prevu: 12000, reel: 10800, statut: "Sous budget" },
-    { id: 4, phase: "Déploiement", prevu: 8000, reel: 7500, statut: "Sous budget" },
-    { id: 5, phase: "Formation", prevu: 5000, reel: 4800, statut: "Sous budget" },
-    { id: 6, phase: "Maintenance", prevu: 20000, reel: 18500, statut: "Sous budget" },
+    { id: 1, phase: "Conception", prevu: 15000000, reel: 14200000, statut: "Sous budget" },
+    { id: 2, phase: "Développement", prevu: 60000000, reel: 63000000, statut: "Dépassement" },
+    { id: 3, phase: "Tests & QA", prevu: 12000000, reel: 10800000, statut: "Sous budget" },
+    { id: 4, phase: "Déploiement", prevu: 8000000, reel: 7500000, statut: "Sous budget" },
+    { id: 5, phase: "Formation", prevu: 5000000, reel: 4800000, statut: "Sous budget" },
+    { id: 6, phase: "Maintenance", prevu: 20000000, reel: 18500000, statut: "Sous budget" },
   ],
   jalons: [
     { id: 1, jalon: "Kick-off projet", date: "2026-01-15", responsable: "Jean D.", statut: "Atteint", notes: "Réunion de lancement réussie" },
@@ -73,31 +73,37 @@ const INITIAL_DATA = {
     { id: 8, nom: "ROI estimé", valeur: 145, cible: 150, unite: "%", tendance: "hausse", categorie: "Finance" },
   ],
   budget: [
-    { id: 1, categorie: "Ressources humaines", planifie: 180000, reel: 125000, statut: "Normal" },
-    { id: 2, categorie: "Infrastructure IT", planifie: 45000, reel: 38000, statut: "Normal" },
-    { id: 3, categorie: "Licences logicielles", planifie: 25000, reel: 27500, statut: "Dépassement" },
-    { id: 4, categorie: "Prestataires externes", planifie: 60000, reel: 42000, statut: "Normal" },
-    { id: 5, categorie: "Formation", planifie: 15000, reel: 8000, statut: "Normal" },
-    { id: 6, categorie: "Divers & imprévus", planifie: 20000, reel: 12500, statut: "Normal" },
+    { id: 1, categorie: "Ressources humaines", planifie: 180000000, reel: 125000000, statut: "Normal" },
+    { id: 2, categorie: "Infrastructure IT", planifie: 45000000, reel: 38000000, statut: "Normal" },
+    { id: 3, categorie: "Licences logicielles", planifie: 25000000, reel: 27500000, statut: "Dépassement" },
+    { id: 4, categorie: "Prestataires externes", planifie: 60000000, reel: 42000000, statut: "Normal" },
+    { id: 5, categorie: "Formation", planifie: 15000000, reel: 8000000, statut: "Normal" },
+    { id: 6, categorie: "Divers & imprévus", planifie: 20000000, reel: 12500000, statut: "Normal" },
   ],
   sprints: [
-    { id: 1, nom: "Sprint 1", debut: "2026-01-06", fin: "2026-01-17", objectif: "Setup initial et authentification", statut: "Terminé", vitesse: 42, stories: [
-      { id: 1, titre: "Setup projet", points: 5, statut: "Terminé", assignee: "Jean D." },
-      { id: 2, titre: "Auth utilisateur", points: 8, statut: "Terminé", assignee: "Marie C." },
-      { id: 3, titre: "Base de données", points: 13, statut: "Terminé", assignee: "Paul M." },
-      { id: 4, titre: "CI/CD pipeline", points: 8, statut: "Terminé", assignee: "Sophie L." },
-    ]},
-    { id: 2, nom: "Sprint 2", debut: "2026-01-20", fin: "2026-01-31", objectif: "Module comptabilité de base", statut: "Terminé", vitesse: 38, stories: [
-      { id: 5, titre: "Saisie factures", points: 13, statut: "Terminé", assignee: "Paul M." },
-      { id: 6, titre: "Liste fournisseurs", points: 8, statut: "Terminé", assignee: "Jean D." },
-      { id: 7, titre: "Rapports basiques", points: 8, statut: "Terminé", assignee: "Marie C." },
-    ]},
-    { id: 3, nom: "Sprint 3", debut: "2026-02-03", fin: "2026-02-14", objectif: "Intégrations bancaires", statut: "En cours", vitesse: 0, stories: [
-      { id: 8, titre: "API Banque X", points: 13, statut: "En cours", assignee: "Jean D." },
-      { id: 9, titre: "Rapprochement bancaire", points: 8, statut: "En cours", assignee: "Paul M." },
-      { id: 10, titre: "Exports comptables", points: 5, statut: "À faire", assignee: "Marie C." },
-      { id: 11, titre: "Tests intégration", points: 8, statut: "À faire", assignee: "Sophie L." },
-    ]},
+    {
+      id: 1, nom: "Sprint 1", debut: "2026-01-06", fin: "2026-01-17", objectif: "Setup initial et authentification", statut: "Terminé", vitesse: 42, stories: [
+        { id: 1, titre: "Setup projet", points: 5, statut: "Terminé", assignee: "Jean D." },
+        { id: 2, titre: "Auth utilisateur", points: 8, statut: "Terminé", assignee: "Marie C." },
+        { id: 3, titre: "Base de données", points: 13, statut: "Terminé", assignee: "Paul M." },
+        { id: 4, titre: "CI/CD pipeline", points: 8, statut: "Terminé", assignee: "Sophie L." },
+      ]
+    },
+    {
+      id: 2, nom: "Sprint 2", debut: "2026-01-20", fin: "2026-01-31", objectif: "Module comptabilité de base", statut: "Terminé", vitesse: 38, stories: [
+        { id: 5, titre: "Saisie factures", points: 13, statut: "Terminé", assignee: "Paul M." },
+        { id: 6, titre: "Liste fournisseurs", points: 8, statut: "Terminé", assignee: "Jean D." },
+        { id: 7, titre: "Rapports basiques", points: 8, statut: "Terminé", assignee: "Marie C." },
+      ]
+    },
+    {
+      id: 3, nom: "Sprint 3", debut: "2026-02-03", fin: "2026-02-14", objectif: "Intégrations bancaires", statut: "En cours", vitesse: 0, stories: [
+        { id: 8, titre: "API Banque X", points: 13, statut: "En cours", assignee: "Jean D." },
+        { id: 9, titre: "Rapprochement bancaire", points: 8, statut: "En cours", assignee: "Paul M." },
+        { id: 10, titre: "Exports comptables", points: 5, statut: "À faire", assignee: "Marie C." },
+        { id: 11, titre: "Tests intégration", points: 8, statut: "À faire", assignee: "Sophie L." },
+      ]
+    },
   ],
   kanban: {
     backlog: [
@@ -156,7 +162,7 @@ const MODULES = [
   { id: "suivi", label: "Suivi Simple", icon: "✓" },
   { id: "multiprojets", label: "Multi-Projets", icon: "◈" },
   { id: "taches", label: "Tâches", icon: "⊞" },
-  { id: "couts", label: "Coûts", icon: "€" },
+  { id: "couts", label: "Coûts", icon: "FCFA" },
   { id: "jalons", label: "Jalons", icon: "◆" },
   { id: "problemes", label: "Problèmes", icon: "⚠" },
   { id: "risques", label: "Risques", icon: "⛨" },
@@ -291,13 +297,13 @@ const Dashboard = ({ data }) => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <StatCard label="Projets Actifs" value={projetsActifs} sub={`sur ${totalProjets} total`} color="#6366f1" icon="◈" />
         <StatCard label="Avancement Global" value={`${avgAvancement}%`} sub="moyenne tous projets" color="#8b5cf6" icon="◉" />
-        <StatCard label="Budget Consommé" value={`${budgetPct}%`} sub={`${(totalBudgetR/1000).toFixed(0)}k€ / ${(totalBudgetP/1000).toFixed(0)}k€`} color="#a78bfa" icon="Σ" />
+        <StatCard label="Budget Consommé" value={`${budgetPct}%`} sub={`${(totalBudgetR / 1000).toFixed(0)}k FCFA / ${(totalBudgetP / 1000).toFixed(0)}k FCFA`} color="#a78bfa" icon="Σ" />
         <StatCard label="Risques Actifs" value={risquesActifs} sub="nécessitant attention" color="#ef4444" icon="⛨" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <StatCard label="Tâches En cours" value={tachesEnCours} sub={`${data.taches.filter(t=>t.statut==='Fait').length} terminées`} color="#10b981" icon="⊞" />
-        <StatCard label="Problèmes Ouverts" value={data.problemes.filter(p=>p.statut!=="Résolu").length} sub={`${data.problemes.filter(p=>p.priorite==="Critique").length} critiques`} color="#f59e0b" icon="⚠" />
-        <StatCard label="Jalons Atteints" value={data.jalons.filter(j=>j.statut==="Atteint").length} sub={`sur ${data.jalons.length} total`} color="#06b6d4" icon="◆" />
+        <StatCard label="Tâches En cours" value={tachesEnCours} sub={`${data.taches.filter(t => t.statut === 'Fait').length} terminées`} color="#10b981" icon="⊞" />
+        <StatCard label="Problèmes Ouverts" value={data.problemes.filter(p => p.statut !== "Résolu").length} sub={`${data.problemes.filter(p => p.priorite === "Critique").length} critiques`} color="#f59e0b" icon="⚠" />
+        <StatCard label="Jalons Atteints" value={data.jalons.filter(j => j.statut === "Atteint").length} sub={`sur ${data.jalons.length} total`} color="#06b6d4" icon="◆" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
@@ -319,7 +325,7 @@ const Dashboard = ({ data }) => {
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
               <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 10 }} />
               <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} />
-              <Tooltip contentStyle={{ backgroundColor: "#1e293b", border: "1px solid #475569", borderRadius: 8 }} formatter={v => `${v.toLocaleString()}€`} />
+              <Tooltip contentStyle={{ backgroundColor: "#1e293b", border: "1px solid #475569", borderRadius: 8 }} formatter={v => `${v.toLocaleString()} FCFA`} />
               <Legend />
               <Bar dataKey="Prévu" fill="#6366f1" radius={[4, 4, 0, 0]} />
               <Bar dataKey="Réel" fill="#a78bfa" radius={[4, 4, 0, 0]} />
@@ -471,7 +477,7 @@ const MultiProjets = ({ data, setData }) => {
         {[
           { label: "Total Projets", value: data.length, color: "#6366f1" },
           { label: "En cours", value: data.filter(p => p.statut === "En cours").length, color: "#f59e0b" },
-          { label: "Budget Total", value: `${(data.reduce((s, p) => s + p.budget, 0) / 1000).toFixed(0)}k€`, color: "#8b5cf6" },
+          { label: "Budget Total", value: `${(data.reduce((s, p) => s + p.budget, 0) / 1000).toFixed(0)}k FCFA`, color: "#8b5cf6" },
           { label: "Avancement Moy.", value: `${Math.round(data.reduce((s, p) => s + p.avancement, 0) / data.length)}%`, color: "#10b981" },
         ].map((s, i) => <StatCard key={i} {...s} />)}
       </div>
@@ -500,7 +506,7 @@ const MultiProjets = ({ data, setData }) => {
                 </div>
                 <div className="flex justify-between">
                   <span>Budget consommé</span>
-                  <span className={over ? "text-red-400 font-bold" : "text-emerald-400"}>{pct}% ({p.budgetReel.toLocaleString()}€ / {p.budget.toLocaleString()}€)</span>
+                  <span className={over ? "text-red-400 font-bold" : "text-emerald-400"}>{pct}% ({p.budgetReel.toLocaleString()} FCFA / {p.budget.toLocaleString()} FCFA)</span>
                 </div>
               </div>
             </div>
@@ -516,8 +522,8 @@ const MultiProjets = ({ data, setData }) => {
             <Input label="Date fin" type="date" value={form.fin || ""} onChange={e => setForm({ ...form, fin: e.target.value })} />
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <Input label="Budget prévu (€)" type="number" value={form.budget || ""} onChange={e => setForm({ ...form, budget: e.target.value })} />
-            <Input label="Budget réel (€)" type="number" value={form.budgetReel || ""} onChange={e => setForm({ ...form, budgetReel: e.target.value })} />
+            <Input label="Budget prévu (FCFA)" type="number" value={form.budget || ""} onChange={e => setForm({ ...form, budget: e.target.value })} />
+            <Input label="Budget réel (FCFA)" type="number" value={form.budgetReel || ""} onChange={e => setForm({ ...form, budgetReel: e.target.value })} />
           </div>
           <Input label="Avancement (%)" type="number" min="0" max="100" value={form.avancement || ""} onChange={e => setForm({ ...form, avancement: e.target.value })} />
           <Select label="Statut" value={form.statut || "Planifié"} options={["Planifié", "En cours", "En pause", "Terminé"]} onChange={e => setForm({ ...form, statut: e.target.value })} />
@@ -634,9 +640,9 @@ const Couts = ({ data, setData }) => {
       <SectionHeader title="Suivi des Coûts" subtitle="Contrôlez vos dépenses par phase de projet"
         action={<Btn onClick={() => { setForm({ phase: "", prevu: "", reel: "" }); setModal("add"); }} size="md">+ Ajouter Phase</Btn>} />
       <div className="grid grid-cols-3 gap-4">
-        <StatCard label="Budget Prévu" value={`${totalP.toLocaleString()}€`} color="#6366f1" icon="Σ" />
-        <StatCard label="Réel Dépensé" value={`${totalR.toLocaleString()}€`} color={totalR > totalP ? "#ef4444" : "#10b981"} icon="€" />
-        <StatCard label="Variance" value={`${variance >= 0 ? "+" : ""}${variance.toLocaleString()}€`} color={variance >= 0 ? "#10b981" : "#ef4444"} icon="Δ" sub={variance >= 0 ? "Économie réalisée" : "Dépassement"} />
+        <StatCard label="Budget Prévu" value={`${totalP.toLocaleString()} FCFA`} color="#6366f1" icon="Σ" />
+        <StatCard label="Réel Dépensé" value={`${totalR.toLocaleString()} FCFA`} color={totalR > totalP ? "#ef4444" : "#10b981"} icon="FCFA" />
+        <StatCard label="Variance" value={`${variance >= 0 ? "+" : ""}${variance.toLocaleString()} FCFA`} color={variance >= 0 ? "#10b981" : "#ef4444"} icon="Δ" sub={variance >= 0 ? "Économie réalisée" : "Dépassement"} />
       </div>
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
         <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Analyse Coûts par Phase</h3>
@@ -644,8 +650,8 @@ const Couts = ({ data, setData }) => {
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
             <XAxis dataKey="name" tick={{ fill: "#94a3b8", fontSize: 11 }} />
-            <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
-            <Tooltip contentStyle={{ backgroundColor: "#1e293b", border: "1px solid #475569", borderRadius: 8 }} formatter={v => `${v.toLocaleString()}€`} />
+            <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} tickFormatter={v => `${(v / 1000).toFixed(0)}k`} />
+            <Tooltip contentStyle={{ backgroundColor: "#1e293b", border: "1px solid #475569", borderRadius: 8 }} formatter={v => `${v.toLocaleString()} FCFA`} />
             <Legend />
             <Bar dataKey="Prévu" fill="#6366f1" radius={[4, 4, 0, 0]} />
             <Bar dataKey="Réel" fill="#a78bfa" radius={[4, 4, 0, 0]} />
@@ -655,7 +661,7 @@ const Couts = ({ data, setData }) => {
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
         <table className="w-full">
           <thead><tr className="border-b border-slate-700">
-            {["Phase", "Prévu (€)", "Réel (€)", "Variance (€)", "Statut", "Actions"].map(h => (
+            {["Phase", "Prévu (FCFA)", "Réel (FCFA)", "Variance (FCFA)", "Statut", "Actions"].map(h => (
               <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{h}</th>
             ))}
           </tr></thead>
@@ -663,10 +669,10 @@ const Couts = ({ data, setData }) => {
             {data.map(c => (
               <tr key={c.id} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
                 <td className="px-4 py-3 text-sm font-medium text-slate-200">{c.phase}</td>
-                <td className="px-4 py-3 text-sm text-slate-300">{c.prevu.toLocaleString()}€</td>
-                <td className="px-4 py-3 text-sm text-slate-300">{c.reel.toLocaleString()}€</td>
+                <td className="px-4 py-3 text-sm text-slate-300">{c.prevu.toLocaleString()} FCFA</td>
+                <td className="px-4 py-3 text-sm text-slate-300">{c.reel.toLocaleString()} FCFA</td>
                 <td className="px-4 py-3 text-sm font-bold" style={{ color: c.prevu - c.reel >= 0 ? "#10b981" : "#ef4444" }}>
-                  {c.prevu - c.reel >= 0 ? "+" : ""}{(c.prevu - c.reel).toLocaleString()}€
+                  {c.prevu - c.reel >= 0 ? "+" : ""}{(c.prevu - c.reel).toLocaleString()} FCFA
                 </td>
                 <td className="px-4 py-3"><Badge value={c.statut} /></td>
                 <td className="px-4 py-3">
@@ -683,8 +689,8 @@ const Couts = ({ data, setData }) => {
       {modal && (
         <Modal title={modal === "add" ? "Nouvelle Phase" : "Modifier Phase"} onClose={() => setModal(null)}>
           <Input label="Phase" value={form.phase || ""} onChange={e => setForm({ ...form, phase: e.target.value })} />
-          <Input label="Coût Prévu (€)" type="number" value={form.prevu || ""} onChange={e => setForm({ ...form, prevu: e.target.value })} />
-          <Input label="Coût Réel (€)" type="number" value={form.reel || ""} onChange={e => setForm({ ...form, reel: e.target.value })} />
+          <Input label="Coût Prévu (FCFA)" type="number" value={form.prevu || ""} onChange={e => setForm({ ...form, prevu: e.target.value })} />
+          <Input label="Coût Réel (FCFA)" type="number" value={form.reel || ""} onChange={e => setForm({ ...form, reel: e.target.value })} />
           <div className="flex gap-3 pt-2">
             <Btn onClick={save} size="md" className="flex-1">Enregistrer</Btn>
             <Btn onClick={() => setModal(null)} variant="ghost" size="md">Annuler</Btn>
@@ -1624,7 +1630,7 @@ export default function App() {
       try {
         const saved = await window.storage?.get("projetEliteData");
         if (saved?.value) setData(JSON.parse(saved.value));
-      } catch {}
+      } catch { }
     };
     load();
   }, []);
