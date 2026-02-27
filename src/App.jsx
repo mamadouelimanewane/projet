@@ -147,7 +147,41 @@ const INITIAL_DATA = {
     { id: "monit", phase: "Monitoring", statut: "A venir", progression: 0, livrable: "Rapports d'avancement", description: "Contrôle et ajustement du projet." },
     { id: "close", phase: "Clôture", statut: "A venir", progression: 0, livrable: "Bilan projet", description: "Réception finale et archivage." },
   ],
+  temps: [
+    { id: 1, tache: "Analyse des besoins", membre: "Jean D.", date: "2026-02-25", heures: 4, type: "Facturable" },
+    { id: 2, tache: "Maquettes UX", membre: "Sophie L.", date: "2026-02-26", heures: 6, type: "Facturable" },
+    { id: 3, tache: "Réunion client", membre: "Jean D.", date: "2026-02-26", heures: 2, type: "Non facturable" },
+  ],
+  documents: [
+    { id: 1, nom: "Cahier_des_charges_v2.pdf", projet: "Refonte SI Comptable", type: "PDF", taille: "2.4 MB", date: "2026-01-10", auteur: "Marie C." },
+    { id: 2, nom: "Maquettes_Mobile.fig", projet: "App Mobile RH", type: "Design", taille: "15.8 MB", date: "2026-02-05", auteur: "Emma P." },
+    { id: 3, nom: "Contrat_Prestataire.docx", projet: "Migration Cloud", type: "Word", taille: "1.1 MB", date: "2026-03-02", auteur: "Jean D." },
+  ],
+  factures: [
+    { id: "F-2026-001", client: "Client Alpha", projet: "Refonte SI Comptable", montant: 45000000, statut: "Payé", echeance: "2026-02-15" },
+    { id: "F-2026-002", client: "Client Beta", projet: "App Mobile RH", montant: 25500000, statut: "En attente", echeance: "2026-03-10" },
+    { id: "F-2026-003", client: "Client Gamma", projet: "Migration Cloud", montant: 10000000, statut: "Brouillon", echeance: "2026-04-01" },
+  ],
+  workflows: [
+    { id: 1, nom: "Alerte Dépassement Budget", declencheur: "Budget Consommé > 90%", action: "Email à la Direction", statut: "Actif" },
+    { id: 2, nom: "Validation Jalon", declencheur: "Statut Jalon = Atteint", action: "Générer Facture Proforma", statut: "Actif" },
+    { id: 3, nom: "Rappel Tâche en Retard", declencheur: "Date Limite < Aujourd'hui", action: "Notif Slack au Responsable", statut: "Inactif" },
+  ],
+  methode: "Hybride",
 };
+
+const METHODOLOGIES = [
+  { id: "agile", label: "Agile / Scrum", desc: "Itératif, sprints courts, focus valeur client.", icons: ["↻", "▦", "◉"] },
+  { id: "waterfall", label: "Waterfall (Cascade)", desc: "Séquentiel, phases rigides, planification amont.", icons: ["▬", "◈", "◆"] },
+  { id: "hybrid", label: "Hybride", desc: "Mélange de planification Waterfall et exécution Agile.", icons: ["⎔", "↻", "Σ"] },
+  { id: "prince2", label: "PRINCE2", desc: "Gestion par étapes, contrôle strict, gouvernance.", icons: ["⛨", "⚙", "✓"] },
+];
+
+const SCENARIOS = [
+  { id: 1, label: "Perte de ressource clé", impact: { delai: 15, budget: 10, risque: 20 }, desc: "Un lead technique quitte le projet subitement." },
+  { id: 2, label: "Coupe budgétaire (-20%)", impact: { delai: 10, budget: -20, risque: 15 }, desc: "Réduction immédiate des fonds alloués." },
+  { id: 3, label: "Accélération du marché", impact: { delai: -20, budget: 30, risque: 25 }, desc: "Nécessité de sortir le produit 1 mois plus tôt." },
+];
 
 // ═══════════════════════════════════════════
 // CONSTANTS
@@ -182,6 +216,14 @@ const MODULES = [
   { id: "gantt", label: "Gantt", icon: "▬" },
   { id: "cycle", label: "Cycle de Vie", icon: "⎔" },
   { id: "assistant", label: "Assistance IA", icon: "✧" },
+  { id: "simulation", label: "Simulateur", icon: "⚖" },
+  { id: "methodologies", label: "Méthodologies", icon: "⚙" },
+  { id: "portail", label: "Portail Client", icon: "👤" },
+  { id: "temps", label: "Feuilles de Temps", icon: "⌛" },
+  { id: "docs", label: "Documents", icon: "📄" },
+  { id: "factures", label: "Facturation", icon: "💳" },
+  { id: "workflows", label: "Workflows", icon: "⚡" },
+  { id: "rapports", label: "Rapports", icon: "📊" },
 ];
 
 // ═══════════════════════════════════════════
@@ -1728,6 +1770,304 @@ const AssistantElite = () => {
 };
 
 // ═══════════════════════════════════════════
+// MODULE: SIMULATEUR DE SCÉNARIOS
+// ═══════════════════════════════════════════
+const Simulateur = ({ data }) => {
+  const [activeScenario, setActiveScenario] = useState(null);
+  const [customImpact, setCustomImpact] = useState({ delai: 0, budget: 0, risque: 0 });
+
+  const currentScenario = activeScenario ? SCENARIOS.find(s => s.id === activeScenario) : { impact: customImpact };
+  const imp = currentScenario.impact;
+
+  // Stats simulées
+  const simStats = [
+    { label: "Délai Final", base: "30 Juin", sim: imp.delai === 0 ? "30 Juin" : imp.delai > 0 ? `15 Juil (+${imp.delai}j)` : `10 Juin (${imp.delai}j)`, color: imp.delai > 0 ? "#ef4444" : "#10b981" },
+    { label: "Budget Final", base: "345M", sim: imp.budget === 0 ? "345M" : `${(345 * (1 + imp.budget / 100)).toFixed(0)}M (${imp.budget > 0 ? '+' : ''}${imp.budget}%)`, color: imp.budget > 0 ? "#ef4444" : "#10b981" },
+    { label: "Niveau Risque", base: "Modéré", sim: imp.risque === 0 ? "Modéré" : imp.risque > 15 ? "Critique" : "Élevé", color: imp.risque > 0 ? "#ef4444" : "#10b981" },
+  ];
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Simulateur de Scénarios" subtitle="Anticipez l'impact des imprévus sur votre trajectoire" />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {SCENARIOS.map(s => (
+          <button key={s.id} onClick={() => setActiveScenario(activeScenario === s.id ? null : s.id)}
+            className={`p-4 rounded-xl border transition-all text-left ${activeScenario === s.id ? "bg-indigo-600 border-indigo-400 shadow-lg" : "bg-slate-800/60 border-slate-700 hover:border-slate-500"}`}>
+            <h3 className="text-sm font-bold text-white mb-1">{s.label}</h3>
+            <p className="text-xs text-slate-400 leading-tight">{s.desc}</p>
+          </button>
+        ))}
+      </div>
+
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-base font-bold text-white">Résultat de la Simulation</h3>
+          {activeScenario && <Btn variant="ghost" onClick={() => setActiveScenario(null)}>Réinitialiser</Btn>}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {simStats.map((s, i) => (
+            <div key={i} className="bg-slate-900/50 rounded-xl p-4 border border-slate-800">
+              <p className="text-xs text-slate-500 uppercase font-bold tracking-widest mb-2">{s.label}</p>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-xs text-slate-600">Actuel</p>
+                  <p className="text-sm font-bold text-slate-400">{s.base}</p>
+                </div>
+                <div className="text-xl">➔</div>
+                <div className="text-right">
+                  <p className="text-xs text-slate-600">Simulé</p>
+                  <p className="text-lg font-black" style={{ color: s.color }}>{s.sim}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-slate-700">
+          <h4 className="text-sm font-bold text-slate-300 mb-4">Analyse d'Impact (Modèle Prédictif)</h4>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ResponsiveContainer width="100%" height={200}>
+              <RadarChart data={[
+                { subject: 'Coûts', A: 60, B: 60 + imp.budget },
+                { subject: 'Délais', A: 50, B: 50 + imp.delai },
+                { subject: 'Risques', A: 40, B: 40 + imp.risque },
+                { subject: 'Qualité', A: 80, B: 80 - (imp.delai > 0 ? 5 : 0) },
+                { subject: 'Ressources', A: 70, B: 70 - (imp.budget < 0 ? 10 : 0) },
+              ]}>
+                <PolarGrid stroke="#334155" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: "#94a3b8", fontSize: 10 }} />
+                <Radar name="Actuel" dataKey="A" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} />
+                <Radar name="Simulé" dataKey="B" stroke="#6366f1" fill="#6366f1" fillOpacity={0.4} />
+                <Legend />
+              </RadarChart>
+            </ResponsiveContainer>
+            <div className="flex flex-col justify-center space-y-3">
+              <div className="bg-indigo-600/10 border border-indigo-500/20 rounded-xl p-4">
+                <p className="text-xs font-bold text-indigo-400 mb-2 uppercase">💡 Recommandation Élite</p>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  {imp.budget > 0 ? "Envisager un arbitrage sur les fonctionnalités non critiques pour compenser le surcoût." :
+                    imp.delai > 0 ? "Activer le mode 'Fast-track' ou réduire le périmètre du prochain jalon." :
+                      "Maintenir la vigilance sur la vélocité de l'équipe."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: CHOIX MÉTHODOLOGIES
+// ═══════════════════════════════════════════
+const Methodologies = ({ data, setData }) => {
+  const currentMethode = data.methode || "Hybride";
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Configuration Méthodologique" subtitle="Adaptez l'interface et les outils à votre mode de gestion" />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {METHODOLOGIES.map(m => (
+          <div key={m.id} onClick={() => setData({ ...data, methode: m.label })}
+            className={`p-5 rounded-2xl border transition-all cursor-pointer group ${currentMethode === m.label ? "bg-indigo-600 border-indigo-400 shadow-xl scale-[1.02]" : "bg-slate-800/60 border-slate-700 hover:border-slate-500"}`}>
+            <div className="flex justify-between items-start mb-4">
+              <div className="flex gap-2">
+                {m.icons.map((ic, i) => <span key={i} className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm">{ic}</span>)}
+              </div>
+              {currentMethode === m.label && <span className="text-[10px] font-black bg-white text-indigo-600 px-2 py-0.5 rounded-full uppercase">Actif</span>}
+            </div>
+            <h3 className="text-lg font-black text-white mb-2">{m.label}</h3>
+            <p className="text-xs text-slate-300 group-hover:text-white transition-colors">{m.desc}</p>
+
+            <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
+              <span className="text-[10px] text-white/60 uppercase font-black">Modules clés</span>
+              <p className="text-[10px] text-white/80">{m.label === "Agile / Scrum" ? "Sprint, Kanban, Vélocité" : m.label === "Waterfall (Cascade)" ? "Gantt, Jalons, Budget" : "Tous les outils"}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 text-center">
+        <p className="text-sm text-slate-400 mb-2">Méthodologie sélectionnée : <strong className="text-white">{currentMethode}</strong></p>
+        <p className="text-xs text-slate-500 italic max-w-md mx-auto">"La sélection d'une méthodologie personnalise automatiquement vos indicateurs de performance et les vues prioritaires du tableau de bord."</p>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: PORTAIL CLIENT
+// ═══════════════════════════════════════════
+const PortailClient = ({ data }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Portail Client (Lecture Seule)" subtitle="Vue simplifiée pour vos commanditaires ou clients" action={<Btn size="md">Partager le lien</Btn>} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <StatCard label="Projets en cours" value={data.projets.filter(p => p.statut === "En cours").length} color="#6366f1" icon="◈" />
+        <StatCard label="Jalons validés" value={data.jalons.filter(j => j.statut === "Atteint").length} color="#10b981" icon="◆" />
+        <StatCard label="Prochaine livraison" value="15 Mars" color="#f59e0b" icon="⏱" />
+      </div>
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
+        <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">État d'avancement des Projets</h3>
+        <div className="space-y-4">
+          {data.projets.filter(p => p.statut !== "Terminé").map(p => (
+            <div key={p.id}>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-sm font-bold text-white">{p.nom}</span>
+                <span className="text-sm font-bold text-indigo-400">{p.avancement}%</span>
+              </div>
+              <ProgressBar value={p.avancement} color="#6366f1" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: GESTION DES TEMPS
+// ═══════════════════════════════════════════
+const FeuillesTemps = ({ data, setData }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Feuilles de Temps" subtitle="Suivi des heures passées par l'équipe" action={<Btn size="md">+ Saisie Heures</Btn>} />
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <table className="w-full">
+          <thead><tr className="border-b border-slate-700">
+            {["Date", "Membre", "Tâche", "Heures", "Type"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>)}
+          </tr></thead>
+          <tbody>
+            {data.map(t => (
+              <tr key={t.id} className="border-b border-slate-700/50 hover:bg-slate-700/30">
+                <td className="px-4 py-3 text-sm text-slate-400">{t.date}</td>
+                <td className="px-4 py-3 text-sm font-bold text-white">{t.membre}</td>
+                <td className="px-4 py-3 text-sm text-slate-300">{t.tache}</td>
+                <td className="px-4 py-3 text-sm font-bold text-indigo-400">{t.heures}h</td>
+                <td className="px-4 py-3"><Badge value={t.type} map={{ "Facturable": "#10b981", "Non facturable": "#94a3b8" }} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: DOCUMENTS (GED)
+// ═══════════════════════════════════════════
+const DocumentsGED = ({ data }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Gestion Documentaire Intelligente" subtitle="Centralisez et analysez vos documents projets" action={<Btn size="md">+ Uploader</Btn>} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {data.map(d => (
+          <div key={d.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 flex gap-3 hover:border-indigo-500/40 transition-colors">
+            <div className="w-12 h-12 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl font-black">📄</div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-bold text-white truncate" title={d.nom}>{d.nom}</p>
+              <p className="text-xs text-slate-500">{d.projet}</p>
+              <div className="flex justify-between items-center mt-2">
+                <span className="text-[10px] bg-slate-700 px-2 py-0.5 rounded text-slate-300">{d.taille}</span>
+                <span className="text-[10px] text-slate-500">{d.date}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: FACTURATION AUTOMATISÉE
+// ═══════════════════════════════════════════
+const Facturation = ({ data }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Facturation & Finance" subtitle="Transformez vos jalons et temps en factures" action={<Btn size="md">+ Nouvelle Facture</Btn>} />
+      <div className="grid grid-cols-3 gap-4">
+        <StatCard label="CA Généré" value={`${(data.reduce((s, f) => s + f.montant, 0) / 1000000).toFixed(1)}M FCFA`} color="#10b981" icon="💰" />
+        <StatCard label="En attente" value={`${(data.filter(f => f.statut === "En attente").reduce((s, f) => s + f.montant, 0) / 1000000).toFixed(1)}M FCFA`} color="#f59e0b" icon="⌛" />
+        <StatCard label="Factures payées" value={data.filter(f => f.statut === "Payé").length} color="#6366f1" icon="💳" />
+      </div>
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <table className="w-full">
+          <thead><tr className="border-b border-slate-700">
+            {["N° Facture", "Client", "Projet", "Montant", "Échéance", "Statut", "Action"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>)}
+          </tr></thead>
+          <tbody>
+            {data.map(f => (
+              <tr key={f.id} className="border-b border-slate-700/50 hover:bg-slate-700/30">
+                <td className="px-4 py-3 text-sm font-medium text-white">{f.id}</td>
+                <td className="px-4 py-3 text-sm text-slate-400">{f.client}</td>
+                <td className="px-4 py-3 text-sm text-slate-400">{f.projet}</td>
+                <td className="px-4 py-3 text-sm font-bold text-indigo-400">{f.montant.toLocaleString()} FCFA</td>
+                <td className="px-4 py-3 text-sm text-slate-500">{f.echeance}</td>
+                <td className="px-4 py-3"><Badge value={f.statut} map={{ "Payé": "#10b981", "En attente": "#f59e0b", "Brouillon": "#94a3b8" }} /></td>
+                <td className="px-4 py-3"><Btn variant="ghost" size="sm">PDF</Btn></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: WORKFLOWS
+// ═══════════════════════════════════════════
+const Workflows = ({ data }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Moteur de Règles & Notifications" subtitle="Automatisez vos processus de gestion" action={<Btn size="md">+ Créer Règle</Btn>} />
+      <div className="space-y-3">
+        {data.map(w => (
+          <div key={w.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 flex justify-between items-center hover:border-indigo-500/40">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <h3 className="text-sm font-bold text-white">{w.nom}</h3>
+                <Badge value={w.statut} map={{ "Actif": "#10b981", "Inactif": "#64748b" }} />
+              </div>
+              <p className="text-xs text-slate-400">Si <strong className="text-indigo-400">{w.declencheur}</strong> alors <strong className="text-indigo-400">{w.action}</strong></p>
+            </div>
+            <div className="w-10 h-6 bg-slate-700 rounded-full relative cursor-pointer">
+              <div className={`w-4 h-4 rounded-full absolute top-1 transition-all ${w.statut === "Actif" ? "left-5 bg-indigo-500" : "left-1 bg-slate-500"}`} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// MODULE: RAPPORTS
+// ═══════════════════════════════════════════
+const Rapports = () => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Générateur de Rapports" subtitle="Préparez vos supports pour le comité de pilotage" action={<Btn size="md">Nouveau Rapport</Btn>} />
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 flex flex-col items-center justify-center text-center min-h-[300px]">
+        <div className="text-5xl mb-4">📊</div>
+        <h3 className="text-lg font-bold text-white mb-2">Sélectionnez les données à exporter</h3>
+        <p className="text-sm text-slate-400 mb-6 max-w-md">Combinez Gantt, Avancement, Budget et Risques en un document PDF ou Excel aux couleurs de votre entreprise.</p>
+        <div className="flex gap-4">
+          <Btn className="bg-red-600 hover:bg-red-500 text-white">Export PDF</Btn>
+          <Btn className="bg-emerald-600 hover:bg-emerald-500 text-white">Export Excel</Btn>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
 // MAIN APP
 // ═══════════════════════════════════════════
 export default function App() {
@@ -1780,6 +2120,14 @@ export default function App() {
       case "gantt": return <Gantt data={data.gantt} setData={update("gantt")} />;
       case "cycle": return <CycleVie data={data.cycle} setData={update("cycle")} />;
       case "assistant": return <AssistantElite />;
+      case "simulation": return <Simulateur data={data} />;
+      case "methodologies": return <Methodologies data={data} setData={setData} />;
+      case "portail": return <PortailClient data={data} />;
+      case "temps": return <FeuillesTemps data={data.temps} setData={update("temps")} />;
+      case "docs": return <DocumentsGED data={data.documents} setData={update("documents")} />;
+      case "factures": return <Facturation data={data.factures} setData={update("factures")} />;
+      case "workflows": return <Workflows data={data.workflows} setData={update("workflows")} />;
+      case "rapports": return <Rapports />;
       default: return null;
     }
   };
