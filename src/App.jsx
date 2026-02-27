@@ -167,6 +167,11 @@ const INITIAL_DATA = {
     { id: 2, nom: "Validation Jalon", declencheur: "Statut Jalon = Atteint", action: "Générer Facture Proforma", statut: "Actif" },
     { id: 3, nom: "Rappel Tâche en Retard", declencheur: "Date Limite < Aujourd'hui", action: "Notif Slack au Responsable", statut: "Inactif" },
   ],
+  smartcontracts: [
+    { id: "0x8f3A...9Cb2", projet: "Migration Cloud", montant: 20000000, date: "2026-03-01", statut: "Exécuté", condition: "Audit Validé" },
+    { id: "0x4b7E...1Fd9", projet: "Refonte SI Comptable", montant: 45000000, date: "2026-03-15", statut: "En attente", condition: "UAT Réussis" },
+    { id: "0x1a9C...8Ec5", projet: "App Mobile RH", montant: 25500000, date: "2026-04-10", statut: "Bloqué", condition: "Validation Client" },
+  ],
   methode: "Hybride",
 };
 
@@ -224,6 +229,9 @@ const MODULES = [
   { id: "factures", label: "Facturation", icon: "💳" },
   { id: "workflows", label: "Workflows", icon: "⚡" },
   { id: "rapports", label: "Rapports", icon: "📊" },
+  { id: "warroom", label: "War Room Virtuelle", icon: "🌐" },
+  { id: "copilote", label: "Copilote IA", icon: "🧠" },
+  { id: "smartcontracts", label: "Smart Contracts", icon: "⛓" },
 ];
 
 // ═══════════════════════════════════════════
@@ -2068,6 +2076,122 @@ const Rapports = () => {
 };
 
 // ═══════════════════════════════════════════
+// AVANT-GARDE: WAR ROOM VIRTUELLE
+// ═══════════════════════════════════════════
+const WarRoom = () => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="War Room: Metaverse Collaboration" subtitle="Espace virtuel de crise et coordination en temps réel" action={<Btn size="md" className="bg-red-600 hover:bg-red-500 text-white animate-pulse">Rejoindre le Huddle (Live)</Btn>} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-2 bg-slate-900 border border-slate-700 rounded-xl overflow-hidden relative min-h-[400px]">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-20 sepia" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <p className="text-4xl">🌐</p>
+            <p className="text-sm font-bold mt-2 tracking-widest text-slate-300">ESPACE DE COLLABORATION 3D</p>
+            <p className="text-xs text-slate-500 mt-1">4 membres actuellement en ligne</p>
+          </div>
+          {/* Fake cursors/avatars */}
+          <div className="absolute top-[20%] left-[30%] bg-indigo-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-lg shadow-indigo-500/50">Jean D. (Lead)</div>
+          <div className="absolute top-[50%] left-[60%] bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-lg shadow-emerald-500/50">Marie C.</div>
+          <div className="absolute top-[70%] left-[20%] bg-fuchsia-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold shadow-lg shadow-fuchsia-500/50">Client Beta</div>
+        </div>
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 flex flex-col">
+          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Activité Récente (Live)</h3>
+          <div className="flex-1 space-y-4 overflow-y-auto custom-scrollbar">
+            <div className="text-xs text-slate-400"><span className="text-emerald-400 font-bold">Marie C.</span> a modifié "Architecture système" - il y a 2m</div>
+            <div className="text-xs text-slate-400"><span className="text-indigo-400 font-bold">Jean D.</span> a validé un jalon - il y a 5m</div>
+            <div className="text-xs text-slate-400"><span className="text-fuchsia-400 font-bold">Système</span> : Dépassement budgétaire détecté - il y a 10m</div>
+          </div>
+          <div className="mt-4 pt-4 border-t border-slate-700">
+            <input className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white" placeholder="Message rapide à l'équipe..." />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// AVANT-GARDE: COPILOTE IA PRÉDICTIF
+// ═══════════════════════════════════════════
+const CopilotePredictif = ({ data }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Copilote & Analyse Prédictive" subtitle="Anticipation neuronale des risques basée sur l'historique de l'équipe" action={<Btn size="md">Lancer Analyse Profonde</Btn>} />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <StatCard label="Health Score" value="A-" color="#10b981" icon="🧬" sub="Basé sur 45 métriques" />
+        <StatCard label="Risque de Dérive" value="28%" color="#f59e0b" icon="📉" sub="Sur le projet Migration Cloud" />
+        <StatCard label="Vitesse de Burn" value="1.2x" color="#ef4444" icon="🔥" sub="Ressources Backend en surcharge" />
+        <StatCard label="Prédiction Succès" value="94%" color="#6366f1" icon="🎯" sub="Fiabilité modèle IA : Haute" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-600/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none" />
+          <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2"><span className="text-indigo-400">✧</span> Insight Stratégique</h3>
+          <p className="text-sm text-slate-300 mb-4 leading-relaxed">
+            D'après l'analyse des Sprints précédents, l'équipe accuse une <strong>baisse de vélocité de 15%</strong> en période de tests UAT. Le modèle prédictif recommande d'allouer <strong>1 ressource QA supplémentaire</strong> (Sophie L.) pendant le mois de Mai sur le projet "Refonte SI Comptable" pour éviter un glissement du délai initial.
+          </p>
+          <div className="flex gap-3">
+            <Btn className="bg-indigo-600 hover:bg-indigo-500">Appliquer Auto-Allocation</Btn>
+            <Btn variant="ghost">Voir les données sources</Btn>
+          </div>
+        </div>
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6">
+          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Arbre de Décision Neuronal</h3>
+          {/* Fake Graph Representation */}
+          <div className="h-[120px] flex items-center justify-center border border-slate-700/50 rounded-lg bg-slate-900/50 relative">
+            <div className="w-1/2 h-0.5 bg-indigo-500/50 absolute left-8" />
+            <div className="w-1/4 h-0.5 bg-red-500/50 absolute left-1/2 rotate-45" />
+            <div className="w-1/4 h-0.5 bg-emerald-500/50 absolute left-1/2 -rotate-45" />
+            <div className="absolute left-4 bg-slate-800 p-2 text-[10px] text-white rounded border border-indigo-400">Budget IT</div>
+            <div className="absolute right-4 top-2 bg-slate-800 p-2 text-[10px] text-white rounded border border-red-400">Risque Elevé</div>
+            <div className="absolute right-4 bottom-2 bg-slate-800 p-2 text-[10px] text-white rounded border border-emerald-400">Optimal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// AVANT-GARDE: SMART CONTRACTS
+// ═══════════════════════════════════════════
+const SmartContracts = ({ data }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Gouvernance & Smart Contracts" subtitle="Registre immuable des approbations et paiements on-chain" action={<Btn size="md" className="bg-emerald-600 hover:bg-emerald-500 text-white">Déployer Contrat</Btn>} />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="col-span-1 bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 flex flex-col justify-center text-center">
+          <div className="text-5xl mb-3 text-emerald-400">⛓</div>
+          <p className="text-sm font-bold text-white mb-1">Réseau Privé Élite</p>
+          <p className="text-xs text-slate-400 mb-3">Nodes actifs : 4/4</p>
+          <p className="text-[10px] text-emerald-500 font-mono bg-emerald-900/20 px-2 py-1 rounded">Statut : CONNECTÉ</p>
+        </div>
+        <div className="col-span-3 bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+          <table className="w-full">
+            <thead><tr className="border-b border-slate-700">
+              {["Hash Contrat", "Projet", "Montant Sécurisé", "Condition de Trigger", "Date", "Statut"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>)}
+            </tr></thead>
+            <tbody>
+              {data.map((c, i) => (
+                <tr key={i} className="border-b border-slate-700/50 hover:bg-slate-700/30">
+                  <td className="px-4 py-3 text-xs font-mono text-indigo-400">{c.id}</td>
+                  <td className="px-4 py-3 text-sm text-slate-200">{c.projet}</td>
+                  <td className="px-4 py-3 text-sm font-bold text-emerald-400">{c.montant.toLocaleString()} FCFA</td>
+                  <td className="px-4 py-3 text-xs text-slate-400 flex items-center gap-1"><i>λ</i> {c.condition}</td>
+                  <td className="px-4 py-3 text-xs text-slate-500">{c.date}</td>
+                  <td className="px-4 py-3"><Badge value={c.statut} map={{ "Exécuté": "#10b981", "En attente": "#f59e0b", "Bloqué": "#ef4444" }} /></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
 // MAIN APP
 // ═══════════════════════════════════════════
 export default function App() {
@@ -2128,6 +2252,9 @@ export default function App() {
       case "factures": return <Facturation data={data.factures} setData={update("factures")} />;
       case "workflows": return <Workflows data={data.workflows} setData={update("workflows")} />;
       case "rapports": return <Rapports />;
+      case "warroom": return <WarRoom />;
+      case "copilote": return <CopilotePredictif data={data} />;
+      case "smartcontracts": return <SmartContracts data={data.smartcontracts} />;
       default: return null;
     }
   };
