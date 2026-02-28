@@ -247,6 +247,7 @@ const MODULES = [
   { id: "okr", label: "Stratégie OKR", icon: "🎯" },
   { id: "calendrier", label: "Planning Master", icon: "📅" },
   { id: "webhooks", label: "Intégrations (API)", icon: "🔗" },
+  { id: "guide", label: "Guide Débutant", icon: "🧭" },
 ];
 
 // ═══════════════════════════════════════════
@@ -2544,6 +2545,103 @@ const IntegrationsWebhooks = ({ data, setData }) => {
 };
 
 // ═══════════════════════════════════════════
+// NEW: GUIDE INTERACTIF (DÉBUTANTS)
+// ═══════════════════════════════════════════
+const GuideInteractif = () => {
+  const [step, setStep] = useState(0);
+
+  const steps = [
+    {
+      title: "👋 Bienvenue dans ProjetÉlite",
+      desc: "Vous n'avez jamais géré de projet ? Pas de panique. Ce guide va vous expliquer les bases en quelques minutes pour que vous puissiez piloter votre équipe comme un pro.",
+      icon: "🧭",
+      color: "#6366f1"
+    },
+    {
+      title: "📦 Qu'est-ce qu'un projet, concrètement ?",
+      desc: "Un projet n'est qu'un gros objectif découpé en petits morceaux. Ces morceaux s'appellent des Tâches. Quand un groupe de tâches importantes est fini, on appelle ça un Jalon (Milestone).",
+      icon: "🧩",
+      color: "#f59e0b",
+      actionDesc: "Exemple : L'objectif 'Créer un site' (Le Projet) se découpe en 'Faire le design' (Tâche 1) et 'Coder le site' (Tâche 2). Finir le design est un Jalon."
+    },
+    {
+      title: "🔄 Choisir sa Méthode : Agile vs Cascade",
+      desc: "Il y a 2 grandes façons de s'organiser :\n- Cascade (Waterfall) : On planifie TOUT à l'avance du début à la fin.\n- Agile : On avance par petites étapes (Sprints de 2 semaines) et on s'adapte en cours de route.",
+      icon: "⚖",
+      color: "#10b981",
+      actionDesc: "👉 L'industrie moderne utilise majoritairement Agile pour éviter les mauvaises surprises."
+    },
+    {
+      title: "⏱ Le Diagramme de Gantt",
+      desc: "C'est l'outil ultime du chef de projet. C'est simplement un calendrier visuel où chaque tâche est une barre allant de sa date de début à sa date de fin. Si la tâche B a besoin que la tâche A soit finie pour démarrer, on parle de 'Dépendance'.",
+      icon: "▬",
+      color: "#a78bfa"
+    },
+    {
+      title: "🚀 Par où commencer dans l'application ?",
+      desc: "Inutile d'utiliser les 24 modules d'un coup ! Pour votre premier projet :\n1. Allez dans 'Multi-Projets' pour créer le nom de votre projet.\n2. Allez dans 'Tâches' pour lister ce qu'il y a à faire.\n3. Consultez le 'Tableau de bord' pour voir l'avancement automatique.",
+      icon: "🎯",
+      color: "#ec4899"
+    }
+  ];
+
+  return (
+    <div className="space-y-6 max-w-4xl mx-auto mt-4">
+      <SectionHeader title="Académie ProjetÉlite" subtitle="Formation express à la gestion de projet" />
+
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-8 text-center relative overflow-hidden">
+        {/* Progress Bar Background */}
+        <div className="absolute top-0 left-0 w-full h-1.5 bg-slate-900">
+          <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${((step + 1) / steps.length) * 100}%` }} />
+        </div>
+
+        <div className="flex justify-between items-center mb-8 px-4 text-xs font-bold text-slate-500 uppercase tracking-widest relative z-10">
+          <span>Étape {step + 1} sur {steps.length}</span>
+          <span className="text-indigo-400">Notions de Base</span>
+        </div>
+
+        <div className="py-6 min-h-[250px] flex flex-col items-center justify-center relative z-10 transition-all duration-300">
+          <div className="text-7xl mb-6 shadow-2xl rounded-full" style={{ color: steps[step].color, textShadow: `0 0 40px ${steps[step].color}55` }}>
+            {steps[step].icon}
+          </div>
+          <h2 className="text-2xl font-black text-white mb-4">{steps[step].title}</h2>
+          <p className="text-base text-slate-300 max-w-2xl leading-relaxed whitespace-pre-line">
+            {steps[step].desc}
+          </p>
+          {steps[step].actionDesc && (
+            <div className="mt-6 bg-slate-900/80 border border-slate-700 p-4 rounded-lg text-sm text-slate-400 italic max-w-lg">
+              {steps[step].actionDesc}
+            </div>
+          )}
+        </div>
+
+        <div className="flex justify-between items-center mt-12 relative z-10 border-t border-slate-700/50 pt-6">
+          <Btn onClick={() => setStep(Math.max(0, step - 1))} disabled={step === 0} variant="ghost" className={step === 0 ? "opacity-30 pointer-events-none" : ""}>
+            ◀ Retour
+          </Btn>
+
+          <div className="flex gap-2">
+            {steps.map((_, i) => (
+              <div key={i} onClick={() => setStep(i)} className={`w-3 h-3 rounded-full cursor-pointer transition-all ${i === step ? "bg-indigo-500 scale-125" : "bg-slate-700 hover:bg-slate-600"}`} />
+            ))}
+          </div>
+
+          {step < steps.length - 1 ? (
+            <Btn onClick={() => setStep(step + 1)} size="md" className="bg-indigo-600 hover:bg-indigo-500 text-white font-bold px-8 shadow-lg shadow-indigo-600/20">
+              Suivant ▶
+            </Btn>
+          ) : (
+            <Btn onClick={() => alert("🎉 Félicitations ! Vous avez acquis les concepts de base. Vous pouvez vous rendre dans 'Multi-Projets'.")} size="md" className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-8 shadow-lg shadow-emerald-600/20 animate-pulse">
+              Démarrer mon projet ✓
+            </Btn>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
 // MAIN APP
 // ═══════════════════════════════════════════
 export default function App() {
@@ -2611,6 +2709,7 @@ export default function App() {
       case "okr": return <StrategieOKR data={data} />;
       case "calendrier": return <CalendrierCentral data={data} />;
       case "webhooks": return <IntegrationsWebhooks data={data.webhooks || []} setData={update("webhooks")} />;
+      case "guide": return <GuideInteractif />;
       default: return null;
     }
   };
