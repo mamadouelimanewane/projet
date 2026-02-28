@@ -177,6 +177,16 @@ const INITIAL_DATA = {
     { id: 2, objectif: "Zéro Dette Technique", progression: 10, type: "Opérationnel", projets: ["Migration Cloud"], statut: "En retard" },
     { id: 3, objectif: "Modernisation RH Mobile", progression: 30, type: "Innovation", projets: ["App Mobile RH"], statut: "En cours" },
   ],
+  intake: [
+    { id: 1, titre: "Migration Serveurs EU", demandeur: "IT Dept", type: "Infrastructure", date: "2026-06-15", statut: "En revue", priorite: "Haute" },
+    { id: 2, titre: "Campagne Marketing Q3", demandeur: "Sarah L.", type: "Marketing", date: "2026-07-01", statut: "Approuvé", priorite: "Moyenne" },
+    { id: 3, titre: "Audit Sécurité Externe", demandeur: "CyberSec", type: "Sécurité", date: "2026-05-10", statut: "Nouveau", priorite: "Critique" },
+  ],
+  automations: [
+    { id: 1, nom: "Auto-Assignation Bugs", trigger: "Tâche créée", condition: "Type = Bug", action: "Assigner à: Lead Dev & Tag: Urgent", active: true },
+    { id: 2, nom: "Alerte Dépassement", trigger: "Statut = En retard", condition: "Priorité >= Haute", action: "Envoyer email & Notifier Slack PMO", active: true },
+    { id: 3, nom: "Approbation Client Requise", trigger: "Jalon = Terminé", condition: "Budget > 5M", action: "Changer statut: En Validation & Notifier Client", active: false },
+  ],
   webhooks: [
     { id: 1, nom: "Slack (IT Channel)", url: "https://hooks.slack.com/services/T0X...", event: "Jalon Atteint", statut: "Connecté" },
     { id: 2, nom: "Microsoft Teams (Direction)", url: "https://teams.microsoft.com/l/webhook/...", event: "Dépassement Budget", statut: "Connecté" },
@@ -247,6 +257,8 @@ const MODULES = [
   { id: "okr", label: "Stratégie OKR", icon: "🎯" },
   { id: "calendrier", label: "Planning Master", icon: "📅" },
   { id: "webhooks", label: "Intégrations (API)", icon: "🔗" },
+  { id: "intake", label: "Demandes & Modèles", icon: "📥" },
+  { id: "automations", label: "Automatisations No-Code", icon: "🤖" },
   { id: "guide", label: "Guide Débutant", icon: "🧭" },
 ];
 
@@ -2645,6 +2657,148 @@ const IntegrationsWebhooks = ({ data, setData }) => {
 };
 
 // ═══════════════════════════════════════════
+// NEW: PROJECT INTAKE & GESTION DES DEMANDES
+// ═══════════════════════════════════════════
+const DemandesModeles = ({ data, setData }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Intake & Modèles (PMO)" subtitle="Approuvez, qualifiez et transformez les demandes en projets via des Modèles" action={<Btn size="md" className="bg-indigo-600 shadow-indigo-600/30 shadow-lg">Créer Formulaire Public</Btn>} />
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <StatCard label="Nouvelles Demandes" value="12" sub="En attente de tri" color="#f59e0b" icon="📥" />
+        <StatCard label="Approuvées" value="45" sub="Ce trimestre" color="#10b981" icon="✅" />
+        <StatCard label="Rejetées" value="8" sub="Hors budget/stratégie" color="#ef4444" icon="❌" />
+        <StatCard label="Modèles Actifs" value="14" sub="Blueprints PMO" color="#6366f1" icon="📋" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden shadow-xl">
+          <div className="px-5 py-4 border-b border-slate-700 bg-slate-900/50 flex justify-between items-center">
+            <h3 className="text-sm font-bold text-white flex items-center gap-2">Triage des Demandes (Intake Queue)</h3>
+            <Btn variant="ghost" size="sm">Filtrer</Btn>
+          </div>
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-slate-700 text-left text-xs font-bold text-slate-400 uppercase">
+                <th className="px-4 py-3">Titre de la demande</th>
+                <th className="px-4 py-3">Demandeur</th>
+                <th className="px-4 py-3">Catégorie</th>
+                <th className="px-4 py-3">Statut</th>
+                <th className="px-4 py-3 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map(d => (
+                <tr key={d.id} className="border-b border-slate-700/50 hover:bg-slate-700/30 group transition-colors">
+                  <td className="px-4 py-3">
+                    <p className="text-sm font-bold text-slate-200">{d.titre}</p>
+                    <p className="text-[10px] text-slate-500 mt-1">Échéance: {d.date}</p>
+                  </td>
+                  <td className="px-4 py-3 text-xs text-slate-300">{d.demandeur}</td>
+                  <td className="px-4 py-3 text-xs text-indigo-300"><span className="bg-indigo-900/40 px-2 py-1 rounded">{d.type}</span></td>
+                  <td className="px-4 py-3"><Badge value={d.statut} map={{ "Nouveau": "#6366f1", "En revue": "#f59e0b", "Approuvé": "#10b981" }} /></td>
+                  <td className="px-4 py-3 text-right">
+                    <Btn size="sm" className="bg-emerald-600/20 text-emerald-400 border border-emerald-500/50 hover:bg-emerald-600 hover:text-white px-2 py-1 text-xs">Approuver</Btn>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5 shadow-xl flex flex-col">
+          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider flex items-center gap-2"><span className="text-indigo-400">📋</span> Centre de Modèles (Blueprints)</h3>
+          <p className="text-xs text-slate-400 mb-4">Standardisez l'exécution : transformez une demande approuvée en projet grâce à un modèle PMO préconfiguré.</p>
+
+          <div className="space-y-3 flex-1">
+            {["🚀 Déploiement Logiciel IT", "📣 Lancement de Campagne", "🏢 Ouverture de Boutique", "🛡️ Audit de Conformité"].map((tpl, i) => (
+              <div key={i} className="border border-slate-700 rounded-lg p-3 hover:border-indigo-500/50 cursor-pointer transition-colors bg-slate-900/40 flex items-center justify-between group">
+                <div>
+                  <p className="text-sm font-bold text-slate-200 group-hover:text-indigo-300 transition-colors">{tpl}</p>
+                  <p className="text-[10px] text-slate-500 mt-1">Inclus: 12 tâches, 4 jalons</p>
+                </div>
+                <Btn variant="ghost" size="sm" className="opacity-50 group-hover:opacity-100 transition-opacity">→</Btn>
+              </div>
+            ))}
+          </div>
+          <Btn className="w-full mt-4 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-600 border-dashed">+ Créer un Modèle</Btn>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// NEW: AUTOMATISATIONS NO-CODE
+// ═══════════════════════════════════════════
+const AutomatisationsNoCode = ({ data, setData }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Automatisations & Règles No-Code" subtitle="Éliminez le travail manuel en créant des règles logiques 'Si ceci, Alors cela'" action={<Btn size="md" className="bg-gradient-to-r from-fuchsia-600 to-indigo-600 shadow-lg shadow-fuchsia-600/30 text-white font-bold border-0">+ Nouvelle automatisation</Btn>} />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 shadow-xl relative overflow-hidden group">
+          <div className="absolute -right-6 -top-6 text-7xl opacity-5 group-hover:scale-110 transition-transform group-hover:text-indigo-400">🤖</div>
+          <h3 className="text-3xl font-black text-white mb-1">24k</h3>
+          <p className="text-sm text-slate-400 font-medium">Actions exécutées ce mois</p>
+        </div>
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 shadow-xl relative overflow-hidden group">
+          <div className="absolute -right-6 -top-6 text-7xl opacity-5 group-hover:scale-110 transition-transform group-hover:text-amber-400">⏱️</div>
+          <h3 className="text-3xl font-black text-white mb-1">160h</h3>
+          <p className="text-sm text-slate-400 font-medium">Temps humain économisé</p>
+        </div>
+        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 shadow-xl relative overflow-hidden group">
+          <div className="absolute -right-6 -top-6 text-7xl opacity-5 group-hover:scale-110 transition-transform group-hover:text-emerald-400">⚡</div>
+          <h3 className="text-3xl font-black text-white mb-1">{data.filter(d => d.active).length}</h3>
+          <p className="text-sm text-slate-400 font-medium">Règles actives (Globales)</p>
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        {data.map(rule => (
+          <div key={rule.id} className={`flex items-stretch border rounded-xl overflow-hidden transition-all shadow-md group ${rule.active ? "bg-slate-800/80 border-indigo-500/50 hover:border-indigo-400" : "bg-slate-900/40 border-slate-700 opacity-70 hover:opacity-100 disabled"}`}>
+            {/* Toggle Column */}
+            <div className="w-16 flex items-center justify-center border-r border-slate-700/50 bg-slate-900/40">
+              <div className={`w-10 h-6 rounded-full p-1 cursor-pointer transition-colors ${rule.active ? "bg-emerald-500" : "bg-slate-600"}`}
+                onClick={() => setData(data.map(d => d.id === rule.id ? { ...d, active: !d.active } : d))}>
+                <div className={`w-4 h-4 rounded-full bg-white transition-transform ${rule.active ? "translate-x-4 shadow-sm" : ""}`} />
+              </div>
+            </div>
+
+            {/* Content Column */}
+            <div className="flex-1 p-5 flex flex-col md:flex-row gap-4 items-center">
+              <div className="flex-1 min-w-0 w-full">
+                <h3 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                  {rule.nom}
+                  {!rule.active && <span className="text-[10px] bg-slate-700 px-2 py-0.5 rounded text-slate-300">DÉSACTIVÉ</span>}
+                </h3>
+
+                {/* Visual Rule Builder Block */}
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono font-medium">
+                  <span className="bg-slate-700 text-slate-300 px-2 py-1 rounded">QUAND</span>
+                  <span className="text-indigo-400 font-bold border-b border-indigo-500/50 border-dashed pb-0.5 whitespace-nowrap">{rule.trigger}</span>
+
+                  <span className="text-slate-500">+</span>
+                  <span className="bg-slate-700 text-slate-300 px-2 py-1 rounded">SI CONDITION</span>
+                  <span className="text-fuchsia-400 font-bold border-b border-fuchsia-500/50 border-dashed pb-0.5 whitespace-nowrap">{rule.condition}</span>
+
+                  <span className="text-slate-500 ml-2">👉</span>
+                  <span className="bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 px-2 py-1 rounded font-bold whitespace-nowrap">ALORS {rule.action}</span>
+                </div>
+              </div>
+
+              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <Btn variant="ghost" size="sm" className="bg-slate-800 text-slate-300 hover:text-white">✏️ Éditer</Btn>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
 // NEW: GUIDE INTERACTIF (DÉBUTANTS)
 // ═══════════════════════════════════════════
 const GuideInteractif = () => {
@@ -2809,6 +2963,8 @@ export default function App() {
       case "okr": return <StrategieOKR data={data} />;
       case "calendrier": return <CalendrierCentral data={data} />;
       case "webhooks": return <IntegrationsWebhooks data={data.webhooks || []} setData={update("webhooks")} />;
+      case "intake": return <DemandesModeles data={data.intake || []} setData={update("intake")} />;
+      case "automations": return <AutomatisationsNoCode data={data.automations || []} setData={update("automations")} />;
       case "guide": return <GuideInteractif />;
       default: return null;
     }
