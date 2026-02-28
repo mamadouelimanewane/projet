@@ -2974,11 +2974,6 @@ export default function App() {
   const [data, setData] = useState(INITIAL_DATA);
   const [saving, setSaving] = useState(false);
 
-  // MOCK LOGIN OR ENTER
-  if (!showApp) {
-    return <LandingPage onEnter={() => setShowApp(true)} />;
-  }
-
   // Persist to storage
   useEffect(() => {
     const load = async () => {
@@ -3044,6 +3039,11 @@ export default function App() {
       default: return null;
     }
   };
+
+  // MOCK LOGIN OR ENTER
+  if (!showApp) {
+    return <LandingPage onEnter={() => setShowApp(true)} />;
+  }
 
   return (
     <div className="flex h-screen bg-slate-950 text-white overflow-hidden" style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif" }}>
