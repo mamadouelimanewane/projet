@@ -177,6 +177,12 @@ const INITIAL_DATA = {
     { id: 2, objectif: "Zéro Dette Technique", progression: 10, type: "Opérationnel", projets: ["Migration Cloud"], statut: "En retard" },
     { id: 3, objectif: "Modernisation RH Mobile", progression: 30, type: "Innovation", projets: ["App Mobile RH"], statut: "En cours" },
   ],
+  webhooks: [
+    { id: 1, nom: "Slack (IT Channel)", url: "https://hooks.slack.com/services/T0X...", event: "Jalon Atteint", statut: "Connecté" },
+    { id: 2, nom: "Microsoft Teams (Direction)", url: "https://teams.microsoft.com/l/webhook/...", event: "Dépassement Budget", statut: "Connecté" },
+    { id: 3, nom: "Jira Sync", url: "https://api.atlassian.com/ex/jira/...", event: "Tâche Créée", statut: "Erreur" },
+    { id: 4, nom: "Zapier", url: "https://hooks.zapier.com/hooks/catch/...", event: "Nouveau Projet", statut: "En pause" },
+  ],
   methode: "Hybride",
 };
 
@@ -239,6 +245,8 @@ const MODULES = [
   { id: "smartcontracts", label: "Smart Contracts", icon: "⛓" },
   { id: "portfolio", label: "Portfolio Financier", icon: "📈" },
   { id: "okr", label: "Stratégie OKR", icon: "🎯" },
+  { id: "calendrier", label: "Planning Master", icon: "📅" },
+  { id: "webhooks", label: "Intégrations (API)", icon: "🔗" },
 ];
 
 // ═══════════════════════════════════════════
@@ -2394,6 +2402,148 @@ const GenerationIA = () => {
 
 
 // ═══════════════════════════════════════════
+// NEW: CALENDRIER CENTRAL (PLANNING MUTUALISÉ)
+// ═══════════════════════════════════════════
+const CalendrierCentral = ({ data }) => {
+  // Calculer quelques dates bidons autour d'aujourd'hui pour l'affichage factice
+  const today = new Date();
+  const d1 = new Date(today); d1.setDate(today.getDate() - 2);
+  const d2 = new Date(today); d2.setDate(today.getDate() + 3);
+  const d3 = new Date(today); d3.setDate(today.getDate() + 7);
+
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Planning Master" subtitle="Vue consolidée des sprints, jalons et disponibilités" action={<Btn size="md">Synchroniser Outlook/GCal</Btn>} />
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <StatCard label="Événements" value="12" sub="Cette semaine" color="#6366f1" icon="📅" />
+        <StatCard label="Surcharges" value="2" sub="Conflits détectés" color="#ef4444" icon="⚠" />
+        <StatCard label="Livrables Visés" value="5" sub="Dans les 15 jours" color="#10b981" icon="📦" />
+        <StatCard label="Capacité Équipe" value="78%" sub="Taux d'occupation" color="#f59e0b" icon="⚡" />
+      </div>
+
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h3 className="text-lg font-bold text-white">Semaine Actuelle</h3>
+          <div className="flex gap-2">
+            <Btn variant="ghost">◀</Btn>
+            <Btn variant="ghost">Aujourd'hui</Btn>
+            <Btn variant="ghost">▶</Btn>
+          </div>
+        </div>
+
+        {/* Fake Calendar Grid */}
+        <div className="border border-slate-700 rounded-lg overflow-hidden flex flex-col">
+          {/* Header */}
+          <div className="grid grid-cols-5 bg-slate-900/80 border-b border-slate-700">
+            {['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'].map((j, i) => (
+              <div key={j} className="p-3 text-center border-r border-slate-700 last:border-r-0">
+                <p className="text-xs text-slate-400 uppercase tracking-widest">{j}</p>
+                <p className="text-lg font-bold text-slate-200 mt-1">{today.getDate() - today.getDay() + 1 + i}</p>
+              </div>
+            ))}
+          </div>
+          {/* Body */}
+          <div className="grid grid-cols-5 min-h-[300px]">
+            <div className="border-r border-slate-700 p-2 space-y-2">
+              <div className="bg-indigo-600/20 border border-indigo-500/50 rounded p-2 text-xs">
+                <p className="font-bold text-indigo-400">Démo MVP (Refonte SI)</p>
+                <p className="text-slate-400 mt-1">10:00 - Jean D.</p>
+              </div>
+            </div>
+            <div className="border-r border-slate-700 p-2 space-y-2 relative">
+              <div className="absolute top-0 left-0 right-0 h-full bg-slate-800/40 pointer-events-none" />
+              <div className="relative z-10 bg-emerald-600/20 border border-emerald-500/50 rounded p-2 text-xs">
+                <p className="font-bold text-emerald-400">Jalon: Validation Specs</p>
+                <p className="text-slate-400 mt-1">14:00 - Marie C.</p>
+              </div>
+            </div>
+            <div className="border-r border-slate-700 p-2 space-y-2">
+            </div>
+            <div className="border-r border-slate-700 p-2 space-y-2 bg-red-900/10">
+              <div className="bg-red-600/20 border border-red-500/50 rounded p-2 text-xs relative">
+                <p className="font-bold text-red-400">⚠ Goulot d'étranglement</p>
+                <p className="text-slate-400 mt-1 mb-2">Paul M. est surbooké</p>
+                <div className="h-1 bg-red-500/50 rounded-full" />
+                <div className="h-1 bg-fuchsia-500/50 rounded-full mt-1" />
+                <div className="h-1 bg-amber-500/50 rounded-full mt-1" />
+              </div>
+            </div>
+            <div className="p-2 space-y-2">
+              <div className="bg-fuchsia-600/20 border border-fuchsia-500/50 rounded p-2 text-xs">
+                <p className="font-bold text-fuchsia-400">Fin Sprint 3</p>
+                <p className="text-slate-400 mt-1">17:00 - Équipe DevOps</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
+// NEW: INTÉGRATIONS & WEBHOOKS (API)
+// ═══════════════════════════════════════════
+const IntegrationsWebhooks = ({ data, setData }) => {
+  return (
+    <div className="space-y-6">
+      <SectionHeader title="Intégrations & Webhooks" subtitle="Connectez ProjetÉlite au reste de votre écosystème logiciel via API" action={<Btn size="md" className="bg-indigo-600">+ Nouveau Webhook</Btn>} />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        {[
+          { name: "Slack", icon: "💬", desc: "Notification sur channel dédié", active: true },
+          { name: "Microsoft Teams", icon: "👥", desc: "Alertes financières directes", active: true },
+          { name: "Jira", icon: "🎫", desc: "Synchronisation bi-directionnelle", active: true },
+          { name: "GitLab / GitHub", icon: "🐙", desc: "Lien entre commits et tâches", active: false },
+          { name: "Salesforce", icon: "☁", desc: "Création auto de portail client", active: false },
+        ].map(i => (
+          <div key={i.name} className={`border rounded-xl p-5 flex items-start gap-4 transition-all hover:bg-slate-800 ${i.active ? "bg-slate-800/80 border-indigo-500/50" : "bg-slate-900/50 border-slate-700"}`}>
+            <div className={`text-3xl ${i.active ? "" : "grayscale opacity-40"}`}>{i.icon}</div>
+            <div className="flex-1">
+              <h3 className="text-sm font-bold text-white">{i.name}</h3>
+              <p className="text-xs text-slate-400 mt-1 line-clamp-2">{i.desc}</p>
+              <div className="mt-4">
+                {i.active ? (
+                  <span className="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded">✔ CONNECTÉ</span>
+                ) : (
+                  <Btn variant="ghost" size="sm" className="text-[10px] py-1">Connecter</Btn>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <div className="px-5 py-4 border-b border-slate-700 flex justify-between items-center bg-slate-900/50">
+          <h3 className="text-sm font-bold text-white">Endpoints Webhooks Configurés</h3>
+          <span className="text-xs text-slate-400">{data.length} actifs</span>
+        </div>
+        <table className="w-full">
+          <thead><tr className="border-b border-slate-700">
+            {["Service / Nom", "URL Endpoint", "Événement Déclencheur", "Statut"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>)}
+          </tr></thead>
+          <tbody>
+            {data.map(w => {
+              const color = w.statut === "Connecté" ? "#10b981" : w.statut === "Erreur" ? "#ef4444" : "#f59e0b";
+              return (
+                <tr key={w.id} className="border-b border-slate-700/50 hover:bg-slate-700/30">
+                  <td className="px-4 py-3 text-sm font-bold text-white">{w.nom}</td>
+                  <td className="px-4 py-3 text-xs text-indigo-300 font-mono truncate max-w-[200px]">{w.url}</td>
+                  <td className="px-4 py-3 text-xs text-slate-300"><span className="bg-slate-700 px-2 py-1 rounded text-slate-300">{w.event}</span></td>
+                  <td className="px-4 py-3"><Badge value={w.statut} map={{ "Connecté": "#10b981", "Erreur": "#ef4444", "En pause": "#f59e0b" }} /></td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+// ═══════════════════════════════════════════
 // MAIN APP
 // ═══════════════════════════════════════════
 export default function App() {
@@ -2459,6 +2609,8 @@ export default function App() {
       case "smartcontracts": return <SmartContracts data={data.smartcontracts} />;
       case "portfolio": return <PortfolioFinancier data={data} />;
       case "okr": return <StrategieOKR data={data} />;
+      case "calendrier": return <CalendrierCentral data={data} />;
+      case "webhooks": return <IntegrationsWebhooks data={data.webhooks || []} setData={update("webhooks")} />;
       default: return null;
     }
   };
