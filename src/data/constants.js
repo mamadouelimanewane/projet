@@ -147,9 +147,11 @@ export const INITIAL_DATA = {
     { id: 3, tache: "Réunion client", membre: "Jean D.", date: "2026-02-26", heures: 2, type: "Non facturable" },
   ],
   documents: [
-    { id: 1, nom: "Cahier_des_charges_v2.pdf", projet: "Refonte SI Comptable", type: "PDF", taille: "2.4 MB", date: "2026-01-10", auteur: "Marie C." },
-    { id: 2, nom: "Maquettes_Mobile.fig", projet: "App Mobile RH", type: "Design", taille: "15.8 MB", date: "2026-02-05", auteur: "Emma P." },
-    { id: 3, nom: "Contrat_Prestataire.docx", projet: "Migration Cloud", type: "Word", taille: "1.1 MB", date: "2026-03-02", auteur: "Jean D." },
+    { id: 1, nom: "Plan Fondation Villa 1A.pdf", projet: "Résidence Elite", type: "Technique", taille: "4.5MB", date: "2026-03-25", auteur: "Cabinet ARCHI", categorie: "BIM/Plans" },
+    { id: 2, nom: "PV Réception Tablier Pont.pdf", projet: "Pont Renaissance", type: "Officiel", taille: "1.2MB", date: "2026-03-28", auteur: "Bureau Contrôle", categorie: "PV Réception" },
+    { id: 3, nom: "Note de Calcul Sol (PK 12).xlsx", projet: "Route Littoral", type: "Technique", taille: "0.8MB", date: "2026-03-20", auteur: "Labo Géo", categorie: "Géotechnique" },
+    { id: 4, nom: "Contrat Sous-Traitant-Sogea.pdf", projet: "Infrastructure Global", type: "Administratif", taille: "2.1MB", date: "2026-03-15", auteur: "Droit BTP", categorie: "Contrats" },
+    { id: 5, nom: "Habilitations QHSE Equipe A.zip", projet: "Chantier Nord", type: "Sécurité", taille: "12MB", date: "2026-03-30", auteur: "Resp. QHSE", categorie: "RH/QHSE" }
   ],
   factures: [
     { id: "F-2026-001", client: "Client Alpha", projet: "Refonte SI Comptable", montant: 45000000, statut: "Payé", echeance: "2026-02-15" },
@@ -197,8 +199,73 @@ export const INITIAL_DATA = {
     { id: 2, projet: "App Mobile RH", empreinteReel: 1200, limite: 1000, unite: "kgCO2", categorie: "Développement & Tests", statut: "Alerte" }
   ],
   evm: [
-    { id: 1, projet: "Refonte SI Comptable", pV: 100000000, eV: 95000000, aC: 92000000, spi: 0.95, cpi: 1.03, tendance: "Favorable" },
-    { id: 2, projet: "App Mobile RH", pV: 40000000, eV: 30000000, aC: 35000000, spi: 0.75, cpi: 0.85, tendance: "Critique" }
+    { id: 1, projet: "Pont de la Renaissance", pV: 450000000, eV: 420000000, aC: 410000000, spi: 0.93, cpi: 1.02, tendance: "Stable" },
+    { id: 2, projet: "Autoroute du Littoral", pV: 850000000, eV: 650000000, aC: 700000000, spi: 0.76, cpi: 0.92, tendance: "Risque" }
+  ],
+  genieCivil: {
+    materiaux: [
+      { nom: "Béton B35", stock: 450, unite: "m3", seuil: 100, statut: "Normal" },
+      { nom: "Acier HA16", stock: 12, unite: "tonnes", seuil: 15, statut: "Critique" },
+      { nom: "Bitume 40/50", stock: 85, unite: "tonnes", seuil: 20, statut: "Normal" }
+    ],
+    securite: { incidents: 0, joursSansAccident: 145, tauxFrequence: 1.2 },
+    impact: { emploiLocal: 82, pmeLocales: 14, scoreESG: 8.5 },
+    typologies: {
+      batiment: {
+        projet: "Résidence Elite (12 Villas)",
+        avancementTCE: [
+          { corps: "Gros Œuvre", progress: 95, color: "#6366f1" },
+          { corps: "Plomberie/Elec", progress: 60, color: "#f59e0b" },
+          { corps: "Second Œuvre", progress: 40, color: "#10b981" },
+          { corps: "Finitions/Peinture", progress: 10, color: "#94a3b8" }
+        ],
+        unites: 12,
+        unitesLivrees: 0
+      },
+      infrastructure: {
+        projet: "Pont de la Renaissance & Voie Express",
+        lineaireTotal: 50,
+        lineaireActuel: 14.5,
+        terrassement: { deblais: 45000, remblais: 38000, cible: 120000 },
+        engins: { dispo: 12, maintenance: 2, total: 14 }
+      }
+    },
+    finances: {
+      totalBudget: 1500000000,
+      decaissat: 750000000,
+      engagements: 450000000,
+      sCurve: [
+        { mois: 'Jan', prevu: 100, reel: 95 },
+        { mois: 'Fév', prevu: 250, reel: 230 },
+        { mois: 'Mar', prevu: 450, reel: 410 },
+        { mois: 'Avr', prevu: 700, reel: 750 },
+        { mois: 'Mai', prevu: 1000, reel: null },
+      ],
+      bailleurs: [
+        { nom: "Banque Mondiale", part: 60, statut: "Libéré (Tranche 2)" },
+        { nom: "Gouvernement", part: 40, statut: "En attente" }
+      ]
+    },
+    rh: {
+      effectifTotal: 345,
+      categories: [
+        { label: "Ingénieurs", count: 25, color: "#6366f1" },
+        { label: "Chefs de Chantier", count: 40, color: "#f59e0b" },
+        { label: "Ouvriers Qualifiés", count: 180, color: "#10b981" },
+        { label: "Apprentis/Manœuv.", count: 100, color: "#94a3b8" }
+      ],
+      localContent: 88
+    }
+  },
+  dependencies: [
+    { source: 1, target: 2, type: "Hard" }, // SI Comptable -> Mobile RH
+    { source: 1, target: 3, type: "Data" }, // SI Comptable -> Jira Sync
+    { source: 3, target: 4, type: "API" }   // Jira Sync -> Zapier
+  ],
+  sentiment: [
+    { name: "Dev Team", score: 65, trend: "📉", risk: "Elevé (Burnout)" },
+    { name: "QA / Ops", score: 88, trend: "📈", risk: "Stable" },
+    { name: "Design", score: 92, trend: "➖", risk: "Optimal" }
   ]
 };
 
@@ -263,6 +330,11 @@ export const MODULES = [
   { id: "intake", label: "Demandes & Modèles", icon: "📥" },
   { id: "automations", label: "Automatisations No-Code", icon: "🤖" },
   { id: "montecarlo", label: "Simulateur Monte-Carlo", icon: "🎲" },
+  { id: "neuralmap", label: "Carte Portefeuille (Neural)", icon: "🕸" },
+  { id: "redteam", label: "Red Team AI (Stress-Test)", icon: "🧛" },
+  { id: "excel", label: "Pont Excel (Import/Export)", icon: "📊" },
+  { id: "geniecivil", label: "Génie Civil Élite (BIM)", icon: "🏗" },
+  { id: "sentiment", label: "Santé Humaine & Moral", icon: "🧠" },
   { id: "safe", label: "Agilité SAFe (Trains)", icon: "🚂" },
   { id: "greenpmo", label: "Bilan Carbone (ESG)", icon: "🌱" },
   { id: "evm", label: "Valeur Acquise (EVM)", icon: "🧮" },

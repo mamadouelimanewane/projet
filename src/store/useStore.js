@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { INITIAL_DATA } from '../data/constants';
+import { supabase } from '../lib/supabaseClient';
 
 const useStore = create(
   persist(
@@ -8,6 +9,8 @@ const useStore = create(
       data: INITIAL_DATA,
       showApp: false,
       sidebarOpen: true,
+      isSyncing: false,
+      lastSync: null,
       
       // Transitions
       setShowApp: (show) => set({ showApp: show }),
@@ -22,6 +25,44 @@ const useStore = create(
       })),
       
       setData: (newData) => set({ data: newData }),
+
+      // Supabase Sync logic
+      syncData: async () => {
+        if (!supabase) return;
+        set({ isSyncing: true });
+        try {
+          const { data, error } = await supabase
+            .from('project_data')
+            .upsert({ id: 'primary_state', content: get().data })
+            .select();
+          
+          if (error) throw error;
+          set({ lastSync: new Date().toISOString() });
+        } catch (e) {
+          console.error("Sync Error:", e);
+        } finally {
+          set({ isSyncing: false });
+        }
+      },
+
+      fetchData: async () => {
+        if (!supabase) return;
+        set({ isSyncing: true });
+        try {
+          const { data, error } = await supabase
+            .from('project_data')
+            .select('content')
+            .eq('id', 'primary_state')
+            .single();
+          
+          if (error && error.code !== 'PGRST116') throw error;
+          if (data?.content) set({ data: data.content });
+        } catch (e) {
+          console.error("Fetch Error:", e);
+        } finally {
+          set({ isSyncing: false });
+        }
+      },
       
       // Module specific shortcuts
       updateSuivi: (val) => get().updateData('suivi', val),

@@ -44,18 +44,33 @@ import SimulateurMonteCarlo from './components/modules/SimulateurMonteCarlo';
 import SAFe from './components/modules/SAFe';
 import GreenPMO from './components/modules/GreenPMO';
 import EVM from './components/modules/EVM';
+import NeuralMap from './components/modules/NeuralMap';
+import RedTeamAI from './components/modules/RedTeamAI';
+import SentimentTeam from './components/modules/SentimentTeam';
+import ExcelIntegration from './components/modules/ExcelIntegration';
+import GenieCivilElite from './components/modules/GenieCivilElite';
 import { MODULES } from "./data/constants";
 
 export default function App() {
   const { 
-    data, 
-    setData, 
-    updateData, 
-    showApp, 
-    setShowApp, 
     sidebarOpen, 
-    toggleSidebar 
+    toggleSidebar,
+    isSyncing,
+    lastSync,
+    fetchData,
+    syncData,
+    data,
+    setData,
+    updateData,
+    showApp,
+    setShowApp
   } = useStore();
+
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   
   const location = useLocation();
   const navigate = useNavigate();
@@ -72,19 +87,28 @@ export default function App() {
   const update = (key) => (val) => updateData(key, val);
 
   return (
-    <div className="flex h-screen bg-slate-950 text-white overflow-hidden" style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif" }}>
+    <div className="flex h-screen bg-slate-950 text-white overflow-hidden relative" style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif" }}>
       {/* SIDEBAR */}
-      <aside className={`${sidebarOpen ? "w-56" : "w-14"} flex-shrink-0 bg-slate-900/95 border-r border-slate-800 flex flex-col transition-all duration-300 ease-in-out z-20`}>
-        <div className="p-3 border-b border-slate-800 flex items-center gap-3">
-          <button onClick={toggleSidebar} className="w-8 h-8 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/40 flex items-center justify-center text-indigo-400 transition-all flex-shrink-0">
+      <aside className={`
+        fixed inset-y-0 left-0 z-50 md:relative 
+        ${sidebarOpen ? "w-64" : "w-14"} 
+        ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
+        flex-shrink-0 bg-slate-900/98 backdrop-blur-xl border-r border-slate-800 
+        flex flex-col transition-all duration-300 ease-in-out
+      `}>
+        <div className="p-4 border-b border-slate-800 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+             <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black">E</div>
+             {sidebarOpen && (
+               <div className="overflow-hidden">
+                 <p className="text-xs font-black text-white tracking-tight leading-none uppercase">Projet Élite</p>
+               </div>
+             )}
+          </div>
+          <button onClick={toggleSidebar} className="hidden md:flex w-6 h-6 items-center justify-center text-slate-500 hover:text-white">
             {sidebarOpen ? "◀" : "▶"}
           </button>
-          {sidebarOpen && (
-            <div className="overflow-hidden">
-              <p className="text-xs font-black text-white tracking-tight leading-none">PROJET</p>
-              <p className="text-xs font-black tracking-tight leading-none" style={{ color: "#a78bfa" }}>ÉLITE</p>
-            </div>
-          )}
+          <button onClick={() => setMobileMenuOpen(false)} className="md:hidden text-slate-500">✕</button>
         </div>
         <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto">
           {MODULES.map(m => (
@@ -105,20 +129,35 @@ export default function App() {
       {/* MAIN */}
       <main className="flex-1 overflow-y-auto">
         {/* TOP BAR */}
-        <div className="sticky top-0 z-10 bg-slate-950/90 backdrop-blur border-b border-slate-800 px-6 py-3 flex justify-between items-center">
-          <div>
-            <h1 className="text-sm font-black text-white">{MODULES.find(m => m.id === activeId)?.label || "Module"}</h1>
-            <p className="text-xs text-slate-500">Gestion de Projet Élite · {new Date().toLocaleDateString("fr-FR", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}</p>
+        <div className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 px-4 md:px-8 py-3 flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-slate-400 bg-slate-900 rounded-lg border border-slate-800">☰</button>
+            <div className="hidden sm:block">
+              <h1 className="text-sm font-black text-white">{MODULES.find(m => m.id === activeId)?.label || "Module"}</h1>
+              <p className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Site: Chantiers Afrique de l'Ouest</p>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-4">
+             {lastSync && (
+               <span className="text-[10px] text-slate-600 font-mono hidden lg:inline">
+                 Sync {new Date(lastSync).toLocaleTimeString()}
+               </span>
+             )}
+             <button 
+               onClick={syncData} 
+               disabled={isSyncing}
+               className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${isSyncing ? 'bg-slate-800 border-slate-700 text-slate-500' : 'bg-indigo-600/10 border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/20'}`}
+             >
+               {isSyncing ? "⌛" : "☁"} <span className="hidden sm:inline">Sync</span>
+             </button>
              <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-slate-800/60 px-3 py-1.5 rounded-lg border border-slate-700">
-              <span style={{ color: "#10b981" }}>●</span> En direct
+              <span className="text-emerald-500 animate-pulse">●</span> <span className="hidden xs:inline">Direct</span>
             </div>
           </div>
         </div>
         
         {/* ROUTES CONTENT */}
-        <div className="p-6">
+        <div className="p-4 md:p-8 max-w-[100vw] overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard data={data} />} />
@@ -159,6 +198,11 @@ export default function App() {
             <Route path="/safe" element={<SAFe data={data.safe} />} />
             <Route path="/greenpmo" element={<GreenPMO data={data.greenPmo} />} />
             <Route path="/evm" element={<EVM data={data.evm} />} />
+            <Route path="/neuralmap" element={<NeuralMap data={data} />} />
+            <Route path="/redteam" element={<RedTeamAI data={data} />} />
+            <Route path="/excel" element={<ExcelIntegration />} />
+            <Route path="/geniecivil" element={<GenieCivilElite data={data} />} />
+            <Route path="/sentiment" element={<SentimentTeam data={data.sentiment} />} />
             <Route path="/guide" element={<GuideInteractif />} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />

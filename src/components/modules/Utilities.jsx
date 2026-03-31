@@ -3,6 +3,6 @@ import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, RadarChart, Radar,
 import { INITIAL_DATA, METHODOLOGIES, SCENARIOS, STATUT_COLORS, PRIORITE_COLORS, PIE_COLORS, MODULES } from "../../data/constants";
 import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader } from "../ui";
 
-
+const Utilities = () => null;
 
 export default Utilities;
