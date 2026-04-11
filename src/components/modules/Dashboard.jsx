@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { PIE_COLORS, PRIORITE_COLORS } from "../../data/constants";
 import { Badge, StatCard, SectionHeader } from "../ui";
 
 const Dashboard = ({ data }) => {
+  const navigate = useNavigate();
   const totalProjets = data.projets.length;
   const projetsActifs = data.projets.filter(p => p.statut === "En cours").length;
   const tachesEnCours = data.taches.filter(t => t.statut === "En cours").length;
@@ -13,7 +15,7 @@ const Dashboard = ({ data }) => {
   const totalBudgetR = data.budget.reduce((s, b) => s + b.reel, 0);
   const budgetPct = Math.round((totalBudgetR / totalBudgetP) * 100);
 
-  const avancementData = data.projets.map(p => ({ name: p.nom.substring(0, 15) + "…", value: p.avancement }));
+  const avancementData = data.projets.map((p, index) => ({ name: p.nom.substring(0, 15) + "…", value: p.avancement, index }));
   const budgetData = data.couts.map(c => ({ name: c.phase, Prévu: c.prevu, Réel: c.reel }));
   const statutData = [
     { name: "Terminé", value: data.projets.filter(p => p.statut === "Terminé").length },
@@ -40,14 +42,20 @@ const Dashboard = ({ data }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="glass-card rounded-2xl p-6 animate-entrance [animation-delay:100ms]">
-          <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Avancement par Projet</h3>
+          <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Avancement par Projet (cliquez pour détails)</h3>
           <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={avancementData}>
+            <BarChart data={avancementData} onClick={(e) => {
+              if (e && e.activePayload && e.activePayload[0]) {
+                const index = e.activePayload[0].payload.index;
+                const projet = data.projets[index];
+                if (projet) navigate(`/dashboard-projet/${projet.id}`);
+              }
+            }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
               <XAxis dataKey="name" tick={{ fill: "#64748b", fontSize: 10 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fill: "#64748b", fontSize: 10 }} domain={[0, 100]} axisLine={false} tickLine={false} />
               <Tooltip cursor={{fill: 'rgba(255,255,255,0.05)'}} contentStyle={{ backgroundColor: "rgba(15, 23, 42, 0.9)", border: "1px solid rgba(148, 163, 184, 0.1)", borderRadius: 12, backdropFilter: 'blur(10px)' }} />
-              <Bar dataKey="value" fill="url(#colorBar)" radius={[6, 6, 0, 0]} name="%" barSize={35} />
+              <Bar dataKey="value" fill="url(#colorBar)" radius={[6, 6, 0, 0]} name="%" barSize={35} cursor="pointer" />
               <defs>
                 <linearGradient id="colorBar" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#6366f1" stopOpacity={0.8}/>

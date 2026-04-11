@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import useStore from './store/useStore';
 
 import Utilities from './components/modules/Utilities';
@@ -49,6 +49,7 @@ import RedTeamAI from './components/modules/RedTeamAI';
 import SentimentTeam from './components/modules/SentimentTeam';
 import ExcelIntegration from './components/modules/ExcelIntegration';
 import GenieCivilElite from './components/modules/GenieCivilElite';
+import DashboardProjet from './components/modules/DashboardProjet';
 import { MODULES } from "./data/constants";
 
 export default function App() {
@@ -204,6 +205,7 @@ export default function App() {
             <Route path="/geniecivil" element={<GenieCivilElite data={data} />} />
             <Route path="/sentiment" element={<SentimentTeam data={data.sentiment} />} />
             <Route path="/guide" element={<GuideInteractif />} />
+            <Route path="/dashboard-projet/:projetId" element={<DashboardProjet data={data} projetId={useParams().projetId} />} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>

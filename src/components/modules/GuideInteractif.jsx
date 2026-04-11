@@ -57,6 +57,19 @@ const GUIDE_STEPS = [
     desc: "Qualité = Délai + Coût + Périmètre. Si vous voulez livrer plus vite (Délai baisse), le Coût augmente (engager plus de monde) ou le Périmètre diminue (faire moins de choses).",
     icon: "🔺",
     color: "#ec4899"
+  },
+  {
+    title: "4️⃣ Les 5 Phases du Projet",
+    desc: "1. INITIATION 🎯 - Définir le pourquoi\n2. PLANIFICATION 📋 - Définir le comment/quand/avec quoi\n3. EXÉCUTION 🚀 - Réaliser le travail\n4. SUIVI & CONTRÔLE 📊 - Vérifier et corriger\n5. CLÔTURE ✅ - Terminer proprement",
+    icon: "🔄",
+    color: "#8b5cf6"
+  },
+  {
+    title: "5️⃣ La Gestion des Risques",
+    desc: "Un risque est un événement incertain qui peut impacter le projet.\nFormule : Score = Gravité × Probabilité\nStratégies : Éviter, Atténuer, Transférer, Accepter",
+    icon: "⚠",
+    color: "#ef4444",
+    actionDesc: "⚡ Règle : Identifier les risques tôt coûte 10x moins cher que de gérer un problème réalisé !"
   }
 ];
 

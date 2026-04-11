@@ -1,4 +1,29 @@
-# React + Vite
+# Projet Élite - Plateforme de Gestion de Projet Ultime
+
+## 📘 Documentation Complète
+
+Ce projet inclut une documentation pédagogique complète pour les débutants :
+
+### 📚 Ressources Disponibles
+
+| Document | Description | Usage |
+|----------|-------------|-------|
+| **[Manuel Complet](./MANUEL_COMPLET_PROJET.md)** | Guide de A à Z (Initiation → Clôture) | Apprentissage approfondi |
+| **[Navigation Rapide](./NAVIGATION_MANUEL.md)** | Quel module pour quelle tâche | Référence quotidienne |
+| **[Cheat Sheet](./CHEAT_SHEET.md)** | Formules, checklists, règles d'or | À imprimer et afficher |
+| **[Guide Interactif](http://localhost:5173/#/guide)** | Concepts, études de cas, quiz | Dans l'application |
+
+### 🔥 Parcours Recommandé pour Débutant
+
+1. **Commencer par le [Cheat Sheet](./CHEAT_SHEET.md)** pour avoir une vue d'ensemble
+2. **Lire le [Manuel Complet](./MANUEL_COMPLET_PROJET.md)** section par section
+3. **Utiliser la [Navigation Rapide](./NAVIGATION_MANUEL.md)** pour trouver les modules
+4. **Explorer le [Guide Interactif](http://localhost:5173/#/guide)** dans l'application
+5. **Pratiquer** en créant votre premier projet !
+
+---
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

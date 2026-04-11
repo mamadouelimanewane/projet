@@ -51,7 +51,7 @@ const LandingPage = ({ onEnter }) => {
             { title: "26 Modules", desc: "Suite complète", icon: "📦" },
             { title: "Gantt Avancé", desc: "Drag & Drop", icon: "▬" },
             { title: "IA Prédictive", desc: "Health Score", icon: "🧠" },
-            { title: "No-Code", desc: "Automatisations", icon: "🤖" }
+            { title: "Workflows", desc: "Automatisations", icon: "⚡" }
           ].map((f, i) => (
             <div key={i} className="bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-2xl p-6 text-left hover:border-indigo-500/50 transition-colors">
               <div className="text-3xl mb-4">{f.icon}</div>
