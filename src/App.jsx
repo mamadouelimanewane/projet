@@ -150,7 +150,10 @@ export default function App() {
               <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-slate-400 bg-slate-900 rounded-lg border border-slate-800">☰</button>
               <div className="hidden sm:block">
                 <h1 className="text-sm font-black text-white">{MODULES.find(m => m.id === activeId)?.label || "Module"}</h1>
-                <p className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Site: Chantiers Afrique de l'Ouest</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Site: Chantiers Afrique de l'Ouest</p>
+                  <span className="text-[9px] bg-indigo-600/20 text-indigo-400 px-1.5 py-0.5 rounded font-black border border-indigo-500/30">V1.2 NEW</span>
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2 md:gap-4">

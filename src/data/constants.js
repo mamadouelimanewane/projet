@@ -295,8 +295,8 @@ export const PRIORITE_COLORS = { "Critique": "#7c3aed", "Haute": "#ef4444", "Moy
 export const PIE_COLORS = ["#6366f1", "#8b5cf6", "#a78bfa", "#c4b5fd", "#7c3aed", "#4f46e5"];
 
 export const MODULES = [
-  { id: "dashboard", label: "Tableau de bord", icon: "⊡" },
-  { id: "dashboard-projet", label: "Dashboard Projet", icon: "📊" },
+  { id: "dashboard-projet", label: "Dashboard par Projet (Nouveau)", icon: "📈" },
+  { id: "dashboard", label: "Tableau de bord Global", icon: "⊡" },
   { id: "suivi", label: "Suivi Simple", icon: "✓" },
   { id: "multiprojets", label: "Multi-Projets", icon: "◈" },
   { id: "taches", label: "Tâches", icon: "⊞" },
