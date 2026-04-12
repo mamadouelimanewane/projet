@@ -1,0 +1,396 @@
+import React, { useState, useEffect, useRef } from "react";
+import { Send, Users, MessageSquare, Phone, Video, Smile, Paperclip, Search, Hash, AtSign, FileText, Image, Check, CheckCheck } from "lucide-react";
+import { SectionHeader, Card, Btn } from "../ui";
+
+const ChatTempsReel = ({ data }) => {
+  const [salons, setSalons] = useState([
+    { id: "general", nom: "# général", description: "Discussion générale", membres: 12, messages: 156 },
+    { id: "projet-si", nom: "# projet-si", description: "Refonte SI Comptable", membres: 5, messages: 89 },
+    { id: "budget", nom: "# budget", description: "Questions budgétaires", membres: 8, messages: 67 },
+    { id: "risques", nom: "# risques", description: "Gestion des risques", membres: 6, messages: 45 },
+  ]);
+  const [salonActif, setSalonActif] = useState("general");
+  const [messages, setMessages] = useState({});
+  const [input, setInput] = useState("");
+  const [user, setUser] = useState(() => {
+    return localStorage.getItem('projet-elite-chat-user') || "Vous";
+  });
+  const [showUserSelect, setShowUserSelect] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [typing, setTyping] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  // Utilisateurs simulés
+  const utilisateurs = [
+    { nom: "Vous", avatar: "👤", statut: "online" },
+    { nom: "Marie K.", avatar: "👩", statut: "online" },
+    { nom: "Jean D.", avatar: "👨", statut: "online" },
+    { nom: "Paul M.", avatar: "👨‍💼", statut: "offline" },
+    { nom: "Sophie L.", avatar: "👩‍💼", statut: "online" },
+  ];
+
+  // Messages initiaux par salon
+  useEffect(() => {
+    const saved = localStorage.getItem('projet-elite-chat-messages');
+    if (saved) {
+      setMessages(JSON.parse(saved));
+    } else {
+      // Messages par défaut
+      const defaultMessages = {
+        "general": [
+          { id: 1, user: "Marie K.", avatar: "👩", content: "Bonjour à tous ! Comment avance le projet ?", timestamp: new Date(Date.now() - 3600000).toISOString(), lu: true },
+          { id: 2, user: "Jean D.", avatar: "👨", content: "Très bien ! On est à 75% d'avancement 🎉", timestamp: new Date(Date.now() - 3500000).toISOString(), lu: true },
+          { id: 3, user: "Sophie L.", avatar: "👩‍💼", content: "J'ai envoyé le rapport budgétaire", timestamp: new Date(Date.now() - 3400000).toISOString(), lu: false },
+        ],
+        "projet-si": [
+          { id: 1, user: "Jean D.", avatar: "👨", content: "L'audit est terminé", timestamp: new Date(Date.now() - 7200000).toISOString(), lu: true },
+        ],
+        "budget": [
+          { id: 1, user: "Sophie L.", avatar: "👩‍💼", content: "Attention au dépassement sur le lot 3", timestamp: new Date(Date.now() - 1800000).toISOString(), lu: true },
+        ],
+        "risques": [
+          { id: 1, user: "Paul M.", avatar: "👨‍💼", content: "Nouveau risque identifié sur la supply chain", timestamp: new Date(Date.now() - 5400000).toISOString(), lu: true },
+        ]
+      };
+      setMessages(defaultMessages);
+      localStorage.setItem('projet-elite-chat-messages', JSON.stringify(defaultMessages));
+    }
+  }, []);
+
+  // Sauvegarder messages
+  useEffect(() => {
+    if (Object.keys(messages).length > 0) {
+      localStorage.setItem('projet-elite-chat-messages', JSON.stringify(messages));
+    }
+  }, [messages]);
+
+  // Écouter changements localStorage (simulation temps réel entre onglets)
+  useEffect(() => {
+    const handleStorage = (e) => {
+      if (e.key === 'projet-elite-chat-messages') {
+        setMessages(JSON.parse(e.newValue));
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => window.removeEventListener('storage', handleStorage);
+  }, []);
+
+  // Auto-scroll
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Simulation typing
+  useEffect(() => {
+    if (input.length > 0) {
+      setTyping(true);
+      const timer = setTimeout(() => setTyping(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [input]);
+
+  // Envoyer message
+  const envoyerMessage = () => {
+    if (!input.trim()) return;
+
+    const salonMessages = messages[salonActif] || [];
+    const nouveauMessage = {
+      id: Date.now(),
+      user: user,
+      avatar: utilisateurs.find(u => u.nom === user)?.avatar || "👤",
+      content: input,
+      timestamp: new Date().toISOString(),
+      lu: false
+    };
+
+    const nouveauxMessages = {
+      ...messages,
+      [salonActif]: [...salonMessages, nouveauMessage]
+    };
+
+    setMessages(nouveauxMessages);
+    localStorage.setItem('projet-elite-chat-messages', JSON.stringify(nouveauxMessages));
+    setInput("");
+
+    // Simuler réponse automatique après 2-3 secondes
+    setTimeout(() => {
+      simulateResponse();
+    }, 2000 + Math.random() * 2000);
+  };
+
+  // Simuler réponse
+  const simulateResponse = () => {
+    const reponses = [
+      "D'accord, je regarde ça ! 👍",
+      "Bonne idée ! On en discute en réunion ?",
+      "Je viens de mettre à jour le document",
+      "Parfait, merci pour l'info !",
+      "Attention, il y a un risque sur ce point ⚠️",
+      "Je suis en train de finaliser ma partie",
+      "On peut se faire un call rapidement ? 📞",
+      "Le budget semble sous contrôle ✅",
+    ];
+
+    const repondants = utilisateurs.filter(u => u.nom !== user && u.statut === "online");
+    if (repondants.length === 0) return;
+
+    const repondant = repondants[Math.floor(Math.random() * repondants.length)];
+    const reponse = reponses[Math.floor(Math.random() * reponses.length)];
+
+    const salonMessages = messages[salonActif] || [];
+    const messageReponse = {
+      id: Date.now() + 1,
+      user: repondant.nom,
+      avatar: repondant.avatar,
+      content: reponse,
+      timestamp: new Date().toISOString(),
+      lu: false
+    };
+
+    const nouveauxMessages = {
+      ...messages,
+      [salonActif]: [...salonMessages, messageReponse]
+    };
+
+    setMessages(nouveauxMessages);
+    localStorage.setItem('projet-elite-chat-messages', JSON.stringify(nouveauxMessages));
+  };
+
+  // Formater heure
+  const formatHeure = (timestamp) => {
+    const date = new Date(timestamp);
+    return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  };
+
+  // Filtrer messages
+  const messagesFiltres = (messages[salonActif] || []).filter(msg =>
+    msg.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    msg.user.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Total messages non lus
+  const totalNonLus = Object.values(messages).reduce((total, salonMsgs) => 
+    total + salonMsgs.filter(m => !m.lu).length, 0
+  );
+
+  return (
+    <div className="space-y-4 h-[calc(100vh-200px)] flex flex-col">
+      <SectionHeader 
+        title="Chat Temps Réel" 
+        subtitle={`Communication d'équipe • ${totalNonLus} message(s) non lu(s)`}
+        action={
+          <div className="flex items-center gap-2">
+            <div className="flex -space-x-2">
+              {utilisateurs.filter(u => u.statut === "online").slice(0, 4).map((u, i) => (
+                <div key={i} className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center border-2 border-slate-800" title={u.nom}>
+                  {u.avatar}
+                </div>
+              ))}
+            </div>
+            <span className="text-sm text-emerald-400">
+              {utilisateurs.filter(u => u.statut === "online").length} en ligne
+            </span>
+          </div>
+        }
+      />
+
+      <div className="flex gap-4 flex-1">
+        {/* Sidebar salons */}
+        <Card className="w-64 p-4 glass-card rounded-2xl flex flex-col">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-bold text-white flex items-center gap-2">
+              <Hash className="w-4 h-4" />
+              Salons
+            </h3>
+            <Btn size="sm" variant="ghost">+</Btn>
+          </div>
+
+          <div className="space-y-1 flex-1 overflow-y-auto">
+            {salons.map(salon => (
+              <button
+                key={salon.id}
+                onClick={() => {
+                  setSalonActif(salon.id);
+                  setSearchTerm("");
+                }}
+                className={`w-full text-left p-3 rounded-xl transition-colors ${
+                  salonActif === salon.id
+                    ? 'bg-indigo-600/30 border border-indigo-500/50'
+                    : 'hover:bg-slate-800'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-medium text-white text-sm">{salon.nom}</span>
+                  {messages[salon.id]?.filter(m => !m.lu).length > 0 && (
+                    <span className="px-2 py-0.5 bg-indigo-600 text-white text-xs rounded-full">
+                      {messages[salon.id].filter(m => !m.lu).length}
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-slate-400 truncate">{salon.description}</p>
+                <p className="text-xs text-slate-500 mt-1">{salon.membres} membres</p>
+              </button>
+            ))}
+          </div>
+
+          {/* Utilisateurs en ligne */}
+          <div className="mt-4 pt-4 border-t border-slate-700">
+            <h4 className="text-xs font-medium text-slate-400 mb-2">EN LIGNE</h4>
+            <div className="space-y-2">
+              {utilisateurs.filter(u => u.statut === "online").map((u, i) => (
+                <div key={i} className="flex items-center gap-2 text-sm">
+                  <span>{u.avatar}</span>
+                  <span className="text-slate-300">{u.nom}</span>
+                  <div className="w-2 h-2 rounded-full bg-emerald-400 ml-auto" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </Card>
+
+        {/* Zone de chat */}
+        <Card className="flex-1 glass-card rounded-2xl flex flex-col">
+          {/* Header salon */}
+          <div className="p-4 border-b border-slate-700 flex items-center justify-between">
+            <div>
+              <h3 className="font-bold text-white">
+                {salons.find(s => s.id === salonActif)?.nom}
+              </h3>
+              <p className="text-xs text-slate-400">
+                {salons.find(s => s.id === salonActif)?.description}
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Btn size="sm" variant="ghost">
+                <Phone className="w-4 h-4" />
+              </Btn>
+              <Btn size="sm" variant="ghost">
+                <Video className="w-4 h-4" />
+              </Btn>
+            </div>
+          </div>
+
+          {/* Recherche */}
+          {messagesFiltres.length > 0 && (
+            <div className="p-3 border-b border-slate-700">
+              <div className="relative">
+                <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Rechercher dans les messages..."
+                  className="w-full pl-10 pr-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Messages */}
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {messagesFiltres.map(msg => (
+              <div key={msg.id} className={`flex gap-3 ${msg.user === user ? 'flex-row-reverse' : ''}`}>
+                <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center flex-shrink-0">
+                  {msg.avatar}
+                </div>
+                <div className={`max-w-[70%] ${msg.user === user ? 'items-end' : 'items-start'}`}>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-sm font-medium text-white">{msg.user}</span>
+                    <span className="text-xs text-slate-500">{formatHeure(msg.timestamp)}</span>
+                  </div>
+                  <div className={`p-3 rounded-xl ${
+                    msg.user === user
+                      ? 'bg-indigo-600 text-white'
+                      : 'bg-slate-800 text-slate-200'
+                  }`}>
+                    <p className="text-sm">{msg.content}</p>
+                  </div>
+                  {msg.user === user && (
+                    <div className="flex items-center gap-1 mt-1 justify-end">
+                      <CheckCheck className="w-3 h-3 text-indigo-400" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {messagesFiltres.length === 0 && (
+              <div className="text-center py-12 text-slate-500">
+                <MessageSquare className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                <p>Aucun message</p>
+                <p className="text-sm">Soyez le premier à écrire !</p>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+
+          {/* Input */}
+          <div className="p-4 border-t border-slate-700">
+            {showUserSelect && (
+              <div className="mb-3 p-3 bg-slate-800 rounded-lg">
+                <p className="text-xs text-slate-400 mb-2">Vous êtes :</p>
+                <div className="flex flex-wrap gap-2">
+                  {utilisateurs.map((u, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setUser(u.nom);
+                        localStorage.setItem('projet-elite-chat-user', u.nom);
+                        setShowUserSelect(false);
+                      }}
+                      className={`px-3 py-1 rounded-full text-sm ${
+                        user === u.nom
+                          ? 'bg-indigo-600 text-white'
+                          : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+                      }`}
+                    >
+                      {u.avatar} {u.nom}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="flex gap-2">
+              <Btn size="sm" variant="ghost">
+                <Paperclip className="w-4 h-4" />
+              </Btn>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && envoyerMessage()}
+                placeholder="Écrire un message..."
+                className="flex-1 px-4 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+              />
+              <Btn size="sm" variant="ghost">
+                <Smile className="w-4 h-4" />
+              </Btn>
+              <Btn onClick={envoyerMessage} disabled={!input.trim()}>
+                <Send className="w-4 h-4" />
+              </Btn>
+            </div>
+
+            <div className="flex items-center justify-between mt-2">
+              <button
+                onClick={() => setShowUserSelect(!showUserSelect)}
+                className="text-xs text-slate-500 hover:text-slate-300 flex items-center gap-1"
+              >
+                <AtSign className="w-3 h-3" />
+                Changer d'utilisateur ({user})
+              </button>
+              {typing && (
+                <span className="text-xs text-indigo-400 animate-pulse">
+                  En train d'écrire...
+                </span>
+              )}
+            </div>
+          </div>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default ChatTempsReel;

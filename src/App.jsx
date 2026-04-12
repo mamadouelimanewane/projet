@@ -60,6 +60,8 @@ import OnboardingIntelligent from './components/modules/OnboardingIntelligent';
 import KPIsPersonnalisables from './components/modules/KPIsPersonnalisables';
 import Gamification from './components/modules/Gamification';
 import Securite2FA from './components/modules/Securite2FA';
+import ChatTempsReel from './components/modules/ChatTempsReel';
+import PredictionsML from './components/modules/PredictionsML';
 import { MODULES } from "./data/constants";
 
 export default function App() {
@@ -226,6 +228,8 @@ export default function App() {
             <Route path="/kpis-custom" element={<KPIsPersonnalisables data={data} />} />
             <Route path="/gamification" element={<Gamification data={data} />} />
             <Route path="/securite-2fa" element={<Securite2FA />} />
+            <Route path="/chat" element={<ChatTempsReel data={data} />} />
+            <Route path="/predictions-ml" element={<PredictionsML data={data} />} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
