@@ -1,8 +1,16 @@
 import React from "react";
 import { STATUT_COLORS } from "../../data/constants";
 
-const Badge = ({ value, map = STATUT_COLORS, size = "sm" }) => {
-  const color = map[value] || "#94a3b8";
+const Badge = ({ value, variant, map = STATUT_COLORS, size = "sm", children }) => {
+  const variantColors = {
+    success: "#10b981",
+    warning: "#f59e0b",
+    danger: "#ef4444",
+    info: "#3b82f6",
+    indigo: "#6366f1",
+    default: "#94a3b8"
+  };
+  const color = variant ? variantColors[variant] : (map[value] || "#94a3b8");
   const pad = size === "sm" ? "px-2 py-0.5 text-[10px]" : "px-3 py-1 text-xs";
   return (
     <span className={`inline-flex items-center rounded-full font-bold uppercase tracking-wider ${pad} transition-all hover:scale-105`}
@@ -12,7 +20,7 @@ const Badge = ({ value, map = STATUT_COLORS, size = "sm" }) => {
         border: `1px solid ${color}44`,
         boxShadow: `0 0 10px ${color}11`
       }}>
-      {value}
+      {children || value}
     </span>
   );
 };
