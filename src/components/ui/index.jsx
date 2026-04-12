@@ -109,4 +109,10 @@ const SectionHeader = ({ title, subtitle, action }) => (
   </div>
 );
 
-export { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader };
+const Card = ({ children, className = "", noPadding = false }) => (
+  <div className={`glass-card rounded-2xl border border-slate-700/50 overflow-hidden transition-all duration-300 ${noPadding ? "" : "p-6"} ${className}`}>
+    {children}
+  </div>
+);
+
+export { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader, Card };

@@ -338,6 +338,7 @@ export const MODULES = [
   { id: "safe", label: "Agilité SAFe (Trains)", icon: "🚂" },
   { id: "greenpmo", label: "Bilan Carbone (ESG)", icon: "🌱" },
   { id: "evm", label: "Valeur Acquise (EVM)", icon: "🧮" },
+  { id: "dashboard-projet", label: "Dashboard Projet", icon: "📊" },
   { id: "guide", label: "Guide Débutant", icon: "🧭" },
 ];
 

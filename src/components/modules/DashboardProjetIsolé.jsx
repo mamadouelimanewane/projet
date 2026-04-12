@@ -316,8 +316,11 @@ const DashboardProjetIsolé = () => {
             </div>
             <div className="p-6 bg-slate-800 rounded-xl">
               <p className="text-sm text-slate-400 mb-2">Restant</p>
-              <p className="text-3xl font-bold text-emerald-400">{((currentProject.budget || 0) - budgetConsomme) / 1000000).toFixed(1)}M FCFA</p>
+              <p className="text-3xl font-bold text-emerald-400">
+                {(((currentProject.budget || 0) - budgetConsomme) / 1000000).toFixed(1)}M FCFA
+              </p>
             </div>
+
           </div>
         </Card>
       )}
