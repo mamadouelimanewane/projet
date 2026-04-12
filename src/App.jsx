@@ -62,9 +62,19 @@ import Gamification from './components/modules/Gamification';
 import Securite2FA from './components/modules/Securite2FA';
 import ChatTempsReel from './components/modules/ChatTempsReel';
 import PredictionsML from './components/modules/PredictionsML';
-import ProjectSelector, { ProjectProvider } from './components/modules/ProjectSelector';
+import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsolé from './components/modules/DashboardProjetIsolé';
 import { MODULES } from "./data/constants";
+
+// Wrapper pour injecter les données filtrées dans les modules
+const FilteredModule = ({ Component, dataKey, extraProps = {} }) => {
+  const { projectData } = useProject();
+  const { updateData } = useStore();
+  const update = (key) => (val) => updateData(key, val);
+  
+  const moduleData = dataKey ? projectData[dataKey] : projectData;
+  return <Component data={moduleData} setData={dataKey ? update(dataKey) : undefined} {...extraProps} />;
+};
 
 export default function App() {
   const { 
@@ -100,13 +110,6 @@ export default function App() {
   }
 
   const update = (key) => (val) => updateData(key, val);
-
-  // Wrapper pour injecter les données filtrées
-  const FilteredModule = ({ Component, dataKey, extraProps = {} }) => {
-    const { projectData } = useProject();
-    const moduleData = dataKey ? projectData[dataKey] : projectData;
-    return <Component data={moduleData} setData={dataKey ? update(dataKey) : undefined} {...extraProps} />;
-  };
 
   return (
     <ProjectProvider>
