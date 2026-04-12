@@ -35,18 +35,44 @@ const ProgressBar = ({ value, max = 100, color = "#6366f1" }) => (
   </div>
 );
 
-const StatCard = ({ label, value, sub, color = "#6366f1", icon }) => (
-  <div className="glass-card rounded-2xl p-5 flex flex-col gap-3 animate-entrance hover:border-indigo-500/30 transition-all duration-300 group">
-    <div className="flex justify-between items-start">
-      <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">{label}</p>
-      <span className="text-xl group-hover:scale-110 transition-transform duration-300" style={{ color, filter: `drop-shadow(0 0 5px ${color}44)` }}>{icon}</span>
+const StatCard = ({ label, title, value, sub, subtitle, color = "#6366f1", icon: Icon, trend }) => {
+  const displayLabel = label || title;
+  const displaySub = sub || subtitle;
+  
+  // Mapping pour les couleurs nommées
+  const colors = {
+    indigo: "#6366f1",
+    emerald: "#10b981",
+    purple: "#a855f7",
+    orange: "#f59e0b",
+    red: "#ef4444",
+    cyan: "#06b6d4"
+  };
+  
+  const finalColor = colors[color] || color;
+
+  return (
+    <div className="glass-card rounded-2xl p-5 flex flex-col gap-3 animate-entrance hover:border-indigo-500/30 transition-all duration-300 group">
+      <div className="flex justify-between items-start">
+        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">{displayLabel}</p>
+        <span className="text-xl group-hover:scale-110 transition-transform duration-300" style={{ color: finalColor, filter: `drop-shadow(0 0 5px ${finalColor}44)` }}>
+          {typeof Icon === 'string' ? Icon : (Icon && <Icon className="w-5 h-5" />)}
+        </span>
+      </div>
+      <div className="flex flex-col">
+        <div className="flex items-baseline gap-2">
+          <p className="text-3xl font-black tracking-tight" style={{ color: finalColor }}>{value}</p>
+          {trend !== undefined && (
+            <span className="text-[10px] font-bold text-slate-500">
+              {trend}%
+            </span>
+          )}
+        </div>
+        {displaySub && <p className="text-xs text-slate-500 font-medium mt-1">{displaySub}</p>}
+      </div>
     </div>
-    <div className="flex flex-col">
-      <p className="text-3xl font-black tracking-tight" style={{ color }}>{value}</p>
-      {sub && <p className="text-xs text-slate-500 font-medium mt-1">{sub}</p>}
-    </div>
-  </div>
-);
+  );
+};
 
 const Modal = ({ title, onClose, children }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center p-4">

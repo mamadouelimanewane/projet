@@ -102,7 +102,7 @@ const DashboardProjetIsolé = () => {
       </div>
 
       {/* Info projet actif */}
-      <Card className="p-6 glass-card rounded-2xl bg-gradient-to-r from-indigo-600/10 to-purple-600/10 border border-indigo-500/30">
+      <Card className="bg-gradient-to-r from-indigo-600/10 to-purple-600/10 border-indigo-500/30">
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl">
@@ -233,7 +233,7 @@ const DashboardProjetIsolé = () => {
 
           {/* Graphiques */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="p-6 glass-card rounded-2xl">
+        <Card>
               <h3 className="text-lg font-bold text-white mb-4">Répartition Tâches</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
@@ -256,7 +256,7 @@ const DashboardProjetIsolé = () => {
               </ResponsiveContainer>
             </Card>
 
-            <Card className="p-6 glass-card rounded-2xl">
+        <Card>
               <h3 className="text-lg font-bold text-white mb-4">Évolution Avancement</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <AreaChart data={avancementData}>
