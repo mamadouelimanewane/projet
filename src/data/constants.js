@@ -296,6 +296,7 @@ export const PIE_COLORS = ["#6366f1", "#8b5cf6", "#a78bfa", "#c4b5fd", "#7c3aed"
 
 export const MODULES = [
   { id: "dashboard", label: "Tableau de bord", icon: "⊡" },
+  { id: "dashboard-projet", label: "Dashboard Projet", icon: "📊" },
   { id: "suivi", label: "Suivi Simple", icon: "✓" },
   { id: "multiprojets", label: "Multi-Projets", icon: "◈" },
   { id: "taches", label: "Tâches", icon: "⊞" },
@@ -338,7 +339,6 @@ export const MODULES = [
   { id: "safe", label: "Agilité SAFe (Trains)", icon: "🚂" },
   { id: "greenpmo", label: "Bilan Carbone (ESG)", icon: "🌱" },
   { id: "evm", label: "Valeur Acquise (EVM)", icon: "🧮" },
-  { id: "dashboard-projet", label: "Dashboard Projet", icon: "📊" },
   { id: "guide", label: "Guide Débutant", icon: "🧭" },
 ];
 
