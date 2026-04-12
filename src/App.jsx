@@ -157,6 +157,7 @@ export default function App() {
               </div>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
+               <ProjectSelector />
                {lastSync && (
                  <span className="text-[10px] text-slate-600 font-mono hidden lg:inline">
                    Sync {new Date(lastSync).toLocaleTimeString()}
