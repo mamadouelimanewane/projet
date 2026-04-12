@@ -50,6 +50,9 @@ import SentimentTeam from './components/modules/SentimentTeam';
 import ExcelIntegration from './components/modules/ExcelIntegration';
 import GenieCivilElite from './components/modules/GenieCivilElite';
 import DashboardProjet from './components/modules/DashboardProjet';
+import ExportRapports from './components/modules/ExportRapports';
+import Notifications from './components/modules/Notifications';
+import AssistantIA from './components/modules/AssistantIA';
 import { MODULES } from "./data/constants";
 
 export default function App() {
@@ -206,6 +209,9 @@ export default function App() {
             <Route path="/sentiment" element={<SentimentTeam data={data.sentiment} />} />
             <Route path="/guide" element={<GuideInteractif />} />
             <Route path="/dashboard-projet/:projetId" element={<DashboardProjet data={data} projetId={useParams().projetId} />} />
+            <Route path="/export" element={<ExportRapports data={data} />} />
+            <Route path="/notifications" element={<Notifications data={data} />} />
+            <Route path="/assistant-ia" element={<AssistantIA data={data} />} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
