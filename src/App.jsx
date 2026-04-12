@@ -62,6 +62,8 @@ import Gamification from './components/modules/Gamification';
 import Securite2FA from './components/modules/Securite2FA';
 import ChatTempsReel from './components/modules/ChatTempsReel';
 import PredictionsML from './components/modules/PredictionsML';
+import ProjectSelector, { ProjectProvider } from './components/modules/ProjectSelector';
+import DashboardProjetIsolé from './components/modules/DashboardProjetIsolé';
 import { MODULES } from "./data/constants";
 
 export default function App() {
