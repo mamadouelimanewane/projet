@@ -59,6 +59,7 @@ import ThemesPersonnalisation from './components/modules/ThemesPersonnalisation'
 import OnboardingIntelligent from './components/modules/OnboardingIntelligent';
 import KPIsPersonnalisables from './components/modules/KPIsPersonnalisables';
 import Gamification from './components/modules/Gamification';
+import Securite2FA from './components/modules/Securite2FA';
 import { MODULES } from "./data/constants";
 
 export default function App() {
@@ -224,6 +225,7 @@ export default function App() {
             <Route path="/onboarding" element={<OnboardingIntelligent data={data} />} />
             <Route path="/kpis-custom" element={<KPIsPersonnalisables data={data} />} />
             <Route path="/gamification" element={<Gamification data={data} />} />
+            <Route path="/securite-2fa" element={<Securite2FA />} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
