@@ -57,6 +57,8 @@ import RapportsAutomatiques from './components/modules/RapportsAutomatiques';
 import AnalyticsAvances from './components/modules/AnalyticsAvances';
 import ThemesPersonnalisation from './components/modules/ThemesPersonnalisation';
 import OnboardingIntelligent from './components/modules/OnboardingIntelligent';
+import KPIsPersonnalisables from './components/modules/KPIsPersonnalisables';
+import Gamification from './components/modules/Gamification';
 import { MODULES } from "./data/constants";
 
 export default function App() {
@@ -220,6 +222,8 @@ export default function App() {
             <Route path="/analytics" element={<AnalyticsAvances data={data} />} />
             <Route path="/themes" element={<ThemesPersonnalisation />} />
             <Route path="/onboarding" element={<OnboardingIntelligent data={data} />} />
+            <Route path="/kpis-custom" element={<KPIsPersonnalisables data={data} />} />
+            <Route path="/gamification" element={<Gamification data={data} />} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
