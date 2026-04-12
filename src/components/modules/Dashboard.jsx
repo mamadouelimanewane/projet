@@ -1,11 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { PIE_COLORS, PRIORITE_COLORS } from "../../data/constants";
+import { PIE_COLORS } from "../../data/constants";
 import { Badge, StatCard, SectionHeader } from "../ui";
+import { useProject } from "./ProjectSelector";
+import DashboardProjetIsolé from "./DashboardProjetIsolé";
 
 const Dashboard = ({ data }) => {
   const navigate = useNavigate();
+  const { currentProject, projectData } = useProject();
+
+  // Si un projet spécifique est sélectionné, on rend le dashboard projet isolé
+  if (currentProject) {
+    return <DashboardProjetIsolé />;
+  }
+
+  // Sinon, on rend le dashboard global (Multi-Projets / Portfolio)
   const totalProjets = data.projets.length;
   const projetsActifs = data.projets.filter(p => p.statut === "En cours").length;
   const tachesEnCours = data.taches.filter(t => t.statut === "En cours").length;
@@ -15,7 +25,7 @@ const Dashboard = ({ data }) => {
   const totalBudgetR = data.budget.reduce((s, b) => s + b.reel, 0);
   const budgetPct = Math.round((totalBudgetR / totalBudgetP) * 100);
 
-  const avancementData = data.projets.map((p, index) => ({ name: p.nom.substring(0, 15) + "…", value: p.avancement, index }));
+  const avancementData = data.projets.map((p, index) => ({ name: p.nom.substring(0, 15) + "…", value: p.avancement, index, id: p.id }));
   const budgetData = data.couts.map(c => ({ name: c.phase, Prévu: c.prevu, Réel: c.reel }));
   const statutData = [
     { name: "Terminé", value: data.projets.filter(p => p.statut === "Terminé").length },
@@ -25,7 +35,7 @@ const Dashboard = ({ data }) => {
 
   return (
     <div className="space-y-8 animate-entrance">
-      <SectionHeader title="Tableau de bord" subtitle="Vue globale de vos projets en temps réel" />
+      <SectionHeader title="Tableau de bord Global" subtitle="Vue consolidée de votre portefeuille de projets" />
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         <StatCard label="Projets Actifs" value={projetsActifs} sub={`sur ${totalProjets} total`} color="#6366f1" icon="◈" />
@@ -46,9 +56,10 @@ const Dashboard = ({ data }) => {
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={avancementData} onClick={(e) => {
               if (e && e.activePayload && e.activePayload[0]) {
-                const index = e.activePayload[0].payload.index;
-                const projet = data.projets[index];
-                if (projet) navigate(`/dashboard-projet/${projet.id}`);
+                const id = e.activePayload[0].payload.id;
+                // Au clic, on pourrait soit naviguer, soit changer le projet actif.
+                // Ici on navigue vers le dashboard-projet qui utilisera l'ID
+                navigate(`/dashboard-projet/${id}`);
               }
             }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />

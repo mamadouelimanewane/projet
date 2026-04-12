@@ -8,12 +8,13 @@ const useStore = create(
     (set, get) => ({
       data: INITIAL_DATA,
       showApp: false,
-      sidebarOpen: true,
+      selectedProjectId: null, // null = Tous les projets
       isSyncing: false,
       lastSync: null,
       
       // Transitions
       setShowApp: (show) => set({ showApp: show }),
+      setSelectedProjectId: (id) => set({ selectedProjectId: id }),
       toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
       
       // Data Management

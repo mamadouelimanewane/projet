@@ -83,20 +83,18 @@ const DashboardProjetIsolé = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header avec sélecteur */}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">
             Dashboard Projet
           </h1>
           <p className="text-slate-400">
-            Travaillez exclusivement sur ce projet • Switch rapide disponible
+            Vue détaillée de l'exécution et de la performance
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <ProjectSelector />
           <Btn onClick={() => navigate(`/dashboard-projet/${selectedProjectId}`)} variant="ghost">
-            Dashboard Complet
+            Rapport Complet
           </Btn>
         </div>
       </div>

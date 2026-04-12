@@ -101,8 +101,15 @@ export default function App() {
 
   const update = (key) => (val) => updateData(key, val);
 
+  // Wrapper pour injecter les données filtrées
+  const FilteredModule = ({ Component, dataKey, extraProps = {} }) => {
+    const { projectData } = useProject();
+    const moduleData = dataKey ? projectData[dataKey] : projectData;
+    return <Component data={moduleData} setData={dataKey ? update(dataKey) : undefined} {...extraProps} />;
+  };
+
   return (
-    <ProjectProvider data={data}>
+    <ProjectProvider>
       <div className="flex h-screen bg-slate-950 text-white overflow-hidden relative" style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif" }}>
         {/* SIDEBAR */}
         <aside className={`
@@ -180,64 +187,63 @@ export default function App() {
           <div className="p-4 md:p-8 max-w-[100vw] overflow-x-hidden">
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
-              <Route path="/dashboard" element={<Dashboard data={data} />} />
+              <Route path="/dashboard" element={<FilteredModule Component={Dashboard} />} />
               <Route path="/dashboard-projet" element={<DashboardProjetIsolé />} />
-              <Route path="/suivi" element={<SuiviSimple data={data.suivi} setData={update("suivi")} />} />
+              <Route path="/suivi" element={<FilteredModule Component={SuiviSimple} dataKey="suivi" />} />
               <Route path="/multiprojets" element={<MultiProjets data={data.projets} setData={update("projets")} />} />
-              <Route path="/taches" element={<Taches data={data.taches} setData={update("taches")} projets={data.projets} />} />
-              <Route path="/couts" element={<Couts data={data.couts} setData={update("couts")} />} />
-              <Route path="/jalons" element={<Jalons data={data.jalons} setData={update("jalons")} />} />
-              <Route path="/problemes" element={<Problemes data={data.problemes} setData={update("problemes")} />} />
-              <Route path="/risques" element={<Risques data={data.risques} setData={update("risques")} />} />
-              <Route path="/delais" element={<Delais data={data.delais} setData={update("delais")} />} />
-              <Route path="/kpi" element={<KPI data={data.kpis} setData={update("kpis")} />} />
-              <Route path="/budget" element={<Budget data={data.budget} setData={update("budget")} />} />
-              <Route path="/agile" element={<Agile data={data.sprints} setData={update("sprints")} />} />
-              <Route path="/kanban" element={<Kanban data={data.kanban} setData={update("kanban")} />} />
-              <Route path="/ressources" element={<Ressources data={data.ressources} setData={update("ressources")} />} />
-              <Route path="/gantt" element={<Gantt data={data.gantt} setData={update("gantt")} />} />
-              <Route path="/cycle" element={<CycleVie data={data.cycle} setData={update("cycle")} />} />
+              <Route path="/taches" element={<FilteredModule Component={Taches} dataKey="taches" extraProps={{ projets: data.projets }} />} />
+              <Route path="/couts" element={<FilteredModule Component={Couts} dataKey="couts" />} />
+              <Route path="/jalons" element={<FilteredModule Component={Jalons} dataKey="jalons" />} />
+              <Route path="/problemes" element={<FilteredModule Component={Problemes} dataKey="problemes" />} />
+              <Route path="/risques" element={<FilteredModule Component={Risques} dataKey="risques" />} />
+              <Route path="/delais" element={<FilteredModule Component={Delais} dataKey="delais" />} />
+              <Route path="/kpi" element={<FilteredModule Component={KPI} dataKey="kpis" />} />
+              <Route path="/budget" element={<FilteredModule Component={Budget} dataKey="budget" />} />
+              <Route path="/agile" element={<FilteredModule Component={Agile} dataKey="sprints" />} />
+              <Route path="/kanban" element={<FilteredModule Component={Kanban} dataKey="kanban" />} />
+              <Route path="/ressources" element={<FilteredModule Component={Ressources} dataKey="ressources" />} />
+              <Route path="/gantt" element={<FilteredModule Component={Gantt} dataKey="gantt" />} />
+              <Route path="/cycle" element={<FilteredModule Component={CycleVie} dataKey="cycle" />} />
               <Route path="/assistant" element={<AssistantElite />} />
-              <Route path="/simulation" element={<Simulateur data={data} />} />
+              <Route path="/simulation" element={<FilteredModule Component={Simulateur} />} />
               <Route path="/methodologies" element={<Methodologies data={data} setData={setData} />} />
-              <Route path="/portail" element={<PortailClient data={data} />} />
-              <Route path="/temps" element={<FeuillesTemps data={data.temps} setData={update("temps")} />} />
-              <Route path="/docs" element={<DocumentsGED data={data.documents} setData={update("documents")} />} />
-              <Route path="/factures" element={<Facturation data={data.factures} setData={update("factures")} />} />
-              <Route path="/workflows" element={<Workflows data={data.workflows} setData={update("workflows")} />} />
+              <Route path="/portail" element={<FilteredModule Component={PortailClient} />} />
+              <Route path="/temps" element={<FilteredModule Component={FeuillesTemps} dataKey="temps" />} />
+              <Route path="/docs" element={<FilteredModule Component={DocumentsGED} dataKey="documents" />} />
+              <Route path="/factures" element={<FilteredModule Component={Facturation} dataKey="factures" />} />
+              <Route path="/workflows" element={<FilteredModule Component={Workflows} dataKey="workflows" />} />
               <Route path="/rapports" element={<GenerationIA />} />
               <Route path="/warroom" element={<WarRoom />} />
-              <Route path="/copilote" element={<CopilotePredictif data={data} />} />
-              <Route path="/smartcontracts" element={<SmartContracts data={data.smartcontracts} />} />
-              <Route path="/portfolio" element={<PortfolioFinancier data={data} />} />
-              <Route path="/okr" element={<StrategieOKR data={data} />} />
-              <Route path="/calendrier" element={<CalendrierCentral data={data} />} />
-              <Route path="/webhooks" element={<IntegrationsWebhooks data={data.webhooks} setData={update("webhooks")} />} />
-              <Route path="/intake" element={<DemandesModeles data={data.intake} setData={update("intake")} />} />
-              <Route path="/automations" element={<AutomatisationsNoCode data={data.automations} setData={update("automations")} />} />
-              <Route path="/montecarlo" element={<SimulateurMonteCarlo data={data} />} />
-              <Route path="/safe" element={<SAFe data={data.safe} />} />
-              <Route path="/greenpmo" element={<GreenPMO data={data.greenPmo} />} />
-              <Route path="/evm" element={<EVM data={data.evm} />} />
-              <Route path="/neuralmap" element={<NeuralMap data={data} />} />
-              <Route path="/redteam" element={<RedTeamAI data={data} />} />
+              <Route path="/copilote" element={<FilteredModule Component={CopilotePredictif} />} />
+              <Route path="/smartcontracts" element={<FilteredModule Component={SmartContracts} dataKey="smartcontracts" />} />
+              <Route path="/portfolio" element={<FilteredModule Component={PortfolioFinancier} />} />
+              <Route path="/okr" element={<FilteredModule Component={StrategieOKR} />} />
+              <Route path="/calendrier" element={<FilteredModule Component={CalendrierCentral} />} />
+              <Route path="/webhooks" element={<FilteredModule Component={IntegrationsWebhooks} dataKey="webhooks" />} />
+              <Route path="/intake" element={<FilteredModule Component={DemandesModeles} dataKey="intake" />} />
+              <Route path="/automations" element={<FilteredModule Component={AutomatisationsNoCode} dataKey="automations" />} />
+              <Route path="/montecarlo" element={<FilteredModule Component={SimulateurMonteCarlo} />} />
+              <Route path="/safe" element={<FilteredModule Component={SAFe} dataKey="safe" />} />
+              <Route path="/greenpmo" element={<FilteredModule Component={GreenPMO} dataKey="greenPmo" />} />
+              <Route path="/evm" element={<FilteredModule Component={EVM} dataKey="evm" />} />
+              <Route path="/neuralmap" element={<FilteredModule Component={NeuralMap} />} />
+              <Route path="/redteam" element={<FilteredModule Component={RedTeamAI} />} />
               <Route path="/excel" element={<ExcelIntegration />} />
-              <Route path="/geniecivil" element={<GenieCivilElite data={data} />} />
-              <Route path="/sentiment" element={<SentimentTeam data={data.sentiment} />} />
+              <Route path="/geniecivil" element={<FilteredModule Component={GenieCivilElite} />} />
+              <Route path="/sentiment" element={<FilteredModule Component={SentimentTeam} dataKey="sentiment" />} />
               <Route path="/guide" element={<GuideInteractif />} />
-              <Route path="/dashboard-projet/:projetId" element={<DashboardProjet data={data} projetId={useParams().projetId} />} />
-              <Route path="/export" element={<ExportRapports data={data} />} />
-              <Route path="/notifications" element={<Notifications data={data} />} />
-              <Route path="/assistant-ia" element={<AssistantIA data={data} />} />
-              <Route path="/rapports-auto" element={<RapportsAutomatiques data={data} />} />
-              <Route path="/analytics" element={<AnalyticsAvances data={data} />} />
+              <Route path="/export" element={<FilteredModule Component={ExportRapports} />} />
+              <Route path="/notifications" element={<FilteredModule Component={Notifications} />} />
+              <Route path="/assistant-ia" element={<FilteredModule Component={AssistantIA} />} />
+              <Route path="/rapports-auto" element={<FilteredModule Component={RapportsAutomatiques} />} />
+              <Route path="/analytics" element={<FilteredModule Component={AnalyticsAvances} />} />
               <Route path="/themes" element={<ThemesPersonnalisation />} />
-              <Route path="/onboarding" element={<OnboardingIntelligent data={data} />} />
-              <Route path="/kpis-custom" element={<KPIsPersonnalisables data={data} />} />
-              <Route path="/gamification" element={<Gamification data={data} />} />
+              <Route path="/onboarding" element={<FilteredModule Component={OnboardingIntelligent} />} />
+              <Route path="/kpis-custom" element={<FilteredModule Component={KPIsPersonnalisables} />} />
+              <Route path="/gamification" element={<FilteredModule Component={Gamification} />} />
               <Route path="/securite-2fa" element={<Securite2FA />} />
-              <Route path="/chat" element={<ChatTempsReel data={data} />} />
-              <Route path="/predictions-ml" element={<PredictionsML data={data} />} />
+              <Route path="/chat" element={<FilteredModule Component={ChatTempsReel} />} />
+              <Route path="/predictions-ml" element={<FilteredModule Component={PredictionsML} />} />
               {/* Fallback */}
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
