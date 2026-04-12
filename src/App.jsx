@@ -53,6 +53,10 @@ import DashboardProjet from './components/modules/DashboardProjet';
 import ExportRapports from './components/modules/ExportRapports';
 import Notifications from './components/modules/Notifications';
 import AssistantIA from './components/modules/AssistantIA';
+import RapportsAutomatiques from './components/modules/RapportsAutomatiques';
+import AnalyticsAvances from './components/modules/AnalyticsAvances';
+import ThemesPersonnalisation from './components/modules/ThemesPersonnalisation';
+import OnboardingIntelligent from './components/modules/OnboardingIntelligent';
 import { MODULES } from "./data/constants";
 
 export default function App() {
@@ -212,6 +216,10 @@ export default function App() {
             <Route path="/export" element={<ExportRapports data={data} />} />
             <Route path="/notifications" element={<Notifications data={data} />} />
             <Route path="/assistant-ia" element={<AssistantIA data={data} />} />
+            <Route path="/rapports-auto" element={<RapportsAutomatiques data={data} />} />
+            <Route path="/analytics" element={<AnalyticsAvances data={data} />} />
+            <Route path="/themes" element={<ThemesPersonnalisation />} />
+            <Route path="/onboarding" element={<OnboardingIntelligent data={data} />} />
             {/* Fallback */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
