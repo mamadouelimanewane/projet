@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext, useContext, useMemo } from "react";
 import { ChevronDown, Plus, Check, Search, Star, TrendingUp, AlertTriangle, DollarSign, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import useStore from "../../store/useStore";
 
 // Context pour le projet actif
@@ -121,6 +122,7 @@ export const ProjectProvider = ({ children }) => {
 
 // Composant Sélecteur de Projet
 export const ProjectSelector = () => {
+  const navigate = useNavigate();
   const {
     currentProject,
     selectedProjectId,
@@ -283,7 +285,7 @@ export const ProjectSelector = () => {
               <button
                 onClick={() => {
                   setShowProjectSelector(false);
-                  window.location.hash = '#/multiprojets';
+                  navigate('/multiprojets');
                 }}
                 className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 rounded-xl transition-colors text-xs font-bold"
               >

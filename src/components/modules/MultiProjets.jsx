@@ -30,7 +30,7 @@ const MultiProjets = ({ data, setData }) => {
           { label: "Total Projets", value: data.length, color: "#6366f1" },
           { label: "En cours", value: data.filter(p => p.statut === "En cours").length, color: "#f59e0b" },
           { label: "Budget Total", value: `${(data.reduce((s, p) => s + p.budget, 0) / 1000).toFixed(0)}k FCFA`, color: "#8b5cf6" },
-          { label: "Avancement Moy.", value: `${Math.round(data.reduce((s, p) => s + p.avancement, 0) / data.length)}%`, color: "#10b981" },
+          { label: "Avancement Moy.", value: `${data.length > 0 ? Math.round(data.reduce((s, p) => s + p.avancement, 0) / data.length) : 0}%`, color: "#10b981" },
         ].map((s, i) => <StatCard key={i} {...s} />)}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
