@@ -5,6 +5,7 @@ import { PIE_COLORS } from "../../data/constants";
 import { Badge, StatCard, SectionHeader } from "../ui";
 import { useProject } from "./ProjectSelector";
 import DashboardProjetIsolé from "./DashboardProjetIsolé";
+import AssistantPremierProjet from "./AssistantPremierProjet";
 
 const Dashboard = ({ data }) => {
   const navigate = useNavigate();
@@ -17,6 +18,11 @@ const Dashboard = ({ data }) => {
 
   // Sinon, on rend le dashboard global (Multi-Projets / Portfolio)
   const totalProjets = data.projets.length;
+
+  if (totalProjets === 0) {
+    return <AssistantPremierProjet />;
+  }
+
   const projetsActifs = data.projets.filter(p => p.statut === "En cours").length;
   const tachesEnCours = data.taches.filter(t => t.statut === "En cours").length;
   const risquesActifs = data.risques.filter(r => r.statut === "Actif").length;
