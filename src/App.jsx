@@ -101,6 +101,18 @@ export default function App() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
+  const filteredModules = React.useMemo(() => {
+    if (userMode === 'universel') return MODULES;
+    const config = {
+      debutant: ['dashboard', 'guide', 'nouveau-projet', 'mentor-ia', 'chat'],
+      pro: ['dashboard', 'taches', 'gantt', 'kanban', 'budget', 'risques', 'equipe', 'jalons', 'problemes', 'nouveau-projet', 'mentor-ia'],
+      expert: ['dashboard', 'evm', 'outils-expert', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia'],
+      academique: ['dashboard', 'espace-universitaire', 'certifications', 'rapport-universitaire', 'guide', 'mentor-ia']
+    };
+    const allowedIds = config[userMode] || config.pro;
+    return MODULES.filter(m => allowedIds.includes(m.id));
+  }, [userMode]);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -145,7 +157,7 @@ export default function App() {
             <button onClick={() => setMobileMenuOpen(false)} className="md:hidden text-slate-500">✕</button>
           </div>
           <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto">
-            {MODULES.map(m => (
+            {filteredModules.map(m => (
               <button key={m.id} onClick={() => goTo(m.id)}
                 className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-xl text-left transition-all ${activeId === m.id ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30" : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"}`}>
                 <span className="text-lg w-5 h-5 flex items-center justify-center">{m.icon}</span>
@@ -191,12 +203,19 @@ export default function App() {
             </div>
             <div className="flex items-center gap-2 md:gap-4">
                {/* Mode switcher */}
-               <div className="hidden md:flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-1 gap-1">
-                 {[{v:'debutant',l:'🌱',t:'Débutant'},{v:'pro',l:'📘',t:'Pro'},{v:'expert',l:'🔥',t:'Expert'}].map(m => (
+               <div className="hidden md:flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-0.5 gap-0.5">
+                 {[
+                   {v:'debutant',l:'🌱',t:'Débutant'},
+                   {v:'pro',l:'📘',t:'Pro'},
+                   {v:'expert',l:'🔥',t:'Expert'},
+                   {v:'academique',l:'🎓',t:'Académique'},
+                   {v:'universel',l:'💎',t:'Universel'}
+                 ].map(m => (
                    <button key={m.v} onClick={() => setUserMode(m.v)}
                      title={m.t}
-                     className={`px-2 py-1 rounded text-[10px] font-black transition-all ${userMode===m.v ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-white'}`}>
-                     {m.l} <span className="hidden lg:inline">{m.t}</span>
+                     className={`px-2 py-1.5 rounded-md text-[9px] font-black transition-all flex items-center gap-1.5 ${userMode===m.v ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>
+                     <span>{m.l}</span>
+                     {userMode === m.v && <span className="hidden lg:inline">{m.t}</span>}
                    </button>
                  ))}
                </div>

@@ -9,8 +9,8 @@ const useStore = create(
       data: INITIAL_DATA,
       showApp: false,
       selectedProjectId: null,
-      userMode: 'pro', // 'debutant' | 'pro' | 'expert'
-      universityModules: ["guide", "nouveau-projet"], // Modules validés par l'étudiant
+      userMode: 'pro', // 'debutant' | 'pro' | 'expert' | 'academique' | 'universel'
+      universityModules: ["guide", "nouveau-projet"], 
       universityPoints: 20,
       isSyncing: false,
       lastSync: null,
