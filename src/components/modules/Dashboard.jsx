@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { PIE_COLORS } from "../../data/constants";
-import { Badge, StatCard, SectionHeader } from "../ui";
+import { Badge, StatCard, SectionHeader, TooltipInfo } from "../ui";
 import { useProject } from "./ProjectSelector";
 import DashboardProjetIsolé from "./DashboardProjetIsolé";
 import AssistantPremierProjet from "./AssistantPremierProjet";
@@ -46,14 +46,14 @@ const Dashboard = ({ data }) => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         <StatCard label="Projets Actifs" value={projetsActifs} sub={`sur ${totalProjets} total`} color="#6366f1" icon="◈" />
         <StatCard label="Avancement Global" value={`${avgAvancement}%`} sub="moyenne tous projets" color="#8b5cf6" icon="◉" />
-        <StatCard label="Budget Consommé" value={`${budgetPct}%`} sub={`${(totalBudgetR / 1000).toFixed(0)}k / ${(totalBudgetP / 1000).toFixed(0)}k FCFA`} color="#a78bfa" icon="Σ" />
+        <StatCard label={<>Budget Consommé <TooltipInfo term="Burn Rate" definition="Vitesse à laquelle le budget est dépensé par rapport au temps écoulé." /></>} value={`${budgetPct}%`} sub={`${(totalBudgetR / 1000).toFixed(0)}k / ${(totalBudgetP / 1000).toFixed(0)}k FCFA`} color="#a78bfa" icon="Σ" />
         <StatCard label="Risques Actifs" value={risquesActifs} sub="nécessitant attention" color="#ef4444" icon="⛨" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <StatCard label="Tâches En cours" value={tachesEnCours} sub={`${data.taches.filter(t => t.statut === 'Fait').length} terminées`} color="#10b981" icon="⊞" />
-        <StatCard label="Problèmes Ouverts" value={data.problemes.filter(p => p.statut !== "Résolu").length} sub={`${data.problemes.filter(p => p.priorite === "Critique").length} critiques`} color="#f59e0b" icon="⚠" />
-        <StatCard label="Jalons Atteints" value={data.jalons.filter(j => j.statut === "Atteint").length} sub={`sur ${data.jalons.length} total`} color="#06b6d4" icon="◆" />
+        <StatCard label={<>Problèmes Ouverts <TooltipInfo term="Issue Management" definition="Suivi des obstacles imprévus qui impactent directement le projet, contrairement aux risques qui sont hypothétiques." /></>} value={data.problemes.filter(p => p.statut !== "Résolu").length} sub={`${data.problemes.filter(p => p.priorite === "Critique").length} critiques`} color="#f59e0b" icon="⚠" />
+        <StatCard label={<>Jalons Atteints <TooltipInfo term="Milestone" definition="Événement majeur avec une durée de zéro jour marquant la fin d'une étape clé." /></>} value={data.jalons.filter(j => j.statut === "Atteint").length} sub={`sur ${data.jalons.length} total`} color="#06b6d4" icon="◆" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

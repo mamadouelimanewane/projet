@@ -62,6 +62,12 @@ import Gamification from './components/modules/Gamification';
 import Securite2FA from './components/modules/Securite2FA';
 import ChatTempsReel from './components/modules/ChatTempsReel';
 import PredictionsML from './components/modules/PredictionsML';
+import RapportUniversitaire from './components/modules/RapportUniversitaire';
+import ProjetWizard from './components/modules/ProjetWizard';
+import Certifications from './components/modules/Certifications';
+import OutilsExpert from './components/modules/OutilsExpert';
+import TableauUniversitaire from './components/modules/TableauUniversitaire';
+import MentorIA from './components/modules/MentorIA';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsolé from './components/modules/DashboardProjetIsolé';
 import { MODULES } from "./data/constants";
@@ -88,7 +94,9 @@ export default function App() {
     setData,
     updateData,
     showApp,
-    setShowApp
+    setShowApp,
+    userMode,
+    setUserMode
   } = useStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
@@ -140,11 +148,26 @@ export default function App() {
             {MODULES.map(m => (
               <button key={m.id} onClick={() => goTo(m.id)}
                 className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-xl text-left transition-all ${activeId === m.id ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30" : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"}`}>
-                <span className="text-base flex-shrink-0 w-5 text-center">{m.icon}</span>
-                {sidebarOpen && <span className="text-xs font-semibold whitespace-nowrap overflow-hidden">{m.label}</span>}
+                <span className="text-lg w-5 h-5 flex items-center justify-center">{m.icon}</span>
+                {sidebarOpen && <span className="text-xs font-bold truncate">{m.label}</span>}
               </button>
             ))}
           </nav>
+          {/* Student Badge Footer */}
+          {sidebarOpen && (
+            <div className="p-4 mt-auto border-t border-slate-800 bg-slate-900/50">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-slate-800 border border-slate-700 shadow-inner">
+                  {badge.icon}
+                </div>
+                <div className="overflow-hidden">
+                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
+                  <p className="text-xs font-bold text-white truncate">{badge.label}</p>
+                  <p className="text-[9px] font-bold" style={{ color: badge.color }}>{universityPoints} points</p>
+                </div>
+              </div>
+            </div>
+          )}
           {sidebarOpen && (
             <div className="p-3 border-t border-slate-800">
               <div className="text-xs text-slate-600">● Système synchronisé</div>
@@ -161,12 +184,22 @@ export default function App() {
               <div className="hidden sm:block">
                 <h1 className="text-sm font-black text-white">{MODULES.find(m => m.id === activeId)?.label || "Module"}</h1>
                 <div className="flex items-center gap-2">
-                  <p className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Site: Chantiers Afrique de l'Ouest</p>
-                  <span className="text-[9px] bg-indigo-600/20 text-indigo-400 px-1.5 py-0.5 rounded font-black border border-indigo-500/30">V1.2 NEW</span>
+                  <p className="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Site: Star Academy Central Hub</p>
+                  <span className="text-[9px] bg-indigo-600/20 text-indigo-400 px-1.5 py-0.5 rounded font-black border border-indigo-500/30">PREMIUM</span>
                 </div>
               </div>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
+               {/* Mode switcher */}
+               <div className="hidden md:flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-1 gap-1">
+                 {[{v:'debutant',l:'🌱',t:'Débutant'},{v:'pro',l:'📘',t:'Pro'},{v:'expert',l:'🔥',t:'Expert'}].map(m => (
+                   <button key={m.v} onClick={() => setUserMode(m.v)}
+                     title={m.t}
+                     className={`px-2 py-1 rounded text-[10px] font-black transition-all ${userMode===m.v ? 'bg-indigo-600 text-white' : 'text-slate-500 hover:text-white'}`}>
+                     {m.l} <span className="hidden lg:inline">{m.t}</span>
+                   </button>
+                 ))}
+               </div>
                <ProjectSelector />
                {lastSync && (
                  <span className="text-[10px] text-slate-600 font-mono hidden lg:inline">
@@ -247,6 +280,12 @@ export default function App() {
               <Route path="/securite-2fa" element={<Securite2FA />} />
               <Route path="/chat" element={<FilteredModule Component={ChatTempsReel} />} />
               <Route path="/predictions-ml" element={<FilteredModule Component={PredictionsML} />} />
+              <Route path="/rapport-universitaire" element={<FilteredModule Component={RapportUniversitaire} />} />
+              <Route path="/nouveau-projet" element={<ProjetWizard />} />
+              <Route path="/certifications" element={<FilteredModule Component={Certifications} />} />
+              <Route path="/outils-expert" element={<FilteredModule Component={OutilsExpert} />} />
+              <Route path="/espace-universitaire" element={<FilteredModule Component={TableauUniversitaire} />} />
+              <Route path="/mentor-ia" element={<FilteredModule Component={MentorIA} />} />
               {/* Fallback */}
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>

@@ -8,13 +8,18 @@ const useStore = create(
     (set, get) => ({
       data: INITIAL_DATA,
       showApp: false,
-      selectedProjectId: null, // null = Tous les projets
+      selectedProjectId: null,
+      userMode: 'pro', // 'debutant' | 'pro' | 'expert'
+      universityModules: ["guide", "nouveau-projet"], // Modules validés par l'étudiant
+      universityPoints: 20,
       isSyncing: false,
       lastSync: null,
       
       // Transitions
       setShowApp: (show) => set({ showApp: show }),
       setSelectedProjectId: (id) => set({ selectedProjectId: id }),
+      setUserMode: (mode) => set({ userMode: mode }),
+      setUniversityData: (modules, points) => set({ universityModules: modules, universityPoints: points }),
       toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
       
       // Data Management

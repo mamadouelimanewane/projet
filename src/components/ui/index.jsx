@@ -149,4 +149,20 @@ const Card = ({ children, className = "", noPadding = false }) => (
   </div>
 );
 
-export { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader, Card };
+const TooltipInfo = ({ term, definition }) => {
+  const [show, setShow] = React.useState(false);
+  return (
+    <span className="relative inline-block ml-1 group cursor-help" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
+      <span className="w-4 h-4 rounded-full bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 text-[10px] flex items-center justify-center font-bold">?</span>
+      {show && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl z-[100] animate-entrance">
+          <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">{term}</p>
+          <p className="text-[11px] text-slate-300 leading-relaxed">{definition}</p>
+          <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-900" />
+        </div>
+      )}
+    </span>
+  );
+};
+
+export { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader, Card, TooltipInfo };

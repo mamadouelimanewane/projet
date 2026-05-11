@@ -285,12 +285,12 @@ export const ProjectSelector = () => {
               <button
                 onClick={() => {
                   setShowProjectSelector(false);
-                  navigate('/multiprojets');
+                  navigate('/nouveau-projet');
                 }}
                 className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 rounded-xl transition-colors text-xs font-bold"
               >
                 <Plus className="w-3 h-3" />
-                Nouveau Projet
+                Nouveau Projet (Wizard)
               </button>
             </div>
           </div>

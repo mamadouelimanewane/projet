@@ -1,38 +1,74 @@
 export const INITIAL_DATA = {
   suivi: [],
-  projets: [],
-  taches: [],
-  couts: [],
-  jalons: [],
+  projets: [
+    { 
+      id: "star-academy", 
+      nom: "Star Academy", 
+      chef: "Mamadou Elimané Wane", 
+      statut: "En cours", 
+      avancement: 35, 
+      budget: 150000000, 
+      budgetReel: 45000000, 
+      debut: "2026-01-01", 
+      fin: "2026-12-31",
+      description: "Plateforme de gestion des talents et de la formation Élite."
+    }
+  ],
+  taches: [
+    { id: 1, projet: "Star Academy", titre: "Initiation du projet (étude préalable)", responsable: "M. Diallo", statut: "Terminé", priorite: "Haute" },
+    { id: 2, projet: "Star Academy", titre: "Étude technique et financière", responsable: "A. Ndiaye", statut: "Terminé", priorite: "Critique" },
+    { id: 3, projet: "Star Academy", titre: "Construction du bâtiment (Génie Civil)", responsable: "BTP Elite", statut: "En cours", priorite: "Haute" },
+    { id: 4, projet: "Star Academy", titre: "Développement de modules de formation", responsable: "E-Learning Team", statut: "Planifié", priorite: "Moyenne" },
+    { id: 5, projet: "Star Academy", titre: "Recrutement des formateurs", responsable: "RH", statut: "Planifié", priorite: "Haute" },
+    { id: 6, projet: "Star Academy", titre: "Recrutement des apprenants", responsable: "Com", statut: "À venir", priorite: "Moyenne" }
+  ],
+  couts: [
+    { phase: "Études", prevu: 15000000, reel: 14500000 },
+    { phase: "Construction", prevu: 90000000, reel: 30000000 },
+    { phase: "Formation & RH", prevu: 45000000, reel: 500000 }
+  ],
+  jalons: [
+    { id: 1, projet: "Star Academy", titre: "Livraison Gros Œuvre", date: "2026-08-15", statut: "Planifié" },
+    { id: 2, projet: "Star Academy", titre: "Ouverture des inscriptions", date: "2026-10-01", statut: "Planifié" }
+  ],
   problemes: [],
-  risques: [],
+  risques: [
+    { id: 1, projet: "Star Academy", risque: "Retard approvisionnement ciment", gravite: 4, probabilite: 3, statut: "Actif", attenuation: "Diversifier les fournisseurs" }
+  ],
   delais: [],
-  kpis: [],
-  budget: [],
+  kpis: [
+    { id: 1, label: "Avancement Bâtiment", valeur: "45%", tendance: "+10%", statut: "Normal" },
+    { id: 2, label: "Études validées", valeur: "100%", tendance: "stable", statut: "Fait" }
+  ],
+  budget: [
+    { categorie: "Génie Civil", planifie: 90000000, reel: 30000000 },
+    { categorie: "Études", planifie: 15000000, reel: 14500000 },
+    { categorie: "Marketing & RH", planifie: 45000000, reel: 500000 }
+  ],
   sprints: [],
   kanban: {
-    backlog: [],
-    enCours: [],
-    enRevue: [],
-    termine: []
+    backlog: ["Recrutement apprenants", "Audit final"],
+    enCours: ["Construction du bâtiment", "Recrutement formateurs"],
+    enRevue: ["Étude tech et fin"],
+    termine: ["Initiation du projet"]
   },
   ressources: [],
   gantt: [],
   cycle: [
-    { id: "init", phase: "Initiation", statut: "A venir", progression: 0, livrable: "Charte de projet", description: "Définition de la vision et des objectifs." },
-    { id: "plan", phase: "Planification", statut: "A venir", progression: 0, livrable: "Plan de management", description: "Établissement du périmètre, budget et délais." },
-    { id: "exec", phase: "Exécution", statut: "A venir", progression: 0, livrable: "Livrables techniques", description: "Mise en œuvre des tâches planifiées." },
-    { id: "monit", phase: "Monitoring", statut: "A venir", progression: 0, livrable: "Rapports d'avancement", description: "Contrôle et ajustement du projet." },
-    { id: "close", phase: "Clôture", statut: "A venir", progression: 0, livrable: "Bilan projet", description: "Réception finale et archivage." }
+    { id: "init", phase: "Initiation", statut: "Fait", progression: 100, livrable: "Étude préalable", description: "Étude de faisabilité terminée." },
+    { id: "plan", phase: "Planification", statut: "Fait", progression: 100, livrable: "Plan Tech & Fin", description: "Plans et budgets validés." },
+    { id: "exec", phase: "Exécution", statut: "En cours", progression: 35, livrable: "Construction & Formation", description: "Chantier en cours et recrutement lancé." },
+    { id: "monit", phase: "Monitoring", statut: "A venir", progression: 0, livrable: "Rapports", description: "Contrôle qualité." },
+    { id: "close", phase: "Clôture", statut: "A venir", progression: 0, livrable: "Bilan", description: "Archivage." }
   ],
   temps: [],
-  documents: [],
-  factures: [],
-  workflows: [
-    { id: 1, nom: "Alerte Dépassement Budget", declencheur: "Budget Consommé > 90%", action: "Email à la Direction", statut: "Actif" },
-    { id: 2, nom: "Validation Jalon", declencheur: "Statut Jalon = Atteint", action: "Générer Facture Proforma", statut: "Actif" },
-    { id: 3, nom: "Rappel Tâche en Retard", declencheur: "Date Limite < Aujourd'hui", action: "Notif Slack au Responsable", statut: "Inactif" }
+  documents: [
+    { id: 1, nom: "Plan Architectural Star Academy", categorie: "Technique", projet: "Star Academy" },
+    { id: 2, nom: "Devis Quantitatif BTP", categorie: "Financier", projet: "Star Academy" },
+    { id: 3, nom: "Planning Gros Œuvre", categorie: "Planning", projet: "Star Academy" }
   ],
+  factures: [],
+  workflows: [],
   smartcontracts: [],
   okrs: [],
   intake: [],
@@ -43,14 +79,22 @@ export const INITIAL_DATA = {
   greenPmo: [],
   evm: [],
   genieCivil: {
-    materiaux: [],
-    securite: { incidents: 0, joursSansAccident: 0, tauxFrequence: 0 },
-    impact: { emploiLocal: 0, pmeLocales: 0, scoreESG: 0 },
+    materiaux: [
+      { nom: "Ciment", stock: 500, unite: "Sacs", alerte: 100 },
+      { nom: "Acier", stock: 12, unite: "Tonnes", alerte: 2 }
+    ],
+    securite: { incidents: 0, joursSansAccident: 124, tauxFrequence: 0 },
+    impact: { emploiLocal: 85, pmeLocales: 4, scoreESG: 78 },
     typologies: {
       batiment: {
-        projet: "",
-        avancementTCE: [],
-        unites: 0,
+        projet: "Star Academy",
+        avancementTCE: [
+          { corps: "Gros Œuvre", progress: 65, color: "#6366f1" },
+          { corps: "Électricité", progress: 20, color: "#f59e0b" },
+          { corps: "Plomberie", progress: 10, color: "#10b981" },
+          { corps: "Finitions", progress: 0, color: "#94a3b8" }
+        ],
+        unites: 1,
         unitesLivrees: 0
       },
       infrastructure: {
@@ -149,5 +193,11 @@ export const MODULES = [
   { id: "greenpmo", label: "Bilan Carbone (ESG)", icon: "🌱" },
   { id: "evm", label: "Valeur Acquise (EVM)", icon: "🧮" },
   { id: "guide", label: "Guide Débutant", icon: "🧭" },
+  { id: "rapport-universitaire", label: "📄 Rapport Universitaire", icon: "🎓" },
+  { id: "nouveau-projet", label: "✚ Nouveau Projet (Wizard)", icon: "🚀" },
+  { id: "certifications", label: "Certifications & Référentiels", icon: "📚" },
+  { id: "outils-expert", label: "Outils Expert (CPM/RACI)", icon: "🔬" },
+  { id: "espace-universitaire", label: "Espace Universitaire", icon: "🎓" },
+  { id: "mentor-ia", label: "🤖 Mentor IA (Coaching)", icon: "🧠" },
 ];
 
