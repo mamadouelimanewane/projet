@@ -81,6 +81,9 @@ import JumeauNumerique from './components/modules/JumeauNumerique';
 import ProprieteIntellectuelle from './components/modules/ProprieteIntellectuelle';
 import AnalyseValeur from './components/modules/AnalyseValeur';
 import EthiqueIA from './components/modules/EthiqueIA';
+import GestionUtilisateurs from './components/modules/GestionUtilisateurs';
+import SauvegardeExport from './components/modules/SauvegardeExport';
+import EditeurProjet from './components/modules/EditeurProjet';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsolé from './components/modules/DashboardProjetIsolé';
 import { MODULES } from "./data/constants";
@@ -122,7 +125,7 @@ export default function App() {
     const config = {
       debutant: ['dashboard', 'guide', 'nouveau-projet', 'mentor-ia', 'chat'],
       pro: ['dashboard', 'taches', 'gantt', 'kanban', 'budget', 'risques', 'equipe', 'jalons', 'problemes', 'nouveau-projet', 'mentor-ia'],
-      expert: ['dashboard', 'evm', 'outils-expert', 'innovation-lab', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia', 'qualite', 'esg', 'talent', 'blackswan', 'digitaltwin', 'ipguard', 'valeur', 'ethique'],
+      expert: ['dashboard', 'evm', 'outils-expert', 'innovation-lab', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia', 'qualite', 'esg', 'talent', 'blackswan', 'digitaltwin', 'ipguard', 'valeur', 'ethique', 'users', 'backup', 'editeur'],
       academique: ['dashboard', 'espace-universitaire', 'certifications', 'etudes-cas', 'rapport-universitaire', 'guide', 'mentor-ia']
     };
     const allowedIds = config[userMode] || config.pro;
@@ -270,6 +273,9 @@ export default function App() {
               </div>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
+               {/* Project Context Switcher */}
+               <ProjectSelector />
+
                {/* Mode switcher */}
                <div className="hidden md:flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-0.5 gap-0.5">
                  {[
@@ -384,6 +390,9 @@ export default function App() {
               <Route path="/ipguard" element={<FilteredModule Component={ProprieteIntellectuelle} dataKey="ip" />} />
               <Route path="/valeur" element={<FilteredModule Component={AnalyseValeur} dataKey="valeur" />} />
               <Route path="/ethique" element={<FilteredModule Component={EthiqueIA} dataKey="ethique" />} />
+              <Route path="/users" element={<FilteredModule Component={GestionUtilisateurs} />} />
+              <Route path="/backup" element={<SauvegardeExport />} />
+              <Route path="/editeur" element={<EditeurProjet />} />
 
               {/* Fallback */}
 

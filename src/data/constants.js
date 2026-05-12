@@ -238,5 +238,8 @@ export const MODULES = [
   { id: "ipguard", label: "🏛️ Propriété Intellectuelle", icon: "⚖️" },
   { id: "valeur", label: "⚖️ Analyse de la Valeur", icon: "💎" },
   { id: "ethique", label: "🤖 Gouvernance & Éthique IA", icon: "🛡️" },
+  { id: "users", label: "👤 Gestion Utilisateurs & RBAC", icon: "👥" },
+  { id: "backup", label: "💾 Sauvegarde & Export Intégral", icon: "📂" },
+  { id: "editeur", label: "✏️ Éditeur de Projet Complet", icon: "🛠️" },
 ];
 
