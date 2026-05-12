@@ -119,7 +119,36 @@ export const INITIAL_DATA = {
     }
   },
   dependencies: [],
-  sentiment: []
+  sentiment: [],
+  qualite: { 
+    conformite: 94.2, 
+    nonConformites: 3, 
+    audits: [
+      { id: 1, titre: "Audit Sécurité Q1", date: "2026-03-01", statut: "Terminé", score: 95 },
+      { id: 2, titre: "Revue Processus RH", date: "2026-04-15", statut: "En cours", score: null }
+    ] 
+  },
+  esg: { 
+    carbone: 112, 
+    socialScore: 88, 
+    gouvernance: 92,
+    details: { emploiLocal: 85, mixite: 42, transparence: 98 }
+  },
+  talents: { 
+    skills: ["React", "Agile", "BIM", "Risk Management", "Blockchain"],
+    matching: [
+      { id: 1, nom: "Mamadou W.", match: 98 },
+      { id: 2, nom: "Awa N.", match: 92 }
+    ]
+  },
+  crise: { scenarios: ["Black Swan", "Cyber", "Supply"], stressLevel: 14 },
+  ip: { 
+    brevets: [{ id: 1, titre: "Moteur de Prédiction ML", statut: "Validé" }], 
+    secrets: [{ id: 1, titre: "Algorithme Monte Carlo", protection: "Chiffré" }],
+    marques: [{ id: 1, titre: "Sceau de Diamant", statut: "Déposé" }]
+  },
+  valeur: { ratio: 1.45, optimisations: ["Réduction structure (-15%)", "Hausse design (+10%)"] },
+  ethique: { biais: 0.01, transparence: 99, equite: 97 }
 };
 
 export const METHODOLOGIES = [
@@ -199,5 +228,15 @@ export const MODULES = [
   { id: "outils-expert", label: "Outils Expert (CPM/RACI)", icon: "🔬" },
   { id: "espace-universitaire", label: "Espace Universitaire", icon: "🎓" },
   { id: "mentor-ia", label: "🤖 Mentor IA (Coaching)", icon: "🧠" },
+  { id: "innovation-lab", label: "💎 Elite Innovation Lab", icon: "✨" },
+  { id: "etudes-cas", label: "📚 Études de Cas & Soutenance", icon: "🏢" },
+  { id: "qualite", label: "🛡️ Qualité & Conformité (ISO)", icon: "⛨" },
+  { id: "esg", label: "🌍 Dashboard ESG & RSE", icon: "🌱" },
+  { id: "talent", label: "🧠 Talent Marketplace", icon: "👥" },
+  { id: "blackswan", label: "🔮 Module Black Swan", icon: "🌪️" },
+  { id: "digitaltwin", label: "🏗️ Jumeau Numérique (Twin)", icon: "🧊" },
+  { id: "ipguard", label: "🏛️ Propriété Intellectuelle", icon: "⚖️" },
+  { id: "valeur", label: "⚖️ Analyse de la Valeur", icon: "💎" },
+  { id: "ethique", label: "🤖 Gouvernance & Éthique IA", icon: "🛡️" },
 ];
 

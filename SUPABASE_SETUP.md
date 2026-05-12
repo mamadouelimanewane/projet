@@ -10,13 +10,27 @@ create table project_data (
   updated_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
--- 2. Activation de RLS (Row Level Security) - Optionnel mais recommandé
-alter table project_data enable row level security;
+-- 2. Création de la table pour le Chat Temps Réel
+create table messages (
+  id uuid primary key default gen_random_uuid(),
+  salon_id text not null,
+  user_name text not null,
+  avatar text,
+  content text not null,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
 
--- 3. Politique d'accès public (Pour démo - À restreindre en prod réelle)
-create policy "Accès complet public pour demo" 
-on project_data for all 
-using (true);
+-- 3. Activation de RLS
+alter table project_data enable row level security;
+alter table messages enable row level security;
+
+-- 4. Politiques d'accès public (Démo)
+create policy "Accès complet public data" on project_data for all using (true);
+create policy "Accès complet public chat" on messages for all using (true);
+
+-- 5. Activation du Temps Réel pour le Chat
+alter publication supabase_realtime add table messages;
+
 ```
 
 ### Étapes suivantes :

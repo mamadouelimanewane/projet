@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Send, Users, MessageSquare, Phone, Video, Smile, Paperclip, Search, Hash, AtSign, FileText, Image, Check, CheckCheck } from "lucide-react";
+import { Send, Users, MessageSquare, Phone, Video, Smile, Paperclip, Search, Hash, AtSign, FileText, Image, Check, CheckCheck, Cloud, CloudOff } from "lucide-react";
 import { SectionHeader, Card, Btn } from "../ui";
+import { supabase } from "../../lib/supabaseClient";
 
 const ChatTempsReel = ({ data }) => {
   const [salons, setSalons] = useState([
@@ -29,50 +30,77 @@ const ChatTempsReel = ({ data }) => {
     { nom: "Sophie L.", avatar: "👩‍💼", statut: "online" },
   ];
 
-  // Messages initiaux par salon
+  // Charger messages depuis Supabase et s'abonner au temps réel
   useEffect(() => {
-    const saved = localStorage.getItem('projet-elite-chat-messages');
-    if (saved) {
-      setMessages(JSON.parse(saved));
-    } else {
-      // Messages par défaut
-      const defaultMessages = {
-        "general": [
-          { id: 1, user: "Marie K.", avatar: "👩", content: "Bonjour à tous ! Comment avance le projet ?", timestamp: new Date(Date.now() - 3600000).toISOString(), lu: true },
-          { id: 2, user: "Jean D.", avatar: "👨", content: "Très bien ! On est à 75% d'avancement 🎉", timestamp: new Date(Date.now() - 3500000).toISOString(), lu: true },
-          { id: 3, user: "Sophie L.", avatar: "👩‍💼", content: "J'ai envoyé le rapport budgétaire", timestamp: new Date(Date.now() - 3400000).toISOString(), lu: false },
-        ],
-        "projet-si": [
-          { id: 1, user: "Jean D.", avatar: "👨", content: "L'audit est terminé", timestamp: new Date(Date.now() - 7200000).toISOString(), lu: true },
-        ],
-        "budget": [
-          { id: 1, user: "Sophie L.", avatar: "👩‍💼", content: "Attention au dépassement sur le lot 3", timestamp: new Date(Date.now() - 1800000).toISOString(), lu: true },
-        ],
-        "risques": [
-          { id: 1, user: "Paul M.", avatar: "👨‍💼", content: "Nouveau risque identifié sur la supply chain", timestamp: new Date(Date.now() - 5400000).toISOString(), lu: true },
-        ]
-      };
-      setMessages(defaultMessages);
-      localStorage.setItem('projet-elite-chat-messages', JSON.stringify(defaultMessages));
+    if (!supabase) {
+      // Fallback localStorage si Supabase n'est pas configuré
+      const saved = localStorage.getItem('projet-elite-chat-messages');
+      if (saved) {
+        setMessages(JSON.parse(saved));
+      } else {
+        const defaultMessages = {
+          "general": [
+            { id: 1, user: "Marie K.", avatar: "👩", content: "Bonjour à tous ! (Mode Local)", timestamp: new Date(Date.now() - 3600000).toISOString(), lu: true },
+          ]
+        };
+        setMessages(defaultMessages);
+      }
+      return;
     }
-  }, []);
 
-  // Sauvegarder messages
-  useEffect(() => {
-    if (Object.keys(messages).length > 0) {
-      localStorage.setItem('projet-elite-chat-messages', JSON.stringify(messages));
-    }
-  }, [messages]);
-
-  // Écouter changements localStorage (simulation temps réel entre onglets)
-  useEffect(() => {
-    const handleStorage = (e) => {
-      if (e.key === 'projet-elite-chat-messages') {
-        setMessages(JSON.parse(e.newValue));
+    const fetchMessages = async () => {
+      const { data, error } = await supabase
+        .from('messages')
+        .select('*')
+        .order('created_at', { ascending: true });
+      
+      if (error) console.error(error);
+      else {
+        const grouped = data.reduce((acc, msg) => {
+          if (!acc[msg.salon_id]) acc[msg.salon_id] = [];
+          acc[msg.salon_id].push({
+            id: msg.id,
+            user: msg.user_name,
+            avatar: msg.avatar,
+            content: msg.content,
+            timestamp: msg.created_at,
+            lu: true
+          });
+          return acc;
+        }, {});
+        setMessages(grouped);
       }
     };
-    window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
+
+    fetchMessages();
+
+    // Souscription temps réel
+    const channel = supabase
+      .channel('public:messages')
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, payload => {
+        const msg = payload.new;
+        setMessages(prev => {
+          const salonMsgs = prev[msg.salon_id] || [];
+          if (salonMsgs.some(m => m.id === msg.id)) return prev;
+          
+          return {
+            ...prev,
+            [msg.salon_id]: [...salonMsgs, {
+              id: msg.id,
+              user: msg.user_name,
+              avatar: msg.avatar,
+              content: msg.content,
+              timestamp: msg.created_at,
+              lu: false
+            }]
+          };
+        });
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   // Auto-scroll
@@ -90,32 +118,38 @@ const ChatTempsReel = ({ data }) => {
   }, [input]);
 
   // Envoyer message
-  const envoyerMessage = () => {
+  const envoyerMessage = async () => {
     if (!input.trim()) return;
 
-    const salonMessages = messages[salonActif] || [];
-    const nouveauMessage = {
-      id: Date.now(),
-      user: user,
+    const msgData = {
+      salon_id: salonActif,
+      user_name: user,
       avatar: utilisateurs.find(u => u.nom === user)?.avatar || "👤",
       content: input,
-      timestamp: new Date().toISOString(),
-      lu: false
     };
 
-    const nouveauxMessages = {
-      ...messages,
-      [salonActif]: [...salonMessages, nouveauMessage]
-    };
-
-    setMessages(nouveauxMessages);
-    localStorage.setItem('projet-elite-chat-messages', JSON.stringify(nouveauxMessages));
+    if (supabase) {
+      const { error } = await supabase.from('messages').insert([msgData]);
+      if (error) console.error(error);
+    } else {
+      // Fallback Local
+      const nouveauMessage = {
+        id: Date.now(),
+        ...msgData,
+        timestamp: new Date().toISOString(),
+        lu: false
+      };
+      const nouveauxMessages = {
+        ...messages,
+        [salonActif]: [...(messages[salonActif] || []), nouveauMessage]
+      };
+      setMessages(nouveauxMessages);
+      localStorage.setItem('projet-elite-chat-messages', JSON.stringify(nouveauxMessages));
+      
+      // Simuler réponse auto uniquement en mode local
+      setTimeout(() => simulateResponse(), 2000);
+    }
     setInput("");
-
-    // Simuler réponse automatique après 2-3 secondes
-    setTimeout(() => {
-      simulateResponse();
-    }, 2000 + Math.random() * 2000);
   };
 
   // Simuler réponse
@@ -179,7 +213,14 @@ const ChatTempsReel = ({ data }) => {
         title="Chat Temps Réel" 
         subtitle={`Communication d'équipe • ${totalNonLus} message(s) non lu(s)`}
         action={
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-lg border border-slate-700">
+              {supabase ? (
+                <><Cloud className="w-4 h-4 text-emerald-400" /> <span className="text-xs text-emerald-400">Cloud Sync</span></>
+              ) : (
+                <><CloudOff className="w-4 h-4 text-orange-400" /> <span className="text-xs text-orange-400">Mode Local</span></>
+              )}
+            </div>
             <div className="flex -space-x-2">
               {utilisateurs.filter(u => u.statut === "online").slice(0, 4).map((u, i) => (
                 <div key={i} className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center border-2 border-slate-800" title={u.nom}>

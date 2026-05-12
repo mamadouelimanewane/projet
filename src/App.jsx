@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Shield, Lock, ArrowRight } from "lucide-react";
 import useStore from './store/useStore';
+import { SectionHeader, Card, Btn } from "./components/ui";
 
 import Utilities from './components/modules/Utilities';
 import Dashboard from './components/modules/Dashboard';
@@ -68,6 +70,17 @@ import Certifications from './components/modules/Certifications';
 import OutilsExpert from './components/modules/OutilsExpert';
 import TableauUniversitaire from './components/modules/TableauUniversitaire';
 import MentorIA from './components/modules/MentorIA';
+import EliteInnovation from './components/modules/EliteInnovation';
+import EtudesDeCas from './components/modules/EtudesDeCas';
+
+import QualiteConformite from './components/modules/QualiteConformite';
+import ESGScorecard from './components/modules/ESGScorecard';
+import TalentMarketplace from './components/modules/TalentMarketplace';
+import SimulationCrise from './components/modules/SimulationCrise';
+import JumeauNumerique from './components/modules/JumeauNumerique';
+import ProprieteIntellectuelle from './components/modules/ProprieteIntellectuelle';
+import AnalyseValeur from './components/modules/AnalyseValeur';
+import EthiqueIA from './components/modules/EthiqueIA';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsolé from './components/modules/DashboardProjetIsolé';
 import { MODULES } from "./data/constants";
@@ -100,14 +113,17 @@ export default function App() {
   } = useStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [isTwoFAVerified, setIsTwoFAVerified] = useState(false);
+  const [twoFACode, setTwoFACode] = useState("");
+  const is2FAEnabled = localStorage.getItem('projet-elite-2fa') === 'true';
 
   const filteredModules = React.useMemo(() => {
     if (userMode === 'universel') return MODULES;
     const config = {
       debutant: ['dashboard', 'guide', 'nouveau-projet', 'mentor-ia', 'chat'],
       pro: ['dashboard', 'taches', 'gantt', 'kanban', 'budget', 'risques', 'equipe', 'jalons', 'problemes', 'nouveau-projet', 'mentor-ia'],
-      expert: ['dashboard', 'evm', 'outils-expert', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia'],
-      academique: ['dashboard', 'espace-universitaire', 'certifications', 'rapport-universitaire', 'guide', 'mentor-ia']
+      expert: ['dashboard', 'evm', 'outils-expert', 'innovation-lab', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia', 'qualite', 'esg', 'talent', 'blackswan', 'digitaltwin', 'ipguard', 'valeur', 'ethique'],
+      academique: ['dashboard', 'espace-universitaire', 'certifications', 'etudes-cas', 'rapport-universitaire', 'guide', 'mentor-ia']
     };
     const allowedIds = config[userMode] || config.pro;
     return MODULES.filter(m => allowedIds.includes(m.id));
@@ -127,6 +143,58 @@ export default function App() {
   // Enter app
   if (!showApp) {
     return <LandingPage onEnter={() => setShowApp(true)} />;
+  }
+
+  // 2FA Challenge
+  if (is2FAEnabled && !isTwoFAVerified) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 font-sans">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-indigo-600/5 blur-[120px] rounded-full" />
+        </div>
+        
+        <Card className="max-w-md w-full p-8 glass-card border-2 border-indigo-500/30 text-center relative z-10 shadow-[0_0_50px_rgba(79,70,229,0.15)]">
+          <div className="w-20 h-20 bg-indigo-600/20 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-indigo-500/30 shadow-inner">
+            <Shield className="w-10 h-10 text-indigo-400" />
+          </div>
+          
+          <h2 className="text-3xl font-black text-white mb-2 tracking-tight">Authentification</h2>
+          <p className="text-slate-400 mb-8 text-sm font-medium">Entrez le code de sécurité à 6 chiffres</p>
+          
+          <div className="relative mb-8">
+            <input
+              type="text"
+              value={twoFACode}
+              onChange={(e) => {
+                const val = e.target.value.replace(/\D/g, '').slice(0, 6);
+                setTwoFACode(val);
+                if (val.length === 6) {
+                  // Simulation: Tout code à 6 chiffres passe
+                  setTimeout(() => setIsTwoFAVerified(true), 500);
+                }
+              }}
+              placeholder="000 000"
+              className="w-full px-4 py-6 bg-slate-900/80 border-2 border-slate-700 rounded-2xl text-white text-center text-4xl font-black font-mono tracking-[0.2em] focus:outline-none focus:border-indigo-500 transition-all placeholder:text-slate-800"
+              autoFocus
+            />
+            {twoFACode.length === 6 && (
+              <div className="absolute -bottom-10 left-0 right-0 animate-pulse text-indigo-400 text-xs font-bold uppercase tracking-widest">
+                Vérification en cours...
+              </div>
+            )}
+          </div>
+          
+          <div className="flex flex-col gap-4">
+            <Btn variant="ghost" onClick={() => setShowApp(false)} className="w-full">
+              Retour à l'accueil
+            </Btn>
+            <p className="text-[10px] text-slate-600 font-bold uppercase tracking-tighter">
+              Protection Bio-Métriques & Cryptographique Active
+            </p>
+          </div>
+        </Card>
+      </div>
+    );
   }
 
   const update = (key) => (val) => updateData(key, val);
@@ -305,7 +373,20 @@ export default function App() {
               <Route path="/outils-expert" element={<FilteredModule Component={OutilsExpert} />} />
               <Route path="/espace-universitaire" element={<FilteredModule Component={TableauUniversitaire} />} />
               <Route path="/mentor-ia" element={<FilteredModule Component={MentorIA} />} />
+              <Route path="/innovation-lab" element={<FilteredModule Component={EliteInnovation} />} />
+              <Route path="/etudes-cas" element={<FilteredModule Component={EtudesDeCas} />} />
+              
+              <Route path="/qualite" element={<FilteredModule Component={QualiteConformite} dataKey="qualite" />} />
+              <Route path="/esg" element={<FilteredModule Component={ESGScorecard} dataKey="esg" />} />
+              <Route path="/talent" element={<FilteredModule Component={TalentMarketplace} dataKey="talents" />} />
+              <Route path="/blackswan" element={<FilteredModule Component={SimulationCrise} dataKey="crise" />} />
+              <Route path="/digitaltwin" element={<FilteredModule Component={JumeauNumerique} />} />
+              <Route path="/ipguard" element={<FilteredModule Component={ProprieteIntellectuelle} dataKey="ip" />} />
+              <Route path="/valeur" element={<FilteredModule Component={AnalyseValeur} dataKey="valeur" />} />
+              <Route path="/ethique" element={<FilteredModule Component={EthiqueIA} dataKey="ethique" />} />
+
               {/* Fallback */}
+
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
