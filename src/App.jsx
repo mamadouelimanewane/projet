@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Routes, Route, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Shield, Lock, ArrowRight } from "lucide-react";
 import useStore from './store/useStore';
-import { SectionHeader, Card, Btn } from "./components/ui";
+import { SectionHeader, Card, Btn, Badge } from "./components/ui";
 
 import Utilities from './components/modules/Utilities';
 import Dashboard from './components/modules/Dashboard';
@@ -115,7 +115,7 @@ export default function App() {
     toggleSidebar
   } = useStore();
 
-  const badge = React.useMemo(() => {
+  const badge = useMemo(() => {
     if (universityPoints >= 200) return { label: 'Diamant Expert', icon: '💎', color: '#10b981' };
     if (universityPoints >= 100) return { label: 'Or Pro', icon: '🥇', color: '#f59e0b' };
     return { label: 'Argent Apprenti', icon: '🥈', color: '#94a3b8' };
@@ -126,7 +126,7 @@ export default function App() {
   const [twoFACode, setTwoFACode] = useState("");
   const is2FAEnabled = localStorage.getItem('projet-elite-2fa') === 'true';
 
-  const filteredModules = React.useMemo(() => {
+  const filteredModules = useMemo(() => {
     if (userMode === 'universel') return MODULES;
     const config = {
       debutant: ['dashboard', 'guide', 'nouveau-projet', 'mentor-ia', 'chat'],
