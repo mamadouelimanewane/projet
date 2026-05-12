@@ -116,7 +116,7 @@ export default function App() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const activeId = location.pathname.split('/').pop() || 'dashboard';
+  const activeId = location.pathname.substring(1) || "dashboard";
 
   const goTo = (id) => {
     navigate(`/${id}`);
@@ -129,7 +129,7 @@ export default function App() {
     return { label: 'Argent Apprenti', icon: '🥈', color: '#94a3b8' };
   }, [universityPoints]);
 
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isTwoFAVerified, setIsTwoFAVerified] = useState(false);
   const [twoFACode, setTwoFACode] = useState("");
   const is2FAEnabled = localStorage.getItem('projet-elite-2fa') === 'true';
@@ -150,13 +150,6 @@ export default function App() {
     fetchData();
   }, []);
   
-  const location = useLocation();
-  const navigate = useNavigate();
-  const activeId = location.pathname.substring(1) || "dashboard";
-
-  // Navigation handler
-  const goTo = (id) => navigate(`/${id}`);
-
   // Enter app
   if (!showApp) {
     return <LandingPage onEnter={() => setShowApp(true)} />;
@@ -323,7 +316,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<FilteredModule Component={Dashboard} />} />
-              <Route path="/dashboard-projet" element={<DashboardProjetIsolé />} />
+              <Route path="/dashboard-projet" element={<DashboardProjetIsole />} />
               <Route path="/suivi" element={<FilteredModule Component={SuiviSimple} dataKey="suivi" />} />
               <Route path="/multiprojets" element={<MultiProjets data={data.projets} setData={update("projets")} />} />
               <Route path="/taches" element={<FilteredModule Component={Taches} dataKey="taches" extraProps={{ projets: data.projets }} />} />
