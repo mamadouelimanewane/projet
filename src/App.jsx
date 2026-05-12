@@ -112,8 +112,15 @@ export default function App() {
     showApp,
     setShowApp,
     userMode,
-    setUserMode
+    setUserMode,
+    universityPoints
   } = useStore();
+
+  const badge = React.useMemo(() => {
+    if (universityPoints >= 200) return { label: 'Diamant Expert', icon: '💎', color: '#10b981' };
+    if (universityPoints >= 100) return { label: 'Or Pro', icon: '🥇', color: '#f59e0b' };
+    return { label: 'Argent Apprenti', icon: '🥈', color: '#94a3b8' };
+  }, [universityPoints]);
 
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [isTwoFAVerified, setIsTwoFAVerified] = useState(false);
