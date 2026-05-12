@@ -111,7 +111,10 @@ export default function App() {
     setUserMode,
     universityPoints,
     sidebarOpen,
-    toggleSidebar
+    toggleSidebar,
+    isSyncing,
+    syncData,
+    lastSync
   } = useStore();
 
   const location = useLocation();
@@ -292,7 +295,6 @@ export default function App() {
                    </button>
                  ))}
                </div>
-               <ProjectSelector />
                {lastSync && (
                  <span className="text-[10px] text-slate-600 font-mono hidden lg:inline">
                    Sync {new Date(lastSync).toLocaleTimeString()}

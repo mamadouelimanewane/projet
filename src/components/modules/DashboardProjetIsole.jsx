@@ -10,7 +10,7 @@ import {
   Calendar, Users, FileText, Settings, BarChart3, PieChart as PieChartIcon
 } from "lucide-react";
 
-const DashboardProjetIsolé = () => {
+const DashboardProjetIsole = () => {
   const navigate = useNavigate();
   const { currentProject, projectData, projectStats, selectedProjectId } = useProject();
   const [activeTab, setActiveTab] = useState("overview");

@@ -20,9 +20,15 @@ export const ProjectProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Projet actif (null = Tous les projets)
-  const currentProject = useMemo(() => 
-    selectedProjectId ? data.projets?.find(p => p.id === selectedProjectId) : null
-  , [selectedProjectId, data.projets]);
+  const currentProject = useMemo(() => {
+    const project = selectedProjectId ? data.projets?.find(p => p.id === selectedProjectId) : null;
+    // Si le projet sélectionné n'existe plus, on reset le store pour éviter un crash
+    if (selectedProjectId && !project) {
+      setSelectedProjectId(null);
+      return null;
+    }
+    return project;
+  }, [selectedProjectId, data.projets, setSelectedProjectId]);
 
   // Filtrer les données par projet actif
   const projectData = useMemo(() => {
