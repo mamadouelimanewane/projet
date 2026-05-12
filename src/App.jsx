@@ -85,7 +85,7 @@ import GestionUtilisateurs from './components/modules/GestionUtilisateurs';
 import SauvegardeExport from './components/modules/SauvegardeExport';
 import EditeurProjet from './components/modules/EditeurProjet';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
-import DashboardProjetIsolé from './components/modules/DashboardProjetIsolé';
+import DashboardProjetIsole from './components/modules/DashboardProjetIsole';
 import { MODULES } from "./data/constants";
 
 // Wrapper pour injecter les données filtrées dans les modules
@@ -98,6 +98,8 @@ const FilteredModule = ({ Component, dataKey, extraProps = {} }) => {
   return <Component data={moduleData} setData={dataKey ? update(dataKey) : undefined} {...extraProps} />;
 };
 
+// Version 3.5.1 - Fixed Sidebar & Dashboard Context
+// Build Timestamp: 2026-05-12T14:15:00
 export default function App() {
   const { 
     fetchData,

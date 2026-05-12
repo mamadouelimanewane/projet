@@ -4,7 +4,7 @@ import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Toolti
 import { PIE_COLORS } from "../../data/constants";
 import { Badge, StatCard, SectionHeader, TooltipInfo, ProgressBar } from "../ui";
 import { useProject } from "./ProjectSelector";
-import DashboardProjetIsolé from "./DashboardProjetIsolé";
+import DashboardProjetIsole from "./DashboardProjetIsole";
 import AssistantPremierProjet from "./AssistantPremierProjet";
 import useStore from "../../store/useStore";
 
