@@ -115,6 +115,15 @@ export default function App() {
     toggleSidebar
   } = useStore();
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const activeId = location.pathname.split('/').pop() || 'dashboard';
+
+  const goTo = (id) => {
+    navigate(`/${id}`);
+    setMobileMenuOpen(false);
+  };
+
   const badge = useMemo(() => {
     if (universityPoints >= 200) return { label: 'Diamant Expert', icon: '💎', color: '#10b981' };
     if (universityPoints >= 100) return { label: 'Or Pro', icon: '🥇', color: '#f59e0b' };
