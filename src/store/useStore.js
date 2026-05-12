@@ -12,6 +12,7 @@ const useStore = create(
       userMode: 'pro', // 'debutant' | 'pro' | 'expert' | 'academique' | 'universel'
       universityModules: ["guide", "nouveau-projet"], 
       universityPoints: 20,
+      sidebarOpen: true,
       isSyncing: false,
       lastSync: null,
       

@@ -100,12 +100,7 @@ const FilteredModule = ({ Component, dataKey, extraProps = {} }) => {
 
 export default function App() {
   const { 
-    sidebarOpen, 
-    toggleSidebar,
-    isSyncing,
-    lastSync,
     fetchData,
-    syncData,
     data,
     setData,
     updateData,
@@ -113,7 +108,9 @@ export default function App() {
     setShowApp,
     userMode,
     setUserMode,
-    universityPoints
+    universityPoints,
+    sidebarOpen,
+    toggleSidebar
   } = useStore();
 
   const badge = React.useMemo(() => {
@@ -215,7 +212,7 @@ export default function App() {
         {/* SIDEBAR */}
         <aside className={`
           fixed inset-y-0 left-0 z-50 md:relative 
-          ${sidebarOpen ? "w-64" : "w-14"} 
+          w-64
           ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           flex-shrink-0 bg-slate-900/98 backdrop-blur-xl border-r border-slate-800 
           flex flex-col transition-all duration-300 ease-in-out
@@ -223,15 +220,10 @@ export default function App() {
           <div className="p-4 border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-3">
                <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black">E</div>
-               {sidebarOpen && (
-                 <div className="overflow-hidden">
-                   <p className="text-xs font-black text-white tracking-tight leading-none uppercase">Projet Élite</p>
-                 </div>
-               )}
+               <div className="overflow-hidden">
+                 <p className="text-xs font-black text-white tracking-tight leading-none uppercase">Projet Élite</p>
+               </div>
             </div>
-            <button onClick={toggleSidebar} className="hidden md:flex w-6 h-6 items-center justify-center text-slate-500 hover:text-white">
-              {sidebarOpen ? "◀" : "▶"}
-            </button>
             <button onClick={() => setMobileMenuOpen(false)} className="md:hidden text-slate-500">✕</button>
           </div>
           <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto">
@@ -239,30 +231,27 @@ export default function App() {
               <button key={m.id} onClick={() => goTo(m.id)}
                 className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-xl text-left transition-all ${activeId === m.id ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30" : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"}`}>
                 <span className="text-lg w-5 h-5 flex items-center justify-center">{m.icon}</span>
-                {sidebarOpen && <span className="text-xs font-bold truncate">{m.label}</span>}
+                <span className="text-xs font-bold truncate">{m.label}</span>
               </button>
             ))}
           </nav>
           {/* Student Badge Footer */}
-          {sidebarOpen && (
-            <div className="p-4 mt-auto border-t border-slate-800 bg-slate-900/50">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-slate-800 border border-slate-700 shadow-inner">
-                  {badge.icon}
-                </div>
-                <div className="overflow-hidden">
-                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
-                  <p className="text-xs font-bold text-white truncate">{badge.label}</p>
-                  <p className="text-[9px] font-bold" style={{ color: badge.color }}>{universityPoints} points</p>
-                </div>
+          <div className="p-4 mt-auto border-t border-slate-800 bg-slate-900/50">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-slate-800 border border-slate-700 shadow-inner">
+                {badge.icon}
+              </div>
+              <div className="overflow-hidden">
+                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
+                <p className="text-xs font-bold text-white truncate">{badge.label}</p>
+                <p className="text-[9px] font-bold" style={{ color: badge.color }}>{universityPoints} points</p>
               </div>
             </div>
-          )}
-          {sidebarOpen && (
-            <div className="p-3 border-t border-slate-800">
-              <div className="text-xs text-slate-600">● Système synchronisé</div>
-            </div>
-          )}
+          </div>
+          
+          <div className="p-3 border-t border-slate-800">
+            <div className="text-xs text-slate-600">● Système synchronisé</div>
+          </div>
         </aside>
 
         {/* MAIN */}
