@@ -51,7 +51,7 @@ import RedTeamAI from './components/modules/RedTeamAI';
 import SentimentTeam from './components/modules/SentimentTeam';
 import ExcelIntegration from './components/modules/ExcelIntegration';
 import GenieCivilElite from './components/modules/GenieCivilElite';
-import DashboardProjet from './components/modules/DashboardProjet';
+// DashboardProjet (Legacy) removed to avoid conflicts
 import ExportRapports from './components/modules/ExportRapports';
 import Notifications from './components/modules/Notifications';
 import AssistantIA from './components/modules/AssistantIA';
@@ -121,10 +121,10 @@ export default function App() {
   const navigate = useNavigate();
   const activeId = location.pathname.substring(1) || "dashboard";
 
-  const goTo = (id) => {
-    navigate(`/${id}`);
-    setMobileMenuOpen(false);
-  };
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isTwoFAVerified, setIsTwoFAVerified] = useState(false);
+  const [twoFACode, setTwoFACode] = useState("");
+  const is2FAEnabled = localStorage.getItem('projet-elite-2fa') === 'true';
 
   const badge = useMemo(() => {
     if (universityPoints >= 200) return { label: 'Diamant Expert', icon: '💎', color: '#10b981' };
@@ -132,10 +132,10 @@ export default function App() {
     return { label: 'Argent Apprenti', icon: '🥈', color: '#94a3b8' };
   }, [universityPoints]);
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isTwoFAVerified, setIsTwoFAVerified] = useState(false);
-  const [twoFACode, setTwoFACode] = useState("");
-  const is2FAEnabled = localStorage.getItem('projet-elite-2fa') === 'true';
+  const goTo = (id) => {
+    navigate(`/${id}`);
+    setMobileMenuOpen(false);
+  };
 
   const filteredModules = useMemo(() => {
     if (userMode === 'universel') return MODULES;

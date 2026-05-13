@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useProject, ProjectSelector } from "./ProjectSelector";
+import ProjectSelector, { useProject } from "./ProjectSelector";
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, AreaChart, Area } from "recharts";
 import { PIE_COLORS } from "../../data/constants";
 import { Badge, StatCard, SectionHeader, Card, Btn } from "../ui";
@@ -31,32 +31,51 @@ const DashboardProjetIsole = () => {
     );
   }
 
-  // Données filtrées
-  const { taches, budget, risques, problemes, delais, jalons, ressources, kpis } = projectData;
-  const { avancement, budgetConsomme, tachesTotal, tachesEnCours, tachesFaites, risquesActifs, problemesOuverts } = projectStats;
+  // Données filtrées sécurisées
+  const { 
+    taches = [], 
+    budget = [], 
+    risques = [], 
+    problemes = [], 
+    delais = [], 
+    jalons = [], 
+    ressources = [], 
+    kpis = [] 
+  } = projectData || {};
 
-  // Calculs EVM
-  const joursTotal = currentProject.debut && currentProject.fin 
+  const { 
+    avancement = 0, 
+    budgetConsomme = 0, 
+    tachesTotal = 0, 
+    tachesEnCours = 0, 
+    tachesFaites = 0, 
+    risquesActifs = 0, 
+    problemesOuverts = 0 
+  } = projectStats || {};
+
+  // Calculs EVM sécurisés
+  const joursTotal = currentProject?.debut && currentProject?.fin 
     ? Math.ceil((new Date(currentProject.fin) - new Date(currentProject.debut)) / (1000 * 60 * 60 * 24))
     : 180;
-  const joursPasses = currentProject.debut 
+  const joursPasses = currentProject?.debut 
     ? Math.max(0, Math.ceil((new Date() - new Date(currentProject.debut)) / (1000 * 60 * 60 * 24)))
     : 0;
-  const joursRestants = Math.max(0, joursTotal - joursPasses);
+  const joursRestants = Math.max(0, (joursTotal || 0) - (joursPasses || 0));
   
-  const pv = Math.min((joursPasses / joursTotal) * (currentProject.budget || 0), currentProject.budget || 0);
-  const ev = (avancement / 100) * (currentProject.budget || 0);
+  const totalBudget = currentProject?.budget || 0;
+  const pv = Math.min((joursPasses / (joursTotal || 1)) * totalBudget, totalBudget);
+  const ev = (avancement / 100) * totalBudget;
   const ac = budgetConsomme;
-  const spi = pv > 0 ? (ev / pv).toFixed(2) : "N/A";
-  const cpi = ac > 0 ? (ev / ac).toFixed(2) : "N/A";
+  const spi = pv > 0 ? (ev / pv).toFixed(2) : "1.00";
+  const cpi = ac > 0 ? (ev / ac).toFixed(2) : "1.00";
   const sv = ev - pv;
   const cv = ev - ac;
 
-  // Données graphiques
+  // Données graphiques sécurisées
   const tachesData = [
-    { name: "À faire", value: taches.filter(t => t.statut === "À faire").length, color: "#94a3b8" },
-    { name: "En cours", value: tachesEnCours, color: "#6366f1" },
-    { name: "Terminées", value: tachesFaites, color: "#10b981" }
+    { name: "À faire", value: (taches || []).filter(t => t.statut === "À faire").length, color: "#94a3b8" },
+    { name: "En cours", value: tachesEnCours || 0, color: "#6366f1" },
+    { name: "Terminées", value: tachesFaites || 0, color: "#10b981" }
   ];
 
   const budgetData = [

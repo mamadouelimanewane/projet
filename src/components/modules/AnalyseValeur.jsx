@@ -1,5 +1,5 @@
 import React from "react";
-import { TrendingUp, Target, Zap, DollarSign, Tooltip as TooltipIcon, Filter, Layers, Calculator } from "lucide-react";
+import { TrendingUp, Target, Zap, DollarSign, Info as InfoIcon, Filter, Layers, Calculator } from "lucide-react";
 import { SectionHeader, Card, Btn, Badge, ProgressBar } from "../ui";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as ReTooltip, Legend } from "recharts";
 

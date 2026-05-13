@@ -15,11 +15,11 @@ const Dashboard = ({ data }) => {
 
   // Si un projet spécifique est sélectionné, on rend le dashboard projet isolé
   if (currentProject) {
-    return <DashboardProjetIsolé />;
+    return <DashboardProjetIsole />;
   }
 
   // Sinon, on rend le dashboard global (Multi-Projets / Portfolio)
-  const totalProjets = data.projets.length;
+  const totalProjets = data?.projets?.length || 0;
 
   if (totalProjets === 0) {
     return <AssistantPremierProjet />;
@@ -92,9 +92,9 @@ const Dashboard = ({ data }) => {
 
   // MODE EXPERT : Focus sur l'analytique et l'EVM
   if (userMode === 'expert') {
-    const totalBudgetP = data.budget.reduce((s, b) => s + b.planifie, 0);
-    const totalBudgetR = data.budget.reduce((s, b) => s + b.reel, 0);
-    const cpi = totalBudgetR > 0 ? (totalBudgetR / totalBudgetP).toFixed(2) : "1.00";
+    const totalBudgetP = data?.budget?.reduce((s, b) => s + (b.planifie || 0), 0) || 1;
+    const totalBudgetR = data?.budget?.reduce((s, b) => s + (b.reel || 0), 0) || 0;
+    const cpi = totalBudgetP > 0 ? (totalBudgetR / totalBudgetP).toFixed(2) : "1.00";
 
     return (
       <div className="space-y-8 animate-entrance">
@@ -102,7 +102,7 @@ const Dashboard = ({ data }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <StatCard label="CPI (Indice Coût)" value={cpi} sub={parseFloat(cpi) < 1 ? "⚠️ Surcoût" : "✅ Aligné"} color="#f59e0b" icon="📉" />
           <StatCard label="SPI (Indice Délais)" value="0.98" sub="🟡 Retard léger" color="#6366f1" icon="⏳" />
-          <StatCard label="Risques Critiques" value={data.risques.filter(r => r.gravite * r.probabilite >= 12).length} sub="Nécessitent mitigation" color="#ef4444" icon="⛨" />
+          <StatCard label="Risques Critiques" value={data?.risques?.filter(r => (r.gravite || 0) * (r.probabilite || 0) >= 12).length || 0} sub="Nécessitent mitigation" color="#ef4444" icon="⛨" />
           <StatCard label="EAC (Projection)" value={`${(totalBudgetP * 1.05 / 1000).toFixed(0)}k`} sub="FCFA (Estimation)" color="#ec4899" icon="Σ" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -122,20 +122,20 @@ const Dashboard = ({ data }) => {
   }
 
   // --- LOGIQUE STANDARD (PRO / UNIVERSEL) ---
-  const projetsActifs = data.projets.filter(p => p.statut === "En cours").length;
-  const tachesEnCours = data.taches.filter(t => t.statut === "En cours").length;
-  const risquesActifs = data.risques.filter(r => r.statut === "Actif").length;
-  const avgAvancement = Math.round(data.projets.reduce((s, p) => s + p.avancement, 0) / data.projets.length);
-  const totalBudgetP = data.budget.reduce((s, b) => s + b.planifie, 0);
-  const totalBudgetR = data.budget.reduce((s, b) => s + b.reel, 0);
+  const projetsActifs = data?.projets?.filter(p => p.statut === "En cours").length || 0;
+  const tachesEnCours = data?.taches?.filter(t => t.statut === "En cours").length || 0;
+  const risquesActifs = data?.risques?.filter(r => r.statut === "Actif").length || 0;
+  const avgAvancement = data?.projets?.length > 0 ? Math.round(data.projets.reduce((s, p) => s + (p.avancement || 0), 0) / data.projets.length) : 0;
+  const totalBudgetP = data?.budget?.reduce((s, b) => s + (b.planifie || 0), 0) || 1;
+  const totalBudgetR = data?.budget?.reduce((s, b) => s + (b.reel || 0), 0) || 0;
   const budgetPct = Math.round((totalBudgetR / totalBudgetP) * 100);
 
-  const avancementData = data.projets.map((p, index) => ({ name: p.nom.substring(0, 15) + "…", value: p.avancement, index, id: p.id }));
-  const budgetData = data.couts.map(c => ({ name: c.phase, Prévu: c.prevu, Réel: c.reel }));
+  const avancementData = data?.projets?.map((p, index) => ({ name: p.nom.substring(0, 15) + "…", value: p.avancement, index, id: p.id })) || [];
+  const budgetData = data?.couts?.map(c => ({ name: c.phase, Prévu: c.prevu, Réel: c.reel })) || [];
   const statutData = [
-    { name: "Terminé", value: data.projets.filter(p => p.statut === "Terminé").length },
-    { name: "En cours", value: data.projets.filter(p => p.statut === "En cours").length },
-    { name: "Planifié", value: data.projets.filter(p => p.statut === "Planifié").length },
+    { name: "Terminé", value: data?.projets?.filter(p => p.statut === "Terminé").length || 0 },
+    { name: "En cours", value: data?.projets?.filter(p => p.statut === "En cours").length || 0 },
+    { name: "Planifié", value: data?.projets?.filter(p => p.statut === "Planifié").length || 0 },
   ].filter(d => d.value > 0);
 
   return (
@@ -150,9 +150,9 @@ const Dashboard = ({ data }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatCard label="Tâches En cours" value={tachesEnCours} sub={`${data.taches.filter(t => t.statut === 'Fait').length} terminées`} color="#10b981" icon="⊞" />
-        <StatCard label={<>Problèmes Ouverts <TooltipInfo term="Issue Management" definition="Suivi des obstacles imprévus qui impactent directement le projet, contrairement aux risques qui sont hypothétiques." /></>} value={data.problemes.filter(p => p.statut !== "Résolu").length} sub={`${data.problemes.filter(p => p.priorite === "Critique").length} critiques`} color="#f59e0b" icon="⚠" />
-        <StatCard label={<>Jalons Atteints <TooltipInfo term="Milestone" definition="Événement majeur avec une durée de zéro jour marquant la fin d'une étape clé." /></>} value={data.jalons.filter(j => j.statut === "Atteint").length} sub={`sur ${data.jalons.length} total`} color="#06b6d4" icon="◆" />
+        <StatCard label="Tâches En cours" value={tachesEnCours} sub={`${data?.taches?.filter(t => t.statut === 'Fait').length || 0} terminées`} color="#10b981" icon="⊞" />
+        <StatCard label={<>Problèmes Ouverts <TooltipInfo term="Issue Management" definition="Suivi des obstacles imprévus qui impactent directement le projet, contrairement aux risques qui sont hypothétiques." /></>} value={data?.problemes?.filter(p => p.statut !== "Résolu").length || 0} sub={`${data?.problemes?.filter(p => p.priorite === "Critique").length || 0} critiques`} color="#f59e0b" icon="⚠" />
+        <StatCard label={<>Jalons Atteints <TooltipInfo term="Milestone" definition="Événement majeur avec une durée de zéro jour marquant la fin d'une étape clé." /></>} value={data?.jalons?.filter(j => j.statut === "Atteint").length || 0} sub={`sur ${data?.jalons?.length || 0} total`} color="#06b6d4" icon="◆" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -162,8 +162,6 @@ const Dashboard = ({ data }) => {
             <BarChart data={avancementData} onClick={(e) => {
               if (e && e.activePayload && e.activePayload[0]) {
                 const id = e.activePayload[0].payload.id;
-                // Au clic, on pourrait soit naviguer, soit changer le projet actif.
-                // Ici on navigue vers le dashboard-projet qui utilisera l'ID
                 navigate(`/dashboard-projet/${id}`);
               }
             }}>
@@ -222,7 +220,7 @@ const Dashboard = ({ data }) => {
         <div className="md:col-span-2 glass-card rounded-2xl p-6 animate-entrance [animation-delay:400ms]">
           <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Intelligence & Alertes</h3>
           <div className="space-y-3">
-            {data.problemes.filter(p => p.statut !== "Résolu" && (p.priorite === "Critique" || p.priorite === "Haute")).map(p => (
+            {data?.problemes?.filter(p => p.statut !== "Résolu" && (p.priorite === "Critique" || p.priorite === "Haute")).map(p => (
               <div key={p.id} className="group flex items-start gap-5 p-4 rounded-xl bg-slate-800/40 border border-slate-700/30 hover:border-indigo-500/30 transition-all duration-300">
                 <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-xl text-red-500">⚠</div>
                 <div className="flex-1 min-w-0">
@@ -232,12 +230,12 @@ const Dashboard = ({ data }) => {
                 <Badge value={p.priorite} />
               </div>
             ))}
-            {data.risques.filter(r => r.gravite * r.probabilite >= 8).map(r => (
+            {data?.risques?.filter(r => (r.gravite || 0) * (r.probabilite || 0) >= 8).map(r => (
               <div key={r.id} className="group flex items-start gap-5 p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/10 hover:border-indigo-500/30 transition-all duration-300">
                 <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-xl text-indigo-400">⛨</div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold text-indigo-100/90 truncate tracking-tight">Risque : {r.risque}</p>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1.5">Impact Score : {r.gravite * r.probabilite}/25</p>
+                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1.5">Impact Score : {(r.gravite || 0) * (r.probabilite || 0)}/25</p>
                 </div>
                 <Badge value="Actif" />
               </div>
