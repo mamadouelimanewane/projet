@@ -1,27 +1,122 @@
 @import "tailwindcss";
 
-@layer utilities {
-  .glass-card {
-    background: rgba(30, 41, 59, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  }
+/* ── Initialisation thème sombre par défaut ─────────────────────────────── */
+:root {
+  --app-bg:           #0f172a;
+  --app-surface:      #1e293b;
+  --app-surface2:     #334155;
+  --app-surface3:     rgba(30,41,59,0.7);
+  --app-border:       rgba(148,163,184,0.15);
+  --app-border2:      rgba(100,116,139,0.4);
+  --app-text:         #f1f5f9;
+  --app-text2:        #94a3b8;
+  --app-text3:        #64748b;
+  --app-topbar:       rgba(15,23,42,0.85);
+  --app-sidebar:      rgba(15,23,42,0.98);
+  --app-hover:        rgba(51,65,85,0.6);
+  --app-shadow:       0 8px 32px rgba(0,0,0,0.5);
+  --couleur-principale: #6366f1;
+}
 
-  .neon-glow {
-    text-shadow: 0 0 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3);
-  }
+/* ── Application globale des variables ──────────────────────────────────── */
+body {
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-  .premium-gradient {
-    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-  }
+/* ── Thème Clair : surcharges Tailwind ──────────────────────────────────── */
+[data-theme="light"] .bg-slate-950,
+[data-theme="light"] .bg-slate-950\/80 { background-color: var(--app-bg) !important; }
+[data-theme="light"] .bg-slate-900,
+[data-theme="light"] .bg-slate-900\/80,
+[data-theme="light"] .bg-slate-900\/98,
+[data-theme="light"] .bg-slate-900\/50 { background-color: var(--app-surface) !important; }
+[data-theme="light"] .bg-slate-800,
+[data-theme="light"] .bg-slate-800\/60,
+[data-theme="light"] .bg-slate-800\/50 { background-color: var(--app-surface2) !important; }
+[data-theme="light"] .text-white        { color: var(--app-text) !important; }
+[data-theme="light"] .text-slate-400    { color: var(--app-text2) !important; }
+[data-theme="light"] .text-slate-500    { color: var(--app-text3) !important; }
+[data-theme="light"] .text-slate-300    { color: var(--app-text) !important; }
+[data-theme="light"] .text-slate-200    { color: var(--app-text) !important; }
+[data-theme="light"] .border-slate-700,
+[data-theme="light"] .border-slate-700\/50,
+[data-theme="light"] .border-slate-800  { border-color: var(--app-border2) !important; }
+[data-theme="light"] .border-slate-700\/30 { border-color: var(--app-border) !important; }
 
-  .animate-entrance {
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
+/* ── Thème Midnight : surcharges Tailwind ───────────────────────────────── */
+[data-theme="midnight"] .bg-slate-950,
+[data-theme="midnight"] .bg-slate-950\/80 { background-color: var(--app-bg) !important; }
+[data-theme="midnight"] .bg-slate-900,
+[data-theme="midnight"] .bg-slate-900\/98,
+[data-theme="midnight"] .bg-slate-900\/50 { background-color: var(--app-surface) !important; }
+[data-theme="midnight"] .bg-slate-800,
+[data-theme="midnight"] .bg-slate-800\/60,
+[data-theme="midnight"] .bg-slate-800\/50 { background-color: var(--app-surface2) !important; }
+[data-theme="midnight"] .text-white        { color: var(--app-text) !important; }
+[data-theme="midnight"] .text-slate-400    { color: var(--app-text2) !important; }
+[data-theme="midnight"] .text-slate-500    { color: var(--app-text3) !important; }
+[data-theme="midnight"] .text-slate-300    { color: var(--app-text) !important; }
+[data-theme="midnight"] .border-slate-700,
+[data-theme="midnight"] .border-slate-800  { border-color: var(--app-border) !important; }
 
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+/* ── Composants thémés ──────────────────────────────────────────────────── */
+.glass-card {
+  background: var(--app-surface3);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--app-border);
+  box-shadow: var(--app-shadow);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.app-sidebar {
+  background: var(--app-sidebar) !important;
+  border-color: var(--app-border2) !important;
+}
+
+.app-topbar {
+  background: var(--app-topbar) !important;
+  border-color: var(--app-border) !important;
+}
+
+.app-surface {
+  background: var(--app-surface);
+  border-color: var(--app-border);
+}
+
+.app-hover:hover {
+  background: var(--app-hover);
+}
+
+.app-text    { color: var(--app-text); }
+.app-text2   { color: var(--app-text2); }
+.app-text3   { color: var(--app-text3); }
+
+/* ── Utilitaires existants ──────────────────────────────────────────────── */
+.neon-glow {
+  text-shadow: 0 0 10px rgba(99,102,241,0.5), 0 0 20px rgba(99,102,241,0.3);
+}
+
+.premium-gradient {
+  background: linear-gradient(135deg, var(--couleur-principale, #6366f1) 0%, #a855f7 100%);
+}
+
+.animate-entrance {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Transition douce lors du changement de thème ──────────────────────── */
+*, *::before, *::after {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease;
+}
+
+/* Désactiver la transition sur les animations intentionnelles */
+.animate-entrance, .animate-pulse, [class*="transition-"] {
+  transition: inherit;
 }

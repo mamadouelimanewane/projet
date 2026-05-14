@@ -4,6 +4,10 @@ import { HashRouter } from 'react-router-dom'
 import { registerSW } from 'virtual:pwa-register'
 import './index.css'
 import App from './App.jsx'
+import { applyTheme, getStoredTheme } from './lib/themeManager.js'
+
+// Appliquer le thème sauvegardé avant le premier rendu
+applyTheme(getStoredTheme())
 
 // Register PWA Service Worker
 const updateSW = registerSW({

@@ -87,6 +87,7 @@ import EditeurProjet from './components/modules/EditeurProjet';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsole from './components/modules/DashboardProjetIsole';
 import { MODULES } from "./data/constants";
+import { applyTheme, getStoredTheme, THEMES } from './lib/themeManager.js';
 import { LanguageProvider, LanguageSelector } from './hooks/useLanguage.jsx';
 
 // Wrapper pour injecter les données filtrées dans les modules
@@ -119,6 +120,12 @@ export default function App() {
   } = useStore();
 
   const location = useLocation();
+  const [currentTheme, setCurrentTheme] = React.useState(getStoredTheme);
+
+  const switchTheme = (themeId) => {
+    applyTheme(themeId);
+    setCurrentTheme(themeId);
+  };
   const navigate = useNavigate();
   const activeId = location.pathname.substring(1) || "dashboard";
 
@@ -217,13 +224,13 @@ export default function App() {
     <LanguageProvider>
     <ProjectProvider>
       <ToastContainer />
-      <div className="flex h-screen bg-slate-950 text-white overflow-hidden relative" style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif" }}>
+      <div className="flex h-screen text-white overflow-hidden relative" style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif", backgroundColor: "var(--app-bg)", color: "var(--app-text)" }}>
         {/* SIDEBAR */}
         <aside className={`
           fixed inset-y-0 left-0 z-50 md:relative 
           w-64
           ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-          flex-shrink-0 bg-slate-900/98 backdrop-blur-xl border-r border-slate-800 
+          flex-shrink-0 backdrop-blur-xl border-r app-sidebar 
           flex flex-col transition-all duration-300 ease-in-out
         `}>
           <div className="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -266,7 +273,7 @@ export default function App() {
         {/* MAIN */}
         <main className="flex-1 overflow-y-auto">
           {/* TOP BAR */}
-          <div className="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800 px-4 md:px-8 py-3 flex justify-between items-center">
+          <div className="sticky top-0 z-40 backdrop-blur-md border-b px-4 md:px-8 py-3 flex justify-between items-center app-topbar">
             <div className="flex items-center gap-4">
               <button onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 text-slate-400 bg-slate-900 rounded-lg border border-slate-800">☰</button>
               <div className="hidden sm:block">
@@ -281,6 +288,18 @@ export default function App() {
                {/* Project Context Switcher */}
                <ProjectSelector />
 
+               {/* Sélecteur de thème */}
+               <div className="hidden md:flex items-center gap-1 bg-slate-800/60 border border-slate-700 rounded-lg p-1">
+                 {Object.values(THEMES).map(t => (
+                   <button
+                     key={t.id}
+                     onClick={() => switchTheme(t.id)}
+                     title={t.nom}
+                     className={`w-5 h-5 rounded-md border-2 transition-all ${currentTheme === t.id ? 'border-white scale-110' : 'border-transparent hover:border-slate-400'}`}
+                     style={{ background: `linear-gradient(135deg, ${t.preview[0]} 0%, ${t.preview[1]} 60%, ${t.preview[2]} 100%)` }}
+                   />
+                 ))}
+               </div>
                {/* Sélecteur de langue */}
                <LanguageSelector />
                {/* Mode switcher */}
