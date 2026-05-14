@@ -63,7 +63,7 @@ const ThemesPersonnalisation = () => {
     { nom: "Grande",  value: "large",  px: "18px" },
   ];
 
-  const themeIcons = { dark: Moon, light: Sun, midnight: Sparkles };
+  const themeIcons = { dark: Moon, sunset: Sun, midnight: Sparkles };
 
   return (
     <div className="space-y-6">

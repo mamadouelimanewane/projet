@@ -25,25 +25,25 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ── Thème Clair : surcharges Tailwind ──────────────────────────────────── */
-[data-theme="light"] .bg-slate-950,
-[data-theme="light"] .bg-slate-950\/80 { background-color: var(--app-bg) !important; }
-[data-theme="light"] .bg-slate-900,
-[data-theme="light"] .bg-slate-900\/80,
-[data-theme="light"] .bg-slate-900\/98,
-[data-theme="light"] .bg-slate-900\/50 { background-color: var(--app-surface) !important; }
-[data-theme="light"] .bg-slate-800,
-[data-theme="light"] .bg-slate-800\/60,
-[data-theme="light"] .bg-slate-800\/50 { background-color: var(--app-surface2) !important; }
-[data-theme="light"] .text-white        { color: var(--app-text) !important; }
-[data-theme="light"] .text-slate-400    { color: var(--app-text2) !important; }
-[data-theme="light"] .text-slate-500    { color: var(--app-text3) !important; }
-[data-theme="light"] .text-slate-300    { color: var(--app-text) !important; }
-[data-theme="light"] .text-slate-200    { color: var(--app-text) !important; }
-[data-theme="light"] .border-slate-700,
-[data-theme="light"] .border-slate-700\/50,
-[data-theme="light"] .border-slate-800  { border-color: var(--app-border2) !important; }
-[data-theme="light"] .border-slate-700\/30 { border-color: var(--app-border) !important; }
+/* ── Thème Sunset : surcharges Tailwind ─────────────────────────────────── */
+[data-theme="sunset"] .bg-slate-950,
+[data-theme="sunset"] .bg-slate-950\/80 { background-color: var(--app-bg) !important; }
+[data-theme="sunset"] .bg-slate-900,
+[data-theme="sunset"] .bg-slate-900\/80,
+[data-theme="sunset"] .bg-slate-900\/98,
+[data-theme="sunset"] .bg-slate-900\/50 { background-color: var(--app-surface) !important; }
+[data-theme="sunset"] .bg-slate-800,
+[data-theme="sunset"] .bg-slate-800\/60,
+[data-theme="sunset"] .bg-slate-800\/50 { background-color: var(--app-surface2) !important; }
+[data-theme="sunset"] .text-white        { color: var(--app-text) !important; }
+[data-theme="sunset"] .text-slate-400    { color: var(--app-text2) !important; }
+[data-theme="sunset"] .text-slate-500    { color: var(--app-text3) !important; }
+[data-theme="sunset"] .text-slate-300    { color: var(--app-text) !important; }
+[data-theme="sunset"] .text-slate-200    { color: var(--app-text) !important; }
+[data-theme="sunset"] .border-slate-700,
+[data-theme="sunset"] .border-slate-700\/50,
+[data-theme="sunset"] .border-slate-800  { border-color: var(--app-border2) !important; }
+[data-theme="sunset"] .border-slate-700\/30 { border-color: var(--app-border) !important; }
 
 /* ── Thème Midnight : surcharges Tailwind ───────────────────────────────── */
 [data-theme="midnight"] .bg-slate-950,
