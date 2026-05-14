@@ -10,6 +10,13 @@ const PROJECT_TYPES = [
   { id: "ong", label: "🌍 ONG / Humanitaire", desc: "Projet social, développement communautaire" },
   { id: "industriel", label: "🏭 Industriel", desc: "Production, maintenance, process industriel" },
   { id: "evenement", label: "🎬 Événementiel", desc: "Conférence, festival, cérémonie" },
+  { id: "agriculture", label: "🌾 Agriculture / Agroalimentaire", desc: "Élevage, culture, transformation alimentaire" },
+  { id: "sante", label: "🏥 Santé / Médical", desc: "Hôpital, clinique, programme de santé" },
+  { id: "environnement", label: "🌿 Environnement / Énergie", desc: "Énergie renouvelable, écologie, eau" },
+  { id: "commerce", label: "🛒 Commerce / Distribution", desc: "Retail, e-commerce, supply chain" },
+  { id: "immobilier", label: "🏘️ Immobilier / Logement", desc: "Promotion immobilière, gestion locative" },
+  { id: "transport", label: "🚛 Transport / Logistique", desc: "Mobilité, fret, infrastructure routière" },
+  { id: "general", label: "📋 Général / Autre", desc: "Tout autre type de projet non listé" },
 ];
 
 const METHODOLOGIES = [
@@ -26,6 +33,13 @@ const TEMPLATES = {
   ong: { taches: ["Identification des bénéficiaires", "Mobilisation des fonds", "Mise en œuvre terrain", "Suivi & évaluation", "Rapport bailleur"], risques: ["Insécurité terrain", "Retrait bailleur", "Problèmes logistiques"], jalons: ["Démarrage opérationnel", "Rapport mi-parcours", "Clôture"] },
   industriel: { taches: ["Analyse de process", "Conception technique", "Acquisition équipements", "Installation & tests", "Formation opérateurs", "Mise en production"], risques: ["Pannes équipements", "Délais fournisseurs"], jalons: ["FAT (Factory Acceptance Test)", "SAT (Site Acceptance Test)", "Production nominale"] },
   evenement: { taches: ["Concept & budget", "Recherche de sponsors", "Logistique & lieu", "Communication", "Jour J", "Bilan post-événement"], risques: ["Annulation intervenants", "Météo", "Affluence insuffisante"], jalons: ["Confirmation lieu", "Ouverture inscriptions", "Clôture"] },
+  agriculture: { taches: ["Étude du sol & faisabilité", "Acquisition des intrants", "Préparation du terrain", "Semis / plantation / élevage", "Suivi & entretien", "Récolte & commercialisation"], risques: ["Aléas climatiques", "Maladies des cultures", "Problèmes d'irrigation", "Fluctuation des prix"], jalons: ["Début campagne", "Mi-saison", "Récolte principale"] },
+  sante: { taches: ["Étude des besoins", "Recrutement du personnel médical", "Équipement & logistique", "Formation des équipes", "Ouverture & opérations", "Évaluation des résultats"], risques: ["Pénurie de médicaments", "Manque de personnel qualifié", "Épidémie"], jalons: ["Accréditation sanitaire", "Première consultation", "Rapport d'impact"] },
+  environnement: { taches: ["Étude d'impact environnemental", "Conception technique", "Acquisition équipements", "Installation", "Tests & mise en service", "Suivi opérationnel"], risques: ["Contraintes réglementaires", "Résistance des populations", "Conditions météo extrêmes"], jalons: ["Autorisation environnementale", "Installation complète", "Production nominale"] },
+  commerce: { taches: ["Étude de marché", "Sourcing fournisseurs", "Aménagement point de vente", "Recrutement & formation", "Lancement commercial", "Analyse des ventes"], risques: ["Concurrence accrue", "Rupture de stock", "Évolution réglementaire"], jalons: ["Ouverture officielle", "Premier mois de CA", "Seuil de rentabilité"] },
+  immobilier: { taches: ["Étude de faisabilité", "Acquisition du foncier", "Permis de construire", "Travaux de construction", "Commercialisation", "Livraison"], risques: ["Retard administratif", "Surcoût travaux", "Difficultés de commercialisation"], jalons: ["Dépôt permis", "Mise en vente", "Livraison"] },
+  transport: { taches: ["Analyse des flux", "Conception de la solution", "Acquisition véhicules / infrastructure", "Recrutement chauffeurs", "Mise en service", "Optimisation"], risques: ["Hausse du carburant", "Pannes mécaniques", "Réglementation douanière"], jalons: ["Premier trajet", "Optimisation des routes", "Bilan opérationnel"] },
+  general: { taches: ["Cadrage du projet", "Planification détaillée", "Mise en œuvre phase 1", "Mise en œuvre phase 2", "Suivi & ajustements", "Clôture & bilan"], risques: ["Dépassement budgétaire", "Retard planning", "Perte de ressource clé"], jalons: ["Lancement officiel", "Mi-parcours", "Livraison finale"] },
 };
 
 const ETAPES = [
@@ -138,28 +152,23 @@ export default function ProjetWizard() {
         {step === 1 && (
           <div className="space-y-4 flex-1">
             <div className="space-y-1.5">
-              <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Nom du Projet *</label>
+              <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Nom du projet *</label>
               <input value={form.nom} onChange={e => set("nom", e.target.value)}
-                placeholder="Ex: Star Academy Dakar" maxLength={60}
+                placeholder="Ex: Construction École Rurale Thiès"
                 className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 transition-all" />
             </div>
             <div className="space-y-1.5">
-              <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Chef de Projet *</label>
+              <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Chef de projet *</label>
               <input value={form.chef} onChange={e => set("chef", e.target.value)}
-                placeholder="Ex: Mamadou Diallo"
+                placeholder="Ex: Mamadou Wane"
                 className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 transition-all" />
             </div>
             <div className="space-y-1.5">
               <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Description</label>
               <textarea value={form.description} onChange={e => set("description", e.target.value)}
-                placeholder="Décrivez l'objectif principal de ce projet..." rows={3}
+                rows={3} placeholder="Décrivez brièvement les objectifs du projet..."
                 className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 transition-all resize-none" />
             </div>
-            {userMode === "debutant" && (
-              <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-xs text-indigo-300">
-                💡 <strong>Conseil débutant :</strong> Un bon nom de projet est court, précis et compris par tout le monde — même votre sponsor ou vos bénéficiaires.
-              </div>
-            )}
           </div>
         )}
 
