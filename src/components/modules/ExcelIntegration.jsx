@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast, dialog } from '../ui';
 import * as XLSX from "xlsx";
 import useStore from "../../store/useStore";
 import { Badge, SectionHeader, Btn, Card } from "../ui";
@@ -84,7 +85,7 @@ const ExcelIntegration = () => {
     }
 
     setImportData([]);
-    alert(`🎉 Importation réussie : ${message}`);
+    toast.success(`🎉 Importation réussie : ${message}`);
   };
 
   return (

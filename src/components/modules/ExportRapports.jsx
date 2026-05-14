@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast, dialog } from '../ui';
 import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import * as XLSX from "xlsx";
@@ -8,13 +9,27 @@ import { SectionHeader, Btn } from "../ui";
 const ExportRapports = ({ data }) => {
   const [exporting, setExporting] = useState(false);
   const [exportType, setExportType] = useState(null);
+  const [progress, setProgress] = useState(0);
+
+  // Exécute une tâche lourde de manière non-bloquante via scheduler
+  // (requestIdleCallback / setTimeout 0 — évite de geler l'UI le temps du rendu PDF)
+  const runAsync = (fn) => new Promise(resolve => {
+    if (typeof requestIdleCallback !== 'undefined') {
+      requestIdleCallback(() => resolve(fn()), { timeout: 500 });
+    } else {
+      setTimeout(() => resolve(fn()), 0);
+    }
+  });
 
   // Export PDF - Rapport Complet Projet
   const exportPDF = async () => {
     setExporting(true);
+    setProgress(10);
     setExportType("PDF");
     
     try {
+      setProgress(20);
+      await runAsync(() => {}); // yield to browser before heavy work
       const doc = new jsPDF();
       const pageWidth = doc.internal.pageSize.getWidth();
 
@@ -205,10 +220,13 @@ const ExportRapports = ({ data }) => {
         );
       }
 
+      setProgress(90);
+      await runAsync(() => {}); // yield before save triggers download
       doc.save(`Rapport_Projet_Elite_${new Date().toISOString().split("T")[0]}.pdf`);
+      setProgress(100);
     } catch (error) {
       console.error("Erreur export PDF:", error);
-      alert("Erreur lors de l'export PDF");
+      toast.error("Erreur lors de l'export PDF");
     } finally {
       setExporting(false);
       setExportType(null);
@@ -304,7 +322,7 @@ const ExportRapports = ({ data }) => {
       XLSX.writeFile(wb, `Rapport_Projet_Elite_${new Date().toISOString().split("T")[0]}.xlsx`);
     } catch (error) {
       console.error("Erreur export Excel:", error);
-      alert("Erreur lors de l'export Excel");
+      toast.error("Erreur lors de l'export Excel");
     } finally {
       setExporting(false);
       setExportType(null);
@@ -322,7 +340,7 @@ const ExportRapports = ({ data }) => {
 
     const selectedData = dataMap[dataType];
     if (!selectedData || selectedData.length === 0) {
-      alert("Aucune donnée à exporter");
+      toast.info("Aucune donnée à exporter");
       return;
     }
 
@@ -372,8 +390,13 @@ const ExportRapports = ({ data }) => {
               className="w-full"
               size="lg"
             >
-              {exporting && exportType === "PDF" ? "⏳ Génération..." : "📄 Exporter PDF"}
+              {exporting && exportType === "PDF" ? `⏳ Génération... ${progress}%` : "📄 Exporter PDF"}
             </Btn>
+            {exporting && exportType === "PDF" && (
+              <div style={{height:4,background:'#1e293b',borderRadius:2,marginTop:8,overflow:'hidden'}}>
+                <div style={{height:'100%',width:`${progress}%`,background:'#6366f1',transition:'width 0.3s ease',borderRadius:2}}/>
+              </div>
+            )}
           </div>
         </div>
 

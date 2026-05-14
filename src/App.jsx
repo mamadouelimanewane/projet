@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { Routes, Route, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Shield, Lock, ArrowRight } from "lucide-react";
 import useStore from './store/useStore';
-import { SectionHeader, Card, Btn, Badge } from "./components/ui";
+import { SectionHeader, Card, Btn, Badge, ToastContainer } from "./components/ui";
 
 import Utilities from './components/modules/Utilities';
 import Dashboard from './components/modules/Dashboard';
@@ -87,6 +87,7 @@ import EditeurProjet from './components/modules/EditeurProjet';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsole from './components/modules/DashboardProjetIsole';
 import { MODULES } from "./data/constants";
+import { LanguageProvider, LanguageSelector } from './hooks/useLanguage.jsx';
 
 // Wrapper pour injecter les données filtrées dans les modules
 const FilteredModule = ({ Component, dataKey, extraProps = {} }) => {
@@ -213,7 +214,9 @@ export default function App() {
   const update = (key) => (val) => updateData(key, val);
 
   return (
+    <LanguageProvider>
     <ProjectProvider>
+      <ToastContainer />
       <div className="flex h-screen bg-slate-950 text-white overflow-hidden relative" style={{ fontFamily: "'DM Sans', 'Segoe UI', system-ui, sans-serif" }}>
         {/* SIDEBAR */}
         <aside className={`
@@ -278,6 +281,8 @@ export default function App() {
                {/* Project Context Switcher */}
                <ProjectSelector />
 
+               {/* Sélecteur de langue */}
+               <LanguageSelector />
                {/* Mode switcher */}
                <div className="hidden md:flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-0.5 gap-0.5">
                  {[
@@ -403,5 +408,6 @@ export default function App() {
         </main>
       </div>
     </ProjectProvider>
+    </LanguageProvider>
   );
 }

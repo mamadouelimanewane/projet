@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { toast, dialog } from '../ui';
 import { Shield, Lock, Unlock, AlertTriangle, CheckCircle, Key, Smartphone, QrCode, Copy, RefreshCw } from "lucide-react";
 import { SectionHeader, Card, Btn } from "../ui";
 
-const Securite2FA = () => {
+const Securite2FA = async () => {
   const [twoFAEnabled, setTwoFAEnabled] = useState(() => {
     return localStorage.getItem('projet-elite-2fa') === 'true';
   });
@@ -14,7 +15,7 @@ const Securite2FA = () => {
   const [showBackupCodes, setShowBackupCodes] = useState(false);
 
   // Générer clé secrète
-  const generateSecretKey = () => {
+  const generateSecretKey = async () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     let key = '';
     for (let i = 0; i < 32; i++) {
@@ -33,11 +34,35 @@ const Securite2FA = () => {
     return codes;
   };
 
-  // Vérifier code (simulation - en production: vérifier avec TOTP)
-  const verifyCode = (code) => {
-    // En production: vérifier avec la bibliothèque speakeasy ou otpauth
-    // Pour la démo: accepter tout code à 6 chiffres
-    return /^\d{6}$/.test(code);
+  // TOTP vérification côté client (RFC 6238 / RFC 4226) — API WebCrypto native
+  const base32Decode = (b32) => {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    let bits = 0, value = 0;
+    const out = [];
+    for (const ch of b32.replace(/\s/g,'').toUpperCase()) {
+      const idx = chars.indexOf(ch);
+      if (idx === -1) continue;
+      value = (value << 5) | idx; bits += 5;
+      if (bits >= 8) { out.push((value >>> (bits - 8)) & 0xff); bits -= 8; }
+    }
+    return new Uint8Array(out);
+  };
+
+  const verifyCode = async (inputCode) => {
+    if (!/^\d{6}$/.test(inputCode)) return false;
+    const keyBytes = base32Decode(secretKey);
+    for (let drift = -1; drift <= 1; drift++) {
+      const counter = Math.floor(Date.now() / 1000 / 30) + drift;
+      const cb = new Uint8Array(8);
+      let c = counter;
+      for (let i = 7; i >= 0; i--) { cb[i] = c & 0xff; c = Math.floor(c / 256); }
+      const key = await crypto.subtle.importKey('raw', keyBytes, { name: 'HMAC', hash: 'SHA-1' }, false, ['sign']);
+      const sig = new Uint8Array(await crypto.subtle.sign('HMAC', key, cb));
+      const off = sig[19] & 0xf;
+      const code = ((sig[off]&0x7f)<<24|sig[off+1]<<16|sig[off+2]<<8|sig[off+3]) % 1000000;
+      if (code.toString().padStart(6,'0') === inputCode) return true;
+    }
+    return false;
   };
 
   // Activer 2FA
@@ -49,9 +74,10 @@ const Securite2FA = () => {
   };
 
   // Vérifier et finaliser
-  const finalizeSetup = () => {
-    if (!verifyCode(verificationCode)) {
-      alert("Code invalide. Veuillez entrer un code à 6 chiffres.");
+  const finalizeSetup = async () => {
+    const valid = await verifyCode(verificationCode);
+    if (!valid) {
+      toast.error("Code invalide. Vérifiez que l'heure de votre téléphone est synchronisée et réessayez.");
       return;
     }
 
@@ -64,8 +90,8 @@ const Securite2FA = () => {
   };
 
   // Désactiver 2FA
-  const disable2FA = () => {
-    if (confirm("Êtes-vous sûr de vouloir désactiver la 2FA ?")) {
+  const disable2FA = async () => {
+    if (await dialog.confirm("Êtes-vous sûr de vouloir désactiver la 2FA ?")) {
       setTwoFAEnabled(false);
       setSetupPhase(0);
       localStorage.removeItem('projet-elite-2fa');
@@ -77,13 +103,13 @@ const Securite2FA = () => {
   // Copier clé
   const copySecretKey = () => {
     navigator.clipboard.writeText(secretKey.replace(/\s/g, ''));
-    alert("Clé copiée !");
+    toast.success("Clé copiée !");
   };
 
   // Copier code backup
   const copyBackupCode = (code) => {
     navigator.clipboard.writeText(code);
-    alert("Code copié !");
+    toast.success("Code copié !");
   };
 
   // Régénérer codes backup

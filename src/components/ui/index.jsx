@@ -166,3 +166,116 @@ const TooltipInfo = ({ term, definition }) => {
 };
 
 export { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader, Card, TooltipInfo };
+
+// ─── Toast & Dialog System ────────────────────────────────────────────────────
+// Remplace les alert() / confirm() natifs par des composants UI élégants.
+// Usage:
+//   import { useToast, useDialog, ToastContainer } from '../ui';
+//   const toast = useToast();
+//   toast.success("Sauvegardé !"); toast.error("Erreur"); toast.info("Info");
+//   const dialog = useDialog();
+//   const ok = await dialog.confirm("Supprimer ce KPI ?");
+
+import { createContext, useContext, useCallback, useRef } from "react";
+
+const ToastCtx = createContext(null);
+const DialogCtx = createContext(null);
+
+let _toastFn = null;
+let _dialogFn = null;
+
+export const ToastContainer = () => {
+  const [toasts, setToasts] = React.useState([]);
+  const [dialogs, setDialogs] = React.useState([]);
+  const id = useRef(0);
+
+  // Expose global push functions
+  _toastFn = useCallback((msg, type = "info", duration = 3500) => {
+    const tid = ++id.current;
+    setToasts(p => [...p, { id: tid, msg, type }]);
+    setTimeout(() => setToasts(p => p.filter(t => t.id !== tid)), duration);
+  }, []);
+
+  _dialogFn = useCallback((msg, type = "confirm") => {
+    return new Promise(resolve => {
+      const did = ++id.current;
+      setDialogs(p => [...p, { id: did, msg, type, resolve }]);
+    });
+  }, []);
+
+  const dismiss = (did, val) => {
+    setDialogs(p => {
+      const d = p.find(x => x.id === did);
+      if (d) d.resolve(val);
+      return p.filter(x => x.id !== did);
+    });
+  };
+
+  const icons = { success: "✓", error: "✕", info: "ℹ", warning: "⚠" };
+  const colors = { success: "#10b981", error: "#ef4444", info: "#6366f1", warning: "#f59e0b" };
+
+  return (
+    <>
+      {/* Toasts */}
+      <div style={{ position: "fixed", bottom: 24, right: 24, zIndex: 9999, display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-end", pointerEvents: "none" }}>
+        {toasts.map(t => (
+          <div key={t.id} style={{
+            display: "flex", alignItems: "center", gap: 10, padding: "12px 18px",
+            background: "#0f172a", border: `1px solid ${colors[t.type]}44`,
+            borderLeft: `4px solid ${colors[t.type]}`, borderRadius: 12,
+            boxShadow: `0 4px 24px rgba(0,0,0,0.5), 0 0 12px ${colors[t.type]}22`,
+            pointerEvents: "auto", animation: "slideInRight 0.25s ease",
+            maxWidth: 340, minWidth: 220
+          }}>
+            <span style={{ color: colors[t.type], fontSize: 16, fontWeight: 900 }}>{icons[t.type]}</span>
+            <span style={{ color: "#e2e8f0", fontSize: 13, fontWeight: 600 }}>{t.msg}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Dialogs */}
+      {dialogs.map(d => (
+        <div key={d.id} style={{
+          position: "fixed", inset: 0, zIndex: 10000, background: "rgba(0,0,0,0.7)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          backdropFilter: "blur(4px)"
+        }}>
+          <div style={{
+            background: "#1e293b", border: "1px solid #334155",
+            borderRadius: 20, padding: "28px 32px", maxWidth: 420, width: "90%",
+            boxShadow: "0 25px 50px rgba(0,0,0,0.7)"
+          }}>
+            <p style={{ color: "#e2e8f0", fontSize: 15, fontWeight: 600, marginBottom: 24, lineHeight: 1.6 }}>{d.msg}</p>
+            <div style={{ display: "flex", gap: 12, justifyContent: "flex-end" }}>
+              {d.type === "confirm" && (
+                <button onClick={() => dismiss(d.id, false)}
+                  style={{ padding: "8px 20px", borderRadius: 10, border: "1px solid #475569", background: "transparent", color: "#94a3b8", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
+                  Annuler
+                </button>
+              )}
+              <button onClick={() => dismiss(d.id, true)}
+                style={{ padding: "8px 20px", borderRadius: 10, border: "none", background: "#6366f1", color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
+                {d.type === "confirm" ? "Confirmer" : "OK"}
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <style>{`@keyframes slideInRight { from { opacity:0; transform: translateX(20px); } to { opacity:1; transform: translateX(0); } }`}</style>
+    </>
+  );
+};
+
+// Programmatic access (works outside React tree after ToastContainer mounts)
+export const toast = {
+  success: (msg, dur) => _toastFn?.(msg, "success", dur),
+  error:   (msg, dur) => _toastFn?.(msg, "error", dur),
+  info:    (msg, dur) => _toastFn?.(msg, "info", dur),
+  warning: (msg, dur) => _toastFn?.(msg, "warning", dur),
+};
+
+export const dialog = {
+  confirm: (msg) => _dialogFn?.(msg, "confirm") ?? Promise.resolve(false),
+  alert:   (msg) => _dialogFn?.(msg, "alert")   ?? Promise.resolve(true),
+};

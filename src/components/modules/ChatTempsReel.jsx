@@ -216,9 +216,12 @@ const ChatTempsReel = ({ data }) => {
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-lg border border-slate-700">
               {supabase ? (
-                <><Cloud className="w-4 h-4 text-emerald-400" /> <span className="text-xs text-emerald-400">Cloud Sync</span></>
+                <><Cloud className="w-4 h-4 text-emerald-400" /> <span className="text-xs text-emerald-400">Cloud Sync Actif</span></>
               ) : (
-                <><CloudOff className="w-4 h-4 text-orange-400" /> <span className="text-xs text-orange-400">Mode Local</span></>
+                <><CloudOff className="w-4 h-4 text-amber-400" />
+                  <span className="text-xs text-amber-400">Mode Local</span>
+                  <span className="text-xs text-slate-500 hidden lg:inline"> · Configurer Supabase pour le temps réel</span>
+                </>
               )}
             </div>
             <div className="flex -space-x-2">

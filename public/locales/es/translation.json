@@ -1,0 +1,49 @@
+{
+  "dashboard": {
+    "title": "Panel de Control",
+    "subtitle": "Vista global de tus proyectos en tiempo real",
+    "activeProjects": "Proyectos Activos",
+    "globalProgress": "Progreso Global",
+    "budgetConsumed": "Presupuesto Consumido",
+    "activeRisks": "Riesgos Activos",
+    "ongoingTasks": "Tareas En Curso",
+    "openIssues": "Problemas Abiertos",
+    "milestonesReached": "Hitos Alcanzados",
+    "progressByProject": "Avance por Proyecto",
+    "financialFlow": "Flujo Financiero",
+    "statusDistribution": "Distribución de Estados",
+    "intelligenceAlerts": "Inteligencia y Alertas"
+  },
+  "common": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "close": "Cerrar",
+    "export": "Exportar",
+    "import": "Importar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "reset": "Restablecer",
+    "confirm": "Confirmar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "projects": "Proyectos",
+    "tasks": "Tareas",
+    "risks": "Riesgos",
+    "budget": "Presupuesto",
+    "gantt": "Gantt",
+    "kanban": "Kanban",
+    "reports": "Informes",
+    "settings": "Configuración"
+  }
+}

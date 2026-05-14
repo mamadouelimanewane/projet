@@ -1,0 +1,49 @@
+{
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "subtitle": "نظرة عامة على مشاريعك في الوقت الفعلي",
+    "activeProjects": "المشاريع النشطة",
+    "globalProgress": "التقدم العام",
+    "budgetConsumed": "الميزانية المستهلكة",
+    "activeRisks": "المخاطر النشطة",
+    "ongoingTasks": "المهام الجارية",
+    "openIssues": "المشاكل المفتوحة",
+    "milestonesReached": "الأهداف المحققة",
+    "progressByProject": "التقدم حسب المشروع",
+    "financialFlow": "التدفق المالي",
+    "statusDistribution": "توزيع الحالات",
+    "intelligenceAlerts": "الذكاء والتنبيهات"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "close": "إغلاق",
+    "export": "تصدير",
+    "import": "استيراد",
+    "search": "بحث",
+    "filter": "تصفية",
+    "reset": "إعادة تعيين",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "next": "التالي",
+    "loading": "جار التحميل...",
+    "error": "خطأ",
+    "success": "نجاح",
+    "warning": "تحذير",
+    "info": "معلومات"
+  },
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "projects": "المشاريع",
+    "tasks": "المهام",
+    "risks": "المخاطر",
+    "budget": "الميزانية",
+    "gantt": "غانت",
+    "kanban": "كانبان",
+    "reports": "التقارير",
+    "settings": "الإعدادات"
+  }
+}

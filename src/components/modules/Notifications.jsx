@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast, dialog } from '../ui';
 import { Bell, Mail, AlertTriangle, CheckCircle, XCircle, Clock, Settings, Trash2 } from "lucide-react";
 import { SectionHeader, Btn, Badge, Modal, Input, Select } from "../ui";
 
@@ -190,7 +191,7 @@ const Notifications = ({ data }) => {
   // Envoyer rapport par email
   const sendReportEmail = (type) => {
     console.log(`📊 Rapport ${type} envoyé par email`);
-    alert(`✅ Rapport ${type} envoyé avec succès !`);
+    toast.success(`✅ Rapport ${type} envoyé avec succès !`);
   };
 
   // Filtrer notifications
@@ -436,7 +437,7 @@ const Notifications = ({ data }) => {
             <Btn onClick={() => {
               localStorage.setItem('projet-elite-notif-config', JSON.stringify(config));
               setConfigModal(false);
-              alert('✅ Configuration sauvegardée !');
+              toast.success('✅ Configuration sauvegardée !');
             }} className="w-full">
               Sauvegarder
             </Btn>

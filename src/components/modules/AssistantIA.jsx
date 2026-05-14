@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import { toast, dialog } from '../ui';
 import { Send, Bot, User, Sparkles, Trash2, Download, Copy, ThumbsUp, ThumbsDown } from "lucide-react";
 import { SectionHeader, Btn, Input } from "../ui";
 
-const AssistantIA = ({ data }) => {
+const AssistantIA = async ({ data }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -50,7 +51,7 @@ Comment puis-je vous aider aujourd'hui ?`,
   }, [messages]);
 
   // Analyser les données du projet
-  const analyzeProjectData = () => {
+  const analyzeProjectData = async () => {
     const insights = [];
 
     // Analyse budget
@@ -251,8 +252,8 @@ Comment puis-je vous aider aujourd'hui ?`,
   };
 
   // Vider conversation
-  const clearChat = () => {
-    if (confirm("Vider la conversation ?")) {
+  const clearChat = async () => {
+    if (await dialog.confirm("Vider la conversation ?")) {
       setMessages([{
         id: Date.now(),
         role: "assistant",
@@ -264,7 +265,7 @@ Comment puis-je vous aider aujourd'hui ?`,
   };
 
   // Exporter conversation
-  const exportChat = () => {
+  const exportChat = async () => {
     const text = messages.map(m => 
       `[${new Date(m.timestamp).toLocaleString()}] ${m.role === 'user' ? 'Vous' : 'IA'}:\n${m.content}\n`
     ).join('\n---\n\n');

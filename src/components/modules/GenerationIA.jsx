@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { toast, dialog } from '../ui';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
@@ -46,7 +47,7 @@ const GenerationIA = () => {
         subtitle="Compilation intelligente de vos données en livrables exécutifs avec analyses graphiques" 
         action={
           <div className="flex gap-3">
-            <Btn onClick={() => alert("🤖 IA : Rapport mis à jour avec les dernières données du marché.")} variant="ghost" size="md">✨ Rafraîchir l'analyse</Btn>
+            <Btn onClick={() => toast.success("🤖 IA : Rapport mis à jour avec les dernières données du marché.")} variant="ghost" size="md">✨ Rafraîchir l'analyse</Btn>
             <Btn onClick={handleDownloadPDF} variant="primary" size="md" disabled={loading}>
               {loading ? "Génération..." : "📥 Exporter en PDF"}
             </Btn>

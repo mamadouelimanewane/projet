@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast, dialog } from '../ui';
 import { SectionHeader, Card, Btn, TooltipInfo, Badge } from "../ui";
 import { Presentation, Download, BookOpen, CheckCircle, FileText, ChevronRight } from "lucide-react";
 import useStore from "../../store/useStore";
@@ -55,7 +56,7 @@ export default function EtudesDeCas() {
     setGenerating(true);
     setTimeout(() => {
       setGenerating(false);
-      alert("La structure de votre soutenance (12 slides) a été générée avec succès sur la base de vos données projets !");
+      toast.info("La structure de votre soutenance (12 slides) a été générée avec succès sur la base de vos données projets !");
     }, 2500);
   };
 

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast, dialog } from '../ui';
 import { Edit3, Save, Trash2, Calendar, DollarSign, User, Info, Target, Layout, Settings } from "lucide-react";
 import { SectionHeader, Card, Btn, Input, Select, Textarea, Badge } from "../ui";
 import useStore from "../../store/useStore";
@@ -11,7 +12,7 @@ const EditeurProjet = () => {
   const project = projects.find(p => p.id === selectedId) || {};
 
   const handleSave = () => {
-    alert("✅ Modifications enregistrées localement ! (N'oubliez pas de synchroniser avec le Cloud)");
+    toast.success("✅ Modifications enregistrées localement ! (N'oubliez pas de synchroniser avec le Cloud)");
   };
 
   const updateProjectField = (field, value) => {

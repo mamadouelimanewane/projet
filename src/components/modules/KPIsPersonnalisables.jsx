@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { toast, dialog } from '../ui';
 import { Plus, Edit, Trash2, Save, X, TrendingUp, Target, AlertTriangle, DollarSign, Clock, CheckCircle, BarChart3 } from "lucide-react";
 import { SectionHeader, Card, Btn } from "../ui";
 
-const KPIsPersonnalisables = ({ data }) => {
+const KPIsPersonnalisables = async ({ data }) => {
   const [kpis, setKpis] = useState(() => {
     const saved = localStorage.getItem('projet-elite-kpis-custom');
     return saved ? JSON.parse(saved) : [
@@ -137,9 +138,9 @@ const KPIsPersonnalisables = ({ data }) => {
   };
 
   // Créer KPI
-  const creerKPI = () => {
+  const creerKPI = async () => {
     if (!nouveauKPI.nom || !nouveauKPI.formule) {
-      alert("Veuillez remplir le nom et la formule");
+      toast.info("Veuillez remplir le nom et la formule");
       return;
     }
 
@@ -171,8 +172,8 @@ const KPIsPersonnalisables = ({ data }) => {
   };
 
   // Supprimer KPI
-  const supprimerKPI = (id) => {
-    if (confirm("Supprimer ce KPI ?")) {
+  const supprimerKPI = async (id) => {
+    if (await dialog.confirm("Supprimer ce KPI ?")) {
       setKpis(kpis.filter(k => k.id !== id));
     }
   };

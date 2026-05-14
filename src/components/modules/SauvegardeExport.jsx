@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { toast, dialog } from '../ui';
 import { Save, Download, Upload, Database, History, HardDrive, RefreshCw, CheckCircle, FileJson, AlertCircle } from "lucide-react";
 import { SectionHeader, Card, Btn, Badge, ProgressBar } from "../ui";
 import useStore from "../../store/useStore";
 
-const SauvegardeExport = () => {
+const SauvegardeExport = async () => {
   const { projectData, setData } = useStore();
   const [isExporting, setIsExporting] = useState(false);
   const [lastBackup, setLastBackup] = useState(new Date().toLocaleString());
 
-  const handleExportJSON = () => {
+  const handleExportJSON = async () => {
     setIsExporting(true);
     const dataStr = JSON.stringify(projectData, null, 2);
     const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
@@ -26,20 +27,21 @@ const SauvegardeExport = () => {
     }, 1000);
   };
 
-  const handleImportJSON = (e) => {
+  const handleImportJSON = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       try {
         const json = JSON.parse(event.target.result);
-        if (window.confirm("⚠️ Attention : Cela écrasera toutes vos données actuelles par celles du fichier. Continuer ?")) {
+        const ok = await dialog.confirm("⚠️ Attention : Cela écrasera toutes vos données actuelles par celles du fichier. Continuer ?");
+        if (ok) {
           setData(json);
-          alert("✅ Données restaurées avec succès !");
+          toast.success("Données restaurées avec succès !");
         }
       } catch (err) {
-        alert("❌ Erreur : Le fichier n'est pas un format JSON valide pour Projet Élite.");
+        toast.error("❌ Erreur : Le fichier n'est pas un format JSON valide pour Projet Élite.");
       }
     };
     reader.readAsText(file);

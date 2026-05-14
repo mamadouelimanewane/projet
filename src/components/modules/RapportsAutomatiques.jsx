@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { toast, dialog } from '../ui';
 import { Calendar, Send, Clock, FileText, Mail, Download, Trash2, Edit, CheckCircle, AlertCircle } from "lucide-react";
 import { SectionHeader, Btn, Card } from "../ui";
 
-const RapportsAutomatiques = ({ data }) => {
+const RapportsAutomatiques = async ({ data }) => {
   const [rapportsPlanifies, setRapportsPlanifies] = useState([]);
   const [historique, setHistorique] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -66,9 +67,9 @@ const RapportsAutomatiques = ({ data }) => {
   }, [rapportsPlanifies, historique]);
 
   // Créer rapport
-  const creerRapport = () => {
+  const creerRapport = async () => {
     if (!nouveauRapport.nom || !nouveauRapport.destinataires) {
-      alert("Veuillez remplir tous les champs obligatoires");
+      toast.info("Veuillez remplir tous les champs obligatoires");
       return;
     }
 
@@ -128,12 +129,12 @@ const RapportsAutomatiques = ({ data }) => {
         : r
     ));
 
-    alert(`✅ Rapport "${rapport.nom}" envoyé avec succès !`);
+    toast.success(`✅ Rapport "${rapport.nom}" envoyé avec succès !`);
   };
 
   // Supprimer rapport
-  const supprimerRapport = (id) => {
-    if (confirm("Supprimer ce rapport planifié ?")) {
+  const supprimerRapport = async (id) => {
+    if (await dialog.confirm("Supprimer ce rapport planifié ?")) {
       setRapportsPlanifies(rapportsPlanifies.filter(r => r.id !== id));
     }
   };
