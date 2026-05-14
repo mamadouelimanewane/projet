@@ -21,12 +21,13 @@ const Delais = ({ data, setData }) => {
     <div className="space-y-6">
       <SectionHeader title="Suivi des Délais" subtitle="Analysez les écarts et optimisez la planification"
         action={<Btn onClick={() => { setForm({ tache: "", planifie: "", reel: "", cause: "", responsable: "", impact: "Moyen" }); setModal("add"); }} size="md">+ Écart</Btn>} />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatCard label="Tâches en Retard" value={data.filter(d => d.reel && new Date(d.reel) > new Date(d.planifie)).length} color="#ef4444" icon="⏱" />
         <StatCard label="Retard Moyen" value={`${Math.round(data.filter(d => d.reel).reduce((s, d) => s + getEcart(d.planifie, d.reel), 0) / Math.max(data.filter(d => d.reel).length, 1))}j`} color="#f59e0b" icon="Δ" />
         <StatCard label="À planifier" value={data.filter(d => !d.reel).length} color="#6366f1" icon="◉" />
       </div>
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <div className="overflow-x-auto -mx-1">
         <table className="w-full">
           <thead><tr className="border-b border-slate-700">
             {["Tâche", "Date Planifiée", "Date Réelle", "Écart", "Responsable", "Impact", "Cause", "Actions"].map(h => (
@@ -58,6 +59,7 @@ const Delais = ({ data, setData }) => {
             })}
           </tbody>
         </table>
+</div>
       </div>
       {modal && (
         <Modal title={modal === "add" ? "Nouvel Écart" : "Modifier Écart"} onClose={() => setModal(null)}>

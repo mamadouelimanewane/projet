@@ -120,3 +120,66 @@ body {
 .animate-entrance, .animate-pulse, [class*="transition-"] {
   transition: inherit;
 }
+
+/* ── Responsive mobile utilities ────────────────────────────────────────── */
+
+/* Prevent horizontal overflow globally */
+body, #root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Tables scroll horizontally on mobile */
+.overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Bottom nav safe area for iOS */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  nav.fixed.bottom-0 {
+    padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+  }
+  .pb-20 {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 768px) {
+  button, [role="button"] {
+    min-height: 36px;
+  }
+  
+  /* Gantt: show scroll hint on mobile */
+  .gantt-scroll-hint::after {
+    content: "← Faites glisser →";
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: var(--app-text3);
+    padding: 4px;
+  }
+
+  /* Compact StatCard on mobile */
+  .glass-card {
+    padding: 1rem !important;
+  }
+
+  /* Full-width buttons in modals on mobile */
+  .modal-actions {
+    flex-direction: column;
+  }
+  .modal-actions button {
+    width: 100%;
+  }
+}
+
+/* Tablet (768-1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .sidebar-tablet {
+    width: 56px;
+  }
+  .sidebar-tablet .label-text {
+    display: none;
+  }
+}

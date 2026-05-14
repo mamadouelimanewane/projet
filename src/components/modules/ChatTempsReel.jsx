@@ -238,9 +238,9 @@ const ChatTempsReel = ({ data }) => {
         }
       />
 
-      <div className="flex gap-4 flex-1">
+      <div className="flex gap-4 flex-1 min-h-0">
         {/* Sidebar salons */}
-        <Card className="w-64 p-4 glass-card rounded-2xl flex flex-col">
+        <Card className="hidden md:flex w-64 p-4 glass-card rounded-2xl flex-col">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-bold text-white flex items-center gap-2">
               <Hash className="w-4 h-4" />
@@ -397,7 +397,7 @@ const ChatTempsReel = ({ data }) => {
             )}
 
             <div className="flex gap-2">
-              <Btn size="sm" variant="ghost">
+              <Btn size="sm" variant="ghost" className="hidden sm:flex">
                 <Paperclip className="w-4 h-4" />
               </Btn>
               <input
@@ -406,7 +406,7 @@ const ChatTempsReel = ({ data }) => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && envoyerMessage()}
                 placeholder="Écrire un message..."
-                className="flex-1 px-4 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                className="flex-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm"
               />
               <Btn size="sm" variant="ghost">
                 <Smile className="w-4 h-4" />

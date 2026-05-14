@@ -21,6 +21,7 @@ const DemandesModeles = ({ data, setData }) => {
             <h3 className="text-sm font-bold text-white flex items-center gap-2">Triage des Demandes (Intake Queue)</h3>
             <Btn variant="ghost" size="sm">Filtrer</Btn>
           </div>
+          <div className="overflow-x-auto -mx-1">
           <table className="w-full">
             <thead>
               <tr className="border-b border-slate-700 text-left text-xs font-bold text-slate-400 uppercase">
@@ -48,6 +49,7 @@ const DemandesModeles = ({ data, setData }) => {
               ))}
             </tbody>
           </table>
+</div>
         </div>
 
         <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5 shadow-xl flex flex-col">

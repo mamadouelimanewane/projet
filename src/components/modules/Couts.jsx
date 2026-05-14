@@ -23,7 +23,7 @@ const Couts = ({ data, setData }) => {
     <div className="space-y-6">
       <SectionHeader title="Suivi des Coûts" subtitle="Contrôlez vos dépenses par phase de projet"
         action={<Btn onClick={() => { setForm({ phase: "", prevu: "", reel: "" }); setModal("add"); }} size="md">+ Ajouter Phase</Btn>} />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatCard label="Budget Prévu" value={`${totalP.toLocaleString()} FCFA`} color="#6366f1" icon="Σ" />
         <StatCard label="Réel Dépensé" value={`${totalR.toLocaleString()} FCFA`} color={totalR > totalP ? "#ef4444" : "#10b981"} icon="FCFA" />
         <StatCard label="Variance" value={`${variance >= 0 ? "+" : ""}${variance.toLocaleString()} FCFA`} color={variance >= 0 ? "#10b981" : "#ef4444"} icon="Δ" sub={variance >= 0 ? "Économie réalisée" : "Dépassement"} />
@@ -43,6 +43,7 @@ const Couts = ({ data, setData }) => {
         </ResponsiveContainer>
       </div>
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <div className="overflow-x-auto -mx-1">
         <table className="w-full">
           <thead><tr className="border-b border-slate-700">
             {["Phase", "Prévu (FCFA)", "Réel (FCFA)", "Variance (FCFA)", "Statut", "Actions"].map(h => (
@@ -69,6 +70,7 @@ const Couts = ({ data, setData }) => {
             ))}
           </tbody>
         </table>
+</div>
       </div>
       {modal && (
         <Modal title={modal === "add" ? "Nouvelle Phase" : "Modifier Phase"} onClose={() => setModal(null)}>

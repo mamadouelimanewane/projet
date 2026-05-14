@@ -38,6 +38,7 @@ const IntegrationsWebhooks = ({ data, setData }) => {
           <h3 className="text-sm font-bold text-white">Endpoints Webhooks Configurés</h3>
           <span className="text-xs text-slate-400">{data.length} actifs</span>
         </div>
+        <div className="overflow-x-auto -mx-1">
         <table className="w-full">
           <thead><tr className="border-b border-slate-700">
             {["Service / Nom", "URL Endpoint", "Événement Déclencheur", "Statut"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>)}
@@ -56,6 +57,7 @@ const IntegrationsWebhooks = ({ data, setData }) => {
             })}
           </tbody>
         </table>
+</div>
       </div>
     </div>
   );

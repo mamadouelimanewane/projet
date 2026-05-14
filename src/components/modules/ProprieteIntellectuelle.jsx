@@ -48,6 +48,7 @@ const ProprieteIntellectuelle = ({ data = {} }) => {
                 <Btn size="sm" variant="ghost">Exporter</Btn>
              </div>
           </div>
+          <div className="overflow-x-auto -mx-1">
           <table className="w-full text-left">
             <thead className="bg-slate-900/50 border-b border-slate-800">
               <tr>
@@ -81,6 +82,7 @@ const ProprieteIntellectuelle = ({ data = {} }) => {
               ))}
             </tbody>
           </table>
+</div>
         </Card>
 
         {/* Monitoring IP Leak */}

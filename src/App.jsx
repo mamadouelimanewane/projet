@@ -228,7 +228,7 @@ export default function App() {
         {/* SIDEBAR */}
         <aside className={`
           fixed inset-y-0 left-0 z-50 md:relative 
-          w-64
+          w-72 md:w-56 lg:w-64
           ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           flex-shrink-0 backdrop-blur-xl border-r app-sidebar 
           flex flex-col transition-all duration-300 ease-in-out
@@ -286,7 +286,7 @@ export default function App() {
             </div>
             <div className="flex items-center gap-2 md:gap-4">
                {/* Project Context Switcher */}
-               <ProjectSelector />
+               <div className="hidden sm:block"><ProjectSelector /></div>
 
                {/* Sélecteur de thème */}
                <div className="hidden md:flex items-center gap-1 bg-slate-800/60 border border-slate-700 rounded-lg p-1">
@@ -329,16 +329,16 @@ export default function App() {
                  disabled={isSyncing}
                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all ${isSyncing ? 'bg-slate-800 border-slate-700 text-slate-500' : 'bg-indigo-600/10 border-indigo-500/30 text-indigo-400 hover:bg-indigo-600/20'}`}
                >
-                 {isSyncing ? "⌛" : "☁"} <span className="hidden sm:inline">Sync</span>
+                 <span>{isSyncing ? "⌛" : "☁"}</span> <span className="hidden sm:inline">Sync</span>
                </button>
-               <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-slate-800/60 px-3 py-1.5 rounded-lg border border-slate-700">
-                <span className="text-emerald-500 animate-pulse">●</span> <span className="hidden xs:inline">Direct</span>
+               <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-400 bg-slate-800/60 px-3 py-1.5 rounded-lg border border-slate-700">
+                <span className="text-emerald-500 animate-pulse">●</span> <span>Direct</span>
               </div>
             </div>
           </div>
           
           {/* ROUTES CONTENT */}
-          <div className="p-4 md:p-8 max-w-[100vw] overflow-x-hidden">
+          <div className="p-3 md:p-8 max-w-[100vw] overflow-x-hidden pb-20 md:pb-8">
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<FilteredModule Component={Dashboard} />} />
@@ -424,6 +424,28 @@ export default function App() {
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
+        {/* ── BOTTOM NAV MOBILE ──────────────────────────────────────── */}
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t flex items-center justify-around px-2 py-2 app-topbar"
+          style={{borderColor:'var(--app-border2)', background:'var(--app-sidebar)'}}>
+          {[
+            { id:'dashboard',   icon:'📊', label:'Board' },
+            { id:'taches',      icon:'✅', label:'Tâches' },
+            { id:'risques',     icon:'⚠️', label:'Risques' },
+            { id:'budget',      icon:'💰', label:'Budget' },
+            { id:'assistant-ia',icon:'🤖', label:'IA' },
+          ].map(m => (
+            <button key={m.id} onClick={() => goTo(m.id)}
+              className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl transition-all min-w-0 flex-1 ${activeId === m.id ? 'bg-indigo-600/20' : ''}`}>
+              <span className="text-lg leading-none">{m.icon}</span>
+              <span className={`text-[10px] font-bold truncate w-full text-center ${activeId === m.id ? 'text-indigo-400' : 'text-slate-500'}`}>{m.label}</span>
+            </button>
+          ))}
+          <button onClick={() => setMobileMenuOpen(true)}
+            className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-xl min-w-0 flex-1">
+            <span className="text-lg leading-none">☰</span>
+            <span className="text-[10px] font-bold text-slate-500">Menu</span>
+          </button>
+        </nav>
         </main>
       </div>
     </ProjectProvider>

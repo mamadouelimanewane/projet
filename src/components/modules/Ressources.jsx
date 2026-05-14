@@ -20,7 +20,7 @@ const Ressources = ({ data, setData }) => {
     <div className="space-y-6">
       <SectionHeader title="Allocation des Ressources" subtitle="Optimisez l'utilisation de vos équipes"
         action={<Btn onClick={() => { setForm({ membre: "", role: "", projet: "", disponibilite: 100, charge: 0, debut: "", fin: "", specialite: "" }); setModal("add"); }} size="md">+ Ressource</Btn>} />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatCard label="Membres Équipe" value={data.length} color="#6366f1" icon="⚙" />
         <StatCard label="Charge Moyenne" value={`${Math.round(data.reduce((s, r) => s + r.charge, 0) / data.length)}%`} color={data.reduce((s, r) => s + r.charge, 0) / data.length > 85 ? "#ef4444" : "#10b981"} icon="◉" />
         <StatCard label="Sur-chargés" value={data.filter(r => r.charge > r.disponibilite * 0.9).length} color="#f59e0b" icon="⚠" sub="charge > 90% dispo" />

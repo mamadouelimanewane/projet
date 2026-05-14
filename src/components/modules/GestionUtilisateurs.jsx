@@ -46,6 +46,7 @@ const GestionUtilisateurs = ({ data = {} }) => {
 
       {/* TABLEAU DES UTILISATEURS */}
       <Card className="glass-card rounded-2xl overflow-hidden" noPadding>
+        <div className="overflow-x-auto -mx-1">
         <table className="w-full text-left">
           <thead className="bg-slate-900/50 border-b border-slate-800">
             <tr>
@@ -88,6 +89,7 @@ const GestionUtilisateurs = ({ data = {} }) => {
             ))}
           </tbody>
         </table>
+</div>
       </Card>
 
       {/* SECTION PRIVILÈGES */}

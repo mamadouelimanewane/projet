@@ -16,6 +16,7 @@ const EVM = ({ data }) => {
       <div className="glass-card rounded-2xl p-6">
         <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Matrice de Performance (SPI x CPI)</h3>
         <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50">
+          <div className="overflow-x-auto -mx-1">
           <table className="w-full text-left text-sm text-slate-300">
             <thead className="bg-slate-800/80 text-[10px] uppercase font-bold text-slate-500 border-b border-slate-700/50">
               <tr>
@@ -48,6 +49,7 @@ const EVM = ({ data }) => {
               ))}
             </tbody>
           </table>
+</div>
         </div>
       </div>
     </div>

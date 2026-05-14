@@ -36,7 +36,7 @@ const Agile = ({ data, setData }) => {
       </div>
       {sprint && (
         <>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <StatCard label="Points Total" value={totalPoints} color="#6366f1" icon="Σ" />
             <StatCard label="Complétés" value={donePoints} color="#10b981" icon="✓" />
             <StatCard label="Restants" value={totalPoints - donePoints} color="#f59e0b" icon="◉" />

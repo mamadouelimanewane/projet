@@ -8,6 +8,7 @@ const FeuillesTemps = ({ data, setData }) => {
     <div className="space-y-6">
       <SectionHeader title="Feuilles de Temps" subtitle="Suivi des heures passées par l'équipe" action={<Btn size="md">+ Saisie Heures</Btn>} />
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <div className="overflow-x-auto -mx-1">
         <table className="w-full">
           <thead><tr className="border-b border-slate-700">
             {["Date", "Membre", "Tâche", "Heures", "Type"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>)}
@@ -24,6 +25,7 @@ const FeuillesTemps = ({ data, setData }) => {
             ))}
           </tbody>
         </table>
+</div>
       </div>
     </div>
   );

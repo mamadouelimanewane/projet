@@ -112,7 +112,7 @@ const Textarea = ({ label, ...props }) => (
   </div>
 );
 
-const Btn = ({ children, onClick, variant = "primary", size = "sm", className = "" }) => {
+const Btn = ({ children, onClick, variant = "primary", size = "sm", className = "", disabled = false }) => {
   const variants = {
     primary: "premium-gradient text-white shadow-lg shadow-indigo-600/20",
     danger: "bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-600/20",
@@ -121,25 +121,25 @@ const Btn = ({ children, onClick, variant = "primary", size = "sm", className = 
     indigo: "bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 border border-indigo-600/20",
   };
   const sizes = { 
-    sm: "px-4 py-2 text-xs", 
-    md: "px-6 py-2.5 text-sm", 
-    lg: "px-8 py-3.5 text-base" 
+    sm: "px-3 py-2 text-xs", 
+    md: "px-5 py-2.5 text-sm", 
+    lg: "px-6 py-3 text-sm md:text-base" 
   };
   return (
-    <button onClick={onClick} 
-      className={`rounded-xl font-bold transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 ${variants[variant]} ${sizes[size]} ${className}`}>
+    <button onClick={onClick} disabled={disabled}
+      className={`rounded-xl font-bold transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`}>
       {children}
     </button>
   );
 };
 
 const SectionHeader = ({ title, subtitle, action }) => (
-  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 animate-entrance">
-    <div>
-      <h2 className="text-3xl font-black text-white tracking-tight leading-none">{title}</h2>
-      {subtitle && <p className="text-xs text-slate-500 font-medium mt-2 uppercase tracking-widest">{subtitle}</p>}
+  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-3 md:gap-4 animate-entrance">
+    <div className="min-w-0 flex-1">
+      <h2 className="text-xl md:text-3xl font-black text-white tracking-tight leading-none truncate">{title}</h2>
+      {subtitle && <p className="text-[10px] md:text-xs text-slate-500 font-medium mt-1 md:mt-2 uppercase tracking-widest line-clamp-1">{subtitle}</p>}
     </div>
-    <div className="flex-shrink-0">{action}</div>
+    <div className="flex-shrink-0 w-full md:w-auto">{action}</div>
   </div>
 );
 

@@ -19,7 +19,7 @@ const Problemes = ({ data, setData }) => {
     <div className="space-y-6">
       <SectionHeader title="Suivi des Problèmes" subtitle="Identifiez et résolvez les obstacles rapidement"
         action={<Btn onClick={() => { setForm({ description: "", priorite: "Moyenne", statut: "À faire", responsable: "", dateSignalement: new Date().toISOString().slice(0, 10), resolution: "" }); setModal("add"); }} size="md">+ Signaler</Btn>} />
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "Ouverts", count: data.filter(p => p.statut !== "Résolu").length, color: "#ef4444" },
           { label: "Critiques", count: data.filter(p => p.priorite === "Critique").length, color: "#7c3aed" },

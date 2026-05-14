@@ -22,7 +22,7 @@ const Budget = ({ data, setData }) => {
     <div className="space-y-6">
       <SectionHeader title="Suivi Budgétaire" subtitle="Maîtrisez chaque centime de votre budget projet"
         action={<Btn onClick={() => { setForm({ categorie: "", planifie: "", reel: "" }); setModal("add"); }} size="md">+ Ligne</Btn>} />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatCard label="Budget Total" value={`${(totalP / 1000).toFixed(0)}k€`} color="#6366f1" icon="Σ" sub="Budget alloué" />
         <StatCard label="Dépensé" value={`${(totalR / 1000).toFixed(0)}k€`} color={totalR > totalP ? "#ef4444" : "#10b981"} icon="€" sub={`${Math.round(totalR / totalP * 100)}% du budget`} />
         <StatCard label="Restant" value={`${((totalP - totalR) / 1000).toFixed(0)}k€`} color={totalP - totalR > 0 ? "#10b981" : "#ef4444"} icon="Δ" sub="Solde disponible" />
@@ -55,6 +55,7 @@ const Budget = ({ data, setData }) => {
         </div>
       </div>
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <div className="overflow-x-auto -mx-1">
         <table className="w-full">
           <thead><tr className="border-b border-slate-700">
             {["Catégorie", "Planifié", "Réel", "Écart", "Consommé", "Statut", ""].map(h => (
@@ -82,6 +83,7 @@ const Budget = ({ data, setData }) => {
             ))}
           </tbody>
         </table>
+</div>
       </div>
       {modal && (
         <Modal title={modal === "add" ? "Nouvelle Ligne Budget" : "Modifier"} onClose={() => setModal(null)}>

@@ -146,6 +146,7 @@ const ExcelIntegration = () => {
           </div>
           
           <div className="bg-slate-950/50 rounded-xl overflow-hidden border border-slate-800">
+            <div className="overflow-x-auto -mx-1">
             <table className="w-full text-left">
               <thead className="bg-slate-900 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-800">
                 <tr>
@@ -166,6 +167,7 @@ const ExcelIntegration = () => {
                 ))}
               </tbody>
             </table>
+</div>
           </div>
         </Card>
       )}

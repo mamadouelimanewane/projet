@@ -22,7 +22,7 @@ const SuiviSimple = ({ data, setData }) => {
     <div className="space-y-6">
       <SectionHeader title="Suivi Simple de Projet" subtitle="Gérez vos tâches avec clarté et efficacité"
         action={<Btn onClick={openAdd} size="md">+ Ajouter Tâche</Btn>} />
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {["Tous", "À faire", "En cours", "Fait"].map(s => (
           <button key={s} onClick={() => setFilter(s)}
             className={`p-3 rounded-xl text-sm font-semibold transition-all border ${filter === s ? "bg-indigo-600 border-indigo-500 text-white" : "bg-slate-800/60 border-slate-700/50 text-slate-400 hover:border-slate-500"}`}>
@@ -31,6 +31,7 @@ const SuiviSimple = ({ data, setData }) => {
         ))}
       </div>
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+        <div className="overflow-x-auto -mx-1">
         <table className="w-full">
           <thead><tr className="border-b border-slate-700">
             {["#", "Tâche", "Responsable", "Date Limite", "Statut", "Priorité", "Actions"].map(h => (
@@ -56,6 +57,7 @@ const SuiviSimple = ({ data, setData }) => {
             ))}
           </tbody>
         </table>
+</div>
       </div>
       {modal && (
         <Modal title={modal === "add" ? "Nouvelle Tâche" : "Modifier Tâche"} onClose={() => setModal(null)}>

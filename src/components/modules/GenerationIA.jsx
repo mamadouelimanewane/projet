@@ -135,6 +135,7 @@ const GenerationIA = () => {
               <div className="space-y-4">
                 <h5 className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Détail du Portefeuille Actif</h5>
                 <div className="bg-slate-950/50 border border-slate-800 rounded-xl overflow-hidden">
+                  <div className="overflow-x-auto -mx-1">
                   <table className="w-full text-left text-xs">
                     <thead className="bg-slate-800/50 text-slate-500 uppercase font-black tracking-tighter">
                       <tr>
@@ -157,6 +158,7 @@ const GenerationIA = () => {
                       ))}
                     </tbody>
                   </table>
+</div>
                 </div>
               </div>
 
