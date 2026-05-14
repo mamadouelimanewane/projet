@@ -130,7 +130,7 @@ const Dashboard = ({ data }) => {
   const totalBudgetR = data?.budget?.reduce((s, b) => s + (b.reel || 0), 0) || 0;
   const budgetPct = Math.round((totalBudgetR / totalBudgetP) * 100);
 
-  const avancementData = data?.projets?.map((p, index) => ({ name: p.nom.substring(0, 15) + "…", value: p.avancement, index, id: p.id })) || [];
+  const avancementData = data?.projets?.map((p, index) => ({ name: (p.nom || '').substring(0, 15) + "…", value: p.avancement, index, id: p.id })) || [];
   const budgetData = data?.couts?.map(c => ({ name: c.phase, Prévu: c.prevu, Réel: c.reel })) || [];
   const statutData = [
     { name: "Terminé", value: data?.projets?.filter(p => p.statut === "Terminé").length || 0 },

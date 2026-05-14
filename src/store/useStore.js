@@ -38,7 +38,7 @@ const useStore = create(
         if (!supabase) return;
         set({ isSyncing: true });
         try {
-          const { data, error } = await supabase
+          const { error } = await supabase
             .from('project_data')
             .upsert({ id: 'primary_state', content: get().data })
             .select();

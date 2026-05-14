@@ -123,7 +123,7 @@ const DashboardProjetIsole = () => {
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl">
-              {currentProject.nom.charAt(0).toUpperCase()}
+              {(currentProject.nom || 'P').charAt(0).toUpperCase()}
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white mb-1">{currentProject.nom}</h2>
@@ -401,7 +401,7 @@ const DashboardProjetIsole = () => {
                 return (
                   <div key={i} className="p-4 bg-slate-800 rounded-xl flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
-                      {responsable.charAt(0)}
+                      {(responsable || 'U').charAt(0)}
                     </div>
                     <div className="flex-1">
                       <h4 className="font-medium text-white">{responsable}</h4>
@@ -418,4 +418,4 @@ const DashboardProjetIsole = () => {
   );
 };
 
-export default DashboardProjetIsolé;
+export default DashboardProjetIsole;

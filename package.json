@@ -12,6 +12,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",
     "@tailwindcss/vite": "^4.2.1",
+    "budgetnew-root": "file:../../budgetnew",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.7",
     "html2canvas": "^1.4.1",
