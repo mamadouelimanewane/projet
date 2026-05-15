@@ -5,8 +5,8 @@ import { SectionHeader, Card, Btn, Input, Select, Textarea, Badge } from "../ui"
 import useStore from "../../store/useStore";
 
 const EditeurProjet = () => {
-  const { projectData, updateData } = useStore();
-  const projects = projectData.projets || [];
+  const { data, updateData } = useStore();
+  const projects = data?.projets || [];
   
   const [selectedId, setSelectedId] = useState(projects[0]?.id || "");
   const project = projects.find(p => p.id === selectedId) || {};
