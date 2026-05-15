@@ -185,7 +185,7 @@ export default function TableauUniversitaire() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { label: "Modules Validés", value: `${modulesValides.length}/${PARCOURS_MODULES.length}`, color: "#10b981" },
+              { label: "Modules Validés", value: `${universityModules.length}/${PARCOURS_MODULES.length}`, color: "#10b981" },
               { label: "Score Total", value: `${totalPoints} pts`, color: "#6366f1" },
               { label: "Simulations", value: `${scenarioScore} pts`, color: "#f59e0b" },
               { label: "Prochain Badge", value: BADGES.find(b => b.seuil > totalPoints)?.label || "Max!", color: "#ec4899" },
