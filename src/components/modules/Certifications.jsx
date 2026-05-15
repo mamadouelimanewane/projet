@@ -1,5 +1,49 @@
 import React, { useState } from "react";
 import { SectionHeader, Btn, Card, TooltipInfo } from "../ui";
+import { PlayCircle, FileText, CheckCircle, Lock, Video } from "lucide-react";
+
+const COURS_ELEARNING = [
+  {
+    id: "pmp_prep", label: "Masterclass PMP / PMBOK", ref: "pmbok", color: "#6366f1",
+    modules: [
+      {
+        id: "m1", titre: "Module 1 : Introduction & Principes",
+        lecons: [
+          { id: "c1", titre: "Les 12 principes du PMBOK 7", duree: "15:30", type: "video" },
+          { id: "c2", titre: "Comprendre la création de valeur", duree: "12:45", type: "video" },
+        ],
+        exercices: [
+          { id: "ex1", titre: "QCM de validation Module 1", type: "quiz", duree: "10 min" }
+        ]
+      },
+      {
+        id: "m2", titre: "Module 2 : Domaines de Performance",
+        lecons: [
+          { id: "c3", titre: "Gestion des Parties Prenantes", duree: "20:10", type: "video" },
+          { id: "c4", titre: "Planification et Incertitude", duree: "25:00", type: "video" },
+        ],
+        exercices: [
+          { id: "ex2", titre: "Étude de cas : Résolution de conflit", type: "devoir", duree: "30 min" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "scrum_prep", label: "Devenir Professional Scrum Master", ref: "scrum", color: "#10b981",
+    modules: [
+      {
+        id: "s_m1", titre: "Fondamentaux Agiles",
+        lecons: [
+          { id: "s1", titre: "Les piliers : Transparence, Inspection, Adaptation", duree: "18:20", type: "video" },
+          { id: "s2", titre: "Les rôles Scrum en détail", duree: "22:15", type: "video" },
+        ],
+        exercices: [
+          { id: "ex3", titre: "Simulateur Daily Scrum", type: "interactif", duree: "15 min" }
+        ]
+      }
+    ]
+  }
+];
 
 const REFERENTIELS = [
   {
@@ -94,6 +138,9 @@ export default function Certifications() {
   const [answer, setAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [quizDone, setQuizDone] = useState(false);
+  
+  const [elearningRef, setElearningRef] = useState("pmbok");
+  const [activeVideo, setActiveVideo] = useState(null);
 
   const ref = REFERENTIELS.find(r => r.id === activeRef);
   const quizQuestions = ref?.quiz || [];
@@ -124,6 +171,7 @@ export default function Certifications() {
         {[
           { id: "referentiels", label: "📖 Référentiels" },
           { id: "certifications", label: "🏅 Parcours Certifications" },
+          { id: "elearning", label: "📺 Plateforme E-Learning" },
           { id: "quiz", label: "🎮 Quiz Préparation" },
         ].map(t => (
           <Btn key={t.id} variant={tab === t.id ? "primary" : "ghost"} size="sm" onClick={() => { setTab(t.id); resetQuiz(); }}>
@@ -223,6 +271,95 @@ export default function Certifications() {
               </Card>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* ── E-LEARNING ── */}
+      {tab === "elearning" && (
+        <div className="animate-entrance space-y-6">
+          <div className="flex gap-2 flex-wrap mb-4">
+            {COURS_ELEARNING.map(c => (
+              <button key={c.id} onClick={() => { setElearningRef(c.ref); setActiveVideo(null); }}
+                className={`px-4 py-2 rounded-xl text-sm font-bold border-2 transition-all flex items-center gap-2 ${elearningRef === c.ref ? "bg-indigo-600 text-white border-indigo-500 shadow-lg" : "bg-slate-800/50 text-slate-400 border-slate-700 hover:border-slate-500"}`}>
+                <Video className="w-4 h-4" /> {c.label}
+              </button>
+            ))}
+          </div>
+
+          {COURS_ELEARNING.filter(c => c.ref === elearningRef).map(cours => (
+            <div key={cours.id} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Left Column: Video Player */}
+              <div className="lg:col-span-2 space-y-4">
+                <div className="w-full aspect-video bg-black rounded-2xl border-2 border-slate-700 shadow-2xl overflow-hidden relative flex flex-col items-center justify-center group">
+                  {activeVideo ? (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10" />
+                      <div className="text-center z-20 space-y-4">
+                        <PlayCircle className="w-20 h-20 text-indigo-500 mx-auto opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all cursor-pointer shadow-indigo-500/50 drop-shadow-2xl" />
+                        <p className="font-bold text-xl text-white">{activeVideo.titre}</p>
+                        <p className="text-slate-400 text-sm">Lecture en cours... ({activeVideo.duree})</p>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="text-center p-6">
+                      <Video className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+                      <p className="text-lg font-bold text-slate-400">Sélectionnez une leçon dans le menu pour démarrer</p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="glass-card p-6 rounded-2xl border border-slate-800">
+                  <h3 className="text-lg font-black text-white mb-2">{activeVideo ? activeVideo.titre : "Détails de la leçon"}</h3>
+                  <p className="text-sm text-slate-400">{activeVideo ? "Apprenez les concepts clés détaillés dans cette vidéo interactive. Prenez des notes sur la plateforme." : "Aucune leçon sélectionnée."}</p>
+                </div>
+              </div>
+
+              {/* Right Column: Syllabus */}
+              <div className="glass-card rounded-2xl border border-slate-700/50 flex flex-col max-h-[600px]">
+                <div className="p-4 border-b border-slate-700/50 bg-slate-800/40">
+                  <h3 className="font-bold text-white">Programme de Formation</h3>
+                  <p className="text-xs text-slate-400">Progression : 0%</p>
+                </div>
+                <div className="overflow-y-auto flex-1 p-2 space-y-4">
+                  {cours.modules.map(mod => (
+                    <div key={mod.id} className="space-y-1">
+                      <div className="px-3 py-2 bg-slate-800/80 rounded-lg border border-slate-700">
+                        <p className="text-xs font-black text-slate-300 uppercase tracking-wider">{mod.titre}</p>
+                      </div>
+                      
+                      <div className="space-y-0.5 px-1">
+                        {mod.lecons.map(lecon => (
+                          <button key={lecon.id} onClick={() => setActiveVideo(lecon)}
+                            className={`w-full text-left flex items-start gap-3 p-3 rounded-lg transition-all ${activeVideo?.id === lecon.id ? "bg-indigo-600/20 border border-indigo-500/30 text-indigo-300" : "hover:bg-slate-800/50 text-slate-400"}`}>
+                            <PlayCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${activeVideo?.id === lecon.id ? "text-indigo-400" : "text-slate-500"}`} />
+                            <div className="flex-1">
+                              <p className="text-sm font-semibold">{lecon.titre}</p>
+                              <p className="text-[10px] opacity-70">{lecon.duree} • Vidéo</p>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+
+                      {mod.exercices.length > 0 && (
+                        <div className="mt-2 space-y-0.5 px-1 border-t border-dashed border-slate-700/50 pt-2">
+                          {mod.exercices.map(ex => (
+                            <button key={ex.id}
+                              className="w-full text-left flex items-start gap-3 p-3 rounded-lg hover:bg-slate-800/50 text-slate-400 transition-all group">
+                              <FileText className="w-4 h-4 mt-0.5 flex-shrink-0 text-amber-500/70 group-hover:text-amber-400" />
+                              <div className="flex-1">
+                                <p className="text-sm font-semibold group-hover:text-amber-100">{ex.titre}</p>
+                                <p className="text-[10px] opacity-70">{ex.duree} • {ex.type}</p>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 
