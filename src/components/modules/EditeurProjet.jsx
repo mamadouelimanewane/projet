@@ -20,6 +20,27 @@ const EditeurProjet = () => {
     updateData("projets", updated);
   };
 
+  const handleArchiveToggle = () => {
+    if (project.archived) {
+      updateProjectField("archived", false);
+      toast.success("Projet restauré avec succès.");
+    } else {
+      if (confirm("Voulez-vous vraiment archiver ce projet ?")) {
+        updateProjectField("archived", true);
+        toast.success("Projet archivé avec succès.");
+      }
+    }
+  };
+
+  const handleDelete = () => {
+    if (confirm("Voulez-vous vraiment supprimer ce projet définitivement ? Cette action est irréversible.")) {
+      const updated = projects.filter(p => p.id !== selectedId);
+      updateData("projets", updated);
+      setSelectedId(updated[0]?.id || "");
+      toast.success("Projet supprimé définitivement.");
+    }
+  };
+
   return (
     <div className="space-y-6">
       <SectionHeader 
@@ -39,7 +60,7 @@ const EditeurProjet = () => {
                className={`w-full p-4 rounded-2xl text-left border-2 transition-all flex items-center justify-between group ${selectedId === p.id ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/30' : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'}`}
              >
                 <div className="overflow-hidden">
-                   <p className="font-bold truncate text-sm">{p.nom}</p>
+                   <p className="font-bold truncate text-sm">{p.archived ? "📦 " : ""}{p.nom}</p>
                    <p className={`text-[10px] ${selectedId === p.id ? 'text-indigo-200' : 'text-slate-600'}`}>{p.chef}</p>
                 </div>
                 <div className={`w-2 h-2 rounded-full ${p.statut === 'En cours' ? 'bg-emerald-400' : 'bg-slate-600'}`} />
@@ -149,7 +170,8 @@ const EditeurProjet = () => {
            </div>
            
            <div className="flex justify-end gap-4">
-              <Btn variant="danger" className="bg-red-600/10 text-red-500 border border-red-500/20"><Trash2 className="w-4 h-4 mr-2" /> Supprimer ce Projet</Btn>
+              <Btn variant="danger" className="bg-red-600/10 text-red-500 border border-red-500/20" onClick={handleDelete}><Trash2 className="w-4 h-4 mr-2" /> Supprimer ce Projet</Btn>
+              <Btn variant="ghost" className="border border-slate-700" onClick={handleArchiveToggle}>{project.archived ? "↩️ Restaurer ce Projet" : "📦 Archiver ce Projet"}</Btn>
               <Btn variant="primary" size="lg" className="px-12" onClick={handleSave}>Mettre à jour le Projet</Btn>
            </div>
         </div>

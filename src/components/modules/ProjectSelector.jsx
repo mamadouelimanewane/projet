@@ -103,8 +103,10 @@ export const ProjectProvider = ({ children }) => {
 
   const filteredProjectsList = useMemo(() => 
     data.projets?.filter(p =>
-      p.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.chef?.toLowerCase().includes(searchTerm.toLowerCase())
+      !p.archived && (
+        p.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.chef?.toLowerCase().includes(searchTerm.toLowerCase())
+      )
     ) || []
   , [data.projets, searchTerm]);
 

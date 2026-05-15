@@ -8,6 +8,7 @@ const MultiProjets = ({ data, setData }) => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(null);
   const [form, setForm] = useState({});
+  const [showArchived, setShowArchived] = useState(false);
 
   const openAdd = () => setForm({ nom: "", chef: "", debut: "", fin: "", avancement: 0, statut: "Planifié", budget: 0, budgetReel: 0 });
   const openEdit = (item) => { setForm({ ...item }); setModal("edit"); };
@@ -17,24 +18,39 @@ const MultiProjets = ({ data, setData }) => {
     else setData(data.map(d => d.id === f.id ? f : d));
     setModal(null);
   };
-  const del = (id) => setData(data.filter(d => d.id !== id));
+  const del = (id) => {
+    if (confirm("Voulez-vous vraiment supprimer ce projet définitivement ?")) {
+      setData(data.filter(d => d.id !== id));
+    }
+  };
+  const toggleArchive = (id) => {
+    setData(data.map(d => d.id === id ? { ...d, archived: !d.archived } : d));
+  };
 
   const statusColor = { "En cours": "#f59e0b", "Terminé": "#10b981", "Planifié": "#6366f1", "En pause": "#94a3b8" };
+  const displayData = data.filter(p => !!p.archived === showArchived);
 
   return (
     <div className="space-y-6">
       <SectionHeader title="Suivi Multi-Projets" subtitle="Piloter l'ensemble de votre portefeuille projets"
-        action={<Btn onClick={() => { openAdd(); setModal("add"); }} size="md">+ Nouveau Projet</Btn>} />
+        action={
+          <div className="flex gap-2">
+            <Btn onClick={() => setShowArchived(!showArchived)} variant="ghost" size="md">
+              {showArchived ? "Voir Actifs" : "Voir Archivés"}
+            </Btn>
+            <Btn onClick={() => { openAdd(); setModal("add"); }} size="md">+ Nouveau Projet</Btn>
+          </div>
+        } />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: "Total Projets", value: data.length, color: "#6366f1" },
-          { label: "En cours", value: data.filter(p => p.statut === "En cours").length, color: "#f59e0b" },
-          { label: "Budget Total", value: `${(data.reduce((s, p) => s + p.budget, 0) / 1000).toFixed(0)}k FCFA`, color: "#8b5cf6" },
-          { label: "Avancement Moy.", value: `${data.length > 0 ? Math.round(data.reduce((s, p) => s + p.avancement, 0) / data.length) : 0}%`, color: "#10b981" },
+          { label: "Total Projets", value: displayData.length, color: "#6366f1" },
+          { label: "En cours", value: displayData.filter(p => p.statut === "En cours").length, color: "#f59e0b" },
+          { label: "Budget Total", value: `${(displayData.reduce((s, p) => s + p.budget, 0) / 1000).toFixed(0)}k FCFA`, color: "#8b5cf6" },
+          { label: "Avancement Moy.", value: `${displayData.length > 0 ? Math.round(displayData.reduce((s, p) => s + p.avancement, 0) / displayData.length) : 0}%`, color: "#10b981" },
         ].map((s, i) => <StatCard key={i} {...s} />)}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {data.map(p => {
+        {displayData.map(p => {
           const pct = Math.round((p.budgetReel / p.budget) * 100);
           const over = p.budgetReel > p.budget;
           return (
@@ -48,6 +64,7 @@ const MultiProjets = ({ data, setData }) => {
                   <Badge value={p.statut} />
                   <Btn onClick={() => navigate(`/dashboard-projet/${p.id}`)} variant="ghost" title="Tableau de bord">📊</Btn>
                   <Btn onClick={() => openEdit(p)} variant="ghost">✎</Btn>
+                  <Btn onClick={() => toggleArchive(p.id)} variant="ghost" title={p.archived ? "Restaurer" : "Archiver"}>{p.archived ? "↩️" : "📦"}</Btn>
                   <Btn onClick={() => del(p.id)} variant="danger">✕</Btn>
                 </div>
               </div>
