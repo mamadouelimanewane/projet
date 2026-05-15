@@ -78,7 +78,7 @@ export const ProjectProvider = ({ children }) => {
 
   // Calculer stats du projet / portfolio
   const projectStats = useMemo(() => {
-    const targetProjets = currentProject ? [currentProject] : (data.projets || []);
+    const targetProjets = currentProject ? [currentProject] : (data.projets?.filter(p => !p.archived) || []);
     const targetTaches = projectData.taches;
     
     return {
