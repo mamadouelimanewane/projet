@@ -5,11 +5,24 @@ import { SectionHeader, Card, Btn, Badge, ProgressBar } from "../ui";
 const QualiteConformite = ({ data = {} }) => {
   const [activeTab, setActiveTab] = useState("audits");
 
-  const audits = [
+  const [audits, setAudits] = useState([
     { id: 1, titre: "Audit Interne ISO 9001", date: "2026-03-15", auditeur: "Jean K.", statut: "Terminé", score: 92 },
     { id: 2, titre: "Revue de Conformité RGPD", date: "2026-04-10", auditeur: "Sophie L.", statut: "En cours", score: null },
     { id: 3, titre: "Audit Sécurité Infrastructure", date: "2026-05-20", auditeur: "Paul M.", statut: "Planifié", score: null },
-  ];
+  ]);
+
+  const ajouterAudit = () => {
+    const newAudit = {
+      id: Date.now(),
+      titre: "Nouvel Audit Qualité",
+      date: new Date().toISOString().split("T")[0],
+      auditeur: "Auditeur Interne",
+      statut: "Planifié",
+      score: null
+    };
+    setAudits([newAudit, ...audits]);
+    setActiveTab("audits");
+  };
 
   const nonConformites = [
     { id: 1, titre: "Absence de traçabilité lot #124", gravite: "Moyenne", statut: "En cours", date: "2026-03-16" },
@@ -21,7 +34,7 @@ const QualiteConformite = ({ data = {} }) => {
       <SectionHeader 
         title="Qualité & Conformité" 
         subtitle="Suivi des standards ISO et audits de performance"
-        action={<Btn><Plus className="w-4 h-4 mr-2" /> Nouvel Audit</Btn>}
+        action={<Btn onClick={ajouterAudit}><Plus className="w-4 h-4 mr-2" /> Nouvel Audit</Btn>}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
