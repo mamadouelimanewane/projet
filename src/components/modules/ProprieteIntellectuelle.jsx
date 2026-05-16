@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { ShieldCheck, FileKey, Bookmark, Globe, Scale, Lock, Plus, Search } from "lucide-react";
 import { SectionHeader, Card, Btn, Badge } from "../ui";
 
 const ProprieteIntellectuelle = ({ data = {} }) => {
-  const assets = [
+  const [assets, setAssets] = useState([
     { id: 1, titre: "Algorithme de Prédiction Monte Carlo v4", type: "Brevet", numero: "FR-2026-001", statut: "Déposé", protection: "Mondiale" },
     { id: 2, titre: "Design Interface Elite (Glassmorphism)", type: "Modèle", numero: "EU-78921", statut: "Validé", protection: "Europe" },
     { id: 3, titre: "Méthodologie Star Academy Hub", type: "Secret Industriel", numero: "INTERN-01", statut: "Protégé", protection: "Interne" },
-  ];
+  ]);
+
+  const addAsset = () => {
+    const newAsset = {
+      id: Date.now(),
+      titre: "Nouveau Brevet d'Innovation",
+      type: "Brevet",
+      numero: `FR-2026-${Math.floor(Math.random() * 900) + 100}`,
+      statut: "En rédaction",
+      protection: "Mondiale"
+    };
+    setAssets([newAsset, ...assets]);
+  };
 
   return (
     <div className="space-y-6">
       <SectionHeader 
         title="Propriété Intellectuelle (IP Guard)" 
         subtitle="Sécurisation des innovations, brevets et secrets industriels"
-        action={<Btn><Plus className="w-4 h-4 mr-2" /> Déposer une IP</Btn>}
+        action={<Btn onClick={addAsset}><Plus className="w-4 h-4 mr-2" /> Déposer une IP</Btn>}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">

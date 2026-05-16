@@ -2,11 +2,24 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from "recharts";
 import { INITIAL_DATA, METHODOLOGIES, SCENARIOS, STATUT_COLORS, PRIORITE_COLORS, PIE_COLORS, MODULES } from "../../data/constants";
 import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader } from "../ui";
+import useStore from "../../store/useStore";
 
 const IntegrationsWebhooks = ({ data, setData }) => {
+  const { updateData } = useStore();
+
+  const addWebhook = () => {
+    const newWebhook = { 
+      id: Date.now(), 
+      nom: "Nouveau Webhook API", 
+      url: `https://api.votre-service.com/hooks/${Math.floor(Math.random()*10000)}`, 
+      event: "tache.completed", 
+      statut: "Connecté" 
+    };
+    updateData("webhooks", [newWebhook, ...(data || [])]);
+  };
   return (
     <div className="space-y-6">
-      <SectionHeader title="Intégrations & Webhooks" subtitle="Connectez ProjetÉlite au reste de votre écosystème logiciel via API" action={<Btn size="md" className="bg-indigo-600">+ Nouveau Webhook</Btn>} />
+      <SectionHeader title="Intégrations & Webhooks" subtitle="Connectez ProjetÉlite au reste de votre écosystème logiciel via API" action={<Btn onClick={addWebhook} size="md" className="bg-indigo-600">+ Nouveau Webhook</Btn>} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {[
