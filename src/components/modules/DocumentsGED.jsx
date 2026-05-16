@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Badge, Btn, SectionHeader, StatCard, Input } from "../ui";
+import useStore from "../../store/useStore";
 
 const DocumentsGED = ({ data }) => {
+  const { updateData } = useStore();
   const [filter, setFilter] = useState("Tous");
   const [search, setSearch] = useState("");
 
@@ -12,6 +14,19 @@ const DocumentsGED = ({ data }) => {
     (d.nom.toLowerCase().includes(search.toLowerCase()) || d.projet.toLowerCase().includes(search.toLowerCase()))
   );
 
+  const addDocument = () => {
+    const newDoc = { 
+      id: Date.now(), 
+      nom: `Nouveau_Plan_${Math.floor(Math.random()*1000)}.pdf`, 
+      projet: "Projet de démonstration", 
+      type: "Technique", 
+      taille: "1.5 MB", 
+      auteur: "Admin", 
+      date: new Date().toISOString().split("T")[0] 
+    };
+    updateData("ged", [newDoc, ...(data || [])]);
+  };
+
   return (
     <div className="space-y-8 animate-entrance">
       <SectionHeader 
@@ -20,7 +35,7 @@ const DocumentsGED = ({ data }) => {
         action={
           <div className="flex gap-3">
              <Btn size="md" variant="ghost">📤 Partager</Btn>
-             <Btn size="md" variant="primary">📎 Nouveau Document</Btn>
+             <Btn onClick={addDocument} size="md" variant="primary">📎 Nouveau Document</Btn>
           </div>
         }
       />

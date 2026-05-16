@@ -2,11 +2,26 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from "recharts";
 import { INITIAL_DATA, METHODOLOGIES, SCENARIOS, STATUT_COLORS, PRIORITE_COLORS, PIE_COLORS, MODULES } from "../../data/constants";
 import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader } from "../ui";
+import useStore from "../../store/useStore";
 
 const Facturation = ({ data }) => {
+  const { updateData } = useStore();
+
+  const addFacture = () => {
+    const num = Math.floor(Math.random() * 9000) + 1000;
+    const newFacture = { 
+      id: `F-2026-${num}`, 
+      client: "Nouveau Client", 
+      projet: "Projet de démonstration", 
+      montant: Math.floor(Math.random() * 2000000) + 100000, 
+      echeance: new Date(Date.now() + 30 * 86400000).toISOString().split("T")[0], 
+      statut: "Brouillon" 
+    };
+    updateData("factures", [newFacture, ...(data || [])]);
+  };
   return (
     <div className="space-y-6">
-      <SectionHeader title="Facturation & Finance" subtitle="Transformez vos jalons et temps en factures" action={<Btn size="md">+ Nouvelle Facture</Btn>} />
+      <SectionHeader title="Facturation & Finance" subtitle="Transformez vos jalons et temps en factures" action={<Btn onClick={addFacture} size="md">+ Nouvelle Facture</Btn>} />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <StatCard label="CA Généré" value={`${(data.reduce((s, f) => s + f.montant, 0) / 1000000).toFixed(1)}M FCFA`} color="#10b981" icon="💰" />
         <StatCard label="En attente" value={`${(data.filter(f => f.statut === "En attente").reduce((s, f) => s + f.montant, 0) / 1000000).toFixed(1)}M FCFA`} color="#f59e0b" icon="⌛" />
