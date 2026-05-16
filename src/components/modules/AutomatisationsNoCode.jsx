@@ -4,9 +4,20 @@ import { INITIAL_DATA, METHODOLOGIES, SCENARIOS, STATUT_COLORS, PRIORITE_COLORS,
 import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader } from "../ui";
 
 const AutomatisationsNoCode = ({ data, setData }) => {
+  const addAutomation = () => {
+    const newRule = {
+      id: Date.now(),
+      nom: "Nouvelle Automatisation " + Math.floor(Math.random() * 100),
+      active: true,
+      trigger: "Nouvelle Tâche Créée",
+      condition: "Priorité est Élevée",
+      action: "Envoyer un SMS"
+    };
+    setData([newRule, ...(data || [])]);
+  };
   return (
     <div className="space-y-6">
-      <SectionHeader title="Automatisations & Règles No-Code" subtitle="Éliminez le travail manuel en créant des règles logiques 'Si ceci, Alors cela'" action={<Btn size="md" className="bg-gradient-to-r from-fuchsia-600 to-indigo-600 shadow-lg shadow-fuchsia-600/30 text-white font-bold border-0">+ Nouvelle automatisation</Btn>} />
+      <SectionHeader title="Automatisations & Règles No-Code" subtitle="Éliminez le travail manuel en créant des règles logiques 'Si ceci, Alors cela'" action={<Btn onClick={addAutomation} size="md" className="bg-gradient-to-r from-fuchsia-600 to-indigo-600 shadow-lg shadow-fuchsia-600/30 text-white font-bold border-0">+ Nouvelle automatisation</Btn>} />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
         <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 shadow-xl relative overflow-hidden group">

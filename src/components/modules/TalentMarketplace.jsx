@@ -3,18 +3,31 @@ import { Users, Brain, Zap, Search, Target, UserPlus, Award, TrendingUp } from "
 import { SectionHeader, Card, Btn, Badge, Input } from "../ui";
 
 const TalentMarketplace = ({ data = {} }) => {
-  const talents = [
+  const [talents, setTalents] = useState([
     { id: 1, nom: "Mamadou W.", role: "Chef de Projet Senior", skills: ["Agile", "Supabase", "React"], match: 98, dispo: "100%", avatar: "👤" },
     { id: 2, nom: "Fatou D.", role: "Expert Risk Manager", skills: ["Risk", "ISO 27001", "Compliance"], match: 85, dispo: "50%", avatar: "👩" },
     { id: 3, nom: "Ibrahima S.", role: "Architecte Cloud", skills: ["Azure", "Terraform", "Security"], match: 92, dispo: "Disponible", avatar: "👨" },
-  ];
+  ]);
+
+  const addTalent = () => {
+    const newTalent = {
+      id: Date.now(),
+      nom: "Nouveau Talent",
+      role: "Développeur Fullstack",
+      skills: ["React", "Node", "MongoDB"],
+      match: Math.floor(Math.random() * 20) + 80,
+      dispo: "Disponible",
+      avatar: "🧑‍💻"
+    };
+    setTalents([newTalent, ...talents]);
+  };
 
   return (
     <div className="space-y-6">
       <SectionHeader 
         title="Talent Marketplace" 
         subtitle="Matching intelligent des compétences et gestion du capital humain"
-        action={<Btn><UserPlus className="w-4 h-4 mr-2" /> Recruter</Btn>}
+        action={<Btn onClick={addTalent}><UserPlus className="w-4 h-4 mr-2" /> Recruter</Btn>}
       />
 
       {/* Barre de Recherche IA */}
