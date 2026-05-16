@@ -84,6 +84,22 @@ import EthiqueIA from './components/modules/EthiqueIA';
 import GestionUtilisateurs from './components/modules/GestionUtilisateurs';
 import SauvegardeExport from './components/modules/SauvegardeExport';
 import EditeurProjet from './components/modules/EditeurProjet';
+import AgricultureElite from './components/modules/AgricultureElite';
+import HealthElite from './components/modules/HealthElite';
+import IndustrieElite from './components/modules/IndustrieElite';
+import EnergyElite from './components/modules/EnergyElite';
+import LuxeElite from './components/modules/LuxeElite';
+import ImmobilierElite from './components/modules/ImmobilierElite';
+import GovTechElite from './components/modules/GovTechElite';
+import OceanTechElite from './components/modules/OceanTechElite';
+import HumanitaireElite from './components/modules/HumanitaireElite';
+import MediaTechElite from './components/modules/MediaTechElite';
+import SmartCityElite from './components/modules/SmartCityElite';
+import StrategicWarRoom from './components/modules/StrategicWarRoom';
+import RefineryElite from './components/modules/RefineryElite';
+import ModuleArchitectElite from './components/modules/ModuleArchitectElite';
+import AgriTechElite from './components/modules/AgriTechElite';
+import FinTechElite from './components/modules/FinTechElite';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsole from './components/modules/DashboardProjetIsole';
 import { MODULES } from "./data/constants";
@@ -149,8 +165,8 @@ export default function App() {
     if (userMode === 'universel') return MODULES;
     const config = {
       debutant: ['dashboard', 'guide', 'nouveau-projet', 'mentor-ia', 'chat'],
-      pro: ['dashboard', 'taches', 'gantt', 'kanban', 'budget', 'risques', 'equipe', 'jalons', 'problemes', 'nouveau-projet', 'mentor-ia'],
-      expert: ['dashboard', 'evm', 'outils-expert', 'innovation-lab', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia', 'qualite', 'esg', 'talent', 'blackswan', 'digitaltwin', 'ipguard', 'valeur', 'ethique', 'users', 'backup', 'editeur'],
+      pro: ['dashboard', 'taches', 'gantt', 'kanban', 'budget', 'risques', 'equipe', 'jalons', 'problemes', 'nouveau-projet', 'mentor-ia', 'immoelite', 'refinery'],
+      expert: ['dashboard', 'evm', 'outils-expert', 'innovation-lab', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia', 'qualite', 'esg', 'talent', 'blackswan', 'digitaltwin', 'ipguard', 'valeur', 'ethique', 'users', 'backup', 'editeur', 'agritech', 'medtech', 'smartfactory', 'energynexus', 'luxetrace', 'immoelite', 'govtech', 'oceantech', 'humanitarian', 'mediatech', 'smartcity', 'warroom', 'refinery', 'editeur-ia'],
       academique: ['dashboard', 'espace-universitaire', 'certifications', 'etudes-cas', 'rapport-universitaire', 'guide', 'mentor-ia']
     };
     const allowedIds = config[userMode] || config.pro;
@@ -342,7 +358,7 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<FilteredModule Component={Dashboard} />} />
-              <Route path="/dashboard-projet" element={<DashboardProjetIsole />} />
+              <Route path="/dashboard-projet/:id" element={<DashboardProjetIsole />} />
               <Route path="/suivi" element={<FilteredModule Component={SuiviSimple} dataKey="suivi" />} />
               <Route path="/multiprojets" element={<MultiProjets data={data.projets} setData={update("projets")} />} />
               <Route path="/taches" element={<FilteredModule Component={Taches} dataKey="taches" extraProps={{ projets: data.projets }} />} />
@@ -418,6 +434,22 @@ export default function App() {
               <Route path="/users" element={<FilteredModule Component={GestionUtilisateurs} />} />
               <Route path="/backup" element={<SauvegardeExport />} />
               <Route path="/editeur" element={<EditeurProjet />} />
+              <Route path="/agritech" element={<FilteredModule Component={AgricultureElite} />} />
+              <Route path="/medtech" element={<FilteredModule Component={HealthElite} />} />
+              <Route path="/smartfactory" element={<FilteredModule Component={IndustrieElite} />} />
+              <Route path="/energynexus" element={<FilteredModule Component={EnergyElite} />} />
+              <Route path="/luxetrace" element={<FilteredModule Component={LuxeElite} />} />
+              <Route path="/immoelite" element={<FilteredModule Component={ImmobilierElite} />} />
+              <Route path="/govtech" element={<FilteredModule Component={GovTechElite} />} />
+              <Route path="/oceantech" element={<FilteredModule Component={OceanTechElite} />} />
+              <Route path="/humanitarian" element={<FilteredModule Component={HumanitaireElite} />} />
+              <Route path="/mediatech" element={<FilteredModule Component={MediaTechElite} />} />
+              <Route path="/smartcity" element={<FilteredModule Component={SmartCityElite} />} />
+              <Route path="/warroom" element={<FilteredModule Component={StrategicWarRoom} />} />
+              <Route path="/refinery" element={<FilteredModule Component={RefineryElite} />} />
+              <Route path="/editeur-ia" element={<FilteredModule Component={ModuleArchitectElite} />} />
+              <Route path="/agritech" element={<FilteredModule Component={AgriTechElite} />} />
+              <Route path="/fintech" element={<FilteredModule Component={FinTechElite} />} />
 
               {/* Fallback */}
 

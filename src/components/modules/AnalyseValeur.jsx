@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { toast } from "../ui";
 import { TrendingUp, Target, Zap, DollarSign, Info as InfoIcon, Filter, Layers, Calculator } from "lucide-react";
 import { SectionHeader, Card, Btn, Badge, ProgressBar } from "../ui";
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as ReTooltip, Legend } from "recharts";
 
 const AnalyseValeur = ({ data = {} }) => {
+  const [ratio, setRatio] = useState(data.ratio || 1.45);
+  const [isOptimized, setIsOptimized] = useState(false);
+
+  const handleCalculate = () => {
+    setRatio(1.68);
+  };
+
+  const handleOptimize = () => {
+    setIsOptimized(true);
+  };
+
   const chartData = [
-    { name: 'Structure', cout: 400, valeur: 350 },
+    { name: 'Structure', cout: isOptimized ? 320 : 400, valeur: 350 },
     { name: 'Énergie', cout: 200, valeur: 280 },
     { name: 'Design', cout: 150, valeur: 400 },
     { name: 'Sécurité', cout: 300, valeur: 320 },
@@ -17,7 +29,7 @@ const AnalyseValeur = ({ data = {} }) => {
       <SectionHeader 
         title="Analyse de la Valeur (Value Engineering)" 
         subtitle="Optimisation du ratio fonction/coût et élimination des coûts inutiles"
-        action={<Btn><Calculator className="w-4 h-4 mr-2" /> Calculer Ratio</Btn>}
+        action={<button onClick={handleCalculate} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors flex items-center gap-2"><Calculator className="w-4 h-4" /> Calculer Ratio</button>}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -48,7 +60,7 @@ const AnalyseValeur = ({ data = {} }) => {
            <Card className="p-6 glass-card rounded-2xl">
               <div className="text-center mb-6">
                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-1">Ratio Valeur Global</p>
-                 <p className="text-4xl font-black text-white">{data.ratio || 1.4}</p>
+                 <p className="text-4xl font-black text-white">{ratio}</p>
                  <Badge variant="success" className="mt-2">Excellent (+0.2)</Badge>
               </div>
               <div className="space-y-4 pt-4 border-t border-slate-800">
@@ -70,7 +82,7 @@ const AnalyseValeur = ({ data = {} }) => {
                  Algorithme de Simplification
               </h4>
               <p className="text-xs text-slate-400 mb-4">L'IA suggère 3 modifications de conception pour économiser 8.5M FCFA sans perte de qualité.</p>
-              <Btn size="sm" className="w-full">Appliquer l'Optimisation</Btn>
+              <button onClick={handleOptimize} disabled={isOptimized} className={`w-full py-2.5 rounded-xl font-bold transition-all text-sm ${isOptimized ? 'bg-emerald-600/20 text-emerald-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}>{isOptimized ? "Optimisation Active" : "Appliquer l'Optimisation"}</button>
            </Card>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, RadarChart, Radar, PolarGrid, PolarAngleAxis, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area } from "recharts";
 import { INITIAL_DATA, METHODOLOGIES, SCENARIOS, STATUT_COLORS, PRIORITE_COLORS, PIE_COLORS, MODULES } from "../../data/constants";
-import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader } from "../ui";
+import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader, toast, dialog } from "../ui";
 
 const MultiProjets = ({ data, setData }) => {
   const navigate = useNavigate();
@@ -18,13 +18,16 @@ const MultiProjets = ({ data, setData }) => {
     else setData(data.map(d => d.id === f.id ? f : d));
     setModal(null);
   };
-  const del = (id) => {
-    if (confirm("Voulez-vous vraiment supprimer ce projet définitivement ?")) {
+  const del = async (id) => {
+    if (await dialog.confirm("Voulez-vous vraiment supprimer ce projet définitivement ? Cette action est irréversible.")) {
       setData(data.filter(d => d.id !== id));
+      toast.success("Projet supprimé avec succès");
     }
   };
   const toggleArchive = (id) => {
+    const project = data.find(p => p.id === id);
     setData(data.map(d => d.id === id ? { ...d, archived: !d.archived } : d));
+    toast.info(project.archived ? "Projet restauré" : "Projet archivé");
   };
 
   const statusColor = { "En cours": "#f59e0b", "Terminé": "#10b981", "Planifié": "#6366f1", "En pause": "#94a3b8" };

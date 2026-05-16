@@ -3,15 +3,18 @@ import { useNavigate } from "react-router-dom";
 import ProjectSelector, { useProject } from "./ProjectSelector";
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, AreaChart, Area } from "recharts";
 import { PIE_COLORS } from "../../data/constants";
-import { Badge, StatCard, SectionHeader, Card, Btn } from "../ui";
+import { Badge, StatCard, SectionHeader, Card, Btn, toast, dialog } from "../ui";
 import { 
   TrendingUp, DollarSign, Clock, AlertTriangle, CheckCircle, 
   XCircle, AlertCircle, Target, Activity, Zap, ArrowRight,
-  Calendar, Users, FileText, Settings, BarChart3, PieChart as PieChartIcon
+  Calendar, Users, FileText, Settings, BarChart3, PieChart as PieChartIcon,
+  Archive, Trash2, RotateCcw
 } from "lucide-react";
+import useStore from "../../store/useStore";
 
 const DashboardProjetIsole = () => {
   const navigate = useNavigate();
+  const { data, updateData } = useStore();
   const { currentProject, projectData, projectStats, selectedProjectId } = useProject();
   const [activeTab, setActiveTab] = useState("overview");
 
@@ -112,6 +115,28 @@ const DashboardProjetIsole = () => {
           </p>
         </div>
         <div className="flex items-center gap-3">
+          <Btn onClick={async () => {
+            const confirmed = await dialog.confirm(currentProject.archived ? "Restaurer ce projet ?" : "Archiver ce projet ? Il n'apparaîtra plus dans la liste active.");
+            if (confirmed) {
+              const updatedProjets = data.projets.map(p => p.id === currentProject.id ? { ...p, archived: !p.archived } : p);
+              updateData('projets', updatedProjets);
+              toast.info(currentProject.archived ? "Projet restauré" : "Projet archivé");
+              if (!currentProject.archived) navigate('/dashboard');
+            }
+          }} variant="outline">
+            {currentProject.archived ? <RotateCcw className="w-4 h-4 mr-2" /> : <Archive className="w-4 h-4 mr-2" />}
+            {currentProject.archived ? "Restaurer" : "Archiver"}
+          </Btn>
+          <Btn onClick={async () => {
+            if (await dialog.confirm("Supprimer DÉFINITIVEMENT ce projet et toutes ses données ? Cette action est irréversible.")) {
+              const updatedProjets = data.projets.filter(p => p.id !== currentProject.id);
+              updateData('projets', updatedProjets);
+              toast.success("Projet supprimé définitivement");
+              navigate('/dashboard');
+            }
+          }} variant="danger">
+            <Trash2 className="w-4 h-4 mr-2" /> Supprimer
+          </Btn>
           <Btn onClick={() => navigate(`/dashboard-projet/${selectedProjectId}`)} variant="ghost">
             Rapport Complet
           </Btn>

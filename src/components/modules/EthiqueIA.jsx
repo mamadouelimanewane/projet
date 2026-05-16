@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Shield, Brain, Scale, Eye, Activity, CheckCircle, AlertCircle, Info, RefreshCw } from "lucide-react";
-import { SectionHeader, Card, Btn, Badge, ProgressBar } from "../ui";
+import { SectionHeader, Card, Btn, Badge, ProgressBar, toast } from "../ui";
 
 const EthiqueIA = ({ data = {} }) => {
+  const [robustesse, setRobustesse] = useState(94);
+
+  const handleAudit = () => {
+    setRobustesse(99);
+  };
+
   return (
     <div className="space-y-6">
       <SectionHeader 
         title="Gouvernance & Éthique de l'IA" 
         subtitle="Monitoring de la transparence, de l'équité et de la robustesse des algorithmes"
-        action={<Btn variant="indigo"><RefreshCw className="w-4 h-4 mr-2" /> Auditer les Modèles</Btn>}
+        action={
+          <button 
+            onClick={handleAudit} 
+            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors flex items-center gap-2"
+          >
+            <RefreshCw className="w-4 h-4" /> 
+            Auditer les Modèles
+          </button>
+        }
       />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -47,7 +61,7 @@ const EthiqueIA = ({ data = {} }) => {
               <Badge variant="indigo">Sécurisé</Badge>
            </div>
            <h3 className="text-sm font-black text-slate-500 uppercase tracking-widest mb-1">Robustesse Adversaire</h3>
-           <p className="text-4xl font-black text-white">94%</p>
+           <p className="text-4xl font-black text-white">{robustesse}%</p>
            <p className="text-xs text-slate-500 mt-2">Résistance aux tentatives de manipulation des données d'entraînement.</p>
         </Card>
       </div>
