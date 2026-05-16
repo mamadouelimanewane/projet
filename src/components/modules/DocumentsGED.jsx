@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import { Badge, Btn, SectionHeader, StatCard, Input } from "../ui";
+import { Badge, Btn, SectionHeader, StatCard, Input, toast } from "../ui";
 import useStore from "../../store/useStore";
+import { useProject } from "./ProjectSelector";
 
-const DocumentsGED = ({ data }) => {
-  const { updateData } = useStore();
+const DocumentsGED = ({ data = [] }) => {
+  const { updateData, data: globalData } = useStore();
+  const { currentProject } = useProject();
   const [filter, setFilter] = useState("Tous");
   const [search, setSearch] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const [newDoc, setNewDoc] = useState({
+    nom: "",
+    type: "Technique",
+    projet: ""
+  });
 
   const categories = ["Tous", "Technique", "Officiel", "Administratif", "Sécurité"];
 
@@ -14,17 +23,32 @@ const DocumentsGED = ({ data }) => {
     (d.nom.toLowerCase().includes(search.toLowerCase()) || d.projet.toLowerCase().includes(search.toLowerCase()))
   );
 
-  const addDocument = () => {
-    const newDoc = { 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    const projectToAssign = currentProject ? currentProject.nom : newDoc.projet;
+    
+    if (!newDoc.nom || (!currentProject && !newDoc.projet)) {
+      toast.error("Veuillez remplir tous les champs");
+      return;
+    }
+
+    const doc = { 
       id: Date.now(), 
-      nom: `Nouveau_Plan_${Math.floor(Math.random()*1000)}.pdf`, 
-      projet: "Projet de démonstration", 
-      type: "Technique", 
-      taille: "1.5 MB", 
+      nom: newDoc.nom.endsWith('.pdf') ? newDoc.nom : `${newDoc.nom}.pdf`, 
+      projet: projectToAssign, 
+      type: newDoc.type, 
+      taille: `${(Math.random() * 5 + 0.5).toFixed(1)} MB`, 
       auteur: "Admin", 
       date: new Date().toISOString().split("T")[0] 
     };
-    updateData("ged", [newDoc, ...(data || [])]);
+
+    const currentDocs = globalData.documents || [];
+    updateData("documents", [doc, ...currentDocs]);
+    
+    setIsOpen(false);
+    setNewDoc({ nom: "", type: "Technique", projet: "" });
+    toast.success("Document ajouté avec succès");
   };
 
   return (
@@ -35,7 +59,7 @@ const DocumentsGED = ({ data }) => {
         action={
           <div className="flex gap-3">
              <Btn size="md" variant="ghost">📤 Partager</Btn>
-             <Btn onClick={addDocument} size="md" variant="primary">📎 Nouveau Document</Btn>
+             <button onClick={() => setIsOpen(true)} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors">📎 Nouveau Document</button>
           </div>
         }
       />
@@ -84,7 +108,7 @@ const DocumentsGED = ({ data }) => {
                 <h4 className="text-sm font-bold text-white truncate" title={d.nom}>{d.nom}</h4>
                 <p className="text-[10px] text-indigo-400 font-bold uppercase">{d.projet}</p>
                 <div className="flex items-center gap-2 mt-2">
-                   <span className="text-[9px] bg-slate-800 px-2 py-0.5 rounded border border-slate-700 text-slate-400">{d.categorie || d.type}</span>
+                   <span className="text-[9px] bg-slate-800 px-2 py-0.5 rounded border border-slate-700 text-slate-400">{d.type}</span>
                 </div>
               </div>
 
@@ -108,6 +132,63 @@ const DocumentsGED = ({ data }) => {
           )}
         </div>
       </div>
+
+      {/* Modal Saisie Document */}
+      {isOpen && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-6 shadow-2xl animate-entrance">
+            <h3 className="text-xl font-bold text-white mb-4">Ajouter un Document</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {!currentProject && (
+                <div>
+                  <label className="text-xs font-bold text-slate-400 uppercase block mb-1">Projet</label>
+                  <select 
+                    value={newDoc.projet}
+                    onChange={(e) => setNewDoc({...newDoc, projet: e.target.value})}
+                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  >
+                    <option value="">Sélectionner un projet</option>
+                    {globalData.projets?.filter(p => !p.archived).map(p => (
+                      <option key={p.id} value={p.nom}>{p.nom}</option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              <div>
+                <label className="text-xs font-bold text-slate-400 uppercase block mb-1">Nom du Document</label>
+                <input 
+                  type="text" 
+                  value={newDoc.nom}
+                  onChange={(e) => setNewDoc({...newDoc, nom: e.target.value})}
+                  placeholder="Ex: Plan de masse"
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-bold text-slate-400 uppercase block mb-1">Type</label>
+                <select 
+                  value={newDoc.type}
+                  onChange={(e) => setNewDoc({...newDoc, type: e.target.value})}
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                >
+                  <option value="Technique">Technique</option>
+                  <option value="Officiel">Officiel</option>
+                  <option value="Administratif">Administratif</option>
+                  <option value="Sécurité">Sécurité</option>
+                </select>
+              </div>
+
+              <div className="flex gap-3 justify-end pt-4 border-t border-slate-800">
+                <Btn variant="ghost" onClick={() => setIsOpen(false)}>Annuler</Btn>
+                <button type="submit" className="px-5 py-2.5 text-sm rounded-xl font-bold transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 bg-indigo-600 text-white hover:bg-indigo-700">Ajouter</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
