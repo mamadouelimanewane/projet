@@ -256,7 +256,7 @@ export default function EliteInnovation() {
                   </button>
                 </div>
               </Card>
-              <Btn variant="primary" className="w-full py-4 shadow-xl shadow-indigo-600/20" icon={<Zap className="w-5 h-5" />}>Exécuter Nouvelle Simulation</Btn>
+              <Btn onClick={() => alert("Simulation du futur en cours... L'IA calcule les trajectoires optimales.")} variant="primary" className="w-full py-4 shadow-xl shadow-indigo-600/20" icon={<Zap className="w-5 h-5" />}>Exécuter Nouvelle Simulation</Btn>
             </div>
           </div>
         </div>

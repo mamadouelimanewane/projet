@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast, dialog } from '../ui';
 import { Edit3, Save, Trash2, Calendar, DollarSign, User, Info, Target, Layout, Settings } from "lucide-react";
 import { SectionHeader, Card, Btn, Input, Select, Textarea, Badge } from "../ui";
 import useStore from "../../store/useStore";
 
 const EditeurProjet = () => {
+  const navigate = useNavigate();
   const { data, updateData } = useStore();
   const projects = data?.projets || [];
   
@@ -66,7 +68,7 @@ const EditeurProjet = () => {
                 <div className={`w-2 h-2 rounded-full ${p.statut === 'En cours' ? 'bg-emerald-400' : 'bg-slate-600'}`} />
              </button>
            ))}
-           <Btn variant="ghost" className="w-full border-dashed border-2 py-4 mt-4">+ Nouveau Projet</Btn>
+            <Btn onClick={() => navigate("/nouveau-projet")} variant="ghost" className="w-full border-dashed border-2 py-4 mt-4">+ Nouveau Projet</Btn>
         </div>
 
         {/* Formulaire d'édition */}
