@@ -60,6 +60,8 @@ export default function ProjetWizard() {
     methodo: "hybride", budget: "", budgetDevise: "FCFA",
     debut: "", fin: "", avancement: 0,
     risquesSelectionnes: [],
+    risquesPersonnalises: [],
+    nouveauRisque: "",
   });
 
   const set = (key, val) => setForm(f => ({ ...f, [key]: val }));
@@ -242,6 +244,50 @@ export default function ProjetWizard() {
                 </button>
               );
             })}
+            
+            {/* Custom risks list */}
+            {(form.risquesPersonnalises || []).map((r, i) => {
+              const selected = form.risquesSelectionnes.includes(r);
+              return (
+                <button key={`custom-${i}`} onClick={() => set("risquesSelectionnes", selected ? form.risquesSelectionnes.filter(x => x !== r) : [...form.risquesSelectionnes, r])}
+                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 ${selected ? "border-orange-500 bg-orange-500/10" : "border-slate-700/50 hover:border-slate-600 bg-slate-900/50"}`}>
+                  <span className="text-lg">{selected ? "⚠️" : "○"}</span>
+                  <span className="text-sm text-white font-medium">{r} <span className="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400 ml-2">Personnalisé</span></span>
+                </button>
+              );
+            })}
+
+            {/* Input to add a new risk */}
+            <div className="flex gap-2 pt-2">
+               <input 
+                 value={form.nouveauRisque} 
+                 onChange={e => set("nouveauRisque", e.target.value)}
+                 onKeyDown={e => {
+                   if (e.key === 'Enter' && form.nouveauRisque.trim()) {
+                     const newRisk = form.nouveauRisque.trim();
+                     set("risquesPersonnalises", [...(form.risquesPersonnalises || []), newRisk]);
+                     set("risquesSelectionnes", [...form.risquesSelectionnes, newRisk]);
+                     set("nouveauRisque", "");
+                   }
+                 }}
+                 placeholder="Ajouter un risque spécifique au projet..."
+                 className="flex-1 bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 transition-all"
+               />
+               <button 
+                 onClick={() => {
+                   if(form.nouveauRisque.trim()) {
+                     const newRisk = form.nouveauRisque.trim();
+                     set("risquesPersonnalises", [...(form.risquesPersonnalises || []), newRisk]);
+                     set("risquesSelectionnes", [...form.risquesSelectionnes, newRisk]);
+                     set("nouveauRisque", "");
+                   }
+                 }}
+                 disabled={!form.nouveauRisque.trim()}
+                 className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all disabled:opacity-50 disabled:bg-slate-800 disabled:text-slate-500"
+               >
+                 + Ajouter
+               </button>
+            </div>
             {userMode === "debutant" && (
               <div className="p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-xs text-indigo-300">
                 💡 Identifier les risques dès le début coûte 10× moins cher que de gérer une crise. Sélectionnez-en au moins 2.
