@@ -58,7 +58,7 @@ const FeuillesTemps = ({ data = [] }) => {
       <SectionHeader 
         title="Feuilles de Temps" 
         subtitle={currentProject ? `Suivi des heures - ${currentProject.nom}` : "Suivi des heures passées par l'équipe"} 
-        action={<button onClick={() => setIsOpen(true)} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors">+ Saisie Heures</button>} 
+        action={<button type="button" onClick={() => setIsOpen(true)} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors">+ Saisie Heures</button>} 
       />
       
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">

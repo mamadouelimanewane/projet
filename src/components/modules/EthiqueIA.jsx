@@ -16,6 +16,7 @@ const EthiqueIA = ({ data = {} }) => {
         subtitle="Monitoring de la transparence, de l'équité et de la robustesse des algorithmes"
         action={
           <button 
+            type="button"
             onClick={handleAudit} 
             className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors flex items-center gap-2"
           >

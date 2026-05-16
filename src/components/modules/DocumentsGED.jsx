@@ -59,7 +59,7 @@ const DocumentsGED = ({ data = [] }) => {
         action={
           <div className="flex gap-3">
              <Btn size="md" variant="ghost">📤 Partager</Btn>
-             <button onClick={() => setIsOpen(true)} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors">📎 Nouveau Document</button>
+             <button type="button" onClick={() => setIsOpen(true)} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors">📎 Nouveau Document</button>
           </div>
         }
       />

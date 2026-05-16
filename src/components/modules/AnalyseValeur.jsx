@@ -29,7 +29,7 @@ const AnalyseValeur = ({ data = {} }) => {
       <SectionHeader 
         title="Analyse de la Valeur (Value Engineering)" 
         subtitle="Optimisation du ratio fonction/coût et élimination des coûts inutiles"
-        action={<button onClick={handleCalculate} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors flex items-center gap-2"><Calculator className="w-4 h-4" /> Calculer Ratio</button>}
+        action={<button type="button" onClick={handleCalculate} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors flex items-center gap-2"><Calculator className="w-4 h-4" /> Calculer Ratio</button>}
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -82,7 +82,7 @@ const AnalyseValeur = ({ data = {} }) => {
                  Algorithme de Simplification
               </h4>
               <p className="text-xs text-slate-400 mb-4">L'IA suggère 3 modifications de conception pour économiser 8.5M FCFA sans perte de qualité.</p>
-              <button onClick={handleOptimize} disabled={isOptimized} className={`w-full py-2.5 rounded-xl font-bold transition-all text-sm ${isOptimized ? 'bg-emerald-600/20 text-emerald-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}>{isOptimized ? "Optimisation Active" : "Appliquer l'Optimisation"}</button>
+              <button type="button" onClick={handleOptimize} disabled={isOptimized} className={`w-full py-2.5 rounded-xl font-bold transition-all text-sm ${isOptimized ? 'bg-emerald-600/20 text-emerald-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}>{isOptimized ? "Optimisation Active" : "Appliquer l'Optimisation"}</button>
            </Card>
         </div>
       </div>
