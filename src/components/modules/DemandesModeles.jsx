@@ -4,9 +4,20 @@ import { INITIAL_DATA, METHODOLOGIES, SCENARIOS, STATUT_COLORS, PRIORITE_COLORS,
 import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, SectionHeader } from "../ui";
 
 const DemandesModeles = ({ data, setData }) => {
+  const addDemande = () => {
+    const newDemande = {
+      id: Date.now(),
+      titre: "Nouvelle Demande Projet " + Math.floor(Math.random()*100),
+      demandeur: "Mamadou W.",
+      type: "IT / Digital",
+      date: new Date().toISOString().split("T")[0],
+      statut: "Nouveau"
+    };
+    setData([newDemande, ...(data || [])]);
+  };
   return (
     <div className="space-y-6">
-      <SectionHeader title="Intake & Modèles (PMO)" subtitle="Approuvez, qualifiez et transformez les demandes en projets via des Modèles" action={<Btn size="md" className="bg-indigo-600 shadow-indigo-600/30 shadow-lg">Créer Formulaire Public</Btn>} />
+      <SectionHeader title="Intake & Modèles (PMO)" subtitle="Approuvez, qualifiez et transformez les demandes en projets via des Modèles" action={<Btn onClick={addDemande} size="md" className="bg-indigo-600 shadow-indigo-600/30 shadow-lg">Créer Formulaire Public</Btn>} />
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <StatCard label="Nouvelles Demandes" value="12" sub="En attente de tri" color="#f59e0b" icon="📥" />
@@ -67,7 +78,7 @@ const DemandesModeles = ({ data, setData }) => {
               </div>
             ))}
           </div>
-          <Btn className="w-full mt-4 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-600 border-dashed">+ Créer un Modèle</Btn>
+          <Btn onClick={() => alert("Ouverture de l'éditeur de modèles PMO...")} className="w-full mt-4 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-600 border-dashed">+ Créer un Modèle</Btn>
         </div>
       </div>
     </div>

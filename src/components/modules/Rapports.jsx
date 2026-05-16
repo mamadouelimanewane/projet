@@ -6,7 +6,7 @@ import { Badge, ProgressBar, StatCard, Modal, Input, Select, Textarea, Btn, Sect
 const Rapports = () => {
   return (
     <div className="space-y-6">
-      <SectionHeader title="Générateur de Rapports" subtitle="Préparez vos supports pour le comité de pilotage" action={<Btn size="md">Nouveau Rapport</Btn>} />
+      <SectionHeader title="Générateur de Rapports" subtitle="Préparez vos supports pour le comité de pilotage" action={<Btn onClick={() => alert("Génération d'un nouveau rapport en cours...")} size="md">Nouveau Rapport</Btn>} />
       <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 flex flex-col items-center justify-center text-center min-h-[300px]">
         <div className="text-5xl mb-4">📊</div>
         <h3 className="text-lg font-bold text-white mb-2">Sélectionnez les données à exporter</h3>
