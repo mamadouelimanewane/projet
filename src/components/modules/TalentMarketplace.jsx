@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "../ui";
 import { Users, Brain, Zap, Search, Target, UserPlus, Award, TrendingUp } from "lucide-react";
 import { SectionHeader, Card, Btn, Badge, Input } from "../ui";
 
@@ -20,6 +21,7 @@ const TalentMarketplace = ({ data = {} }) => {
       avatar: "🧑‍💻"
     };
     setTalents([newTalent, ...talents]);
+    toast.success("Nouveau talent ajouté au Marketplace !");
   };
 
   return (
