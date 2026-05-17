@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SectionHeader, Card, Btn, Badge } from "../ui";
-import { Anchor, Waves, Droplets, Ship, ShieldCheck, Compass, Map, Activity, Wind, Database } from "lucide-react";
+import { Anchor, Waves, Droplets, Ship, ShieldCheck, Compass, Map, Activity, Wind, Database, TrendingUp } from "lucide-react";
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const OceanTechElite = ({ data = {}, setData }) => {
