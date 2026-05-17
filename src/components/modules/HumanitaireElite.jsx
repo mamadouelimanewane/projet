@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SectionHeader, Card, Btn, Badge } from "../ui";
-import { Heart, Globe, AlertTriangle, Truck, Package, ShieldCheck, Zap, Users, MapPin, Activity, Landmark, DollarSign, PieChart, FileText, CheckCircle2, Search, Download, Send, Eye, X, Loader2 } from "lucide-react";
+import { Heart, Globe, AlertTriangle, Truck, Package, ShieldCheck, Zap, Users, MapPin, Activity, Landmark, DollarSign, PieChart, FileText, CheckCircle2, Search, Download, Send, Eye, X, Loader2, TrendingUp } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ScatterChart, Scatter, ZAxis, Legend, PieChart as RePieChart, Pie, Cell } from 'recharts';
 
 const HumanitaireElite = ({ data = {}, setData }) => {
