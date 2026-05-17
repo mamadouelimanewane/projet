@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge, Btn, SectionHeader, toast } from "../ui";
 import useStore from "../../store/useStore";
 import { useProject } from "./ProjectSelector";
+import { fetchTimesheets, addTimesheet } from "../../lib/timesheets";
 
 const FeuillesTemps = ({ data = [] }) => {
   const { currentProject } = useProject();
   const { data: globalData, updateData } = useStore();
   const [isOpen, setIsOpen] = useState(false);
+  const [localData, setLocalData] = useState(data);
   
   const [newEntry, setNewEntry] = useState({
     date: new Date().toISOString().split('T')[0],
@@ -17,7 +19,20 @@ const FeuillesTemps = ({ data = [] }) => {
     projet: ""
   });
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const loadTimesheets = async () => {
+      const dbData = await fetchTimesheets();
+      if (dbData && dbData.length > 0) {
+        const filteredDbData = currentProject 
+          ? dbData.filter(d => d.projet === currentProject.nom)
+          : dbData;
+        setLocalData(filteredDbData);
+      }
+    };
+    loadTimesheets();
+  }, [currentProject]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const projectToAssign = currentProject ? currentProject.nom : newEntry.projet;
@@ -37,9 +52,15 @@ const FeuillesTemps = ({ data = [] }) => {
       projet: projectToAssign
     };
     
-    // Update global state safely without losing data from other projects
+    // Save to Supabase
+    const savedEntry = await addTimesheet(entry);
+    
+    // Update local state and store
+    const entryToUse = savedEntry || entry;
+    
     const currentTemps = globalData.temps || [];
-    updateData('temps', [...currentTemps, entry]);
+    updateData('temps', [...currentTemps, entryToUse]);
+    setLocalData([...localData, entryToUse]);
     
     setIsOpen(false);
     setNewEntry({
@@ -72,7 +93,7 @@ const FeuillesTemps = ({ data = [] }) => {
               </tr>
             </thead>
             <tbody>
-              {data.map(t => (
+              {localData.map(t => (
                 <tr key={t.id} className="border-b border-slate-700/50 hover:bg-slate-700/30">
                   <td className="px-4 py-3 text-sm text-slate-400">{t.date}</td>
                   <td className="px-4 py-3 text-sm font-bold text-white">{t.membre}</td>
