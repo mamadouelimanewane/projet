@@ -217,19 +217,19 @@ export const MODULES = [
   { id: "redteam", label: "Red Team AI (Stress-Test)", icon: "🧛" },
   { id: "excel", label: "Pont Excel (Import/Export)", icon: "📊" },
   { id: "geniecivil", label: "Génie Civil Élite (BIM)", icon: "🏗" },
-  { id: "sentiment", label: "Santé Humaine & Moral", icon: "🧠" },
+
   { id: "safe", label: "Agilité SAFe (Trains)", icon: "🚂" },
   { id: "greenpmo", label: "Bilan Carbone (ESG)", icon: "🌱" },
   { id: "evm", label: "Valeur Acquise (EVM)", icon: "🧮" },
   { id: "guide", label: "Guide Débutant", icon: "🧭" },
-  { id: "rapport-universitaire", label: "📄 Rapport Universitaire", icon: "🎓" },
+
   { id: "nouveau-projet", label: "✚ Nouveau Projet (Wizard)", icon: "🚀" },
-  { id: "certifications", label: "Certifications & Référentiels", icon: "📚" },
+
   { id: "outils-expert", label: "Outils Expert (CPM/RACI)", icon: "🔬" },
-  { id: "espace-universitaire", label: "Espace Universitaire", icon: "🎓" },
+
   { id: "mentor-ia", label: "🤖 Mentor IA (Coaching)", icon: "🧠" },
   { id: "innovation-lab", label: "💎 Elite Innovation Lab", icon: "✨" },
-  { id: "etudes-cas", label: "📚 Études de Cas & Soutenance", icon: "🏢" },
+
   { id: "qualite", label: "🛡️ Qualité & Conformité (ISO)", icon: "⛨" },
   { id: "esg", label: "🌍 Dashboard ESG & RSE", icon: "🌱" },
   { id: "talent", label: "🧠 Talent Marketplace", icon: "👥" },
@@ -241,21 +241,17 @@ export const MODULES = [
   { id: "users", label: "👤 Gestion Utilisateurs & RBAC", icon: "👥" },
   { id: "backup", label: "💾 Sauvegarde & Export Intégral", icon: "📂" },
   { id: "editeur", label: "✏️ Éditeur de Projet Complet", icon: "🛠️" },
-  { id: "agritech", label: "🚜 Agriculture Elite", icon: "🌱" },
-  { id: "medtech", label: "🏥 Santé d'Élite", icon: "⚕️" },
+
   { id: "smartfactory", label: "🏭 Industrie 4.0 Elite", icon: "🤖" },
   { id: "energynexus", label: "⚡ Énergie Elite", icon: "🔋" },
-  { id: "luxetrace", label: "💎 Luxe & Logistique VIP", icon: "🛍️" },
-  { id: "immoelite", label: "🏘️ Promotion Immobilière", icon: "🏗️" },
+
   { id: "govtech", label: "🏛️ Gouvernance & État", icon: "⚖️" },
-  { id: "oceantech", label: "🌊 Économie Bleue", icon: "⚓" },
-  { id: "humanitarian", label: "🚨 Humanitaire & Crises", icon: "❤️" },
-  { id: "mediatech", label: "🎭 Industries Créatives", icon: "🎬" },
+
   { id: "smartcity", label: "🏙️ Smart City & Urbain", icon: "🏢" },
   { id: "warroom", label: "🛡️ Strategic War Room", icon: "🧠" },
   { id: "refinery", label: "🛢️ Raffinerie & Oil & Gas", icon: "🔥" },
   { id: "editeur-ia", label: "🪄 Elite Module Architect", icon: "✨" },
-  { id: "agritech", label: "🌱 AgriTech Elite Command", icon: "🌾" },
+
   { id: "fintech", label: "💰 FinTech Elite Command", icon: "🏦" },
 ];
 

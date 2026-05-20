@@ -48,7 +48,7 @@ import GreenPMO from './components/modules/GreenPMO';
 import EVM from './components/modules/EVM';
 import NeuralMap from './components/modules/NeuralMap';
 import RedTeamAI from './components/modules/RedTeamAI';
-import SentimentTeam from './components/modules/SentimentTeam';
+
 import ExcelIntegration from './components/modules/ExcelIntegration';
 import GenieCivilElite from './components/modules/GenieCivilElite';
 // DashboardProjet (Legacy) removed to avoid conflicts
@@ -64,14 +64,14 @@ import Gamification from './components/modules/Gamification';
 import Securite2FA from './components/modules/Securite2FA';
 import ChatTempsReel from './components/modules/ChatTempsReel';
 import PredictionsML from './components/modules/PredictionsML';
-import RapportUniversitaire from './components/modules/RapportUniversitaire';
+
 import ProjetWizard from './components/modules/ProjetWizard';
-import Certifications from './components/modules/Certifications';
+
 import OutilsExpert from './components/modules/OutilsExpert';
-import TableauUniversitaire from './components/modules/TableauUniversitaire';
+
 import MentorIA from './components/modules/MentorIA';
 import EliteInnovation from './components/modules/EliteInnovation';
-import EtudesDeCas from './components/modules/EtudesDeCas';
+
 
 import QualiteConformite from './components/modules/QualiteConformite';
 import ESGScorecard from './components/modules/ESGScorecard';
@@ -84,21 +84,17 @@ import EthiqueIA from './components/modules/EthiqueIA';
 import GestionUtilisateurs from './components/modules/GestionUtilisateurs';
 import SauvegardeExport from './components/modules/SauvegardeExport';
 import EditeurProjet from './components/modules/EditeurProjet';
-import AgricultureElite from './components/modules/AgricultureElite';
-import HealthElite from './components/modules/HealthElite';
+
 import IndustrieElite from './components/modules/IndustrieElite';
 import EnergyElite from './components/modules/EnergyElite';
-import LuxeElite from './components/modules/LuxeElite';
-import ImmobilierElite from './components/modules/ImmobilierElite';
+
 import GovTechElite from './components/modules/GovTechElite';
-import OceanTechElite from './components/modules/OceanTechElite';
-import HumanitaireElite from './components/modules/HumanitaireElite';
-import MediaTechElite from './components/modules/MediaTechElite';
+
 import SmartCityElite from './components/modules/SmartCityElite';
 import StrategicWarRoom from './components/modules/StrategicWarRoom';
 import RefineryElite from './components/modules/RefineryElite';
 import ModuleArchitectElite from './components/modules/ModuleArchitectElite';
-import AgriTechElite from './components/modules/AgriTechElite';
+
 import FinTechElite from './components/modules/FinTechElite';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import DashboardProjetIsole from './components/modules/DashboardProjetIsole';
@@ -161,17 +157,7 @@ export default function App() {
     setMobileMenuOpen(false);
   };
 
-  const filteredModules = useMemo(() => {
-    if (userMode === 'universel') return MODULES;
-    const config = {
-      debutant: ['dashboard', 'guide', 'nouveau-projet', 'mentor-ia', 'chat'],
-      pro: ['dashboard', 'taches', 'gantt', 'kanban', 'budget', 'risques', 'equipe', 'jalons', 'problemes', 'nouveau-projet', 'mentor-ia', 'immoelite', 'refinery'],
-      expert: ['dashboard', 'evm', 'outils-expert', 'innovation-lab', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia', 'qualite', 'esg', 'talent', 'blackswan', 'digitaltwin', 'ipguard', 'valeur', 'ethique', 'users', 'backup', 'editeur', 'agritech', 'medtech', 'smartfactory', 'energynexus', 'luxetrace', 'immoelite', 'govtech', 'oceantech', 'humanitarian', 'mediatech', 'smartcity', 'warroom', 'refinery', 'editeur-ia'],
-      academique: ['dashboard', 'espace-universitaire', 'certifications', 'etudes-cas', 'rapport-universitaire', 'guide', 'mentor-ia']
-    };
-    const allowedIds = config[userMode] || config.pro;
-    return MODULES.filter(m => allowedIds.includes(m.id));
-  }, [userMode]);
+  const filteredModules = MODULES;
 
   useEffect(() => {
     fetchData();
@@ -318,23 +304,7 @@ export default function App() {
                </div>
                {/* Sélecteur de langue */}
                <LanguageSelector />
-               {/* Mode switcher */}
-               <div className="hidden md:flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-0.5 gap-0.5">
-                 {[
-                   {v:'debutant',l:'🌱',t:'Débutant'},
-                   {v:'pro',l:'📘',t:'Pro'},
-                   {v:'expert',l:'🔥',t:'Expert'},
-                   {v:'academique',l:'🎓',t:'Académique'},
-                   {v:'universel',l:'💎',t:'Universel'}
-                 ].map(m => (
-                   <button key={m.v} onClick={() => setUserMode(m.v)}
-                     title={m.t}
-                     className={`px-2 py-1.5 rounded-md text-[9px] font-black transition-all flex items-center gap-1.5 ${userMode===m.v ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>
-                     <span>{m.l}</span>
-                     {userMode === m.v && <span className="hidden lg:inline">{m.t}</span>}
-                   </button>
-                 ))}
-               </div>
+
                {lastSync && (
                  <span className="text-[10px] text-slate-600 font-mono hidden lg:inline">
                    Sync {new Date(lastSync).toLocaleTimeString()}
@@ -400,7 +370,7 @@ export default function App() {
               <Route path="/redteam" element={<FilteredModule Component={RedTeamAI} />} />
               <Route path="/excel" element={<ExcelIntegration />} />
               <Route path="/geniecivil" element={<FilteredModule Component={GenieCivilElite} />} />
-              <Route path="/sentiment" element={<FilteredModule Component={SentimentTeam} dataKey="sentiment" />} />
+
               <Route path="/guide" element={<GuideInteractif />} />
               <Route path="/export" element={<FilteredModule Component={ExportRapports} />} />
               <Route path="/notifications" element={<FilteredModule Component={Notifications} />} />
@@ -414,14 +384,14 @@ export default function App() {
               <Route path="/securite-2fa" element={<Securite2FA />} />
               <Route path="/chat" element={<FilteredModule Component={ChatTempsReel} />} />
               <Route path="/predictions-ml" element={<FilteredModule Component={PredictionsML} />} />
-              <Route path="/rapport-universitaire" element={<FilteredModule Component={RapportUniversitaire} />} />
+
               <Route path="/nouveau-projet" element={<ProjetWizard />} />
-              <Route path="/certifications" element={<FilteredModule Component={Certifications} />} />
+
               <Route path="/outils-expert" element={<FilteredModule Component={OutilsExpert} />} />
-              <Route path="/espace-universitaire" element={<FilteredModule Component={TableauUniversitaire} />} />
+
               <Route path="/mentor-ia" element={<FilteredModule Component={MentorIA} />} />
               <Route path="/innovation-lab" element={<FilteredModule Component={EliteInnovation} />} />
-              <Route path="/etudes-cas" element={<FilteredModule Component={EtudesDeCas} />} />
+
               
               <Route path="/qualite" element={<FilteredModule Component={QualiteConformite} dataKey="qualite" />} />
               <Route path="/esg" element={<FilteredModule Component={ESGScorecard} dataKey="esg" />} />
@@ -434,21 +404,17 @@ export default function App() {
               <Route path="/users" element={<FilteredModule Component={GestionUtilisateurs} />} />
               <Route path="/backup" element={<SauvegardeExport />} />
               <Route path="/editeur" element={<EditeurProjet />} />
-              <Route path="/agritech" element={<FilteredModule Component={AgricultureElite} />} />
-              <Route path="/medtech" element={<FilteredModule Component={HealthElite} />} />
+
               <Route path="/smartfactory" element={<FilteredModule Component={IndustrieElite} />} />
               <Route path="/energynexus" element={<FilteredModule Component={EnergyElite} />} />
-              <Route path="/luxetrace" element={<FilteredModule Component={LuxeElite} />} />
-              <Route path="/immoelite" element={<FilteredModule Component={ImmobilierElite} />} />
+
               <Route path="/govtech" element={<FilteredModule Component={GovTechElite} />} />
-              <Route path="/oceantech" element={<FilteredModule Component={OceanTechElite} />} />
-              <Route path="/humanitarian" element={<FilteredModule Component={HumanitaireElite} />} />
-              <Route path="/mediatech" element={<FilteredModule Component={MediaTechElite} />} />
+
               <Route path="/smartcity" element={<FilteredModule Component={SmartCityElite} />} />
               <Route path="/warroom" element={<FilteredModule Component={StrategicWarRoom} />} />
               <Route path="/refinery" element={<FilteredModule Component={RefineryElite} />} />
               <Route path="/editeur-ia" element={<FilteredModule Component={ModuleArchitectElite} />} />
-              <Route path="/agritech" element={<FilteredModule Component={AgriTechElite} />} />
+
               <Route path="/fintech" element={<FilteredModule Component={FinTechElite} />} />
 
               {/* Fallback */}
