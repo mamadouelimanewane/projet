@@ -1,107 +1,25 @@
-import React, { useEffect, useState, useMemo } from "react";
+
 import { Routes, Route, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Shield, Lock, ArrowRight } from "lucide-react";
 import useStore from './store/useStore';
 import { SectionHeader, Card, Btn, Badge, ToastContainer } from "./components/ui";
 
-import Utilities from './components/modules/Utilities';
-import Dashboard from './components/modules/Dashboard';
-import SuiviSimple from './components/modules/SuiviSimple';
-import MultiProjets from './components/modules/MultiProjets';
-import Taches from './components/modules/Taches';
-import Couts from './components/modules/Couts';
-import Jalons from './components/modules/Jalons';
-import Problemes from './components/modules/Problemes';
-import Risques from './components/modules/Risques';
-import Delais from './components/modules/Delais';
-import KPI from './components/modules/KPI';
-import Budget from './components/modules/Budget';
-import Agile from './components/modules/Agile';
-import Kanban from './components/modules/Kanban';
-import Ressources from './components/modules/Ressources';
-import Gantt from './components/modules/Gantt';
-import CycleVie from './components/modules/CycleVie';
-import AssistantElite from './components/modules/AssistantElite';
-import Simulateur from './components/modules/Simulateur';
-import Methodologies from './components/modules/Methodologies';
-import PortailClient from './components/modules/PortailClient';
-import FeuillesTemps from './components/modules/FeuillesTemps';
-import DocumentsGED from './components/modules/DocumentsGED';
-import Facturation from './components/modules/Facturation';
-import Workflows from './components/modules/Workflows';
-import Rapports from './components/modules/Rapports';
-import WarRoom from './components/modules/WarRoom';
-import CopilotePredictif from './components/modules/CopilotePredictif';
-import SmartContracts from './components/modules/SmartContracts';
-import PortfolioFinancier from './components/modules/PortfolioFinancier';
-import StrategieOKR from './components/modules/StrategieOKR';
-import GenerationIA from './components/modules/GenerationIA';
-import CalendrierCentral from './components/modules/CalendrierCentral';
-import IntegrationsWebhooks from './components/modules/IntegrationsWebhooks';
-import DemandesModeles from './components/modules/DemandesModeles';
-import AutomatisationsNoCode from './components/modules/AutomatisationsNoCode';
-import GuideInteractif from './components/modules/GuideInteractif';
-import LandingPage from './components/modules/LandingPage';
-import SimulateurMonteCarlo from './components/modules/SimulateurMonteCarlo';
-import SAFe from './components/modules/SAFe';
-import GreenPMO from './components/modules/GreenPMO';
-import EVM from './components/modules/EVM';
-import NeuralMap from './components/modules/NeuralMap';
-import RedTeamAI from './components/modules/RedTeamAI';
-import SentimentTeam from './components/modules/SentimentTeam';
-import ExcelIntegration from './components/modules/ExcelIntegration';
-import GenieCivilElite from './components/modules/GenieCivilElite';
-// DashboardProjet (Legacy) removed to avoid conflicts
-import ExportRapports from './components/modules/ExportRapports';
-import Notifications from './components/modules/Notifications';
-import AssistantIA from './components/modules/AssistantIA';
-import RapportsAutomatiques from './components/modules/RapportsAutomatiques';
-import AnalyticsAvances from './components/modules/AnalyticsAvances';
-import ThemesPersonnalisation from './components/modules/ThemesPersonnalisation';
-import OnboardingIntelligent from './components/modules/OnboardingIntelligent';
-import KPIsPersonnalisables from './components/modules/KPIsPersonnalisables';
-import Gamification from './components/modules/Gamification';
-import Securite2FA from './components/modules/Securite2FA';
-import ChatTempsReel from './components/modules/ChatTempsReel';
-import PredictionsML from './components/modules/PredictionsML';
-import RapportUniversitaire from './components/modules/RapportUniversitaire';
-import ProjetWizard from './components/modules/ProjetWizard';
-import Certifications from './components/modules/Certifications';
-import OutilsExpert from './components/modules/OutilsExpert';
-import TableauUniversitaire from './components/modules/TableauUniversitaire';
-import MentorIA from './components/modules/MentorIA';
-import EliteInnovation from './components/modules/EliteInnovation';
-import EtudesDeCas from './components/modules/EtudesDeCas';
-
-import QualiteConformite from './components/modules/QualiteConformite';
-import ESGScorecard from './components/modules/ESGScorecard';
-import TalentMarketplace from './components/modules/TalentMarketplace';
-import SimulationCrise from './components/modules/SimulationCrise';
-import JumeauNumerique from './components/modules/JumeauNumerique';
-import ProprieteIntellectuelle from './components/modules/ProprieteIntellectuelle';
-import AnalyseValeur from './components/modules/AnalyseValeur';
-import EthiqueIA from './components/modules/EthiqueIA';
-import GestionUtilisateurs from './components/modules/GestionUtilisateurs';
-import SauvegardeExport from './components/modules/SauvegardeExport';
-import EditeurProjet from './components/modules/EditeurProjet';
-import AgricultureElite from './components/modules/AgricultureElite';
-import HealthElite from './components/modules/HealthElite';
-import IndustrieElite from './components/modules/IndustrieElite';
-import EnergyElite from './components/modules/EnergyElite';
-import LuxeElite from './components/modules/LuxeElite';
-import ImmobilierElite from './components/modules/ImmobilierElite';
-import GovTechElite from './components/modules/GovTechElite';
-import OceanTechElite from './components/modules/OceanTechElite';
-import HumanitaireElite from './components/modules/HumanitaireElite';
-import MediaTechElite from './components/modules/MediaTechElite';
-import SmartCityElite from './components/modules/SmartCityElite';
-import StrategicWarRoom from './components/modules/StrategicWarRoom';
-import RefineryElite from './components/modules/RefineryElite';
-import ModuleArchitectElite from './components/modules/ModuleArchitectElite';
-import AgriTechElite from './components/modules/AgriTechElite';
-import FinTechElite from './components/modules/FinTechElite';
+import React, { Suspense, useEffect, useState, useMemo } from 'react';
+import {
+  Dashboard, DashboardProjetIsole, SuiviSimple, MultiProjets, Taches, Couts, Jalons, Problemes, Risques, Delais, KPI, Budget, Ressources, CycleVie,
+  Agile, Kanban, Gantt, SAFe, Methodologies, CalendrierCentral,
+  AssistantElite, AssistantIA, CopilotePredictif, MentorIA, PredictionsML, RedTeamAI, NeuralMap, GenerationIA,
+  Simulateur, SimulateurMonteCarlo, SimulationCrise, EVM, AnalyseValeur,
+  Facturation, PortfolioFinancier, SmartContracts,
+  FeuillesTemps, DocumentsGED, ChatTempsReel, ExportRapports, RapportsAutomatiques, Notifications,
+  Workflows, AutomatisationsNoCode, DemandesModeles, IntegrationsWebhooks,
+  QualiteConformite, ESGScorecard, EthiqueIA, ProprieteIntellectuelle, GreenPMO, StrategieOKR,
+  Securite2FA, GestionUtilisateurs,
+  OutilsExpert, ExcelIntegration, ThemesPersonnalisation, SauvegardeExport, EditeurProjet, ProjetWizard, GuideInteractif, PortailClient, Gamification, OnboardingIntelligent, KPIsPersonnalisables, AnalyticsAvances, EliteInnovation, TalentMarketplace, JumeauNumerique, ModuleArchitectElite,
+  GenieCivilElite, IndustrieElite, EnergyElite, GovTechElite, SmartCityElite, StrategicWarRoom, RefineryElite, FinTechElite,
+  LandingPage
+} from './routes';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
-import DashboardProjetIsole from './components/modules/DashboardProjetIsole';
 import { MODULES } from "./data/constants";
 import { applyTheme, getStoredTheme, THEMES } from './lib/themeManager.js';
 import { LanguageProvider, LanguageSelector } from './hooks/useLanguage.jsx';
@@ -146,9 +64,23 @@ export default function App() {
   const activeId = location.pathname.substring(1) || "dashboard";
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [isTwoFAVerified, setIsTwoFAVerified] = useState(false);
   const [twoFACode, setTwoFACode] = useState("");
   const is2FAEnabled = localStorage.getItem('projet-elite-2fa') === 'true';
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const badge = useMemo(() => {
     if (universityPoints >= 200) return { label: 'Diamant Expert', icon: '💎', color: '#10b981' };
@@ -161,17 +93,7 @@ export default function App() {
     setMobileMenuOpen(false);
   };
 
-  const filteredModules = useMemo(() => {
-    if (userMode === 'universel') return MODULES;
-    const config = {
-      debutant: ['dashboard', 'guide', 'nouveau-projet', 'mentor-ia', 'chat'],
-      pro: ['dashboard', 'taches', 'gantt', 'kanban', 'budget', 'risques', 'equipe', 'jalons', 'problemes', 'nouveau-projet', 'mentor-ia', 'immoelite', 'refinery'],
-      expert: ['dashboard', 'evm', 'outils-expert', 'innovation-lab', 'predictions-ml', 'risques', 'greenpmo', 'geniecivil', 'safe', 'securite-2fa', 'mentor-ia', 'qualite', 'esg', 'talent', 'blackswan', 'digitaltwin', 'ipguard', 'valeur', 'ethique', 'users', 'backup', 'editeur', 'agritech', 'medtech', 'smartfactory', 'energynexus', 'luxetrace', 'immoelite', 'govtech', 'oceantech', 'humanitarian', 'mediatech', 'smartcity', 'warroom', 'refinery', 'editeur-ia'],
-      academique: ['dashboard', 'espace-universitaire', 'certifications', 'etudes-cas', 'rapport-universitaire', 'guide', 'mentor-ia']
-    };
-    const allowedIds = config[userMode] || config.pro;
-    return MODULES.filter(m => allowedIds.includes(m.id));
-  }, [userMode]);
+  const filteredModules = MODULES;
 
   useEffect(() => {
     fetchData();
@@ -244,46 +166,69 @@ export default function App() {
         {/* SIDEBAR */}
         <aside className={`
           fixed inset-y-0 left-0 z-50 md:relative 
-          w-72 md:w-56 lg:w-64
+          ${isSidebarCollapsed ? 'w-20' : 'w-72 md:w-56 lg:w-64'}
           ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
           flex-shrink-0 backdrop-blur-xl border-r app-sidebar 
           flex flex-col transition-all duration-300 ease-in-out
         `}>
           <div className="p-4 border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-3">
-               <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black">E</div>
-               <div className="overflow-hidden">
-                 <p className="text-xs font-black text-white tracking-tight leading-none uppercase">Projet Élite</p>
-               </div>
+               <div className="w-8 h-8 rounded-xl bg-indigo-600 flex-shrink-0 flex items-center justify-center text-white font-black">E</div>
+               {!isSidebarCollapsed && (
+                 <div className="overflow-hidden">
+                   <p className="text-xs font-black text-white tracking-tight leading-none uppercase">Projet Élite</p>
+                 </div>
+               )}
             </div>
-            <button onClick={() => setMobileMenuOpen(false)} className="md:hidden text-slate-500">✕</button>
-          </div>
-          <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto">
-            {filteredModules.map(m => (
-              <button key={m.id} onClick={() => goTo(m.id)}
-                className={`w-full flex items-center gap-3 px-2.5 py-2.5 rounded-xl text-left transition-all ${activeId === m.id ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30" : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"}`}>
-                <span className="text-lg w-5 h-5 flex items-center justify-center">{m.icon}</span>
-                <span className="text-xs font-bold truncate">{m.label}</span>
+            <div className="flex items-center gap-2">
+              <button onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} className="hidden md:flex text-slate-500 hover:text-white transition-colors" title="Réduire/Agrandir le menu">
+                {isSidebarCollapsed ? '➔' : '🡐'}
               </button>
-            ))}
+              <button onClick={() => setMobileMenuOpen(false)} className="md:hidden text-slate-500">✕</button>
+            </div>
+          </div>
+          <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto overflow-x-hidden custom-scrollbar">
+            {filteredModules.map((m, i) => {
+              if (m.isHeader) {
+                if (isSidebarCollapsed) {
+                  return <div key={`header-${i}`} className="w-full h-px bg-slate-800 my-2" />;
+                }
+                return (
+                  <div key={`header-${i}`} className="mt-4 mb-1 px-3 text-[10px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap overflow-hidden text-ellipsis">
+                    {m.label}
+                  </div>
+                );
+              }
+              return (
+                <button key={m.id} onClick={() => goTo(m.id)} title={isSidebarCollapsed ? m.label : undefined}
+                  className={`w-full flex items-center ${isSidebarCollapsed ? 'justify-center' : 'gap-3 px-2.5'} py-2.5 rounded-xl text-left transition-all ${activeId === m.id ? "bg-indigo-600 text-white shadow-lg shadow-indigo-600/30" : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"}`}>
+                  <span className="text-lg w-5 h-5 flex items-center justify-center flex-shrink-0">{m.icon}</span>
+                  {!isSidebarCollapsed && <span className="text-xs font-bold truncate">{m.label}</span>}
+                </button>
+              );
+            })}
           </nav>
           {/* Student Badge Footer */}
           <div className="p-4 mt-auto border-t border-slate-800 bg-slate-900/50">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-slate-800 border border-slate-700 shadow-inner">
+            <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center' : 'gap-3'}`}>
+              <div className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center text-xl bg-slate-800 border border-slate-700 shadow-inner" title={`${badge.label} - ${universityPoints} points`}>
                 {badge.icon}
               </div>
-              <div className="overflow-hidden">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
-                <p className="text-xs font-bold text-white truncate">{badge.label}</p>
-                <p className="text-[9px] font-bold" style={{ color: badge.color }}>{universityPoints} points</p>
-              </div>
+              {!isSidebarCollapsed && (
+                <div className="overflow-hidden">
+                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
+                  <p className="text-xs font-bold text-white truncate">{badge.label}</p>
+                  <p className="text-[9px] font-bold" style={{ color: badge.color }}>{universityPoints} points</p>
+                </div>
+              )}
             </div>
           </div>
           
-          <div className="p-3 border-t border-slate-800">
-            <div className="text-xs text-slate-600">● Système synchronisé</div>
-          </div>
+          {!isSidebarCollapsed && (
+            <div className="p-3 border-t border-slate-800">
+              <div className="text-xs text-slate-600">● Système synchronisé</div>
+            </div>
+          )}
         </aside>
 
         {/* MAIN */}
@@ -299,6 +244,23 @@ export default function App() {
                   <span className="text-[9px] bg-indigo-600/20 text-indigo-400 px-1.5 py-0.5 rounded font-black border border-indigo-500/30">PREMIUM</span>
                 </div>
               </div>
+            </div>
+            
+            {/* Search Bar / Cmd+K */}
+            <div className="hidden md:flex flex-1 max-w-md mx-6">
+              <button 
+                onClick={() => setIsSearchOpen(true)}
+                className="w-full flex items-center justify-between px-3 py-1.5 bg-slate-900/50 border border-slate-700/50 hover:border-indigo-500/50 rounded-lg text-slate-400 text-sm transition-colors"
+              >
+                <div className="flex items-center gap-2">
+                  <span>🔍</span>
+                  <span>Rechercher un module...</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <kbd className="px-1.5 py-0.5 bg-slate-800 rounded text-[10px] font-mono">Ctrl</kbd>
+                  <kbd className="px-1.5 py-0.5 bg-slate-800 rounded text-[10px] font-mono">K</kbd>
+                </div>
+              </button>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
                {/* Project Context Switcher */}
@@ -318,23 +280,7 @@ export default function App() {
                </div>
                {/* Sélecteur de langue */}
                <LanguageSelector />
-               {/* Mode switcher */}
-               <div className="hidden md:flex items-center bg-slate-800/60 border border-slate-700 rounded-lg p-0.5 gap-0.5">
-                 {[
-                   {v:'debutant',l:'🌱',t:'Débutant'},
-                   {v:'pro',l:'📘',t:'Pro'},
-                   {v:'expert',l:'🔥',t:'Expert'},
-                   {v:'academique',l:'🎓',t:'Académique'},
-                   {v:'universel',l:'💎',t:'Universel'}
-                 ].map(m => (
-                   <button key={m.v} onClick={() => setUserMode(m.v)}
-                     title={m.t}
-                     className={`px-2 py-1.5 rounded-md text-[9px] font-black transition-all flex items-center gap-1.5 ${userMode===m.v ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-500 hover:text-white'}`}>
-                     <span>{m.l}</span>
-                     {userMode === m.v && <span className="hidden lg:inline">{m.t}</span>}
-                   </button>
-                 ))}
-               </div>
+
                {lastSync && (
                  <span className="text-[10px] text-slate-600 font-mono hidden lg:inline">
                    Sync {new Date(lastSync).toLocaleTimeString()}
@@ -353,9 +299,54 @@ export default function App() {
             </div>
           </div>
           
+          {/* SEARCH MODAL (COMMAND PALETTE) */}
+          {isSearchOpen && (
+            <div className="fixed inset-0 z-[100] flex items-start justify-center pt-20 px-4 bg-slate-950/80 backdrop-blur-sm" onClick={() => setIsSearchOpen(false)}>
+              <div className="w-full max-w-xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
+                <div className="p-4 border-b border-slate-800 flex items-center gap-3">
+                  <span className="text-slate-400">🔍</span>
+                  <input 
+                    type="text" 
+                    placeholder="Rechercher un module (ex: Gantt, IA, Budget...)" 
+                    className="flex-1 bg-transparent border-none outline-none text-white placeholder-slate-500"
+                    autoFocus
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <button onClick={() => setIsSearchOpen(false)} className="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded text-xs text-slate-400">Échap</button>
+                </div>
+                <div className="max-h-[60vh] overflow-y-auto p-2">
+                  {MODULES.filter(m => !m.isHeader && (m.label.toLowerCase().includes(searchQuery.toLowerCase()) || m.id.toLowerCase().includes(searchQuery.toLowerCase())))
+                    .slice(0, 8)
+                    .map(m => (
+                      <button 
+                        key={m.id}
+                        onClick={() => {
+                          goTo(m.id);
+                          setIsSearchOpen(false);
+                          setSearchQuery("");
+                        }}
+                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-indigo-600/20 hover:text-indigo-300 rounded-xl text-left transition-colors text-slate-300 group"
+                      >
+                        <span className="text-xl group-hover:scale-110 transition-transform">{m.icon}</span>
+                        <span className="font-medium">{m.label}</span>
+                        <span className="ml-auto text-xs text-slate-500">Aller vers →</span>
+                      </button>
+                  ))}
+                  {MODULES.filter(m => !m.isHeader && (m.label.toLowerCase().includes(searchQuery.toLowerCase()) || m.id.toLowerCase().includes(searchQuery.toLowerCase()))).length === 0 && (
+                    <div className="p-8 text-center text-slate-500">
+                      Aucun module trouvé pour "{searchQuery}"
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* ROUTES CONTENT */}
           <div className="p-3 md:p-8 max-w-[100vw] overflow-x-hidden pb-20 md:pb-8">
-            <Routes>
+            <Suspense fallback={<div className="p-8 text-center text-slate-500 animate-pulse">Chargement du module...</div>}>
+              <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<FilteredModule Component={Dashboard} />} />
               <Route path="/dashboard-projet/:id" element={<DashboardProjetIsole />} />
@@ -383,7 +374,6 @@ export default function App() {
               <Route path="/factures" element={<FilteredModule Component={Facturation} dataKey="factures" />} />
               <Route path="/workflows" element={<FilteredModule Component={Workflows} dataKey="workflows" />} />
               <Route path="/rapports" element={<GenerationIA />} />
-              <Route path="/warroom" element={<WarRoom />} />
               <Route path="/copilote" element={<FilteredModule Component={CopilotePredictif} />} />
               <Route path="/smartcontracts" element={<FilteredModule Component={SmartContracts} dataKey="smartcontracts" />} />
               <Route path="/portfolio" element={<FilteredModule Component={PortfolioFinancier} />} />
@@ -400,7 +390,7 @@ export default function App() {
               <Route path="/redteam" element={<FilteredModule Component={RedTeamAI} />} />
               <Route path="/excel" element={<ExcelIntegration />} />
               <Route path="/geniecivil" element={<FilteredModule Component={GenieCivilElite} />} />
-              <Route path="/sentiment" element={<FilteredModule Component={SentimentTeam} dataKey="sentiment" />} />
+
               <Route path="/guide" element={<GuideInteractif />} />
               <Route path="/export" element={<FilteredModule Component={ExportRapports} />} />
               <Route path="/notifications" element={<FilteredModule Component={Notifications} />} />
@@ -414,14 +404,14 @@ export default function App() {
               <Route path="/securite-2fa" element={<Securite2FA />} />
               <Route path="/chat" element={<FilteredModule Component={ChatTempsReel} />} />
               <Route path="/predictions-ml" element={<FilteredModule Component={PredictionsML} />} />
-              <Route path="/rapport-universitaire" element={<FilteredModule Component={RapportUniversitaire} />} />
+
               <Route path="/nouveau-projet" element={<ProjetWizard />} />
-              <Route path="/certifications" element={<FilteredModule Component={Certifications} />} />
+
               <Route path="/outils-expert" element={<FilteredModule Component={OutilsExpert} />} />
-              <Route path="/espace-universitaire" element={<FilteredModule Component={TableauUniversitaire} />} />
+
               <Route path="/mentor-ia" element={<FilteredModule Component={MentorIA} />} />
               <Route path="/innovation-lab" element={<FilteredModule Component={EliteInnovation} />} />
-              <Route path="/etudes-cas" element={<FilteredModule Component={EtudesDeCas} />} />
+
               
               <Route path="/qualite" element={<FilteredModule Component={QualiteConformite} dataKey="qualite" />} />
               <Route path="/esg" element={<FilteredModule Component={ESGScorecard} dataKey="esg" />} />
@@ -434,27 +424,24 @@ export default function App() {
               <Route path="/users" element={<FilteredModule Component={GestionUtilisateurs} />} />
               <Route path="/backup" element={<SauvegardeExport />} />
               <Route path="/editeur" element={<EditeurProjet />} />
-              <Route path="/agritech" element={<FilteredModule Component={AgricultureElite} />} />
-              <Route path="/medtech" element={<FilteredModule Component={HealthElite} />} />
+
               <Route path="/smartfactory" element={<FilteredModule Component={IndustrieElite} />} />
               <Route path="/energynexus" element={<FilteredModule Component={EnergyElite} />} />
-              <Route path="/luxetrace" element={<FilteredModule Component={LuxeElite} />} />
-              <Route path="/immoelite" element={<FilteredModule Component={ImmobilierElite} />} />
+
               <Route path="/govtech" element={<FilteredModule Component={GovTechElite} />} />
-              <Route path="/oceantech" element={<FilteredModule Component={OceanTechElite} />} />
-              <Route path="/humanitarian" element={<FilteredModule Component={HumanitaireElite} />} />
-              <Route path="/mediatech" element={<FilteredModule Component={MediaTechElite} />} />
+
               <Route path="/smartcity" element={<FilteredModule Component={SmartCityElite} />} />
               <Route path="/warroom" element={<FilteredModule Component={StrategicWarRoom} />} />
               <Route path="/refinery" element={<FilteredModule Component={RefineryElite} />} />
               <Route path="/editeur-ia" element={<FilteredModule Component={ModuleArchitectElite} />} />
-              <Route path="/agritech" element={<FilteredModule Component={AgriTechElite} />} />
+
               <Route path="/fintech" element={<FilteredModule Component={FinTechElite} />} />
 
               {/* Fallback */}
 
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
+            </Suspense>
           </div>
         {/* ── BOTTOM NAV MOBILE ──────────────────────────────────────── */}
         <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 border-t flex items-center justify-around px-2 py-2 app-topbar"

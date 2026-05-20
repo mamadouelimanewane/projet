@@ -12,9 +12,9 @@ applyTheme(getStoredTheme())
 // Register PWA Service Worker
 const updateSW = registerSW({
   onNeedRefresh() {
-    if (confirm('Une nouvelle version est disponible. Voulez-vous mettre à jour ?')) {
-      updateSW(true)
-    }
+    // Auto-update sans confirm() natif bloquant
+    console.log('[PWA] Nouvelle version disponible, mise à jour...');
+    updateSW(true);
   },
   onOfflineReady() {
     console.log('L\'application est prête pour une utilisation hors-ligne.')

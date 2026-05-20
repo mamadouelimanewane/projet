@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge, Btn, SectionHeader, StatCard, Input, toast } from "../ui";
 import useStore from "../../store/useStore";
 import { useProject } from "./ProjectSelector";
+import { fetchDocuments, addDocument } from "../../lib/documents";
 
 const DocumentsGED = ({ data = [] }) => {
   const { updateData, data: globalData } = useStore();
@@ -9,6 +10,7 @@ const DocumentsGED = ({ data = [] }) => {
   const [filter, setFilter] = useState("Tous");
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [localData, setLocalData] = useState(data);
   
   const [newDoc, setNewDoc] = useState({
     nom: "",
@@ -18,12 +20,25 @@ const DocumentsGED = ({ data = [] }) => {
 
   const categories = ["Tous", "Technique", "Officiel", "Administratif", "Sécurité"];
 
-  const filteredDocs = data.filter(d => 
+  useEffect(() => {
+    const loadDocuments = async () => {
+      const dbData = await fetchDocuments();
+      if (dbData && dbData.length > 0) {
+        const filteredDbData = currentProject 
+          ? dbData.filter(d => d.projet === currentProject.nom)
+          : dbData;
+        setLocalData(filteredDbData);
+      }
+    };
+    loadDocuments();
+  }, [currentProject]);
+
+  const filteredDocs = localData.filter(d => 
     (filter === "Tous" || d.type === filter) &&
     (d.nom.toLowerCase().includes(search.toLowerCase()) || d.projet.toLowerCase().includes(search.toLowerCase()))
   );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const projectToAssign = currentProject ? currentProject.nom : newDoc.projet;
@@ -43,8 +58,14 @@ const DocumentsGED = ({ data = [] }) => {
       date: new Date().toISOString().split("T")[0] 
     };
 
+    // Save to Supabase
+    const savedDoc = await addDocument(doc);
+    
+    const docToUse = savedDoc || doc;
+
     const currentDocs = globalData.documents || [];
-    updateData("documents", [doc, ...currentDocs]);
+    updateData("documents", [docToUse, ...currentDocs]);
+    setLocalData([docToUse, ...localData]);
     
     setIsOpen(false);
     setNewDoc({ nom: "", type: "Technique", projet: "" });
