@@ -69,28 +69,28 @@ export const THEMES = {
   daylight: {
     id: 'daylight',
     nom: 'Clair Pro',
-    description: 'Interface lumineuse professionnelle',
-    preview: ['#f8fafc', '#f1f5f9', '#e2e8f0'],
+    description: 'Style Enterprise (MS Project)',
+    preview: ['#f3f2f1', '#ffffff', '#e1dfdd'],
     vars: {
-      '--app-bg':           '#f8fafc',
+      '--app-bg':           '#f3f2f1',
       '--app-surface':      '#ffffff',
-      '--app-surface2':     '#f1f5f9',
-      '--app-surface3':     'rgba(255,255,255,0.75)',
-      '--app-border':       'rgba(148,163,184,0.3)',
-      '--app-border2':      'rgba(100,116,139,0.4)',
-      '--app-text':         '#0f172a',
-      '--app-text2':        '#334155',
-      '--app-text3':        '#475569',
-      '--app-topbar':       'rgba(248,250,252,0.95)',
-      '--app-sidebar':      'rgba(248,250,252,0.98)',
-      '--app-hover':        'rgba(226,232,240,0.7)',
-      '--app-shadow':       '0 4px 16px rgba(0,0,0,0.06)',
+      '--app-surface2':     '#faf9f8',
+      '--app-surface3':     'rgba(255,255,255,0.85)',
+      '--app-border':       'rgba(225,223,221,0.8)',
+      '--app-border2':      'rgba(200,198,196,0.8)',
+      '--app-text':         '#201f1e',
+      '--app-text2':        '#484644',
+      '--app-text3':        '#605e5c',
+      '--app-topbar':       'rgba(255,255,255,0.95)',
+      '--app-sidebar':      'rgba(243,242,241,0.98)',
+      '--app-hover':        'rgba(237,235,233,0.7)',
+      '--app-shadow':       '0 2px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1)',
     }
   }
 };
 
 export function applyTheme(themeId) {
-  const theme = THEMES[themeId] || THEMES.dark;
+  const theme = THEMES[themeId] || THEMES.daylight;
   const root = document.documentElement;
   // Apply all CSS vars
   Object.entries(theme.vars).forEach(([k, v]) => root.style.setProperty(k, v));
@@ -100,5 +100,5 @@ export function applyTheme(themeId) {
 }
 
 export function getStoredTheme() {
-  return localStorage.getItem('projet-elite-theme') || 'dark';
+  return localStorage.getItem('projet-elite-theme') || 'daylight';
 }
