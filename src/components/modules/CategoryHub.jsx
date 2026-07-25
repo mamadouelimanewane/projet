@@ -575,21 +575,21 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
   }, [searchTerm]);
 
   return (
-    <div className="min-h-screen bg-[#0b0f19] text-white font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen app-bg app-text font-sans selection:bg-indigo-500 selection:text-white transition-colors duration-500">
       
       {/* HEADER PRINCIPAL TYPE NDUGUMi RESTAU */}
-      <header className="border-b border-slate-800/80 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
+      <header className="border-b app-border app-surface3 sticky top-0 z-50 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-3">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-semibold mb-3 shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                 PLATEFORME INTÉGRALE B2B — PROJET ÉLITE 3.0
               </div>
-              <h1 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+              <h1 className="text-2xl md:text-4xl font-extrabold app-text tracking-tight leading-tight">
                 CRM & Operating System Stratégique Enterprise
               </h1>
-              <p className="text-slate-400 text-xs md:text-sm max-w-3xl mt-2 leading-relaxed font-normal">
+              <p className="app-text2 text-xs md:text-sm max-w-3xl mt-2 leading-relaxed font-medium">
                 De la planification initiale aux prédictions IA, suivez vos projets, gérez vos budgets, automatisez vos approvisionnements et optimisez la rentabilité de vos opérations.
               </p>
             </div>
@@ -627,7 +627,7 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
               {onBackToLanding && (
                 <button
                   onClick={onBackToLanding}
-                  className="flex items-center gap-1.5 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl border border-slate-800 text-xs font-semibold transition-all"
+                  className="flex items-center gap-1.5 px-4 py-3 app-surface border app-border hover:border-slate-400 app-text2 hover:app-text rounded-xl text-xs font-bold transition-all shadow-sm"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                   <span>Accueil</span>
@@ -639,35 +639,35 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
       </header>
 
       {/* BANNIÈRE DE STATISTIQUES / METRIQUES (4 CARTES) */}
-      <section className="bg-slate-900/60 border-b border-slate-800/80 py-6">
+      <section className="app-surface2 border-b app-border py-6 transition-colors">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-indigo-500/30 transition-colors">
-              <div className="text-3xl font-black text-white tracking-tight mb-1">
+            <div className="app-surface glass-card border app-border rounded-2xl p-5 text-center md:text-left hover:border-indigo-400 dark:hover:border-indigo-500/50 transition-colors shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-lg dark:shadow-md">
+              <div className="text-3xl font-black app-text tracking-tight mb-1">
                 {stats.totalProjects}
               </div>
-              <div className="text-xs text-slate-400 font-medium">Projets répertoriés</div>
+              <div className="text-xs app-text2 font-bold uppercase tracking-wider">Projets répertoriés</div>
             </div>
 
-            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-amber-500/30 transition-colors">
-              <div className="text-3xl font-black text-amber-400 tracking-tight mb-1">
+            <div className="app-surface glass-card border app-border rounded-2xl p-5 text-center md:text-left hover:border-amber-400 dark:hover:border-amber-500/50 transition-colors shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-lg dark:shadow-md">
+              <div className="text-3xl font-black text-amber-500 dark:text-amber-400 tracking-tight mb-1">
                 {stats.inProgressProjects}
               </div>
-              <div className="text-xs text-slate-400 font-medium">En cours d'exécution</div>
+              <div className="text-xs app-text2 font-bold uppercase tracking-wider">En cours d'exécution</div>
             </div>
 
-            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-emerald-500/30 transition-colors">
-              <div className="text-3xl font-black text-emerald-400 tracking-tight mb-1">
+            <div className="app-surface glass-card border app-border rounded-2xl p-5 text-center md:text-left hover:border-emerald-400 dark:hover:border-emerald-500/50 transition-colors shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-lg dark:shadow-md">
+              <div className="text-3xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight mb-1">
                 {stats.completedProjects}
               </div>
-              <div className="text-xs text-slate-400 font-medium">Projets signés & livrés</div>
+              <div className="text-xs app-text2 font-bold uppercase tracking-wider">Projets signés & livrés</div>
             </div>
 
-            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-indigo-500/30 transition-colors">
-              <div className="text-3xl font-black text-indigo-400 tracking-tight mb-1">
+            <div className="app-surface glass-card border app-border rounded-2xl p-5 text-center md:text-left hover:border-indigo-400 dark:hover:border-indigo-500/50 transition-colors shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-lg dark:shadow-md">
+              <div className="text-3xl font-black text-indigo-600 dark:text-indigo-400 tracking-tight mb-1">
                 {stats.totalModules}
               </div>
-              <div className="text-xs text-slate-400 font-medium">Modules Élite actifs</div>
+              <div className="text-xs app-text2 font-bold uppercase tracking-wider">Modules Élite actifs</div>
             </div>
           </div>
         </div>
@@ -676,18 +676,18 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
       {/* RECHERCHE ACCÉLÉRÉE */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-4">
         <div className="relative max-w-xl mx-auto">
-          <Search className="w-5 h-5 absolute left-4 top-3.5 text-slate-500 pointer-events-none" />
+          <Search className="w-5 h-5 absolute left-4 top-3.5 text-slate-400 dark:text-slate-500 pointer-events-none" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Rechercher un module, une fonction ou un pôle d'activité..."
-            className="w-full pl-12 pr-4 py-3 bg-slate-900 border border-slate-800 focus:border-indigo-500 rounded-xl text-white text-sm placeholder:text-slate-500 focus:outline-none transition-all shadow-inner"
+            className="w-full pl-12 pr-4 py-3 app-surface border app-border focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 rounded-xl app-text text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none transition-all shadow-sm"
           />
           {searchTerm && (
             <button 
               onClick={() => setSearchTerm('')} 
-              className="absolute right-4 top-3 text-xs font-semibold text-slate-500 hover:text-white"
+              className="absolute right-4 top-3 text-xs font-bold app-text2 hover:app-text"
             >
               Effacer
             </button>
@@ -701,48 +701,51 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
           {filteredCategories.map((cat, idx) => (
             <div
               key={idx}
-              className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition-all shadow-lg"
+              className="app-surface glass-card border app-border rounded-3xl p-6 flex flex-col justify-between hover:border-indigo-300 dark:hover:border-slate-700 transition-all shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl dark:shadow-lg"
             >
               <div>
                 {/* EN-TÊTE DU PÔLE */}
-                <div className="flex items-start justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
+                <div className="flex items-start justify-between gap-3 mb-6 pb-4 border-b app-border">
                   <div className="flex items-center gap-3">
-                    <span className="text-3xl">{cat.icon}</span>
-                    <h2 className="text-base font-bold text-white leading-tight">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-indigo-500/20 dark:bg-indigo-500/30 blur-xl rounded-full"></div>
+                      <span className="relative text-3xl drop-shadow-sm">{cat.icon}</span>
+                    </div>
+                    <h2 className="text-base font-black app-text leading-tight">
                       {cat.title}
                     </h2>
                   </div>
-                  <span className="text-xs font-semibold text-slate-400 bg-slate-800 px-2.5 py-1 rounded-full whitespace-nowrap">
+                  <span className="text-xs font-bold app-text2 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full whitespace-nowrap shadow-inner">
                     {cat.badge}
                   </span>
                 </div>
 
                 {/* LISTE DES MODULES AVEC SUBTITLES ET BADGE NOUVEAU */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {cat.modules.map((mod) => (
                     <div
                       key={mod.id}
                       onClick={() => onSelectModule(mod.id)}
-                      className="group p-3 rounded-xl bg-slate-950/60 hover:bg-indigo-950/40 border border-slate-800/60 hover:border-indigo-500/40 cursor-pointer transition-all duration-200"
+                      className="group p-4 rounded-2xl bg-white dark:bg-slate-950/60 hover:bg-slate-50 dark:hover:bg-indigo-950/40 border border-slate-100 dark:border-slate-800/60 hover:border-indigo-300 dark:hover:border-indigo-500/40 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-1"
                     >
                       <div className="flex items-start gap-3">
-                        <span className="text-xl flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                        <span className="text-2xl flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform drop-shadow-sm">
                           {mod.icon}
                         </span>
 
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                          <div className="flex items-center gap-2 flex-wrap mb-1">
                             {mod.isNew && (
-                              <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 bg-amber-500/20 border border-amber-500/30 px-1.5 py-0.5 rounded">
+                              <span className="text-[9px] font-black uppercase tracking-wider text-amber-600 dark:text-amber-300 bg-amber-100 dark:bg-amber-500/20 border border-amber-200 dark:border-amber-500/30 px-1.5 py-0.5 rounded shadow-sm">
                                 NOUVEAU
                               </span>
                             )}
-                            <h3 className="text-xs font-bold text-white group-hover:text-indigo-300 transition-colors truncate">
+                            <h3 className="text-sm font-bold app-text group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors truncate">
                               {mod.title}
                             </h3>
                           </div>
 
-                          <p className="text-[11px] text-slate-400 font-normal leading-normal">
+                          <p className="text-[11px] app-text2 font-medium leading-relaxed">
                             {mod.desc}
                           </p>
                         </div>
@@ -753,13 +756,13 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
               </div>
 
               {/* ACTION ACCÉDER */}
-              <div className="mt-6 pt-4 border-t border-slate-800/80 flex justify-end">
+              <div className="mt-6 pt-4 border-t app-border flex justify-end">
                 <button
                   onClick={() => onSelectModule(cat.modules[0]?.id || 'dashboard')}
-                  className="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 group/btn"
+                  className="text-xs font-black text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 flex items-center gap-1.5 group/btn"
                 >
                   <span>Ouvrir la section</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1.5 transition-transform" />
                 </button>
               </div>
             </div>
