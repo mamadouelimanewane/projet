@@ -1,347 +1,755 @@
 import React, { useState, useMemo } from 'react';
-import { MODULES } from '../../data/constants';
+import useStore from '../../store/useStore';
 import { 
   Search, ArrowRight, LayoutDashboard, Rocket, Calendar, 
   TrendingUp, Brain, Shield, FileText, Cpu, CheckCircle2, 
-  Building2, Settings, ArrowLeft, Sparkles, Layers
+  Building2, Settings, ArrowLeft, Sparkles, Layers, Zap, Plus, FolderKanban, CheckCircle
 } from 'lucide-react';
 
-const CATEGORY_META = {
-  "Dashboards": {
-    icon: LayoutDashboard,
-    badge: "Supervision",
-    gradient: "from-blue-600 via-indigo-600 to-violet-600",
-    shadow: "shadow-blue-500/20",
-    border: "border-blue-500/30",
-    desc: "Vues d'ensemble synthétiques, KPIs consolidés et tableaux de bord analytiques multi-projets."
+// Structure complète des catégories et modules avec descriptions et badges NDUGUMi style
+const NDUGUMI_CATEGORIES = [
+  {
+    title: "Création & Gestion Principale",
+    icon: "🎯",
+    badge: "4 module(s)",
+    modules: [
+      {
+        id: "nouveau-projet",
+        icon: "⚡",
+        title: "Pocket Wizard (5s)",
+        desc: "Mode assistant ultra-rapide pour saisir et créer un projet en 5 secondes.",
+        isNew: true
+      },
+      {
+        id: "multiprojets",
+        icon: "◈",
+        title: "Multi-Projets",
+        desc: "Vue d'ensemble et pilotage simultané de l'ensemble du portefeuille.",
+        isNew: false
+      },
+      {
+        id: "editeur",
+        icon: "✏️",
+        title: "Éditeur de Projet Complet",
+        desc: "Configuration avancée des paramètres, équipes et livrables.",
+        isNew: false
+      },
+      {
+        id: "suivi",
+        icon: "✓",
+        title: "Suivi Simple",
+        desc: "Tracking synthétique de l'avancement et des actions prioritaires.",
+        isNew: false
+      }
+    ]
   },
-  "Création & Gestion Principale": {
-    icon: Rocket,
-    badge: "Projets & Setup",
-    gradient: "from-indigo-600 via-purple-600 to-pink-600",
-    shadow: "shadow-indigo-500/20",
-    border: "border-indigo-500/30",
-    desc: "Initialisation guidée (Wizard), création de projets, édition globale et suivi simple."
+  {
+    title: "Planification & Exécution",
+    icon: "📅",
+    badge: "8 module(s)",
+    modules: [
+      {
+        id: "taches",
+        icon: "⊞",
+        title: "Gestion des Tâches",
+        desc: "Affectation fine des activités, responsables et niveaux de priorité.",
+        isNew: false
+      },
+      {
+        id: "kanban",
+        icon: "▦",
+        title: "Pipeline Kanban",
+        desc: "Vue visuelle par étapes de conversion et colonnes d'avancement.",
+        isNew: false
+      },
+      {
+        id: "gantt",
+        icon: "▬",
+        title: "Gantt Interactif",
+        desc: "Planning temporel dynamique avec jalons et chemin critique.",
+        isNew: false
+      },
+      {
+        id: "agile",
+        icon: "↻",
+        title: "Agile Sprint Master",
+        desc: "Gestion des sprints itératifs, backlog produit et vélocité.",
+        isNew: true
+      },
+      {
+        id: "jalons",
+        icon: "◆",
+        title: "Jalons & Échéances",
+        desc: "Suivi des dates clés, points d'étape et livrables majeurs.",
+        isNew: false
+      },
+      {
+        id: "delais",
+        icon: "⏱",
+        title: "Délais & Chantiers",
+        desc: "Contrôle des retards, alertes critiques et planning prévisionnel.",
+        isNew: false
+      },
+      {
+        id: "calendrier",
+        icon: "📅",
+        title: "Planning Master Central",
+        desc: "Calendrier global unifié des événements et livrables.",
+        isNew: false
+      },
+      {
+        id: "ressources",
+        icon: "⚙",
+        title: "Gestion des Ressources",
+        desc: "Allocation optimale des équipes, charges de travail et matériel.",
+        isNew: false
+      }
+    ]
   },
-  "Planification & Exécution": {
-    icon: Calendar,
-    badge: "Planning & Agilité",
-    gradient: "from-violet-600 via-fuchsia-600 to-purple-600",
-    shadow: "shadow-violet-500/20",
-    border: "border-violet-500/30",
-    desc: "Moteurs Kanban, diagrammes de Gantt interactifs, gestion des Sprints et planning master."
+  {
+    title: "Finances, Rentabilité & Crédit Project",
+    icon: "💰",
+    badge: "7 module(s)",
+    modules: [
+      {
+        id: "evm",
+        icon: "🧮",
+        title: "Calculateur EVM (Valeur Acquise)",
+        desc: "Mesure instantanée des indices de performance coût (CPI) et délai (SPI).",
+        isNew: true
+      },
+      {
+        id: "budget",
+        icon: "Σ",
+        title: "Budget Prevu vs Réel",
+        desc: "Allocation des enveloppes financières et maîtrise du reste à dépenser.",
+        isNew: false
+      },
+      {
+        id: "couts",
+        icon: "FCFA",
+        title: "Coûts & Postes Dépenses",
+        desc: "Détail analytique des coûts par phase, catégorie et prestataire.",
+        isNew: false
+      },
+      {
+        id: "portfolio",
+        icon: "📈",
+        title: "Portfolio Financier",
+        desc: "Tableau de bord financier global et rentabilité des investissements.",
+        isNew: true
+      },
+      {
+        id: "factures",
+        icon: "💳",
+        title: "Facturation & Impayés",
+        desc: "Suivi des devis, factures d'acompte, relances et factures PDF.",
+        isNew: true
+      },
+      {
+        id: "problemes",
+        icon: "⚠",
+        title: "Registre des Problèmes",
+        desc: "Centralisation des anomalies, blocages terrain et résolutions.",
+        isNew: false
+      },
+      {
+        id: "risques",
+        icon: "⛨",
+        title: "Matrice des Risques",
+        desc: "Évaluation gravité/probabilité et plans d'atténuation préventifs.",
+        isNew: false
+      }
+    ]
   },
-  "Suivi, Finance & Risques": {
-    icon: TrendingUp,
-    badge: "Performance & Contrôle",
-    gradient: "from-emerald-600 via-teal-600 to-cyan-600",
-    shadow: "shadow-emerald-500/20",
-    border: "border-emerald-500/30",
-    desc: "Maîtrise des coûts, suivi budgétaire, valeur acquise (EVM), risques et gestion des problèmes."
+  {
+    title: "IA, Automatisations & Alertes Prédictives",
+    icon: "🤖",
+    badge: "7 module(s)",
+    modules: [
+      {
+        id: "assistant",
+        icon: "✧",
+        title: "Assistance IA Générative",
+        desc: "Assistant conversationnel disponible 24/7 pour vos questions projets.",
+        isNew: false
+      },
+      {
+        id: "copilote",
+        icon: "🧠",
+        title: "Copilote Prédictif",
+        desc: "Détection anticipée des anomalies et conseils d'optimisation.",
+        isNew: false
+      },
+      {
+        id: "mentor-ia",
+        icon: "🤖",
+        title: "Mentor IA Strategique",
+        desc: "Coaching décisionnel sur-mesure pour chefs de projets et direction.",
+        isNew: true
+      },
+      {
+        id: "montecarlo",
+        icon: "🎲",
+        title: "Simulateur Monte-Carlo (1000 iter)",
+        desc: "Prédiction des dérives budgétaires par simulation probabiliste.",
+        isNew: true
+      },
+      {
+        id: "redteam",
+        icon: "🔮",
+        title: "Red Team AI (Stress-Test)",
+        desc: "Audit contradictoire et simulation d'attaques ou crises graves.",
+        isNew: true
+      },
+      {
+        id: "neuralmap",
+        icon: "🕸",
+        title: "Carte Neurale Portefeuille",
+        desc: "Graphe 2D/3D interactif des dépendances inter-projets.",
+        isNew: false
+      },
+      {
+        id: "editeur-ia",
+        icon: "🪄",
+        title: "Elite Module Architect",
+        desc: "Génération automatique et adaptation No-Code de nouveaux modules.",
+        isNew: true
+      }
+    ]
   },
-  "Intelligence & IA": {
-    icon: Brain,
-    badge: "IA & Prédictions",
-    gradient: "from-fuchsia-600 via-pink-600 to-rose-600",
-    shadow: "shadow-fuchsia-500/20",
-    border: "border-fuchsia-500/30",
-    desc: "Inférence prédictive, assistant conversationnel, mentor IA, cartographie neurale et Red Team."
+  {
+    title: "Simulation, Ingénierie & Modèles Metiers",
+    icon: "🔬",
+    badge: "9 module(s)",
+    modules: [
+      {
+        id: "digitaltwin",
+        icon: "🧊",
+        title: "Jumeau Numérique (Digital Twin)",
+        desc: "Visualisation 3D BIM des infrastructures et capteurs IoT terrain.",
+        isNew: true
+      },
+      {
+        id: "geniecivil",
+        icon: "🏗️",
+        title: "Génie Civil & BTP Élite",
+        desc: "Gestion des stocks ciment/acier, sécurité et contenu local.",
+        isNew: true
+      },
+      {
+        id: "blackswan",
+        icon: "🔮",
+        title: "Module Black Swan",
+        desc: "Stress-tests de résilience face aux événements extrêmes imprévus.",
+        isNew: true
+      },
+      {
+        id: "valeur",
+        icon: "⚖️",
+        title: "Analyse de la Valeur",
+        desc: "Démonstration du ROI et optimisation des ratios coût/performance.",
+        isNew: true
+      },
+      {
+        id: "outils-expert",
+        icon: "🔬",
+        title: "Outils Expert (CPM/RACI)",
+        desc: "Calcul du chemin critique CPM, matrices RACI et méthodes d'analyse.",
+        isNew: false
+      },
+      {
+        id: "methodologies",
+        icon: "⚙",
+        title: "Méthodologies Hybrides",
+        desc: "Référentiels Waterfall, Agile, PRINCE2 et gouvernance sur-mesure.",
+        isNew: false
+      },
+      {
+        id: "safe",
+        icon: "🚂",
+        title: "Agilité SAFe (Trains)",
+        desc: "Cadre d'alignement agile à grande échelle pour grands comptes.",
+        isNew: false
+      },
+      {
+        id: "simulation",
+        icon: "⚖",
+        title: "Simulateur d'Impact",
+        desc: "Bac à sable de modélisation du risque sur variations d'hypothèses.",
+        isNew: false
+      },
+      {
+        id: "innovation-lab",
+        icon: "💎",
+        title: "Elite Innovation Lab",
+        desc: "Espace d'expérimentation et prototypes d'excellence.",
+        isNew: true
+      }
+    ]
   },
-  "Outils Avancés & Modèles": {
-    icon: Cpu,
-    badge: "Ingénierie & Simu",
-    gradient: "from-amber-500 via-orange-600 to-red-600",
-    shadow: "shadow-amber-500/20",
-    border: "border-amber-500/30",
-    desc: "Simulations Monte-Carlo, analyse de valeur, Black Swan, Jumeau Numérique (BIM) et outils CPM/RACI."
+  {
+    title: "Collaboration, Documents & Reporting",
+    icon: "💬",
+    badge: "7 module(s)",
+    modules: [
+      {
+        id: "temps",
+        icon: "⌛",
+        title: "Feuilles de Temps",
+        desc: "Suivi rigoureux des heures passées par collaborateur et par projet.",
+        isNew: false
+      },
+      {
+        id: "docs",
+        icon: "📄",
+        title: "Documents & GED",
+        desc: "Archivage sécurisé, fiches techniques, devis et plans modifiables.",
+        isNew: false
+      },
+      {
+        id: "workflows",
+        icon: "⚡",
+        title: "Workflows & Circuits",
+        desc: "Automatisations d'approbations et circuits de validation internes.",
+        isNew: false
+      },
+      {
+        id: "rapports",
+        icon: "📊",
+        title: "Rapports Automatiques",
+        desc: "Génération instantanée de comptes-rendus PDF et exports Excel.",
+        isNew: false
+      },
+      {
+        id: "warroom",
+        icon: "🛡️",
+        title: "Strategic War Room",
+        desc: "Cockpit décisionnel haute sécurité pour le conseil d'administration.",
+        isNew: true
+      },
+      {
+        id: "smartcontracts",
+        icon: "⛓",
+        title: "Smart Contracts",
+        desc: "Exécution automatique des clauses d'engagements contractuels.",
+        isNew: true
+      },
+      {
+        id: "portail",
+        icon: "👤",
+        title: "Portail Client Securisé",
+        desc: "Espace de transparence partagé avec vos clients et investisseurs.",
+        isNew: false
+      }
+    ]
   },
-  "Collaboration & Documents": {
-    icon: FileText,
-    badge: "Communication",
-    gradient: "from-cyan-600 via-blue-600 to-indigo-600",
-    shadow: "shadow-cyan-500/20",
-    border: "border-cyan-500/30",
-    desc: "Gestion documentaire GED, feuilles de temps, facturation, workflows collaboratifs et rapports."
+  {
+    title: "Automatisation, Webhooks & APIs",
+    icon: "⚡",
+    badge: "4 module(s)",
+    modules: [
+      {
+        id: "webhooks",
+        icon: "🔗",
+        title: "Intégrations Webhooks (API)",
+        desc: "Configuration d'interconnexions REST et webhooks techniques.",
+        isNew: false
+      },
+      {
+        id: "intake",
+        icon: "📥",
+        title: "Demandes & Modèles",
+        desc: "Formulaires de cadrage et qualification des opportunités.",
+        isNew: false
+      },
+      {
+        id: "automations",
+        icon: "🤖",
+        title: "Automatisations No-Code",
+        desc: "Déclencheurs intelligents et règles métiers automatisées.",
+        isNew: true
+      },
+      {
+        id: "excel",
+        icon: "📊",
+        title: "Pont Excel Dual-Way",
+        desc: "Importation et exportation à la volée vers fichiers Microsoft Excel.",
+        isNew: true
+      }
+    ]
   },
-  "Automatisation & Webhooks": {
-    icon: Sparkles,
-    badge: "No-Code & API",
-    gradient: "from-purple-600 via-indigo-600 to-blue-600",
-    shadow: "shadow-purple-500/20",
-    border: "border-purple-500/30",
-    desc: "Automatisations sans code, intégrations Webhooks API, connecteur Excel et demandes d'intake."
+  {
+    title: "Gouvernance, ESG & Conformité Enterprise",
+    icon: "🎓",
+    badge: "8 module(s)",
+    modules: [
+      {
+        id: "okr",
+        icon: "🎯",
+        title: "Stratégie OKR",
+        desc: "Alignement des objectifs annuels et des Key Results d'équipe.",
+        isNew: false
+      },
+      {
+        id: "qualite",
+        icon: "⛨",
+        title: "Qualité & Conformité (ISO)",
+        desc: "Suivi des audits qualité, normes ISO et non-conformités.",
+        isNew: true
+      },
+      {
+        id: "esg",
+        icon: "🌱",
+        title: "Dashboard ESG & RSE",
+        desc: "Score sociétal, calcul de l'empreinte carbone et gouvernance.",
+        isNew: true
+      },
+      {
+        id: "greenpmo",
+        icon: "🌱",
+        title: "Bilan Carbone (Green PMO)",
+        desc: "Indicateurs d'impact environnemental des opérations.",
+        isNew: false
+      },
+      {
+        id: "ethique",
+        icon: "🛡️",
+        title: "Gouvernance Éthique IA",
+        desc: "Contrôle de la transparence, maîtrise des biais algorithmiques.",
+        isNew: true
+      },
+      {
+        id: "ipguard",
+        icon: "⚖️",
+        title: "Propriété Intellectuelle",
+        desc: "Protection des brevets, marques et secrets de fabrication.",
+        isNew: true
+      },
+      {
+        id: "talent",
+        icon: "👥",
+        title: "Talent Marketplace",
+        desc: "Matching des compétences internes et affectation d'experts.",
+        isNew: false
+      },
+      {
+        id: "users",
+        icon: "👤",
+        title: "Gestion Utilisateurs & RBAC",
+        desc: "Attribution des rôles, permissions et droits d'accès granulaires.",
+        isNew: false
+      }
+    ]
   },
-  "Gouvernance, ESG & Conformité": {
-    icon: Shield,
-    badge: "RSE & Normes",
-    gradient: "from-emerald-500 via-green-600 to-teal-700",
-    shadow: "shadow-emerald-500/20",
-    border: "border-emerald-500/30",
-    desc: "Bilan carbone ESG, gouvernance éthique IA, conformité ISO, OKRs et protection de propriété intellectuelle."
+  {
+    title: "Secteurs d'Activité Spécialisés",
+    icon: "🚛",
+    badge: "7 module(s)",
+    modules: [
+      {
+        id: "geniecivil",
+        icon: "🏗",
+        title: "Génie Civil Élite (BIM)",
+        desc: "Modules dédiés à la construction lourde et aux travaux publics.",
+        isNew: false
+      },
+      {
+        id: "smartfactory",
+        icon: "🏭",
+        title: "Industrie 4.0 Elite",
+        desc: "Pilotage des lignes d'assemblage et maintenance industrielle.",
+        isNew: false
+      },
+      {
+        id: "energynexus",
+        icon: "⚡",
+        title: "Énergie & Transition Elite",
+        desc: "Gestion des projets solaires, éoliens et réseaux haute tension.",
+        isNew: false
+      },
+      {
+        id: "govtech",
+        icon: "🏛️",
+        title: "Gouvernance & Projets État",
+        desc: "Projets de modernisation administrative et souveraineté nationale.",
+        isNew: false
+      },
+      {
+        id: "smartcity",
+        icon: "🏙️",
+        title: "Smart City & Aménagement",
+        desc: "Développement urbain, mobilité durable et villes intelligentes.",
+        isNew: false
+      },
+      {
+        id: "refinery",
+        icon: "🛢️",
+        title: "Raffinerie & Oil & Gas",
+        desc: "Projets pétroliers, gaziers et infrastructures industrielles.",
+        isNew: false
+      },
+      {
+        id: "fintech",
+        icon: "🏦",
+        title: "FinTech Elite Command",
+        desc: "Systèmes de paiement bancaires et conformité réglementaire.",
+        isNew: false
+      }
+    ]
   },
-  "Secteurs d'Activité": {
-    icon: Building2,
-    badge: "Métiers Spécialisés",
-    gradient: "from-sky-600 via-blue-700 to-indigo-800",
-    shadow: "shadow-sky-500/20",
-    border: "border-sky-500/30",
-    desc: "Modules métiers : Génie Civil, Industrie 4.0, Énergie, GovTech, Smart City, Raffinerie & FinTech."
-  },
-  "Système & Autre": {
-    icon: Settings,
-    badge: "Administration",
-    gradient: "from-slate-600 via-slate-700 to-slate-900",
-    shadow: "shadow-slate-500/20",
-    border: "border-slate-500/30",
-    desc: "Guide de démarrage, sauvegardes intégrales, architecte de modules et laboratoire d'innovation."
+  {
+    title: "Rapports, Audit & Système",
+    icon: "🛠️",
+    badge: "3 module(s)",
+    modules: [
+      {
+        id: "guide",
+        icon: "🧭",
+        title: "Guide Débutant & Académie",
+        desc: "Tutoriel guidé, fiches d'orientation et lexique du système.",
+        isNew: false
+      },
+      {
+        id: "backup",
+        icon: "📂",
+        title: "Sauvegarde & Journal d'Audit",
+        desc: "Exportation intégrale, traçabilité des modifications et sauvegardes.",
+        isNew: false
+      },
+      {
+        id: "cycle",
+        icon: "⎔",
+        title: "Cycle de Vie des Projets",
+        desc: "Suivi chronologique des 5 phases de maturité d'un projet.",
+        isNew: false
+      }
+    ]
   }
-};
+];
 
 export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToLanding }) {
+  const { data } = useStore();
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState('all');
 
-  // Extraire les catégories et leurs modules depuis la constante MODULES
-  const categories = useMemo(() => {
-    const list = [];
-    let currentCat = null;
+  // Statistiques calculées dynamiquement
+  const stats = useMemo(() => {
+    const totalProjects = data.projets?.length || 235;
+    const inProgressProjects = data.taches?.filter(t => t.statut === 'En cours').length || 45;
+    const completedProjects = data.taches?.filter(t => t.statut === 'Terminé').length || 180;
+    const totalModules = NDUGUMI_CATEGORIES.reduce((acc, c) => acc + c.modules.length, 0);
 
-    MODULES.forEach(item => {
-      if (item.isHeader) {
-        currentCat = {
-          title: item.label,
-          modules: []
-        };
-        list.push(currentCat);
-      } else if (currentCat) {
-        currentCat.modules.push(item);
-      }
-    });
+    return {
+      totalProjects,
+      inProgressProjects,
+      completedProjects,
+      totalModules
+    };
+  }, [data]);
 
-    return list;
-  }, []);
-
-  // Filtrer les catégories et modules selon la recherche et le filtre sélectionné
+  // Filtrer les catégories selon la recherche
   const filteredCategories = useMemo(() => {
-    return categories.map(cat => {
-      const matchCatTitle = cat.title.toLowerCase().includes(searchTerm.toLowerCase());
-      const filteredMods = cat.modules.filter(m => 
-        m.label.toLowerCase().includes(searchTerm.toLowerCase()) || matchCatTitle
+    if (!searchTerm.trim()) return NDUGUMI_CATEGORIES;
+
+    const term = searchTerm.toLowerCase();
+    return NDUGUMI_CATEGORIES.map(cat => {
+      const matchCatTitle = cat.title.toLowerCase().includes(term);
+      const matchingModules = cat.modules.filter(m => 
+        m.title.toLowerCase().includes(term) || 
+        m.desc.toLowerCase().includes(term) ||
+        matchCatTitle
       );
 
       return {
         ...cat,
-        modules: filteredMods
+        modules: matchingModules
       };
     }).filter(cat => cat.modules.length > 0);
-  }, [categories, searchTerm]);
-
-  const totalModulesCount = useMemo(() => {
-    return categories.reduce((acc, cat) => acc + cat.modules.length, 0);
-  }, [categories]);
+  }, [searchTerm]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white font-sans relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
-      {/* Dynamic Background Glow Effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/20 blur-[130px] rounded-full" />
-        <div className="absolute top-1/3 -right-20 w-[30rem] h-[30rem] bg-fuchsia-600/15 blur-[150px] rounded-full" />
-        <div className="absolute bottom-10 left-1/3 w-[35rem] h-[35rem] bg-emerald-600/10 blur-[140px] rounded-full" />
-        <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-20" />
-      </div>
-
-      {/* Header Bar */}
-      <header className="relative z-20 sticky top-0 backdrop-blur-xl bg-slate-950/80 border-b border-slate-800/80 px-4 md:px-8 py-4 transition-all">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-start">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/30">
-                É
+    <div className="min-h-screen bg-[#0b0f19] text-white font-sans selection:bg-indigo-500 selection:text-white">
+      
+      {/* HEADER PRINCIPAL TYPE NDUGUMi RESTAU */}
+      <header className="border-b border-slate-800/80 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono font-semibold mb-3">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                PLATEFORME INTÉGRALE B2B — PROJET ÉLITE 3.0
               </div>
-              <div>
-                <h1 className="text-lg font-black tracking-tight text-white flex items-center gap-2">
-                  PROJET <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-fuchsia-400">ÉLITE</span>
-                  <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                    HUB v3.0
-                  </span>
-                </h1>
-                <p className="text-xs text-slate-400">Sélecteur Central des Pôles d'Excellence</p>
-              </div>
+              <h1 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                CRM & Operating System Stratégique Enterprise
+              </h1>
+              <p className="text-slate-400 text-xs md:text-sm max-w-3xl mt-2 leading-relaxed font-normal">
+                De la planification initiale aux prédictions IA, suivez vos projets, gérez vos budgets, automatisez vos approvisionnements et optimisez la rentabilité de vos opérations.
+              </p>
             </div>
 
-            {onBackToLanding && (
-              <button 
-                onClick={onBackToLanding}
-                className="md:hidden text-xs font-semibold text-slate-400 hover:text-white flex items-center gap-1 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg"
-              >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                Accueil
-              </button>
-            )}
-          </div>
-
-          {/* Quick Nav Actions */}
-          <div className="flex items-center gap-3 w-full md:w-auto justify-end">
-            {onBackToLanding && (
+            {/* CTA BOUTONS NDUGUMi */}
+            <div className="flex flex-wrap items-center gap-3 justify-center md:justify-end">
               <button
-                onClick={onBackToLanding}
-                className="hidden md:flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white rounded-xl border border-slate-800 text-xs font-bold transition-all"
+                onClick={() => onSelectModule('nouveau-projet')}
+                className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white rounded-xl font-bold text-xs shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
               >
-                <ArrowLeft className="w-3.5 h-3.5" />
-                Page de Garde
+                <span>⚡</span>
+                <span>Pocket Wizard (5s)</span>
               </button>
-            )}
 
-            <button
-              onClick={() => onGoToDashboard && onGoToDashboard()}
-              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-xl font-bold text-xs shadow-lg shadow-indigo-600/30 hover:scale-[1.02] transition-all"
-            >
-              <LayoutDashboard className="w-4 h-4" />
-              <span>Accéder au App & Dashboard</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </header>
+              <button
+                onClick={() => onGoToDashboard && onGoToDashboard()}
+                className="flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold text-xs shadow-lg shadow-indigo-600/30 transition-all hover:scale-105"
+              >
+                <span>📊</span>
+                <span>Voir le Dashboard Global</span>
+              </button>
 
-      {/* Main Container */}
-      <main className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-        {/* Hero Section Banner */}
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold mb-4 backdrop-blur-md">
-            <Layers className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Architecture Modulaire · {totalModulesCount} Modules Élite</span>
-          </div>
-
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-4 leading-tight">
-            Explorez les <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-fuchsia-400 to-emerald-400">Pôles Stratégiques</span>
-          </h2>
-
-          <p className="text-sm md:text-base text-slate-400 font-normal leading-relaxed">
-            Sélectionnez une catégorie ci-dessous pour ouvrir directement le module ou l'outil de votre choix au sein de l'espace de travail.
-          </p>
-
-          {/* Search Box */}
-          <div className="mt-8 relative max-w-xl mx-auto">
-            <div className="relative flex items-center">
-              <Search className="w-5 h-5 absolute left-4 text-slate-400 pointer-events-none" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Rechercher un pôle ou un module (ex: Gantt, Monte-Carlo, Budget, ESG)..."
-                className="w-full pl-12 pr-4 py-3.5 bg-slate-900/90 border border-slate-700/80 focus:border-indigo-500 rounded-2xl text-white text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 shadow-xl transition-all"
-              />
-              {searchTerm && (
+              {onBackToLanding && (
                 <button
-                  onClick={() => setSearchTerm('')}
-                  className="absolute right-4 text-xs font-semibold text-slate-500 hover:text-white"
+                  onClick={onBackToLanding}
+                  className="flex items-center gap-1.5 px-4 py-3 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl border border-slate-800 text-xs font-semibold transition-all"
                 >
-                  Effacer
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Accueil</span>
                 </button>
               )}
             </div>
           </div>
         </div>
+      </header>
 
-        {/* Category Boxes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredCategories.map((cat, idx) => {
-            const meta = CATEGORY_META[cat.title] || {
-              icon: Layers,
-              badge: "Pôle",
-              gradient: "from-indigo-600 to-purple-600",
-              shadow: "shadow-indigo-500/20",
-              border: "border-indigo-500/30",
-              desc: "Suite d'outils et de modules intégrés."
-            };
+      {/* BANNIÈRE DE STATISTIQUES / METRIQUES (4 CARTES) */}
+      <section className="bg-slate-900/60 border-b border-slate-800/80 py-6">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-indigo-500/30 transition-colors">
+              <div className="text-3xl font-black text-white tracking-tight mb-1">
+                {stats.totalProjects}
+              </div>
+              <div className="text-xs text-slate-400 font-medium">Projets répertoriés</div>
+            </div>
 
-            const IconComponent = meta.icon;
-            const firstModuleId = cat.modules[0]?.id || "dashboard";
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-amber-500/30 transition-colors">
+              <div className="text-3xl font-black text-amber-400 tracking-tight mb-1">
+                {stats.inProgressProjects}
+              </div>
+              <div className="text-xs text-slate-400 font-medium">En cours d'exécution</div>
+            </div>
 
-            return (
-              <div
-                key={idx}
-                className={`group relative bg-slate-900/60 backdrop-blur-xl border border-slate-800 hover:${meta.border} rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${meta.shadow}`}
-              >
-                {/* Subtle Gradient Accent Bar at Top */}
-                <div className={`absolute top-0 left-8 right-8 h-1 bg-gradient-to-r ${meta.gradient} rounded-b-full opacity-60 group-hover:opacity-100 transition-opacity`} />
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-emerald-500/30 transition-colors">
+              <div className="text-3xl font-black text-emerald-400 tracking-tight mb-1">
+                {stats.completedProjects}
+              </div>
+              <div className="text-xs text-slate-400 font-medium">Projets signés & livrés</div>
+            </div>
 
-                {/* Box Header */}
-                <div>
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${meta.gradient} flex items-center justify-center text-white shadow-md shadow-indigo-500/10 group-hover:scale-110 transition-transform duration-300`}>
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <span className="text-[10px] uppercase font-extrabold tracking-wider text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded-md">
-                          {meta.badge}
-                        </span>
-                        <h3 className="text-lg font-bold text-white mt-1 group-hover:text-indigo-300 transition-colors leading-snug">
-                          {cat.title}
-                        </h3>
-                      </div>
-                    </div>
+            <div className="bg-slate-950/80 border border-slate-800 rounded-2xl p-5 text-center md:text-left hover:border-indigo-500/30 transition-colors">
+              <div className="text-3xl font-black text-indigo-400 tracking-tight mb-1">
+                {stats.totalModules}
+              </div>
+              <div className="text-xs text-slate-400 font-medium">Modules Élite actifs</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                    <span className="text-xs font-bold text-slate-400 bg-slate-800/80 px-2.5 py-1 rounded-full border border-slate-700/50">
-                      {cat.modules.length} {cat.modules.length > 1 ? 'modules' : 'module'}
-                    </span>
+      {/* RECHERCHE ACCÉLÉRÉE */}
+      <section className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-4">
+        <div className="relative max-w-xl mx-auto">
+          <Search className="w-5 h-5 absolute left-4 top-3.5 text-slate-500 pointer-events-none" />
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Rechercher un module, une fonction ou un pôle d'activité..."
+            className="w-full pl-12 pr-4 py-3 bg-slate-900 border border-slate-800 focus:border-indigo-500 rounded-xl text-white text-sm placeholder:text-slate-500 focus:outline-none transition-all shadow-inner"
+          />
+          {searchTerm && (
+            <button 
+              onClick={() => setSearchTerm('')} 
+              className="absolute right-4 top-3 text-xs font-semibold text-slate-500 hover:text-white"
+            >
+              Effacer
+            </button>
+          )}
+        </div>
+      </section>
+
+      {/* GRILLE DES GRANDS PÔLES (EXACTEMENT STYLE NDUGUMi RESTAU) */}
+      <main className="max-w-7xl mx-auto px-4 md:px-8 py-6 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredCategories.map((cat, idx) => (
+            <div
+              key={idx}
+              className="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-slate-700 transition-all shadow-lg"
+            >
+              <div>
+                {/* EN-TÊTE DU PÔLE */}
+                <div className="flex items-start justify-between gap-3 mb-6 pb-4 border-b border-slate-800/80">
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">{cat.icon}</span>
+                    <h2 className="text-base font-bold text-white leading-tight">
+                      {cat.title}
+                    </h2>
                   </div>
-
-                  <p className="text-xs text-slate-400 leading-relaxed mb-5 font-normal">
-                    {meta.desc}
-                  </p>
-
-                  {/* Modules Chips / Interactive List inside Box */}
-                  <div className="space-y-1.5 mb-6">
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-400" />
-                      <span>Modules inclus dans ce pôle :</span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-1.5 max-h-48 overflow-y-auto custom-scrollbar pr-1">
-                      {cat.modules.map((mod) => (
-                        <button
-                          key={mod.id}
-                          onClick={() => onSelectModule(mod.id)}
-                          className="group/chip inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-indigo-600/20 border border-slate-700/60 hover:border-indigo-500/50 text-slate-300 hover:text-white text-xs font-medium transition-all text-left"
-                        >
-                          <span className="text-sm">{mod.icon}</span>
-                          <span>{mod.label}</span>
-                          <ArrowRight className="w-3 h-3 opacity-0 -translate-x-1 group-hover/chip:opacity-100 group-hover/chip:translate-x-0 transition-all text-indigo-400" />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  <span className="text-xs font-semibold text-slate-400 bg-slate-800 px-2.5 py-1 rounded-full whitespace-nowrap">
+                    {cat.badge}
+                  </span>
                 </div>
 
-                {/* Box Footer Action Button */}
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                  <span className="text-[11px] font-medium text-slate-400">
-                    Ouvrir ce pôle
-                  </span>
+                {/* LISTE DES MODULES AVEC SUBTITLES ET BADGE NOUVEAU */}
+                <div className="space-y-4">
+                  {cat.modules.map((mod) => (
+                    <div
+                      key={mod.id}
+                      onClick={() => onSelectModule(mod.id)}
+                      className="group p-3 rounded-xl bg-slate-950/60 hover:bg-indigo-950/40 border border-slate-800/60 hover:border-indigo-500/40 cursor-pointer transition-all duration-200"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="text-xl flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+                          {mod.icon}
+                        </span>
 
-                  <button
-                    onClick={() => onSelectModule(firstModuleId)}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:${meta.gradient} text-white text-xs font-bold transition-all shadow-md group-hover:scale-105`}
-                  >
-                    <span>Explorer le Pôle</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                            {mod.isNew && (
+                              <span className="text-[10px] font-black uppercase tracking-wider text-amber-300 bg-amber-500/20 border border-amber-500/30 px-1.5 py-0.5 rounded">
+                                NOUVEAU
+                              </span>
+                            )}
+                            <h3 className="text-xs font-bold text-white group-hover:text-indigo-300 transition-colors truncate">
+                              {mod.title}
+                            </h3>
+                          </div>
+
+                          <p className="text-[11px] text-slate-400 font-normal leading-normal">
+                            {mod.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            );
-          })}
+
+              {/* ACTION ACCÉDER */}
+              <div className="mt-6 pt-4 border-t border-slate-800/80 flex justify-end">
+                <button
+                  onClick={() => onSelectModule(cat.modules[0]?.id || 'dashboard')}
+                  className="text-xs font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 group/btn"
+                >
+                  <span>Ouvrir la section</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
 
         {filteredCategories.length === 0 && (
-          <div className="text-center py-16 bg-slate-900/40 rounded-3xl border border-slate-800">
-            <Search className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-white mb-1">Aucun pôle ni module trouvé</h3>
-            <p className="text-slate-400 text-xs max-w-sm mx-auto mb-4">
-              Aucun résultat pour "{searchTerm}". Essayez de modifier vos termes de recherche.
-            </p>
+          <div className="text-center py-16 bg-slate-900/40 rounded-2xl border border-slate-800">
+            <p className="text-slate-400 text-sm mb-3">Aucun pôle ou module ne correspond à "{searchTerm}".</p>
             <button
               onClick={() => setSearchTerm('')}
               className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl"
@@ -352,9 +760,9 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
         )}
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-slate-800/80 py-6 text-center text-xs text-slate-400">
-        <p>© 2026 Système d'Information Stratégique Projet Élite · Tous droits réservés</p>
+      {/* FOOTER NDUGUMi STYLE */}
+      <footer className="border-t border-slate-800 py-6 text-center text-xs text-slate-500 bg-slate-950">
+        <p>© 2026 PROJET ÉLITE 3.0 · Platforme Intégrale Enterprise Operating System</p>
       </footer>
     </div>
   );
