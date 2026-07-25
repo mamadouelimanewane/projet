@@ -17,7 +17,7 @@ import {
   Securite2FA, GestionUtilisateurs,
   OutilsExpert, ExcelIntegration, ThemesPersonnalisation, SauvegardeExport, EditeurProjet, ProjetWizard, GuideInteractif, PortailClient, Gamification, OnboardingIntelligent, KPIsPersonnalisables, AnalyticsAvances, EliteInnovation, TalentMarketplace, JumeauNumerique, ModuleArchitectElite,
   GenieCivilElite, IndustrieElite, EnergyElite, GovTechElite, SmartCityElite, StrategicWarRoom, RefineryElite, FinTechElite,
-  LandingPage
+  LandingPage, CategoryHub
 } from './routes';
 import ProjectSelector, { ProjectProvider, useProject } from './components/modules/ProjectSelector';
 import { MODULES } from "./data/constants";
@@ -95,13 +95,44 @@ export default function App() {
 
   const filteredModules = MODULES;
 
+  const [showHub, setShowHub] = useState(true);
+
   useEffect(() => {
     fetchData();
   }, []);
   
-  // Enter app
+  // Enter app: 1. Landing Page
   if (!showApp) {
-    return <LandingPage onEnter={() => setShowApp(true)} />;
+    return (
+      <LandingPage 
+        onEnter={() => {
+          setShowApp(true);
+          setShowHub(true);
+        }} 
+      />
+    );
+  }
+
+  // Enter app: 2. Category Hub Page (Page des Pôles avec les Box)
+  if (showHub) {
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center text-white font-mono">Chargement du Hub des Pôles...</div>}>
+        <CategoryHub
+          onSelectModule={(moduleId) => {
+            setShowHub(false);
+            goTo(moduleId);
+          }}
+          onGoToDashboard={() => {
+            setShowHub(false);
+            goTo('dashboard');
+          }}
+          onBackToLanding={() => {
+            setShowApp(false);
+            setShowHub(false);
+          }}
+        />
+      </Suspense>
+    );
   }
 
   // 2FA Challenge
@@ -263,6 +294,16 @@ export default function App() {
               </button>
             </div>
             <div className="flex items-center gap-2 md:gap-4">
+               {/* Button Hub des Pôles */}
+               <button 
+                 onClick={() => setShowHub(true)} 
+                 className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40 rounded-lg text-xs font-bold transition-all shadow-sm"
+                 title="Retourner à la page des box des différents pôles"
+               >
+                 <span>❖</span>
+                 <span className="hidden lg:inline font-black uppercase text-[10px] tracking-wider">Hub Pôles</span>
+               </button>
+
                {/* Project Context Switcher */}
                <div className="hidden sm:block"><ProjectSelector /></div>
 

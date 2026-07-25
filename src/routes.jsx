@@ -102,3 +102,5 @@ export const FinTechElite = lazy(() => import('./components/modules/FinTechElite
 
 // ── Pages Spéciales ──────────────────────────────────────────────────────────
 export const LandingPage = lazy(() => import('./components/modules/LandingPage'));
+export const CategoryHub = lazy(() => import('./components/modules/CategoryHub'));
+
