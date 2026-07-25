@@ -5,6 +5,7 @@ import {
   TrendingUp, Brain, Shield, FileText, Cpu, CheckCircle2, 
   Building2, Settings, ArrowLeft, Sparkles, Layers, Zap, Plus, FolderKanban, CheckCircle
 } from 'lucide-react';
+import { applyTheme, getStoredTheme, THEMES } from '../../lib/themeManager';
 
 // Structure complète des catégories et modules avec descriptions et badges NDUGUMi style
 const NDUGUMI_CATEGORIES = [
@@ -531,6 +532,12 @@ const NDUGUMI_CATEGORIES = [
 export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToLanding }) {
   const { data } = useStore();
   const [searchTerm, setSearchTerm] = useState('');
+  
+  const [currentTheme, setCurrentTheme] = useState(getStoredTheme);
+  const switchTheme = (themeId) => {
+    applyTheme(themeId);
+    setCurrentTheme(themeId);
+  };
 
   // Statistiques calculées dynamiquement
   const stats = useMemo(() => {
@@ -589,6 +596,18 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
 
             {/* CTA BOUTONS NDUGUMi */}
             <div className="flex flex-wrap items-center gap-3 justify-center md:justify-end">
+              {/* Sélecteur de thème */}
+              <div className="hidden md:flex items-center gap-1 bg-slate-800/60 border border-slate-700 rounded-lg p-1 mr-2">
+                {Object.values(THEMES).map(t => (
+                  <button
+                    key={t.id}
+                    onClick={() => switchTheme(t.id)}
+                    title={t.nom}
+                    className={`w-6 h-6 rounded-md border-2 transition-all ${currentTheme === t.id ? 'border-white scale-110' : 'border-transparent hover:border-slate-400'}`}
+                    style={{ background: `linear-gradient(135deg, ${t.preview[0]} 0%, ${t.preview[1]} 60%, ${t.preview[2]} 100%)` }}
+                  />
+                ))}
+              </div>
               <button
                 onClick={() => onSelectModule('nouveau-projet')}
                 className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white rounded-xl font-bold text-xs shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
