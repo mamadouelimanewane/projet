@@ -27,20 +27,20 @@ const Facturation = ({ data }) => {
         <StatCard label="En attente" value={`${(data.filter(f => f.statut === "En attente").reduce((s, f) => s + f.montant, 0) / 1000000).toFixed(1)}M FCFA`} color="#f59e0b" icon="⌛" />
         <StatCard label="Factures payées" value={data.filter(f => f.statut === "Payé").length} color="#6366f1" icon="💳" />
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+      <div className="app-surface2 border app-border rounded-xl overflow-hidden">
         <div className="overflow-x-auto -mx-1">
         <table className="w-full">
-          <thead><tr className="border-b border-slate-700">
-            {["N° Facture", "Client", "Projet", "Montant", "Échéance", "Statut", "Action"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>)}
+          <thead><tr className="border-b app-border">
+            {["N° Facture", "Client", "Projet", "Montant", "Échéance", "Statut", "Action"].map(h => <th key={h} className="px-4 py-3 text-left text-xs font-bold app-text2 uppercase">{h}</th>)}
           </tr></thead>
           <tbody>
             {data.map(f => (
-              <tr key={f.id} className="border-b border-slate-700/50 hover:bg-slate-700/30">
+              <tr key={f.id} className="border-b app-border hover:app-surface3">
                 <td className="px-4 py-3 text-sm font-medium text-white">{f.id}</td>
-                <td className="px-4 py-3 text-sm text-slate-400">{f.client}</td>
-                <td className="px-4 py-3 text-sm text-slate-400">{f.projet}</td>
+                <td className="px-4 py-3 text-sm app-text2">{f.client}</td>
+                <td className="px-4 py-3 text-sm app-text2">{f.projet}</td>
                 <td className="px-4 py-3 text-sm font-bold text-indigo-400">{f.montant.toLocaleString()} FCFA</td>
-                <td className="px-4 py-3 text-sm text-slate-500">{f.echeance}</td>
+                <td className="px-4 py-3 text-sm app-text3">{f.echeance}</td>
                 <td className="px-4 py-3"><Badge value={f.statut} map={{ "Payé": "#10b981", "En attente": "#f59e0b", "Brouillon": "#94a3b8" }} /></td>
                 <td className="px-4 py-3"><Btn variant="ghost" size="sm">PDF</Btn></td>
               </tr>

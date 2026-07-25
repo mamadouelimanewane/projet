@@ -37,13 +37,13 @@ const NeuralMap = ({ data }) => {
 
       <div className="flex-1 glass-card rounded-2xl overflow-hidden relative border border-indigo-500/20 shadow-[0_0_50px_rgba(99,102,241,0.05)]">
         <div className="absolute top-6 left-6 z-10 space-y-2">
-          <div className="flex items-center gap-2 bg-slate-900/80 p-2 px-3 border border-slate-700 rounded-lg text-[10px] text-white backdrop-blur">
+          <div className="flex items-center gap-2 app-surface p-2 px-3 border app-border rounded-lg text-[10px] text-white backdrop-blur">
             <span className="w-2 h-2 rounded-full bg-emerald-500" /> Projet en bonne voie
           </div>
-          <div className="flex items-center gap-2 bg-slate-900/80 p-2 px-3 border border-slate-700 rounded-lg text-[10px] text-white backdrop-blur">
+          <div className="flex items-center gap-2 app-surface p-2 px-3 border app-border rounded-lg text-[10px] text-white backdrop-blur">
             <span className="w-2 h-2 rounded-full bg-indigo-500" /> En développement
           </div>
-          <div className="flex items-center gap-2 bg-slate-900/80 p-2 px-3 border border-slate-700 rounded-lg text-[10px] text-white backdrop-blur">
+          <div className="flex items-center gap-2 app-surface p-2 px-3 border app-border rounded-lg text-[10px] text-white backdrop-blur">
              <span className="w-2 h-2 rounded-full bg-red-500" /> Risque de blocage cascade
           </div>
         </div>
@@ -88,7 +88,7 @@ const NeuralMap = ({ data }) => {
           height={window.innerHeight - 400}
         />
         
-        <div className="absolute right-6 bottom-6 bg-slate-900/60 p-4 border border-slate-700 rounded-xl text-[10px] text-slate-400 max-w-[200px]">
+        <div className="absolute right-6 bottom-6 app-surface p-4 border app-border rounded-xl text-[10px] app-text2 max-w-[200px]">
            💡 <b>Usage :</b> Utilisez la molette pour zoomer. Cliquez et faites glisser les nœuds pour réorganiser la topologie.
         </div>
       </div>

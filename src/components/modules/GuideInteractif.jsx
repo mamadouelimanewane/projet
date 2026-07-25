@@ -163,7 +163,7 @@ const GuideInteractif = () => {
       />
 
       {/* Tabs */}
-      <div className="flex gap-2 flex-wrap border-b border-slate-800 pb-4">
+      <div className="flex gap-2 flex-wrap border-b app-border pb-4">
         {[
           { id: "workflow", label: "🔄 Workflow Projet" },
           { id: "cas", label: "📖 Études de Cas" },
@@ -180,14 +180,14 @@ const GuideInteractif = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-entrance">
           {/* Left — étapes list */}
           <div className="space-y-2">
-            <p className="text-[10px] text-slate-500 uppercase font-black tracking-widest mb-4">Les 5 Phases PMBOK</p>
+            <p className="text-[10px] app-text3 uppercase font-black tracking-widest mb-4">Les 5 Phases PMBOK</p>
             {WORKFLOW_ETAPES.map((e, i) => (
               <button
                 key={e.id}
                 onClick={() => setEtapeActive(i)}
                 className={`w-full text-left p-4 rounded-xl border transition-all ${i === etapeActive
                   ? "border-indigo-500 bg-indigo-500/10"
-                  : "border-slate-700/50 bg-slate-900/50 hover:border-slate-600"
+                  : "app-border app-surface hover:app-border2"
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -211,7 +211,7 @@ const GuideInteractif = () => {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h2 className="text-2xl font-black text-white mb-1">{etape.phase}</h2>
-                  <p className="text-slate-400 text-sm">{etape.description}</p>
+                  <p className="app-text2 text-sm">{etape.description}</p>
                 </div>
                 <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full border flex-shrink-0 ${NIVEAU_COLORS[etape.niveau]}`}>{etape.niveau}</span>
               </div>
@@ -223,15 +223,15 @@ const GuideInteractif = () => {
 
             {/* Activités */}
             <div className="glass-card rounded-2xl p-6">
-              <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Activités principales</p>
+              <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-4">Activités principales</p>
               <div className="space-y-2">
                 {etape.activites.map((a, i) => (
-                  <div key={i} className="flex items-center gap-3 p-3 bg-slate-800/40 rounded-xl">
+                  <div key={i} className="flex items-center gap-3 p-3 app-surface2 rounded-xl">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-black flex-shrink-0"
                       style={{ backgroundColor: etape.color + "20", color: etape.color }}>
                       {i + 1}
                     </div>
-                    <span className="text-sm text-slate-300">{a}</span>
+                    <span className="text-sm app-text">{a}</span>
                   </div>
                 ))}
               </div>
@@ -240,7 +240,7 @@ const GuideInteractif = () => {
             {/* Livrable + Définition */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="glass-card rounded-2xl p-5">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Livrable attendu</p>
+                <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-2">Livrable attendu</p>
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">📄</span>
                   <span className="text-white font-bold text-sm">{etape.livrable}</span>
@@ -252,7 +252,7 @@ const GuideInteractif = () => {
                   <TooltipInfo term={etape.definitionCle.term} definition={etape.definitionCle.def} />
                 </p>
                 <span className="text-white font-bold text-sm">{etape.definitionCle.term}</span>
-                <p className="text-xs text-slate-400 mt-1">{etape.definitionCle.def}</p>
+                <p className="text-xs app-text2 mt-1">{etape.definitionCle.def}</p>
               </div>
             </div>
 
@@ -282,7 +282,7 @@ const GuideInteractif = () => {
               <div className="flex gap-2">
                 {WORKFLOW_ETAPES.map((_, i) => (
                   <div key={i} onClick={() => setEtapeActive(i)}
-                    className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all ${i === etapeActive ? "scale-125" : "bg-slate-700 hover:bg-slate-500"}`}
+                    className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all ${i === etapeActive ? "scale-125" : "app-surface3 hover:bg-slate-500"}`}
                     style={i === etapeActive ? { backgroundColor: etape.color } : {}} />
                 ))}
               </div>
@@ -297,20 +297,20 @@ const GuideInteractif = () => {
       {/* ── TAB ÉTUDES DE CAS ── */}
       {activeTab === "cas" && (
         <div className="space-y-6 animate-entrance">
-          <p className="text-sm text-slate-400">Situations réelles rencontrées sur des projets — comment les experts les résolvent.</p>
+          <p className="text-sm app-text2">Situations réelles rencontrées sur des projets — comment les experts les résolvent.</p>
           {CASE_STUDIES.map((c, i) => (
             <div key={i} className="glass-card rounded-2xl p-6" style={{ borderLeft: `4px solid ${c.color}` }}>
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl">{c.icon}</span>
                 <div>
                   <h3 className="text-lg font-black text-white">{c.title}</h3>
-                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-slate-800 text-slate-400">{c.pmbok}</span>
+                  <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full app-surface2 app-text2">{c.pmbok}</span>
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-slate-800/50 rounded-xl">
-                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">📌 Contexte</p>
-                  <p className="text-sm text-slate-300">{c.context}</p>
+                <div className="p-4 app-surface2 rounded-xl">
+                  <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-2">📌 Contexte</p>
+                  <p className="text-sm app-text">{c.context}</p>
                 </div>
                 <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
                   <p className="text-[10px] font-black text-red-400 uppercase tracking-widest mb-2">⚠️ Problème</p>
@@ -333,15 +333,15 @@ const GuideInteractif = () => {
             <div className="space-y-6">
               {/* Progress */}
               <div className="flex items-center justify-between mb-2">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Question {quizIdx + 1} / {QUIZ_QUESTIONS.length}</p>
+                <p className="text-[10px] font-black app-text3 uppercase tracking-widest">Question {quizIdx + 1} / {QUIZ_QUESTIONS.length}</p>
                 <span className="text-[10px] font-bold text-indigo-400">{score} point{score > 1 ? "s" : ""}</span>
               </div>
-              <div className="w-full bg-slate-800 rounded-full h-1.5">
+              <div className="w-full app-surface2 rounded-full h-1.5">
                 <div className="h-1.5 rounded-full bg-indigo-500 transition-all" style={{ width: `${((quizIdx) / QUIZ_QUESTIONS.length) * 100}%` }} />
               </div>
 
               {/* Question */}
-              <div className="p-5 bg-slate-800/60 border border-slate-700 rounded-2xl">
+              <div className="p-5 app-surface2 border app-border rounded-2xl">
                 <h4 className="text-lg font-bold text-white leading-relaxed">{QUIZ_QUESTIONS[quizIdx].q}</h4>
               </div>
 
@@ -350,11 +350,11 @@ const GuideInteractif = () => {
                 {QUIZ_QUESTIONS[quizIdx].options.map((opt, i) => {
                   const isSelected = selectedOpt === i;
                   const revealed = selectedOpt !== null;
-                  let cls = "border-slate-700 bg-slate-800/50 hover:border-indigo-500/50 text-slate-200";
+                  let cls = "app-border app-surface2 hover:border-indigo-500/50 text-slate-200";
                   if (revealed) {
                     if (opt.correct) cls = "border-emerald-500 bg-emerald-500/10 text-emerald-200";
                     else if (isSelected) cls = "border-red-500 bg-red-500/10 text-red-300 opacity-60";
-                    else cls = "border-slate-800 bg-slate-900 text-slate-600 opacity-30 pointer-events-none";
+                    else cls = "app-border app-surface text-slate-600 opacity-30 pointer-events-none";
                   }
                   return (
                     <div key={i}>
@@ -382,7 +382,7 @@ const GuideInteractif = () => {
               </div>
 
               {selectedOpt !== null && (
-                <div className="flex justify-end pt-4 border-t border-slate-700/50">
+                <div className="flex justify-end pt-4 border-t app-border">
                   <Btn onClick={nextQuestion}>
                     {quizIdx >= QUIZ_QUESTIONS.length - 1 ? "Voir mon résultat 🏆" : "Question suivante ▶"}
                   </Btn>
@@ -395,8 +395,8 @@ const GuideInteractif = () => {
               <h2 className="text-3xl font-black text-white mb-2">
                 {score >= 3 ? "Excellent !" : score >= 2 ? "Bien joué !" : "Continuez à apprendre !"}
               </h2>
-              <p className="text-slate-400 mb-2">Score : <span className="text-indigo-400 font-black text-2xl">{score} / {QUIZ_QUESTIONS.length}</span></p>
-              <p className="text-sm text-slate-500 mb-8">
+              <p className="app-text2 mb-2">Score : <span className="text-indigo-400 font-black text-2xl">{score} / {QUIZ_QUESTIONS.length}</span></p>
+              <p className="text-sm app-text3 mb-8">
                 {score === QUIZ_QUESTIONS.length ? "Score parfait ! Vous maîtrisez les fondamentaux." :
                  score >= 2 ? "Bonne base. Relisez les études de cas pour progresser." :
                  "Consultez le workflow pédagogique pour renforcer vos acquis."}

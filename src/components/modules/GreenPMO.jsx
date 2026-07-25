@@ -14,7 +14,7 @@ const GreenPMO = ({ data }) => {
       </div>
 
       <div className="glass-card rounded-2xl p-6">
-        <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Consommation par Projet vs Limite ESG</h3>
+        <h3 className="text-xs font-black app-text3 mb-8 uppercase tracking-[0.2em]">Consommation par Projet vs Limite ESG</h3>
         
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data || []} layout="vertical" margin={{ left: 50 }}>
@@ -30,11 +30,11 @@ const GreenPMO = ({ data }) => {
       </div>
       
       <div className="glass-card rounded-2xl p-6">
-         <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Détail Conformité Environnementale</h3>
-         <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50">
+         <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Détail Conformité Environnementale</h3>
+         <div className="app-surface rounded-xl overflow-hidden border app-border">
           <div className="overflow-x-auto -mx-1">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-800/80 text-[10px] uppercase font-bold text-slate-500 border-b border-slate-700/50">
+          <table className="w-full text-left text-sm app-text">
+            <thead className="app-surface2 text-[10px] uppercase font-bold app-text3 border-b app-border">
               <tr>
                 <th className="px-5 py-4">Projet</th>
                 <th className="px-5 py-4">Catégorie Principale</th>
@@ -44,7 +44,7 @@ const GreenPMO = ({ data }) => {
             </thead>
             <tbody className="divide-y divide-slate-800/50">
               {(data || []).map(p => (
-                <tr key={p.id} className="hover:bg-slate-800/30 transition-colors">
+                <tr key={p.id} className="hover:app-surface2 transition-colors">
                   <td className="px-5 py-4 font-bold text-white">{p.projet}</td>
                   <td className="px-5 py-4">{p.categorie}</td>
                   <td className="px-5 py-4 text-right font-mono text-indigo-300">{p.empreinteReel} {p.unite}</td>

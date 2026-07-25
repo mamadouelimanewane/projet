@@ -88,7 +88,7 @@ const ThemesPersonnalisation = () => {
                 key={t.id}
                 onClick={() => handleThemeChange(t.id)}
                 className={`relative rounded-2xl overflow-hidden border-2 transition-all duration-300 hover:scale-[1.02] ${
-                  active ? "border-indigo-500 shadow-lg shadow-indigo-500/20" : "border-slate-700 hover:border-slate-500"
+                  active ? "border-indigo-500 shadow-lg shadow-indigo-500/20" : "app-border hover:border-slate-500"
                 }`}
               >
                 {/* Preview miniature */}
@@ -121,15 +121,15 @@ const ThemesPersonnalisation = () => {
                 </div>
 
                 {/* Label */}
-                <div className={`p-4 text-left ${active ? "bg-indigo-600/10" : "bg-slate-800/80"}`}>
+                <div className={`p-4 text-left ${active ? "bg-indigo-600/10" : "app-surface2"}`}>
                   <div className="flex items-center gap-2 mb-1">
-                    <Icon className={`w-4 h-4 ${active ? "text-indigo-400" : "text-slate-400"}`} />
-                    <span className={`font-bold text-sm ${active ? "text-white" : "text-slate-300"}`}>{t.nom}</span>
+                    <Icon className={`w-4 h-4 ${active ? "text-indigo-400" : "app-text2"}`} />
+                    <span className={`font-bold text-sm ${active ? "text-white" : "app-text"}`}>{t.nom}</span>
                   </div>
-                  <p className="text-xs text-slate-500">{t.description}</p>
+                  <p className="text-xs app-text3">{t.description}</p>
                   <div className="flex gap-1 mt-2">
                     {t.preview.map((c, i) => (
-                      <div key={i} className="w-4 h-4 rounded-full border border-slate-600"
+                      <div key={i} className="w-4 h-4 rounded-full border app-border2"
                         style={{ background: c }} />
                     ))}
                   </div>
@@ -139,7 +139,7 @@ const ThemesPersonnalisation = () => {
           })}
         </div>
 
-        <p className="text-xs text-slate-500 mt-4">
+        <p className="text-xs app-text3 mt-4">
           💡 Le thème s'applique instantanément et est mémorisé pour vos prochaines visites.
         </p>
       </Card>
@@ -181,11 +181,11 @@ const ThemesPersonnalisation = () => {
               className={`p-4 rounded-xl border-2 transition-all ${
                 taillePolice === t.value
                   ? "border-indigo-500 bg-indigo-600/20"
-                  : "border-slate-700 bg-slate-800 hover:border-slate-600"
+                  : "app-border app-surface2 hover:app-border2"
               }`}
             >
               <p style={{ fontSize: t.px }} className="font-medium text-white">Aa</p>
-              <p className="text-sm text-slate-400 mt-2">{t.nom}</p>
+              <p className="text-sm app-text2 mt-2">{t.nom}</p>
             </button>
           ))}
         </div>
@@ -199,10 +199,10 @@ const ThemesPersonnalisation = () => {
             { label: "Mode compact", desc: "Réduit les espacements", val: compactMode, set: setCompactMode },
             { label: "Animations",   desc: "Effets visuels et transitions", val: animations, set: setAnimations },
           ].map((opt) => (
-            <div key={opt.label} className="flex items-center justify-between p-4 bg-slate-800 rounded-xl">
+            <div key={opt.label} className="flex items-center justify-between p-4 app-surface2 rounded-xl">
               <div>
                 <p className="font-medium text-white">{opt.label}</p>
-                <p className="text-sm text-slate-400">{opt.desc}</p>
+                <p className="text-sm app-text2">{opt.desc}</p>
               </div>
               <button
                 onClick={() => opt.set(!opt.val)}

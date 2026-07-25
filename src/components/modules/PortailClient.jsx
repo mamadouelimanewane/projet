@@ -12,8 +12,8 @@ const PortailClient = ({ data }) => {
         <StatCard label="Jalons validés" value={data.jalons.filter(j => j.statut === "Atteint").length} color="#10b981" icon="◆" />
         <StatCard label="Prochaine livraison" value="15 Mars" color="#f59e0b" icon="⏱" />
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-        <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">État d'avancement des Projets</h3>
+      <div className="app-surface2 border app-border rounded-xl p-5">
+        <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">État d'avancement des Projets</h3>
         <div className="space-y-4">
           {data.projets.filter(p => p.statut !== "Terminé").map(p => (
             <div key={p.id}>

@@ -236,21 +236,21 @@ const Notifications = ({ data }) => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="glass-card rounded-xl p-4">
           <div className="text-2xl font-bold text-white">{unreadCount}</div>
-          <div className="text-xs text-slate-400">Non lues</div>
+          <div className="text-xs app-text2">Non lues</div>
         </div>
         <div className="glass-card rounded-xl p-4">
           <div className="text-2xl font-bold text-red-400">{criticalCount}</div>
-          <div className="text-xs text-slate-400">Critiques</div>
+          <div className="text-xs app-text2">Critiques</div>
         </div>
         <div className="glass-card rounded-xl p-4">
           <div className="text-2xl font-bold text-white">{activeNotifications.length}</div>
-          <div className="text-xs text-slate-400">Total Actives</div>
+          <div className="text-xs app-text2">Total Actives</div>
         </div>
         <div className="glass-card rounded-xl p-4">
           <div className="text-2xl font-bold text-emerald-400">
             {notifications.filter(n => n.archive).length}
           </div>
-          <div className="text-xs text-slate-400">Archivées</div>
+          <div className="text-xs app-text2">Archivées</div>
         </div>
       </div>
 
@@ -278,7 +278,7 @@ const Notifications = ({ data }) => {
           <div className="glass-card rounded-2xl p-12 text-center">
             <div className="text-6xl mb-4">🔔</div>
             <h3 className="text-xl font-bold text-white mb-2">Aucune notification</h3>
-            <p className="text-slate-400">Tout est sous contrôle !</p>
+            <p className="app-text2">Tout est sous contrôle !</p>
           </div>
         ) : (
           activeNotifications
@@ -296,15 +296,15 @@ const Notifications = ({ data }) => {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <h4 className={`font-bold ${!notif.lu ? 'text-white' : 'text-slate-400'}`}>
+                      <h4 className={`font-bold ${!notif.lu ? 'text-white' : 'app-text2'}`}>
                         {notif.titre}
                       </h4>
                       {!notif.lu && (
                         <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
                       )}
                     </div>
-                    <p className="text-sm text-slate-400 mb-2">{notif.message}</p>
-                    <div className="flex items-center gap-3 text-xs text-slate-500">
+                    <p className="text-sm app-text2 mb-2">{notif.message}</p>
+                    <div className="flex items-center gap-3 text-xs app-text3">
                       <span>📁 {notif.projet}</span>
                       <span>🕒 {new Date(notif.date).toLocaleString('fr-FR')}</span>
                       {notif.destinataire && <span>👤 {notif.destinataire}</span>}
@@ -346,7 +346,7 @@ const Notifications = ({ data }) => {
               onChange={e => setNewNotif({...newNotif, titre: e.target.value})}
             />
             <textarea
-              className="w-full p-3 bg-slate-800 border border-slate-700 rounded-lg text-white text-sm"
+              className="w-full p-3 app-surface2 border app-border rounded-lg text-white text-sm"
               rows="3"
               placeholder="Message..."
               value={newNotif.message}
@@ -422,7 +422,7 @@ const Notifications = ({ data }) => {
                 className="w-5 h-5 accent-indigo-500"
               />
             </div>
-            <div className="pt-4 border-t border-slate-700">
+            <div className="pt-4 border-t app-border">
               <label className="text-sm text-white block mb-2">Seuil Alerte Budget (%)</label>
               <input 
                 type="range" 
@@ -432,7 +432,7 @@ const Notifications = ({ data }) => {
                 onChange={e => setConfig({...config, alertThreshold: parseInt(e.target.value)})}
                 className="w-full accent-indigo-500"
               />
-              <div className="text-center text-sm text-slate-400">{config.alertThreshold}%</div>
+              <div className="text-center text-sm app-text2">{config.alertThreshold}%</div>
             </div>
             <Btn onClick={() => {
               localStorage.setItem('projet-elite-notif-config', JSON.stringify(config));

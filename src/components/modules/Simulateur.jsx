@@ -24,14 +24,14 @@ const Simulateur = ({ data }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {SCENARIOS.map(s => (
           <button key={s.id} onClick={() => setActiveScenario(activeScenario === s.id ? null : s.id)}
-            className={`p-4 rounded-xl border transition-all text-left ${activeScenario === s.id ? "bg-indigo-600 border-indigo-400 shadow-lg" : "bg-slate-800/60 border-slate-700 hover:border-slate-500"}`}>
+            className={`p-4 rounded-xl border transition-all text-left ${activeScenario === s.id ? "bg-indigo-600 border-indigo-400 shadow-lg" : "app-surface2 app-border hover:border-slate-500"}`}>
             <h3 className="text-sm font-bold text-white mb-1">{s.label}</h3>
-            <p className="text-xs text-slate-400 leading-tight">{s.desc}</p>
+            <p className="text-xs app-text2 leading-tight">{s.desc}</p>
           </button>
         ))}
       </div>
 
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-2xl p-6">
+      <div className="app-surface2 border app-border rounded-2xl p-6">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-base font-bold text-white">Résultat de la Simulation</h3>
           {activeScenario && <Btn variant="ghost" onClick={() => setActiveScenario(null)}>Réinitialiser</Btn>}
@@ -39,12 +39,12 @@ const Simulateur = ({ data }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {simStats.map((s, i) => (
-            <div key={i} className="bg-slate-900/50 rounded-xl p-4 border border-slate-800">
-              <p className="text-xs text-slate-500 uppercase font-bold tracking-widest mb-2">{s.label}</p>
+            <div key={i} className="app-surface rounded-xl p-4 border app-border">
+              <p className="text-xs app-text3 uppercase font-bold tracking-widest mb-2">{s.label}</p>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-xs text-slate-600">Actuel</p>
-                  <p className="text-sm font-bold text-slate-400">{s.base}</p>
+                  <p className="text-sm font-bold app-text2">{s.base}</p>
                 </div>
                 <div className="text-xl">➔</div>
                 <div className="text-right">
@@ -56,8 +56,8 @@ const Simulateur = ({ data }) => {
           ))}
         </div>
 
-        <div className="mt-8 pt-6 border-t border-slate-700">
-          <h4 className="text-sm font-bold text-slate-300 mb-4">Analyse d'Impact (Modèle Prédictif)</h4>
+        <div className="mt-8 pt-6 border-t app-border">
+          <h4 className="text-sm font-bold app-text mb-4">Analyse d'Impact (Modèle Prédictif)</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ResponsiveContainer width="100%" height={200}>
               <RadarChart data={[
@@ -77,7 +77,7 @@ const Simulateur = ({ data }) => {
             <div className="flex flex-col justify-center space-y-3">
               <div className="bg-indigo-600/10 border border-indigo-500/20 rounded-xl p-4">
                 <p className="text-xs font-bold text-indigo-400 mb-2 uppercase">💡 Recommandation Élite</p>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-sm app-text leading-relaxed">
                   {imp.budget > 0 ? "Envisager un arbitrage sur les fonctionnalités non critiques pour compenser le surcoût." :
                     imp.delai > 0 ? "Activer le mode 'Fast-track' ou réduire le périmètre du prochain jalon." :
                       "Maintenir la vigilance sur la vélocité de l'équipe."}

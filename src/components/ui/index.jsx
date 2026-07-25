@@ -27,11 +27,11 @@ const Badge = ({ value, variant, map = STATUT_COLORS, size = "sm", children }) =
 
 const ProgressBar = ({ value, max = 100, color = "#6366f1" }) => (
   <div className="flex items-center gap-3 w-full group">
-    <div className="flex-1 bg-slate-800/50 rounded-full h-1.5 overflow-hidden border border-slate-700/30">
+    <div className="flex-1 app-surface2 rounded-full h-1.5 overflow-hidden border app-border">
       <div className="h-full rounded-full transition-all duration-700 ease-out shadow-[0_0_8px_rgba(99,102,241,0.4)]"
         style={{ width: `${Math.min((value / max) * 100, 100)}%`, backgroundColor: color }} />
     </div>
-    <span className="text-[10px] font-mono text-slate-500 group-hover:text-indigo-400 transition-colors w-10 text-right">{value}{max !== 100 ? "" : "%"}</span>
+    <span className="text-[10px] font-mono app-text3 group-hover:text-indigo-400 transition-colors w-10 text-right">{value}{max !== 100 ? "" : "%"}</span>
   </div>
 );
 
@@ -54,7 +54,7 @@ const StatCard = ({ label, title, value, sub, subtitle, color = "#6366f1", icon:
   return (
     <div className="glass-card rounded-2xl p-5 flex flex-col gap-3 animate-entrance hover:border-indigo-500/30 transition-all duration-300 group">
       <div className="flex justify-between items-start">
-        <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em]">{displayLabel}</p>
+        <p className="text-[10px] app-text3 font-bold uppercase tracking-[0.2em]">{displayLabel}</p>
         <span className="text-xl group-hover:scale-110 transition-transform duration-300" style={{ color: finalColor, filter: `drop-shadow(0 0 5px ${finalColor}44)` }}>
           {typeof Icon === 'string' ? Icon : (Icon && <Icon className="w-5 h-5" />)}
         </span>
@@ -63,12 +63,12 @@ const StatCard = ({ label, title, value, sub, subtitle, color = "#6366f1", icon:
         <div className="flex items-baseline gap-2">
           <p className="text-3xl font-black tracking-tight" style={{ color: finalColor }}>{value}</p>
           {trend !== undefined && (
-            <span className="text-[10px] font-bold text-slate-500">
+            <span className="text-[10px] font-bold app-text3">
               {trend}%
             </span>
           )}
         </div>
-        {displaySub && <p className="text-xs text-slate-500 font-medium mt-1">{displaySub}</p>}
+        {displaySub && <p className="text-xs app-text3 font-medium mt-1">{displaySub}</p>}
       </div>
     </div>
   );
@@ -76,11 +76,11 @@ const StatCard = ({ label, title, value, sub, subtitle, color = "#6366f1", icon:
 
 const Modal = ({ title, onClose, children }) => (
   <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div className="absolute inset-0 bg-slate-950/80 backdrop-blur-md" onClick={onClose} />
-    <div className="relative glass-card border border-slate-700/50 rounded-3xl w-full max-w-lg shadow-2xl animate-entrance overflow-hidden">
-      <div className="flex justify-between items-center p-6 border-b border-slate-800/50">
+    <div className="absolute inset-0 app-bg backdrop-blur-md" onClick={onClose} />
+    <div className="relative glass-card border app-border rounded-3xl w-full max-w-lg shadow-2xl animate-entrance overflow-hidden">
+      <div className="flex justify-between items-center p-6 border-b app-border">
         <h3 className="text-xl font-bold text-white tracking-tight">{title}</h3>
-        <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-800/50 text-slate-400 hover:text-white transition-colors">×</button>
+        <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full app-surface2 app-text2 hover:text-white transition-colors">×</button>
       </div>
       <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto custom-scrollbar">{children}</div>
     </div>
@@ -89,17 +89,17 @@ const Modal = ({ title, onClose, children }) => (
 
 const Input = ({ label, ...props }) => (
   <div className="space-y-1.5">
-    {label && <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider ml-1">{label}</label>}
-    <input className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all" {...props} />
+    {label && <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider ml-1">{label}</label>}
+    <input className="w-full app-surface border app-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all" {...props} />
   </div>
 );
 
 const Select = ({ label, options, ...props }) => (
   <div className="space-y-1.5">
-    {label && <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider ml-1">{label}</label>}
-    <select className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all appearance-none cursor-pointer" {...props}>
+    {label && <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider ml-1">{label}</label>}
+    <select className="w-full app-surface border app-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all appearance-none cursor-pointer" {...props}>
       {options.map(o => (
-        <option key={o} value={o} className="bg-slate-900 text-white">{o}</option>
+        <option key={o} value={o} className="app-surface text-white">{o}</option>
       ))}
     </select>
   </div>
@@ -107,8 +107,8 @@ const Select = ({ label, options, ...props }) => (
 
 const Textarea = ({ label, ...props }) => (
   <div className="space-y-1.5">
-    {label && <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider ml-1">{label}</label>}
-    <textarea className="w-full bg-slate-900/50 border border-slate-700/50 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all resize-none" rows={3} {...props} />
+    {label && <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider ml-1">{label}</label>}
+    <textarea className="w-full app-surface border app-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all resize-none" rows={3} {...props} />
   </div>
 );
 
@@ -116,7 +116,7 @@ const Btn = ({ children, onClick, variant = "primary", size = "sm", className = 
   const variants = {
     primary: "premium-gradient text-white shadow-lg shadow-indigo-600/20",
     danger: "bg-red-600/10 hover:bg-red-600/20 text-red-400 border border-red-600/20",
-    ghost: "bg-slate-800/50 hover:bg-slate-800 text-slate-300 border border-slate-700/50",
+    ghost: "app-surface2 hover:app-surface2 app-text border app-border",
     success: "bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-600/20",
     indigo: "bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 border border-indigo-600/20",
   };
@@ -146,14 +146,14 @@ const SectionHeader = ({ title, subtitle, action }) => (
   <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-3 md:gap-4 animate-entrance">
     <div className="min-w-0 flex-1">
       <h2 className="text-xl md:text-3xl font-black text-white tracking-tight leading-none truncate">{title}</h2>
-      {subtitle && <p className="text-[10px] md:text-xs text-slate-500 font-medium mt-1 md:mt-2 uppercase tracking-widest line-clamp-1">{subtitle}</p>}
+      {subtitle && <p className="text-[10px] md:text-xs app-text3 font-medium mt-1 md:mt-2 uppercase tracking-widest line-clamp-1">{subtitle}</p>}
     </div>
     <div className="flex-shrink-0 w-full md:w-auto">{action}</div>
   </div>
 );
 
 const Card = ({ children, className = "", noPadding = false }) => (
-  <div className={`glass-card rounded-2xl border border-slate-700/50 overflow-hidden transition-all duration-300 ${noPadding ? "" : "p-6"} ${className}`}>
+  <div className={`glass-card rounded-2xl border app-border overflow-hidden transition-all duration-300 ${noPadding ? "" : "p-6"} ${className}`}>
     {children}
   </div>
 );
@@ -164,9 +164,9 @@ const TooltipInfo = ({ term, definition }) => {
     <span className="relative inline-block ml-1 group cursor-help" onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
       <span className="w-4 h-4 rounded-full bg-indigo-600/20 border border-indigo-500/30 text-indigo-400 text-[10px] flex items-center justify-center font-bold">?</span>
       {show && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl z-[100] animate-entrance">
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 app-surface border app-border rounded-xl shadow-2xl z-[100] animate-entrance">
           <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">{term}</p>
-          <p className="text-[11px] text-slate-300 leading-relaxed">{definition}</p>
+          <p className="text-[11px] app-text leading-relaxed">{definition}</p>
           <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-900" />
         </div>
       )}

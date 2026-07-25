@@ -93,10 +93,10 @@ const DocumentsGED = ({ data = [] }) => {
 
       <div className="glass-card rounded-2xl p-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
-          <div className="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
+          <div className="flex app-surface p-1 rounded-xl border app-border">
             {categories.map(c => (
               <button key={c} onClick={() => setFilter(c)}
-                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === c ? "bg-indigo-600 text-white shadow-lg" : "text-slate-500 hover:text-slate-300"}`}>
+                className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${filter === c ? "bg-indigo-600 text-white shadow-lg" : "app-text3 hover:app-text"}`}>
                 {c}
               </button>
             ))}
@@ -106,19 +106,19 @@ const DocumentsGED = ({ data = [] }) => {
               placeholder="Rechercher un plan, un PV..." 
               value={search} 
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-slate-900 border-slate-700 h-10 text-xs"
+              className="app-surface app-border h-10 text-xs"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredDocs.map(d => (
-            <div key={d.id} className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 relative group hover:border-indigo-500/40 transition-all">
+            <div key={d.id} className="app-surface border app-border rounded-xl p-6 relative group hover:border-indigo-500/40 transition-all">
               <div className="flex justify-between items-start mb-4">
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl shadow-lg ${
                   d.type === 'Technique' ? 'bg-indigo-500/10 text-indigo-400' : 
                   d.type === 'Sécurité' ? 'bg-amber-500/10 text-amber-500' : 
-                  'bg-slate-700/20 text-slate-400'
+                  'app-surface3 app-text2'
                 }`}>
                   {d.nom.endsWith('.pdf') ? '📄' : d.nom.endsWith('.xlsx') ? '📊' : '📁'}
                 </div>
@@ -129,15 +129,15 @@ const DocumentsGED = ({ data = [] }) => {
                 <h4 className="text-sm font-bold text-white truncate" title={d.nom}>{d.nom}</h4>
                 <p className="text-[10px] text-indigo-400 font-bold uppercase">{d.projet}</p>
                 <div className="flex items-center gap-2 mt-2">
-                   <span className="text-[9px] bg-slate-800 px-2 py-0.5 rounded border border-slate-700 text-slate-400">{d.type}</span>
+                   <span className="text-[9px] app-surface2 px-2 py-0.5 rounded border app-border app-text2">{d.type}</span>
                 </div>
               </div>
 
-              <div className="flex justify-between items-center pt-4 border-t border-slate-800">
-                <div className="text-[9px] text-slate-500">Par {d.auteur || 'Auto-IA'} • {d.date}</div>
+              <div className="flex justify-between items-center pt-4 border-t app-border">
+                <div className="text-[9px] app-text3">Par {d.auteur || 'Auto-IA'} • {d.date}</div>
                 <div className="flex gap-2">
-                  <button className="text-slate-500 hover:text-white transition-colors">👁️</button>
-                  <button className="text-slate-500 hover:text-indigo-400 transition-colors">📥</button>
+                  <button className="app-text3 hover:text-white transition-colors">👁️</button>
+                  <button className="app-text3 hover:text-indigo-400 transition-colors">📥</button>
                 </div>
               </div>
               
@@ -157,17 +157,17 @@ const DocumentsGED = ({ data = [] }) => {
       {/* Modal Saisie Document */}
       {isOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-md p-6 shadow-2xl animate-entrance">
+          <div className="app-surface border app-border rounded-2xl w-full max-w-md p-6 shadow-2xl animate-entrance">
             <h3 className="text-xl font-bold text-white mb-4">Ajouter un Document</h3>
             
             <form onSubmit={handleSubmit} className="space-y-4">
               {!currentProject && (
                 <div>
-                  <label className="text-xs font-bold text-slate-400 uppercase block mb-1">Projet</label>
+                  <label className="text-xs font-bold app-text2 uppercase block mb-1">Projet</label>
                   <select 
                     value={newDoc.projet}
                     onChange={(e) => setNewDoc({...newDoc, projet: e.target.value})}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                    className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
                   >
                     <option value="">Sélectionner un projet</option>
                     {globalData.projets?.filter(p => !p.archived).map(p => (
@@ -178,22 +178,22 @@ const DocumentsGED = ({ data = [] }) => {
               )}
 
               <div>
-                <label className="text-xs font-bold text-slate-400 uppercase block mb-1">Nom du Document</label>
+                <label className="text-xs font-bold app-text2 uppercase block mb-1">Nom du Document</label>
                 <input 
                   type="text" 
                   value={newDoc.nom}
                   onChange={(e) => setNewDoc({...newDoc, nom: e.target.value})}
                   placeholder="Ex: Plan de masse"
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-400 uppercase block mb-1">Type</label>
+                <label className="text-xs font-bold app-text2 uppercase block mb-1">Type</label>
                 <select 
                   value={newDoc.type}
                   onChange={(e) => setNewDoc({...newDoc, type: e.target.value})}
-                  className="w-full bg-slate-800 border border-slate-700 rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
                 >
                   <option value="Technique">Technique</option>
                   <option value="Officiel">Officiel</option>
@@ -202,7 +202,7 @@ const DocumentsGED = ({ data = [] }) => {
                 </select>
               </div>
 
-              <div className="flex gap-3 justify-end pt-4 border-t border-slate-800">
+              <div className="flex gap-3 justify-end pt-4 border-t app-border">
                 <Btn variant="ghost" onClick={() => setIsOpen(false)}>Annuler</Btn>
                 <button type="submit" className="px-5 py-2.5 text-sm rounded-xl font-bold transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 bg-indigo-600 text-white hover:bg-indigo-700">Ajouter</button>
               </div>

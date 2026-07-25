@@ -26,8 +26,8 @@ const Ressources = ({ data, setData }) => {
         <StatCard label="Sur-chargés" value={data.filter(r => r.charge > r.disponibilite * 0.9).length} color="#f59e0b" icon="⚠" sub="charge > 90% dispo" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Taux de Charge par Membre</h3>
+        <div className="app-surface2 border app-border rounded-xl p-5">
+          <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Taux de Charge par Membre</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={allocationData} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -40,8 +40,8 @@ const Ressources = ({ data, setData }) => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Par Spécialité</h3>
+        <div className="app-surface2 border app-border rounded-xl p-5">
+          <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Par Spécialité</h3>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie data={parSpecialite} cx="50%" cy="50%" outerRadius={80} paddingAngle={3} dataKey="value" label={({ name, value }) => `${name} (${value})`}>
@@ -57,7 +57,7 @@ const Ressources = ({ data, setData }) => {
           const taux = Math.round((r.charge / r.disponibilite) * 100);
           const surcharge = r.charge > r.disponibilite;
           return (
-            <div key={r.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 flex items-center gap-4 hover:border-indigo-500/40 transition-all">
+            <div key={r.id} className="app-surface2 border app-border rounded-xl p-4 flex items-center gap-4 hover:border-indigo-500/40 transition-all">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center text-base font-black"
                 style={{ backgroundColor: "#6366f122", color: "#a78bfa" }}>
                 {r.membre.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2)}
@@ -66,14 +66,14 @@ const Ressources = ({ data, setData }) => {
                 <div className="flex justify-between items-center mb-1">
                   <div>
                     <span className="text-sm font-bold text-white">{r.membre}</span>
-                    <span className="text-xs text-slate-500 ml-2">{r.role} · {r.specialite}</span>
+                    <span className="text-xs app-text3 ml-2">{r.role} · {r.specialite}</span>
                   </div>
                   <div className="flex gap-2">
                     <Btn onClick={() => { setForm({ ...r }); setModal("edit"); }} variant="ghost">✎</Btn>
                     <Btn onClick={() => setData(data.filter(d => d.id !== r.id))} variant="danger">✕</Btn>
                   </div>
                 </div>
-                <p className="text-xs text-slate-500 mb-1.5">{r.projet} · {r.debut} → {r.fin}</p>
+                <p className="text-xs app-text3 mb-1.5">{r.projet} · {r.debut} → {r.fin}</p>
                 <div className="flex items-center gap-3">
                   <ProgressBar value={r.charge} max={r.disponibilite} color={surcharge ? "#ef4444" : taux > 80 ? "#f59e0b" : "#10b981"} />
                   <span className="text-xs font-bold w-20 flex-shrink-0" style={{ color: surcharge ? "#ef4444" : "#94a3b8" }}>{r.charge}% / {r.disponibilite}%</span>
@@ -93,11 +93,11 @@ const Ressources = ({ data, setData }) => {
           <Input label="Projet" value={form.projet || ""} onChange={e => setForm({ ...form, projet: e.target.value })} />
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-medium">Disponibilité : {form.disponibilite}%</label>
+              <label className="block text-xs app-text2 mb-1 font-medium">Disponibilité : {form.disponibilite}%</label>
               <input type="range" min="0" max="100" value={form.disponibilite || 100} onChange={e => setForm({ ...form, disponibilite: Number(e.target.value) })} className="w-full accent-indigo-500" />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-medium">Charge actuelle : {form.charge}%</label>
+              <label className="block text-xs app-text2 mb-1 font-medium">Charge actuelle : {form.charge}%</label>
               <input type="range" min="0" max="120" value={form.charge || 0} onChange={e => setForm({ ...form, charge: Number(e.target.value) })} className="w-full accent-indigo-500" />
             </div>
           </div>

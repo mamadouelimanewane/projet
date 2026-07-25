@@ -39,7 +39,7 @@ const SimulateurMonteCarlo = ({ data }) => {
       </div>
 
       <div className="glass-card rounded-2xl p-6">
-        <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Distribution des Probabilités</h3>
+        <h3 className="text-xs font-black app-text3 mb-8 uppercase tracking-[0.2em]">Distribution des Probabilités</h3>
         {simData.length > 0 ? (
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={simData}>
@@ -58,8 +58,8 @@ const SimulateurMonteCarlo = ({ data }) => {
             </AreaChart>
           </ResponsiveContainer>
         ) : (
-          <div className="h-[300px] flex items-center justify-center border border-dashed border-slate-700 rounded-xl">
-            <p className="text-slate-500 text-sm font-medium">Lancez la simulation pour générer la courbe de distribution</p>
+          <div className="h-[300px] flex items-center justify-center border border-dashed app-border rounded-xl">
+            <p className="app-text3 text-sm font-medium">Lancez la simulation pour générer la courbe de distribution</p>
           </div>
         )}
       </div>

@@ -31,14 +31,14 @@ const Risques = ({ data, setData }) => {
         action={<Btn onClick={() => { setForm({ risque: "", gravite: 3, probabilite: 3, attenuation: "", statut: "Actif" }); setModal("add"); }} size="md">+ Risque</Btn>} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Matrice des Risques</h3>
-          <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4">
+          <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Matrice des Risques</h3>
+          <div className="app-surface2 border app-border rounded-xl p-4">
             <div className="grid gap-0.5" style={{ gridTemplateColumns: "auto repeat(5, 1fr)" }}>
-              <div className="flex items-end justify-center pb-1 pr-2 text-xs text-slate-500">Grav.</div>
-              {[1, 2, 3, 4, 5].map(p => <div key={p} className="text-center text-xs text-slate-500 pb-1">P{p}</div>)}
+              <div className="flex items-end justify-center pb-1 pr-2 text-xs app-text3">Grav.</div>
+              {[1, 2, 3, 4, 5].map(p => <div key={p} className="text-center text-xs app-text3 pb-1">P{p}</div>)}
               {[5, 4, 3, 2, 1].map(g => (
                 <>
-                  <div className="flex items-center justify-end pr-2 text-xs text-slate-500">G{g}</div>
+                  <div className="flex items-center justify-end pr-2 text-xs app-text3">G{g}</div>
                   {[1, 2, 3, 4, 5].map(p => {
                     const score = g * p;
                     const risky = data.filter(r => r.gravite === g && r.probabilite === p);
@@ -55,22 +55,22 @@ const Risques = ({ data, setData }) => {
             </div>
             <div className="flex gap-4 mt-3 justify-center text-xs">
               {[["#10b981", "Faible <8"], ["#f59e0b", "Élevé 8-15"], ["#ef4444", "Critique >15"]].map(([c, l]) => (
-                <div key={l} className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ backgroundColor: c }} /><span className="text-slate-400">{l}</span></div>
+                <div key={l} className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-sm" style={{ backgroundColor: c }} /><span className="app-text2">{l}</span></div>
               ))}
             </div>
           </div>
         </div>
         <div className="space-y-3">
-          <h3 className="text-sm font-bold text-slate-300 uppercase tracking-wider">Risques par Score</h3>
+          <h3 className="text-sm font-bold app-text uppercase tracking-wider">Risques par Score</h3>
           {[...data].sort((a, b) => b.gravite * b.probabilite - a.gravite * a.probabilite).map(r => {
             const score = r.gravite * r.probabilite;
             return (
-              <div key={r.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-3 flex items-center gap-3">
+              <div key={r.id} className="app-surface2 border app-border rounded-xl p-3 flex items-center gap-3">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-black flex-shrink-0"
                   style={{ backgroundColor: getScoreColor(score) + "22", color: getScoreColor(score) }}>{score}</div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-white font-medium truncate">{r.risque}</p>
-                  <p className="text-xs text-slate-500">G:{r.gravite} × P:{r.probabilite} = <span style={{ color: getScoreColor(score) }}>{getScoreLabel(score)}</span></p>
+                  <p className="text-xs app-text3">G:{r.gravite} × P:{r.probabilite} = <span style={{ color: getScoreColor(score) }}>{getScoreLabel(score)}</span></p>
                 </div>
                 <div className="flex gap-1">
                   <Btn onClick={() => { setForm({ ...r }); setModal("edit"); }} variant="ghost">✎</Btn>
@@ -86,11 +86,11 @@ const Risques = ({ data, setData }) => {
           <Input label="Risque" value={form.risque || ""} onChange={e => setForm({ ...form, risque: e.target.value })} />
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-medium">Gravité (1-5) : <strong className="text-white">{form.gravite}</strong></label>
+              <label className="block text-xs app-text2 mb-1 font-medium">Gravité (1-5) : <strong className="text-white">{form.gravite}</strong></label>
               <input type="range" min="1" max="5" value={form.gravite || 3} onChange={e => setForm({ ...form, gravite: Number(e.target.value) })} className="w-full accent-indigo-500" />
             </div>
             <div>
-              <label className="block text-xs text-slate-400 mb-1 font-medium">Probabilité (1-5) : <strong className="text-white">{form.probabilite}</strong></label>
+              <label className="block text-xs app-text2 mb-1 font-medium">Probabilité (1-5) : <strong className="text-white">{form.probabilite}</strong></label>
               <input type="range" min="1" max="5" value={form.probabilite || 3} onChange={e => setForm({ ...form, probabilite: Number(e.target.value) })} className="w-full accent-indigo-500" />
             </div>
           </div>

@@ -35,7 +35,6 @@ body {
 [data-theme="sunset"] .bg-slate-800,
 [data-theme="sunset"] .bg-slate-800\/60,
 [data-theme="sunset"] .bg-slate-800\/50 { background-color: var(--app-surface2) !important; }
-[data-theme="sunset"] .text-white        { color: var(--app-text) !important; }
 [data-theme="sunset"] .text-slate-400    { color: var(--app-text2) !important; }
 [data-theme="sunset"] .text-slate-500    { color: var(--app-text3) !important; }
 [data-theme="sunset"] .text-slate-300    { color: var(--app-text) !important; }
@@ -54,7 +53,6 @@ body {
 [data-theme="midnight"] .bg-slate-800,
 [data-theme="midnight"] .bg-slate-800\/60,
 [data-theme="midnight"] .bg-slate-800\/50 { background-color: var(--app-surface2) !important; }
-[data-theme="midnight"] .text-white        { color: var(--app-text) !important; }
 [data-theme="midnight"] .text-slate-400    { color: var(--app-text2) !important; }
 [data-theme="midnight"] .text-slate-500    { color: var(--app-text3) !important; }
 [data-theme="midnight"] .text-slate-300    { color: var(--app-text) !important; }
@@ -81,7 +79,6 @@ body {
 [data-theme="daylight"] .bg-slate-700\/80,
 [data-theme="daylight"] .bg-slate-700\/50 { background-color: var(--app-surface2) !important; }
 
-[data-theme="daylight"] .text-white,
 [data-theme="daylight"] .text-slate-300,
 [data-theme="daylight"] .text-slate-200 { color: var(--app-text) !important; }
 

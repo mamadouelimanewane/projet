@@ -33,14 +33,14 @@ const OceanTechElite = ({ data = {}, setData }) => {
       {/* KPI Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {oceanKpis.map((kpi, i) => (
-          <Card key={i} className="p-4 border-l-4 border-l-blue-500 bg-slate-900/50 backdrop-blur-md">
+          <Card key={i} className="p-4 border-l-4 border-l-blue-500 app-surface backdrop-blur-md">
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-slate-800 rounded-lg">{kpi.icon}</div>
-              <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{kpi.label}</span>
+              <div className="p-2 app-surface2 rounded-lg">{kpi.icon}</div>
+              <span className="text-[10px] font-black app-text3 uppercase tracking-widest">{kpi.label}</span>
             </div>
             <div>
               <span className="text-2xl font-black text-white">{kpi.value}</span>
-              <p className="text-[9px] font-bold text-slate-500 uppercase mt-1">{kpi.sub}</p>
+              <p className="text-[9px] font-bold app-text3 uppercase mt-1">{kpi.sub}</p>
             </div>
           </Card>
         ))}
@@ -48,7 +48,7 @@ const OceanTechElite = ({ data = {}, setData }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Ocean Telemetry Chart */}
-        <Card className="lg:col-span-2 p-6 glass-card border-slate-800">
+        <Card className="lg:col-span-2 p-6 glass-card app-border">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-black uppercase tracking-tighter flex items-center gap-2">
               <Activity className="w-4 h-4 text-blue-500" />
@@ -57,11 +57,11 @@ const OceanTechElite = ({ data = {}, setData }) => {
             <div className="flex items-center gap-3">
                <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                  <span className="text-[10px] font-bold text-slate-400">Marée (m)</span>
+                  <span className="text-[10px] font-bold app-text2">Marée (m)</span>
                </div>
                <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                  <span className="text-[10px] font-bold text-slate-400">Activité (%)</span>
+                  <span className="text-[10px] font-bold app-text2">Activité (%)</span>
                </div>
             </div>
           </div>
@@ -90,15 +90,15 @@ const OceanTechElite = ({ data = {}, setData }) => {
         </Card>
 
         {/* Marine Map & Compass */}
-        <Card className="p-6 glass-card border-slate-800 flex flex-col">
+        <Card className="p-6 glass-card app-border flex flex-col">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-black uppercase tracking-tighter flex items-center gap-2">
               <Map className="w-4 h-4 text-blue-500" />
               Cartographie Radar
             </h3>
-            <Compass className="w-4 h-4 text-slate-500 animate-spin-slow" />
+            <Compass className="w-4 h-4 app-text3 animate-spin-slow" />
           </div>
-          <div className="flex-1 bg-slate-800/50 rounded-2xl relative overflow-hidden border border-slate-700">
+          <div className="flex-1 app-surface2 rounded-2xl relative overflow-hidden border app-border">
              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 to-transparent" />
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 border border-blue-500/20 rounded-full animate-ping-slow" />
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border border-blue-500/30 rounded-full" />
@@ -112,7 +112,7 @@ const OceanTechElite = ({ data = {}, setData }) => {
 
       {/* Fishery & Ecology */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         <Card className="p-6 glass-card border-slate-800">
+         <Card className="p-6 glass-card app-border">
            <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2">
              <Waves className="w-4 h-4 text-cyan-400" />
              Gestion Durable de la Pêche
@@ -123,12 +123,12 @@ const OceanTechElite = ({ data = {}, setData }) => {
                 { zone: "Zone B - Kayar", quota: 42, status: "Alerte" },
                 { zone: "Zone C - Dakar", quota: 98, status: "Saturé" },
               ].map((zone, i) => (
-                <div key={i} className="p-4 bg-slate-900/50 rounded-2xl border border-slate-800">
+                <div key={i} className="p-4 app-surface rounded-2xl border app-border">
                    <div className="flex justify-between items-center mb-2">
                       <span className="text-xs font-black text-white">{zone.zone}</span>
                       <Badge variant={zone.status === 'Normal' ? 'success' : zone.status === 'Alerte' ? 'warning' : 'error'} className="text-[8px] uppercase">{zone.status}</Badge>
                    </div>
-                   <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                   <div className="w-full h-1.5 app-surface2 rounded-full overflow-hidden">
                       <div className={`h-full rounded-full transition-all duration-1000 ${zone.quota > 90 ? 'bg-rose-500' : zone.quota > 70 ? 'bg-amber-500' : 'bg-blue-500'}`} style={{ width: `${zone.quota}%` }} />
                    </div>
                 </div>
@@ -136,22 +136,22 @@ const OceanTechElite = ({ data = {}, setData }) => {
            </div>
          </Card>
 
-         <Card className="p-6 glass-card border-slate-800 bg-gradient-to-br from-slate-900 to-cyan-900/20">
+         <Card className="p-6 glass-card app-border bg-gradient-to-br from-slate-900 to-cyan-900/20">
             <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2 text-cyan-400">
               <Droplets className="w-4 h-4" />
               Surveillance Écologique Marine
             </h3>
             <div className="grid grid-cols-2 gap-4">
-               <div className="p-4 bg-slate-900/80 rounded-2xl border border-slate-700 text-center">
-                  <p className="text-[9px] font-black text-slate-500 uppercase mb-1">Température Eau</p>
+               <div className="p-4 app-surface rounded-2xl border app-border text-center">
+                  <p className="text-[9px] font-black app-text3 uppercase mb-1">Température Eau</p>
                   <p className="text-xl font-black text-white">24.5°C</p>
                </div>
-               <div className="p-4 bg-slate-900/80 rounded-2xl border border-slate-700 text-center">
-                  <p className="text-[9px] font-black text-slate-500 uppercase mb-1">Salinité</p>
+               <div className="p-4 app-surface rounded-2xl border app-border text-center">
+                  <p className="text-[9px] font-black app-text3 uppercase mb-1">Salinité</p>
                   <p className="text-xl font-black text-cyan-400">35.2 g/L</p>
                </div>
-               <div className="p-4 bg-slate-900/80 rounded-2xl border border-slate-700 text-center col-span-2">
-                  <p className="text-[9px] font-black text-slate-500 uppercase mb-1">Impact Plastique (YTD)</p>
+               <div className="p-4 app-surface rounded-2xl border app-border text-center col-span-2">
+                  <p className="text-[9px] font-black app-text3 uppercase mb-1">Impact Plastique (YTD)</p>
                   <div className="flex items-center justify-center gap-2">
                      <TrendingUp className="w-3 h-3 text-rose-500" />
                      <p className="text-xl font-black text-rose-400">-12%</p>

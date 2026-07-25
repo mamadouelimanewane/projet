@@ -110,7 +110,7 @@ export default function OutilsExpert() {
         subtitle="CPM · Matrice RACI · S-Curve — Les armes des chefs de projet d'élite"
       />
 
-      <div className="flex gap-2 flex-wrap border-b border-slate-800 pb-4">
+      <div className="flex gap-2 flex-wrap border-b app-border pb-4">
         {[
           { id: "cpm", label: "🔗 Chemin Critique (CPM)" },
           { id: "raci", label: "👥 Matrice RACI" },
@@ -126,19 +126,19 @@ export default function OutilsExpert() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <Card className="p-4 text-center">
-              <p className="text-[10px] text-slate-500 uppercase font-bold mb-1">Durée Projet</p>
+              <p className="text-[10px] app-text3 uppercase font-bold mb-1">Durée Projet</p>
               <p className="text-2xl font-black text-indigo-400">{dureeProjet}j</p>
             </Card>
             <Card className="p-4 text-center">
-              <p className="text-[10px] text-slate-500 uppercase font-bold mb-1">Tâches Critiques</p>
+              <p className="text-[10px] app-text3 uppercase font-bold mb-1">Tâches Critiques</p>
               <p className="text-2xl font-black text-red-400">{cheminCritique.length}</p>
             </Card>
             <Card className="p-4 text-center">
-              <p className="text-[10px] text-slate-500 uppercase font-bold mb-1">Tâches Totales</p>
+              <p className="text-[10px] app-text3 uppercase font-bold mb-1">Tâches Totales</p>
               <p className="text-2xl font-black text-white">{cpmTasks.length}</p>
             </Card>
             <Card className="p-4 text-center">
-              <p className="text-[10px] text-slate-500 uppercase font-bold mb-1">Marge Max</p>
+              <p className="text-[10px] app-text3 uppercase font-bold mb-1">Marge Max</p>
               <p className="text-2xl font-black text-emerald-400">{Math.max(...cpmTasks.map(t => t.marge))}j</p>
             </Card>
           </div>
@@ -151,15 +151,15 @@ export default function OutilsExpert() {
 
           {/* Gantt-like CPM */}
           <Card className="p-6 overflow-x-auto">
-            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Diagramme du Chemin Critique</p>
+            <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-4">Diagramme du Chemin Critique</p>
             <div className="space-y-2 min-w-[600px]">
               {cpmTasks.map((t, i) => {
                 const pct = dureeProjet > 0 ? (t.duree / dureeProjet) * 100 : 0;
                 const offset = dureeProjet > 0 ? (t.ES / dureeProjet) * 100 : 0;
                 return (
                   <div key={i} className="flex items-center gap-3">
-                    <span className="text-xs text-slate-400 font-bold w-48 flex-shrink-0 truncate">{t.nom}</span>
-                    <div className="flex-1 h-8 bg-slate-800/50 rounded-lg relative overflow-hidden">
+                    <span className="text-xs app-text2 font-bold w-48 flex-shrink-0 truncate">{t.nom}</span>
+                    <div className="flex-1 h-8 app-surface2 rounded-lg relative overflow-hidden">
                       <div
                         className={`absolute top-0 h-full rounded-lg flex items-center px-2 transition-all ${t.critique ? "bg-red-500/80" : "bg-indigo-500/60"}`}
                         style={{ left: `${offset}%`, width: `${Math.max(pct, 3)}%` }}
@@ -180,7 +180,7 @@ export default function OutilsExpert() {
                 );
               })}
             </div>
-            <div className="flex gap-4 mt-4 text-[10px] text-slate-500">
+            <div className="flex gap-4 mt-4 text-[10px] app-text3">
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-red-500/80" /> Critique</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-indigo-500/60" /> Normal</span>
               <span className="flex items-center gap-1"><span className="w-3 h-3 rounded bg-emerald-500/20 border border-emerald-500/40" /> Marge libre</span>
@@ -207,24 +207,24 @@ export default function OutilsExpert() {
         <div className="space-y-6 animate-entrance">
           {userMode === "debutant" && (
             <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-xl text-sm text-indigo-300">
-              💡 <strong>RACI</strong> définit qui fait quoi : <span className="text-red-400 font-bold">R</span>=Responsable (fait le travail), <span className="text-indigo-400 font-bold">A</span>=Approbateur (valide), <span className="text-amber-400 font-bold">C</span>=Consulté (donne un avis), <span className="text-slate-400 font-bold">I</span>=Informé (reçoit l'info). <strong>Cliquez sur une cellule pour changer.</strong>
+              💡 <strong>RACI</strong> définit qui fait quoi : <span className="text-red-400 font-bold">R</span>=Responsable (fait le travail), <span className="text-indigo-400 font-bold">A</span>=Approbateur (valide), <span className="text-amber-400 font-bold">C</span>=Consulté (donne un avis), <span className="app-text2 font-bold">I</span>=Informé (reçoit l'info). <strong>Cliquez sur une cellule pour changer.</strong>
             </div>
           )}
 
           <Card className="p-6 overflow-x-auto">
-            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Matrice RACI — Cliquez pour modifier</p>
+            <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-4">Matrice RACI — Cliquez pour modifier</p>
             <table className="w-full min-w-[600px]">
               <thead>
                 <tr>
-                  <th className="text-left text-[10px] text-slate-500 uppercase font-bold pb-3 pr-4">Activité</th>
+                  <th className="text-left text-[10px] app-text3 uppercase font-bold pb-3 pr-4">Activité</th>
                   {ROLES.map(r => (
-                    <th key={r} className="text-center text-[10px] text-slate-500 uppercase font-bold pb-3 px-2 w-24">{r}</th>
+                    <th key={r} className="text-center text-[10px] app-text3 uppercase font-bold pb-3 px-2 w-24">{r}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {raciData.map((row, actIdx) => (
-                  <tr key={actIdx} className="border-t border-slate-800/50">
+                  <tr key={actIdx} className="border-t app-border">
                     <td className="py-2 pr-4 text-xs text-white font-medium">{row.activite}</td>
                     {ROLES.map(role => {
                       const val = row.roles[role] || "";
@@ -253,7 +253,7 @@ export default function OutilsExpert() {
               {Object.entries(RACI_LABELS).map(([k, v]) => (
                 <span key={k} className="flex items-center gap-1">
                   <span className="w-6 h-6 rounded flex items-center justify-center font-black text-xs" style={{ backgroundColor: RACI_COLORS[k] + "20", color: RACI_COLORS[k] }}>{k}</span>
-                  <span className="text-slate-500">{v}</span>
+                  <span className="app-text3">{v}</span>
                 </span>
               ))}
             </div>
@@ -271,7 +271,7 @@ export default function OutilsExpert() {
           )}
 
           <Card className="p-6">
-            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Courbe en S — Budget Prévu vs Réel (FCFA)</p>
+            <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-4">Courbe en S — Budget Prévu vs Réel (FCFA)</p>
             <ResponsiveContainer width="100%" height={350}>
               <AreaChart data={sCurveData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
@@ -297,7 +297,7 @@ export default function OutilsExpert() {
               { label: "EAC", value: `${(budget.reduce((s, b) => s + b.planifie, 0) / Math.max(0.01, budget.reduce((s, b) => s + b.reel, 0) / Math.max(1, budget.reduce((s, b) => s + b.planifie, 0))) / 1000000).toFixed(1)}M`, color: "#ec4899", info: "Estimate At Completion — coût final prédit" },
             ].map((kpi, i) => (
               <Card key={i} className="p-4">
-                <p className="text-[10px] text-slate-500 uppercase font-bold mb-1 flex items-center gap-1">
+                <p className="text-[10px] app-text3 uppercase font-bold mb-1 flex items-center gap-1">
                   {kpi.label}
                   <TooltipInfo term={kpi.label} definition={kpi.info} />
                 </p>

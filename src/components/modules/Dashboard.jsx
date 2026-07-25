@@ -47,12 +47,12 @@ const Dashboard = ({ data }) => {
           </div>
         </div>
         <div className="glass-card rounded-2xl p-6">
-          <h3 className="text-sm font-black text-slate-500 uppercase mb-4">Votre Progression</h3>
+          <h3 className="text-sm font-black app-text3 uppercase mb-4">Votre Progression</h3>
           <div className="flex items-center gap-4">
             <div className="flex-1"><ProgressBar value={universityPoints > 0 ? Math.min(universityPoints, 100) : 10} color="#6366f1" /></div>
             <span className="text-xs font-bold text-indigo-400">{universityPoints} pts</span>
           </div>
-          <p className="text-[10px] text-slate-500 mt-4 italic">Astuce : Validez des modules dans l'Espace Universitaire pour gagner des badges.</p>
+          <p className="text-[10px] app-text3 mt-4 italic">Astuce : Validez des modules dans l'Espace Universitaire pour gagner des badges.</p>
         </div>
       </div>
     );
@@ -109,12 +109,12 @@ const Dashboard = ({ data }) => {
           <div className="glass-card rounded-2xl p-6">
             <h3 className="text-xs font-black app-text2 uppercase mb-4 tracking-widest">Analyse du Chemin Critique</h3>
             <p className="text-sm app-text mb-4">Le projet "Star Academy" a 3 tâches sur le chemin critique. Tout retard impactera la livraison finale.</p>
-            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 app-surface2 border app-border text-indigo-600 dark:text-indigo-400 rounded-lg text-xs font-bold hover:bg-indigo-50 dark:hover:bg-slate-800 transition-all">Voir le diagramme CPM →</button>
+            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 app-surface2 border app-border text-indigo-600 dark:text-indigo-400 rounded-lg text-xs font-bold hover:bg-indigo-50 dark:hover:app-surface2 transition-all">Voir le diagramme CPM →</button>
           </div>
           <div className="glass-card rounded-2xl p-6">
             <h3 className="text-xs font-black app-text2 uppercase mb-4 tracking-widest">Gouvernance RACI</h3>
             <p className="text-sm app-text mb-4">La matrice RACI est définie pour 85% des activités. 2 tâches n'ont pas d'Approbateur assigné.</p>
-            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 app-surface2 border app-border text-indigo-600 dark:text-indigo-400 rounded-lg text-xs font-bold hover:bg-indigo-50 dark:hover:bg-slate-800 transition-all">Gérer les responsabilités →</button>
+            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 app-surface2 border app-border text-indigo-600 dark:text-indigo-400 rounded-lg text-xs font-bold hover:bg-indigo-50 dark:hover:app-surface2 transition-all">Gérer les responsabilités →</button>
           </div>
         </div>
       </div>
@@ -157,7 +157,7 @@ const Dashboard = ({ data }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="glass-card rounded-2xl p-6 animate-entrance [animation-delay:100ms]">
-          <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Avancement par Projet (cliquez pour détails)</h3>
+          <h3 className="text-xs font-black app-text3 mb-8 uppercase tracking-[0.2em]">Avancement par Projet (cliquez pour détails)</h3>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={avancementData} onClick={(e) => {
               if (e && e.activePayload && e.activePayload[0]) {
@@ -181,7 +181,7 @@ const Dashboard = ({ data }) => {
         </div>
         
         <div className="glass-card rounded-2xl p-6 animate-entrance [animation-delay:200ms]">
-          <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Flux Financier (K FCFA)</h3>
+          <h3 className="text-xs font-black app-text3 mb-8 uppercase tracking-[0.2em]">Flux Financier (K FCFA)</h3>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={budgetData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
@@ -198,7 +198,7 @@ const Dashboard = ({ data }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="glass-card rounded-2xl p-6 animate-entrance [animation-delay:300ms]">
-          <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Répartition Statuts</h3>
+          <h3 className="text-xs font-black app-text3 mb-8 uppercase tracking-[0.2em]">Répartition Statuts</h3>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie data={statutData} cx="50%" cy="50%" innerRadius={65} outerRadius={90} paddingAngle={10} dataKey="value" stroke="none">
@@ -211,7 +211,7 @@ const Dashboard = ({ data }) => {
             {statutData.map((d, i) => (
               <div key={i} className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: PIE_COLORS[i % PIE_COLORS.length] }} />
-                <span className="text-[10px] font-bold text-slate-500 uppercase">{d.name}</span>
+                <span className="text-[10px] font-bold app-text3 uppercase">{d.name}</span>
               </div>
             ))}
           </div>

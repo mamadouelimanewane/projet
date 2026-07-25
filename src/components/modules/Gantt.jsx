@@ -68,22 +68,22 @@ const Gantt = ({ data, setData }) => {
       <SectionHeader title="Super Gantt (Avancé)" subtitle="Planification visuelle des tâches et gestion des dépendances"
         action={<Btn onClick={() => { setForm({ tache: "", debut: new Date().toISOString().substring(0, 10), fin: new Date().toISOString().substring(0, 10), responsable: "", progression: 0, dependance: "" }); setModal("add"); }} size="md" className="bg-indigo-600">+ Nouvelle Tâche</Btn>} />
 
-      <div className="flex justify-between items-center bg-slate-800/60 p-3 rounded-xl border border-slate-700/50">
+      <div className="flex justify-between items-center app-surface2 p-3 rounded-xl border app-border">
         <div className="flex items-center gap-4">
-          <span className="text-sm font-bold text-slate-300">Niveau de Zoom :</span>
-          <div className="flex bg-slate-900 rounded-lg p-1 border border-slate-700">
+          <span className="text-sm font-bold app-text">Niveau de Zoom :</span>
+          <div className="flex app-surface rounded-lg p-1 border app-border">
             {["Jour", "Semaine", "Mois"].map(z => (
-              <button key={z} onClick={() => setZoom(z)} className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all ${zoom === z ? "bg-indigo-600 text-white shadow-lg" : "text-slate-400 hover:text-white"}`}>{z}</button>
+              <button key={z} onClick={() => setZoom(z)} className={`px-4 py-1.5 text-xs font-bold rounded-md transition-all ${zoom === z ? "bg-indigo-600 text-white shadow-lg" : "app-text2 hover:text-white"}`}>{z}</button>
             ))}
           </div>
         </div>
         <div className="text-xs text-indigo-300 italic flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" /> 💡 Astuce : Survolez une barre pour l'éditer. Lignes rouges = Dépendances.</div>
       </div>
 
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-x-auto relative shadow-2xl">
+      <div className="app-surface2 border app-border rounded-xl overflow-x-auto relative shadow-2xl">
         <div style={{ minWidth: 800 }}>
-          <div className="flex border-b border-slate-700 bg-slate-900/80">
-            <div className="w-64 flex-shrink-0 p-3 text-xs font-black text-indigo-400 uppercase border-r border-slate-700 z-20 sticky left-0 bg-slate-900/95 backdrop-blur items-center flex gap-2">
+          <div className="flex border-b app-border app-surface">
+            <div className="w-64 flex-shrink-0 p-3 text-xs font-black text-indigo-400 uppercase border-r app-border z-20 sticky left-0 app-surface backdrop-blur items-center flex gap-2">
               <span className="text-lg text-emerald-400">☰</span> Structure du Projet
             </div>
             <div className="flex-1 relative h-10 overflow-hidden">
@@ -94,11 +94,11 @@ const Gantt = ({ data, setData }) => {
                   const isMonday = date.getDay() === 1;
                   const isToday = date.toDateString() === new Date().toDateString();
                   return (
-                    <div key={i} className="flex-shrink-0 flex flex-col items-center justify-center text-[10px] border-r border-slate-700/30 relative"
+                    <div key={i} className="flex-shrink-0 flex flex-col items-center justify-center text-[10px] border-r app-border relative"
                       style={{ width: dayWidth, color: isToday ? "#a78bfa" : "#64748b", backgroundColor: isToday ? "#6366f122" : "transparent" }}>
                       {zoom === "Jour" ? (
                         <>
-                          <span className={isMonday ? "font-bold text-slate-300" : ""}>{date.toLocaleDateString('fr-FR', { weekday: 'narrow' })}</span>
+                          <span className={isMonday ? "font-bold app-text" : ""}>{date.toLocaleDateString('fr-FR', { weekday: 'narrow' })}</span>
                           <span className={isToday ? "font-black" : ""}>{date.getDate()}</span>
                         </>
                       ) : zoom === "Semaine" ? (
@@ -127,16 +127,16 @@ const Gantt = ({ data, setData }) => {
             </svg>
 
             {data.map((task, i) => (
-              <div key={task.id} className="flex border-b border-slate-700/30 hover:bg-slate-700/30 group relative transition-colors h-[49px]">
-                <div className="w-64 flex-shrink-0 p-3 border-r border-slate-700/50 flex justify-between items-center z-20 sticky left-0 bg-slate-900/60 backdrop-blur group-hover:bg-slate-800 transition-all">
+              <div key={task.id} className="flex border-b app-border hover:app-surface3 group relative transition-colors h-[49px]">
+                <div className="w-64 flex-shrink-0 p-3 border-r app-border flex justify-between items-center z-20 sticky left-0 app-surface backdrop-blur group-hover:app-surface2 transition-all">
                   <div className="flex items-center gap-3 min-w-0 pr-2">
                     <div className="w-3 h-3 rounded-full flex-shrink-0 shadow-[0_0_8px_currentColor]" style={{ backgroundColor: task.couleur, color: task.couleur }} />
                     <div className="min-w-0">
                       <p className="text-sm font-bold text-slate-200 truncate">{task.tache}</p>
-                      <p className="text-[10px] text-slate-400 font-mono mt-0.5 truncate">{task.responsable}</p>
+                      <p className="text-[10px] app-text2 font-mono mt-0.5 truncate">{task.responsable}</p>
                     </div>
                   </div>
-                  <div className="opacity-0 group-hover:opacity-100 flex gap-1 bg-slate-800 p-1 rounded-md shadow-lg transition-opacity flex-shrink-0">
+                  <div className="opacity-0 group-hover:opacity-100 flex gap-1 app-surface2 p-1 rounded-md shadow-lg transition-opacity flex-shrink-0">
                     <Btn onClick={() => { setForm({ ...task }); setModal("edit"); }} variant="ghost" size="sm" className="px-1.5 py-0.5 text-xs">✎</Btn>
                     <Btn onClick={() => setData(data.filter(d => d.id !== task.id))} variant="danger" size="sm" className="px-1.5 py-0.5 text-xs">✕</Btn>
                   </div>
@@ -148,7 +148,7 @@ const Gantt = ({ data, setData }) => {
                     {Array.from({ length: totalDays }, (_, j) => {
                       const d = new Date(minDate); d.setDate(d.getDate() + j);
                       return (
-                        <div key={j} className={`flex-shrink-0 border-r ${d.getDay() === 1 ? 'border-indigo-500/20' : 'border-slate-700/10'}`} style={{ width: dayWidth }} />
+                        <div key={j} className={`flex-shrink-0 border-r ${d.getDay() === 1 ? 'border-indigo-500/20' : 'app-border'}`} style={{ width: dayWidth }} />
                       );
                     })}
                   </div>
@@ -191,22 +191,22 @@ const Gantt = ({ data, setData }) => {
           </div>
 
           <div className="mt-4">
-            <label className="block text-xs text-slate-400 mb-1 font-medium">Dépend de la tâche (Optionnel)</label>
-            <select className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-indigo-500" value={form.dependance || ""} onChange={e => setForm({ ...form, dependance: e.target.value })}>
+            <label className="block text-xs app-text2 mb-1 font-medium">Dépend de la tâche (Optionnel)</label>
+            <select className="w-full app-surface3 border app-border2 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-indigo-500" value={form.dependance || ""} onChange={e => setForm({ ...form, dependance: e.target.value })}>
               <option value="">-- Aucune Dépendance --</option>
               {data.filter(d => d.id !== form.id).map(d => <option key={d.id} value={d.id}>{d.tache}</option>)}
             </select>
           </div>
 
-          <div className="mt-6 bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+          <div className="mt-6 app-surface p-4 rounded-lg border app-border">
             <div className="flex justify-between items-center mb-2">
-              <label className="block text-xs text-slate-300 font-bold uppercase tracking-wider">Avancement Actuel</label>
+              <label className="block text-xs app-text font-bold uppercase tracking-wider">Avancement Actuel</label>
               <span className="font-black text-indigo-400 text-lg">{form.progression || 0}%</span>
             </div>
             <input type="range" min="0" max="100" value={form.progression || 0} onChange={e => setForm({ ...form, progression: e.target.value })} className="w-full h-2 rounded-lg appearance-none cursor-pointer" style={{ background: 'linear-gradient(to right, #6366f1, #a78bfa)' }} />
           </div>
 
-          <div className="flex gap-3 pt-6 border-t border-slate-700 mt-6">
+          <div className="flex gap-3 pt-6 border-t app-border mt-6">
             <Btn onClick={save} size="md" className="flex-1 bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-12">Sauvegarder</Btn>
             <Btn onClick={() => setModal(null)} variant="ghost" size="md">Annuler</Btn>
           </div>

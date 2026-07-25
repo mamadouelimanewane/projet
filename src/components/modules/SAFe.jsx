@@ -13,20 +13,20 @@ const SAFe = ({ data }) => {
       </div>
 
       <div className="glass-card rounded-2xl p-6">
-        <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Release Trains Sync</h3>
+        <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Release Trains Sync</h3>
         <div className="space-y-6">
           {(data || []).map((train) => (
-            <div key={train.id} className="bg-slate-800/40 border border-slate-700/50 rounded-xl p-5">
+            <div key={train.id} className="app-surface2 border app-border rounded-xl p-5">
               <div className="flex justify-between items-center mb-4">
                 <div>
                   <h4 className="text-lg font-bold text-white">{train.train}</h4>
-                  <p className="text-xs text-slate-400 mt-1">Séquence : {train.pi} · {train.iteration}</p>
+                  <p className="text-xs app-text2 mt-1">Séquence : {train.pi} · {train.iteration}</p>
                 </div>
                 <Badge value={train.status} map={{ "En bonne voie": "#10b981", "Risque de retard": "#f59e0b" }} />
               </div>
               <div className="space-y-4 mt-6">
                 <div>
-                  <div className="flex justify-between text-[10px] font-bold text-slate-500 uppercase mb-2">
+                  <div className="flex justify-between text-[10px] font-bold app-text3 uppercase mb-2">
                     <span>Performance Business (Business Value)</span>
                     <span>{train.pB}%</span>
                   </div>

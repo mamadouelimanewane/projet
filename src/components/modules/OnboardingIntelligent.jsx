@@ -212,9 +212,9 @@ Bonne gestion de projet ! 🎉`,
                   <Lightbulb className="w-5 h-5 text-yellow-400" />
                   Astuce du Jour
                 </h3>
-                <p className="text-slate-300">{currentTip}</p>
+                <p className="app-text">{currentTip}</p>
               </div>
-              <button onClick={() => setShowTips(false)} className="text-slate-400 hover:text-white">
+              <button onClick={() => setShowTips(false)} className="app-text2 hover:text-white">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -227,10 +227,10 @@ Bonne gestion de projet ! 🎉`,
           
           <div className="mb-4">
             <div className="flex justify-between text-sm mb-2">
-              <span className="text-slate-400">Tutoriel complété</span>
+              <span className="app-text2">Tutoriel complété</span>
               <span className="text-indigo-400 font-medium">{completedSteps.length}/{steps.length} étapes</span>
             </div>
-            <div className="w-full bg-slate-700 rounded-full h-3">
+            <div className="w-full app-surface3 rounded-full h-3">
               <div 
                 className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all"
                 style={{ width: `${(completedSteps.length / steps.length) * 100}%` }}
@@ -245,17 +245,17 @@ Bonne gestion de projet ! 🎉`,
                 className={`p-3 rounded-lg text-center ${
                   completedSteps.includes(step.id)
                     ? 'bg-emerald-600/20 border border-emerald-500/30'
-                    : 'bg-slate-800 border border-slate-700'
+                    : 'app-surface2 border app-border'
                 }`}
               >
                 {completedSteps.includes(step.id) ? (
                   <CheckCircle className="w-6 h-6 text-emerald-400 mx-auto mb-1" />
                 ) : (
-                  <div className="w-6 h-6 rounded-full bg-slate-700 mx-auto mb-1 flex items-center justify-center text-xs text-slate-400">
+                  <div className="w-6 h-6 rounded-full app-surface3 mx-auto mb-1 flex items-center justify-center text-xs app-text2">
                     {i + 1}
                   </div>
                 )}
-                <p className="text-xs text-slate-300">{step.title.split(' - ')[0]}</p>
+                <p className="text-xs app-text">{step.title.split(' - ')[0]}</p>
               </div>
             ))}
           </div>
@@ -275,10 +275,10 @@ Bonne gestion de projet ! 🎉`,
               <a
                 key={i}
                 href={`#${guide.lien}`}
-                className="p-4 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors border border-slate-700 hover:border-indigo-500/50"
+                className="p-4 app-surface2 hover:app-surface3 rounded-xl transition-colors border app-border hover:border-indigo-500/50"
               >
                 <h4 className="font-medium text-white mb-1">{guide.titre}</h4>
-                <p className="text-sm text-slate-400">{guide.desc}</p>
+                <p className="text-sm app-text2">{guide.desc}</p>
               </a>
             ))}
           </div>
@@ -299,12 +299,12 @@ Bonne gestion de projet ! 🎉`,
             </div>
             <div>
               <h3 className="text-xl font-bold text-white">{steps[currentStep].title}</h3>
-              <p className="text-sm text-slate-400">{steps[currentStep].description}</p>
+              <p className="text-sm app-text2">{steps[currentStep].description}</p>
             </div>
           </div>
           <button
             onClick={() => setShowOnboarding(false)}
-            className="text-slate-400 hover:text-white transition-colors"
+            className="app-text2 hover:text-white transition-colors"
           >
             <X className="w-6 h-6" />
           </button>
@@ -313,10 +313,10 @@ Bonne gestion de projet ! 🎉`,
         {/* Progress bar */}
         <div className="mb-6">
           <div className="flex justify-between text-sm mb-2">
-            <span className="text-slate-400">Étape {currentStep + 1} sur {steps.length}</span>
+            <span className="app-text2">Étape {currentStep + 1} sur {steps.length}</span>
             <span className="text-indigo-400 font-medium">{Math.round((currentStep / steps.length) * 100)}%</span>
           </div>
-          <div className="w-full bg-slate-700 rounded-full h-2">
+          <div className="w-full app-surface3 rounded-full h-2">
             <div 
               className="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full transition-all"
               style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
@@ -325,8 +325,8 @@ Bonne gestion de projet ! 🎉`,
         </div>
 
         {/* Content */}
-        <div className="p-6 bg-slate-800/50 rounded-xl mb-6">
-          <p className="text-slate-300 whitespace-pre-line leading-relaxed">
+        <div className="p-6 app-surface2 rounded-xl mb-6">
+          <p className="app-text whitespace-pre-line leading-relaxed">
             {steps[currentStep].content}
           </p>
         </div>

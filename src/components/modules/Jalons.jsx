@@ -17,7 +17,7 @@ const Jalons = ({ data, setData }) => {
       <SectionHeader title="Suivi des Jalons" subtitle="Suivez vos étapes clés et leur progression"
         action={<Btn onClick={() => { setForm({ jalon: "", date: "", responsable: "", statut: "Planifié", notes: "" }); setModal("add"); }} size="md">+ Jalon</Btn>} />
       <div className="relative">
-        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-700" />
+        <div className="absolute left-8 top-0 bottom-0 w-0.5 app-surface3" />
         <div className="space-y-4">
           {data.sort((a, b) => new Date(a.date) - new Date(b.date)).map((j, i) => {
             const isDone = j.statut === "Atteint";
@@ -26,13 +26,13 @@ const Jalons = ({ data, setData }) => {
               <div key={j.id} className="relative flex items-start gap-6 pl-16">
                 <div className="absolute left-6 w-4 h-4 rounded-full border-2 -translate-y-0.5 z-10"
                   style={{ backgroundColor: color + "33", borderColor: color }} />
-                <div className="flex-1 bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 hover:border-indigo-500/40 transition-all"
+                <div className="flex-1 app-surface2 border app-border rounded-xl p-4 hover:border-indigo-500/40 transition-all"
                   style={{ borderLeftColor: color, borderLeftWidth: 3 }}>
                   <div className="flex justify-between items-start">
                     <div>
                       <h3 className="text-sm font-bold text-white">{j.jalon}</h3>
-                      <p className="text-xs text-slate-500 mt-0.5">{j.date} · {j.responsable}</p>
-                      {j.notes && <p className="text-xs text-slate-400 mt-1 italic">{j.notes}</p>}
+                      <p className="text-xs app-text3 mt-0.5">{j.date} · {j.responsable}</p>
+                      {j.notes && <p className="text-xs app-text2 mt-1 italic">{j.notes}</p>}
                     </div>
                     <div className="flex items-center gap-2">
                       <Badge value={j.statut} />

@@ -75,14 +75,14 @@ const RefineryElite = ({ data = {}, setData }) => {
       {/* KPI Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {refineryKpis.map((kpi, i) => (
-          <Card key={i} className="p-4 border-l-4 border-l-amber-600 bg-slate-900/50 backdrop-blur-md shadow-xl hover:shadow-amber-900/10 transition-all">
+          <Card key={i} className="p-4 border-l-4 border-l-amber-600 app-surface backdrop-blur-md shadow-xl hover:shadow-amber-900/10 transition-all">
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2 bg-slate-800 rounded-lg">{kpi.icon}</div>
-              <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{kpi.label}</span>
+              <div className="p-2 app-surface2 rounded-lg">{kpi.icon}</div>
+              <span className="text-[10px] font-black app-text3 uppercase tracking-widest">{kpi.label}</span>
             </div>
             <div>
               <span className="text-2xl font-black text-white tabular-nums">{kpi.value}</span>
-              <p className="text-[9px] font-bold text-slate-500 uppercase mt-1">{kpi.sub}</p>
+              <p className="text-[9px] font-bold app-text3 uppercase mt-1">{kpi.sub}</p>
             </div>
           </Card>
         ))}
@@ -90,7 +90,7 @@ const RefineryElite = ({ data = {}, setData }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Refining Process Chart */}
-        <Card className="lg:col-span-2 p-6 glass-card border-slate-800">
+        <Card className="lg:col-span-2 p-6 glass-card app-border">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-black uppercase tracking-tighter flex items-center gap-2">
               <Activity className="w-4 h-4 text-amber-500" />
@@ -118,7 +118,7 @@ const RefineryElite = ({ data = {}, setData }) => {
         </Card>
 
         {/* Tank Farm & Storage */}
-        <Card className="p-6 glass-card border-slate-800 flex flex-col">
+        <Card className="p-6 glass-card app-border flex flex-col">
           <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2 text-amber-500">
             <Droplets className="w-4 h-4" />
             Parc de Stockage (Tank Farm)
@@ -127,10 +127,10 @@ const RefineryElite = ({ data = {}, setData }) => {
              {storageLevels.map((item, i) => (
                <div key={i} className="space-y-1.5">
                   <div className="flex justify-between items-center">
-                     <span className="text-[10px] font-black text-slate-400 uppercase">{item.label}</span>
+                     <span className="text-[10px] font-black app-text2 uppercase">{item.label}</span>
                      <span className="text-[10px] font-black text-white">{item.progress}%</span>
                   </div>
-                  <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden border border-slate-700">
+                  <div className="w-full h-2 app-surface2 rounded-full overflow-hidden border app-border">
                      <div className={`${item.color} h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(0,0,0,0.5)]`} style={{ width: `${item.progress}%` }} />
                   </div>
                </div>
@@ -139,7 +139,7 @@ const RefineryElite = ({ data = {}, setData }) => {
                 <Truck className="w-5 h-5 text-amber-500 group-hover:translate-x-1 transition-transform" />
                 <div>
                    <p className="text-[10px] font-black text-white uppercase">Prochain Chargement</p>
-                   <p className="text-[9px] text-slate-400">Terminal 04 | J-1 (12:00)</p>
+                   <p className="text-[9px] app-text2">Terminal 04 | J-1 (12:00)</p>
                 </div>
              </div>
           </div>
@@ -148,7 +148,7 @@ const RefineryElite = ({ data = {}, setData }) => {
 
       {/* Maintenance & HSE */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         <Card className="p-6 glass-card border-slate-800 bg-gradient-to-br from-slate-900 to-rose-900/10 relative overflow-hidden">
+         <Card className="p-6 glass-card app-border bg-gradient-to-br from-slate-900 to-rose-900/10 relative overflow-hidden">
            <div className="absolute top-0 right-0 p-4 opacity-10">
               <ShieldCheck className="w-24 h-24 text-rose-500" />
            </div>
@@ -168,10 +168,10 @@ const RefineryElite = ({ data = {}, setData }) => {
                  <p className="text-xs text-white font-bold">Secteur Raffinage Nord - Vérification Requise</p>
                  <div className="flex gap-2 mt-4">
                     <Btn variant="primary" className="flex-1 text-[10px] h-9">Activer Protocoles</Btn>
-                    <Btn variant="ghost" className="flex-1 text-[10px] h-9 bg-slate-900/50">Check Capteurs</Btn>
+                    <Btn variant="ghost" className="flex-1 text-[10px] h-9 app-surface">Check Capteurs</Btn>
                  </div>
               </div>
-              <div className="flex items-center justify-between p-3 bg-slate-900 border border-slate-800 rounded-xl hover:border-amber-500/30 transition-all">
+              <div className="flex items-center justify-between p-3 app-surface border app-border rounded-xl hover:border-amber-500/30 transition-all">
                  <div className="flex items-center gap-3">
                     <Thermometer className="w-4 h-4 text-amber-500" />
                     <span className="text-xs font-bold text-white">Température Colonne #3</span>
@@ -181,7 +181,7 @@ const RefineryElite = ({ data = {}, setData }) => {
            </div>
          </Card>
 
-         <Card className="p-6 glass-card border-slate-800">
+         <Card className="p-6 glass-card app-border">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-sm font-black uppercase tracking-tighter flex items-center gap-2">
                 <Settings className="w-4 h-4 text-blue-400" />
@@ -190,25 +190,25 @@ const RefineryElite = ({ data = {}, setData }) => {
               <Btn variant="outline" size="xs">Calendrier GANTT</Btn>
             </div>
             <div className="space-y-4">
-               <div className="flex items-center gap-4 p-4 bg-slate-900/80 rounded-2xl border border-slate-700 hover:border-blue-500/30 transition-all cursor-pointer">
+               <div className="flex items-center gap-4 p-4 app-surface rounded-2xl border app-border hover:border-blue-500/30 transition-all cursor-pointer">
                   <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-500">
                      <Clock className="w-8 h-8" />
                   </div>
                   <div className="flex-1">
                      <p className="text-xs font-black text-white">Maintenance Annuelle - Unité 02</p>
-                     <p className="text-[9px] text-slate-500 uppercase font-bold">Début : 15 Septembre 2026</p>
-                     <div className="w-full h-1 bg-slate-800 rounded-full mt-2">
+                     <p className="text-[9px] app-text3 uppercase font-bold">Début : 15 Septembre 2026</p>
+                     <div className="w-full h-1 app-surface2 rounded-full mt-2">
                         <div className="bg-blue-500 h-full w-[25%] rounded-full shadow-[0_0_10px_#3b82f6]" />
                      </div>
                   </div>
                </div>
                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 bg-slate-900/50 border border-slate-800 rounded-xl text-center">
-                     <p className="text-[8px] font-black text-slate-500 uppercase mb-1">Pièces en commande</p>
+                  <div className="p-3 app-surface border app-border rounded-xl text-center">
+                     <p className="text-[8px] font-black app-text3 uppercase mb-1">Pièces en commande</p>
                      <p className="text-[12px] font-bold text-white">14 / 20</p>
                   </div>
-                  <div className="p-3 bg-slate-900/50 border border-slate-800 rounded-xl text-center">
-                     <p className="text-[8px] font-black text-slate-500 uppercase mb-1">Équipe Technique</p>
+                  <div className="p-3 app-surface border app-border rounded-xl text-center">
+                     <p className="text-[8px] font-black app-text3 uppercase mb-1">Équipe Technique</p>
                      <p className="text-[12px] font-bold text-emerald-400">Prêt (42 pers)</p>
                   </div>
                </div>

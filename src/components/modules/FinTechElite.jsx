@@ -53,29 +53,29 @@ const FinTechElite = ({ data = {}, setData }) => {
                </div>
                <div className="p-4 bg-white/5 backdrop-blur-md rounded-2xl border border-white/5">
                   <div className="flex justify-between items-center mb-2">
-                     <span className="text-[10px] font-bold text-slate-400">Capacité d'Emprunt IA</span>
+                     <span className="text-[10px] font-bold app-text2">Capacité d'Emprunt IA</span>
                      <Badge variant="success" className="bg-amber-500/10 text-amber-500 border-amber-500/20">SCORE: {creditScore}</Badge>
                   </div>
-                  <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="h-2 app-surface2 rounded-full overflow-hidden">
                      <div className="h-full bg-amber-500 w-[78%]" />
                   </div>
-                  <p className="text-[9px] text-slate-500 mt-2 italic">Basé sur vos récoltes et historiques de ventes.</p>
+                  <p className="text-[9px] app-text3 mt-2 italic">Basé sur vos récoltes et historiques de ventes.</p>
                </div>
             </div>
 
             <div className="z-10 pt-4 flex justify-between items-end border-t border-white/5">
                <div className="flex -space-x-2">
-                  {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-900 bg-slate-800" />)}
+                  {[1,2,3].map(i => <div key={i} className="w-8 h-8 rounded-full border-2 border-slate-900 app-surface2" />)}
                   <div className="w-8 h-8 rounded-full border-2 border-slate-900 bg-amber-500 flex items-center justify-center text-[10px] font-black">+5</div>
                </div>
-               <p className="text-[8px] font-black text-slate-500 uppercase">Partenaires Bancaires Actifs</p>
+               <p className="text-[8px] font-black app-text3 uppercase">Partenaires Bancaires Actifs</p>
             </div>
          </Card>
 
          {/* Transactions & Cashflow */}
          <div className="lg:col-span-2 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-               <Card className="p-6 glass-card border-slate-800 h-[220px]">
+               <Card className="p-6 glass-card app-border h-[220px]">
                   <div className="flex justify-between items-center mb-6">
                      <h4 className="text-xs font-black text-white uppercase tracking-widest flex items-center gap-2"><Repeat className="w-4 h-4 text-indigo-400" /> Flux de Trésorerie</h4>
                      <Badge variant="info">Hebdo</Badge>
@@ -95,31 +95,31 @@ const FinTechElite = ({ data = {}, setData }) => {
                   </div>
                </Card>
 
-               <Card className="p-6 glass-card border-slate-800 h-[220px] flex flex-col justify-center items-center text-center bg-gradient-to-br from-slate-900 to-amber-900/10">
+               <Card className="p-6 glass-card app-border h-[220px] flex flex-col justify-center items-center text-center bg-gradient-to-br from-slate-900 to-amber-900/10">
                   <div className="w-16 h-16 bg-amber-500/10 rounded-3xl flex items-center justify-center border border-amber-500/30 mb-4">
                      <QrCode className="w-8 h-8 text-amber-500" />
                   </div>
                   <h4 className="text-sm font-black text-white uppercase tracking-tighter">Payer par QR Code</h4>
-                  <p className="text-[10px] text-slate-500 mt-1">Acceptez ou envoyez des paiements instantanés sur le terrain.</p>
+                  <p className="text-[10px] app-text3 mt-1">Acceptez ou envoyez des paiements instantanés sur le terrain.</p>
                   <Btn variant="ghost" size="xs" className="mt-4 text-amber-500 border-amber-500/20">Générer mon Code</Btn>
                </Card>
             </div>
 
-            <Card className="p-6 glass-card border-slate-800 overflow-hidden">
+            <Card className="p-6 glass-card app-border overflow-hidden">
                <div className="flex justify-between items-center mb-6">
                   <h4 className="text-xs font-black text-white uppercase tracking-widest">Transactions Récentes</h4>
                   <Btn variant="ghost" size="xs">Extraire Relevé</Btn>
                </div>
                <div className="space-y-4">
                   {transactions.map(t => (
-                    <div key={t.id} className="flex justify-between items-center p-3 bg-slate-950/50 border border-slate-900 rounded-xl hover:border-indigo-500/30 transition-all group">
+                    <div key={t.id} className="flex justify-between items-center p-3 app-bg border border-slate-900 rounded-xl hover:border-indigo-500/30 transition-all group">
                        <div className="flex items-center gap-4">
                           <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${t.type === 'in' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-rose-500/10 text-rose-500'}`}>
                              {t.type === 'in' ? <ArrowDownLeft className="w-5 h-5" /> : <ArrowUpRight className="w-5 h-5" />}
                           </div>
                           <div>
                              <p className="text-xs font-black text-white group-hover:text-indigo-400 transition-colors">{t.label}</p>
-                             <p className="text-[10px] text-slate-500 uppercase font-bold">{t.category} • {t.date}</p>
+                             <p className="text-[10px] app-text3 uppercase font-bold">{t.category} • {t.date}</p>
                           </div>
                        </div>
                        <p className={`text-sm font-black ${t.type === 'in' ? 'text-emerald-500' : 'text-white'}`}>
@@ -134,22 +134,22 @@ const FinTechElite = ({ data = {}, setData }) => {
 
       {/* Strategic Banking Services */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
-         <Card className="p-6 border-slate-800 bg-slate-900/50 flex flex-col items-center text-center">
+         <Card className="p-6 app-border app-surface flex flex-col items-center text-center">
             <Smartphone className="w-10 h-10 text-indigo-400 mb-4" />
             <h5 className="text-xs font-black text-white uppercase mb-2">Micro-Crédit Agri</h5>
-            <p className="text-[10px] text-slate-500">Demandez un financement en 30s basé sur vos prévisions de récolte.</p>
+            <p className="text-[10px] app-text3">Demandez un financement en 30s basé sur vos prévisions de récolte.</p>
             <Btn variant="outline" size="xs" className="mt-4 border-indigo-500/20 text-indigo-400">Demander</Btn>
          </Card>
-         <Card className="p-6 border-slate-800 bg-slate-900/50 flex flex-col items-center text-center">
+         <Card className="p-6 app-border app-surface flex flex-col items-center text-center">
             <ShieldCheck className="w-10 h-10 text-emerald-400 mb-4" />
             <h5 className="text-xs font-black text-white uppercase mb-2">Assurance Paramétrique</h5>
-            <p className="text-[10px] text-slate-500">Indemnisation automatique par satellite en cas de sécheresse.</p>
+            <p className="text-[10px] app-text3">Indemnisation automatique par satellite en cas de sécheresse.</p>
             <Btn variant="outline" size="xs" className="mt-4 border-emerald-500/20 text-emerald-400">Vérifier</Btn>
          </Card>
-         <Card className="p-6 border-slate-800 bg-slate-900/50 flex flex-col items-center text-center">
+         <Card className="p-6 app-border app-surface flex flex-col items-center text-center">
             <PieChart className="w-10 h-10 text-amber-400 mb-4" />
             <h5 className="text-xs font-black text-white uppercase mb-2">Épargne de Précision</h5>
-            <p className="text-[10px] text-slate-500">Épargnez automatiquement une partie de chaque vente.</p>
+            <p className="text-[10px] app-text3">Épargnez automatiquement une partie de chaque vente.</p>
             <Btn variant="outline" size="xs" className="mt-4 border-amber-500/20 text-amber-400">Configurer</Btn>
          </Card>
       </div>

@@ -38,10 +38,10 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
           { label: "Opportunités IA", value: "+12", icon: <Zap className="text-amber-400" /> },
           { label: "Périmètre Global", value: "14 Secteurs", icon: <Globe className="text-blue-400" /> },
         ].map((kpi, i) => (
-          <Card key={i} className="p-4 border border-slate-700 bg-slate-900/80 backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+          <Card key={i} className="p-4 border app-border app-surface backdrop-blur-xl shadow-[0_0_20px_rgba(0,0,0,0.5)]">
              <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-slate-800 rounded-lg">{kpi.icon}</div>
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{kpi.label}</span>
+                <div className="p-2 app-surface2 rounded-lg">{kpi.icon}</div>
+                <span className="text-[10px] font-black app-text3 uppercase tracking-widest">{kpi.label}</span>
              </div>
              <span className="text-2xl font-black text-white">{kpi.value}</span>
           </Card>
@@ -50,7 +50,7 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* IA Simulation Engine */}
-        <Card className="lg:col-span-2 p-6 glass-card border-slate-800 bg-gradient-to-br from-slate-900 to-amber-900/10">
+        <Card className="lg:col-span-2 p-6 glass-card app-border bg-gradient-to-br from-slate-900 to-amber-900/10">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-black uppercase tracking-tighter flex items-center gap-2">
               <Cpu className="w-4 h-4 text-amber-500" />
@@ -80,7 +80,7 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
         </Card>
 
         {/* Global Strategy Radar */}
-        <Card className="p-6 glass-card border-slate-800">
+        <Card className="p-6 glass-card app-border">
            <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2 text-indigo-400">
               <Layers className="w-4 h-4" />
               Équilibre Stratégique Global
@@ -110,7 +110,7 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
 
       {/* Strategic Tools & Security */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         <Card className="p-6 glass-card border-slate-800 bg-slate-900/90 shadow-2xl relative overflow-hidden group">
+         <Card className="p-6 glass-card app-border app-surface shadow-2xl relative overflow-hidden group">
             <div className="absolute -right-12 -top-12 w-32 h-32 bg-indigo-600/10 rounded-full blur-3xl group-hover:bg-indigo-600/20 transition-all" />
             <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2">
                <ShieldCheck className="w-4 h-4 text-indigo-500" />
@@ -121,12 +121,12 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
                   <ShieldCheck className="w-12 h-12 text-white" />
                </div>
                <p className="text-xs font-black text-white uppercase mb-1">Certificat d'Excellence Opérationnelle</p>
-               <p className="text-[10px] text-slate-500 font-mono mb-4 italic">Hash: 0x9f9...dE21 (Verified by Blockchain)</p>
+               <p className="text-[10px] app-text3 font-mono mb-4 italic">Hash: 0x9f9...dE21 (Verified by Blockchain)</p>
                <Btn variant="primary" className="w-full text-xs py-3">Générer Preuve de Confiance</Btn>
             </div>
          </Card>
 
-         <Card className="p-6 glass-card border-slate-800 flex flex-col">
+         <Card className="p-6 glass-card app-border flex flex-col">
             <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2">
                <Search className="w-4 h-4 text-blue-400" />
                Intelligence Économique & Veille
@@ -137,9 +137,9 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
                  { label: "Risque Cyber Détecté", status: "Bas", icon: <ShieldCheck className="text-blue-400" /> },
                  { label: "Nouveau Concurrent Direct", status: "Veille", icon: <Activity className="text-amber-400" /> },
                ].map((item, i) => (
-                 <div key={i} className="flex items-center justify-between p-4 bg-slate-900 border border-slate-800 rounded-2xl">
+                 <div key={i} className="flex items-center justify-between p-4 app-surface border app-border rounded-2xl">
                     <div className="flex items-center gap-3">
-                       <div className="p-2 bg-slate-800 rounded-lg">{item.icon}</div>
+                       <div className="p-2 app-surface2 rounded-lg">{item.icon}</div>
                        <span className="text-xs font-black text-white">{item.label}</span>
                     </div>
                     <Badge variant="info" className="text-[8px] uppercase">{item.status}</Badge>

@@ -57,11 +57,11 @@ const MultiProjets = ({ data, setData }) => {
           const pct = Math.round((p.budgetReel / p.budget) * 100);
           const over = p.budgetReel > p.budget;
           return (
-            <div key={p.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5 hover:border-indigo-500/50 transition-all">
+            <div key={p.id} className="app-surface2 border app-border rounded-xl p-5 hover:border-indigo-500/50 transition-all">
               <div className="flex justify-between items-start mb-3">
                 <div>
                   <h3 className="text-base font-bold text-white">{p.nom}</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Chef : {p.chef}</p>
+                  <p className="text-xs app-text2 mt-0.5">Chef : {p.chef}</p>
                 </div>
                 <div className="flex gap-2">
                   <Badge value={p.statut} />
@@ -71,10 +71,10 @@ const MultiProjets = ({ data, setData }) => {
                   <Btn onClick={() => del(p.id)} variant="danger">✕</Btn>
                 </div>
               </div>
-              <div className="space-y-2 text-xs text-slate-400">
-                <div className="flex justify-between"><span>Période</span><span className="text-slate-300">{p.debut} → {p.fin}</span></div>
+              <div className="space-y-2 text-xs app-text2">
+                <div className="flex justify-between"><span>Période</span><span className="app-text">{p.debut} → {p.fin}</span></div>
                 <div>
-                  <div className="flex justify-between mb-1"><span>Avancement</span><span className="text-slate-300 font-bold">{p.avancement}%</span></div>
+                  <div className="flex justify-between mb-1"><span>Avancement</span><span className="app-text font-bold">{p.avancement}%</span></div>
                   <ProgressBar value={p.avancement} color={p.avancement < 50 ? "#f59e0b" : "#10b981"} />
                 </div>
                 <div className="flex justify-between">

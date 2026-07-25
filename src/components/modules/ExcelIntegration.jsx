@@ -104,7 +104,7 @@ const ExcelIntegration = () => {
           <button 
             key={level.id}
             onClick={() => { setImportLevel(level.id); setImportData([]); }}
-            className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all border-2 ${importLevel === level.id ? 'bg-white text-slate-900 border-white' : 'bg-slate-900 text-slate-500 border-slate-800 hover:border-slate-700'}`}
+            className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest transition-all border-2 ${importLevel === level.id ? 'bg-white text-slate-900 border-white' : 'app-surface app-text3 app-border hover:app-border'}`}
           >
             {level.label}
           </button>
@@ -117,7 +117,7 @@ const ExcelIntegration = () => {
               <Download className="w-8 h-8 text-indigo-400" />
            </div>
            <h3 className="text-xl font-bold text-white mb-2">Exporter le Template</h3>
-           <p className="text-sm text-slate-500 mb-6">Téléchargez la structure actuelle de vos {importLevel} pour modification externe.</p>
+           <p className="text-sm app-text3 mb-6">Téléchargez la structure actuelle de vos {importLevel} pour modification externe.</p>
            <Btn variant="indigo" onClick={handleExport} className="w-full">Générer .xlsx</Btn>
         </Card>
 
@@ -126,7 +126,7 @@ const ExcelIntegration = () => {
               <Upload className="w-8 h-8 text-emerald-400" />
            </div>
            <h3 className="text-xl font-bold text-white mb-2">Importer des Données</h3>
-           <p className="text-sm text-slate-500 mb-6">Importation massive dans le module {importLevel}.</p>
+           <p className="text-sm app-text3 mb-6">Importation massive dans le module {importLevel}.</p>
            <input type="file" id="excel-upload" className="hidden" accept=".xlsx, .xls, .csv" onChange={handleFileUpload} />
            <Btn variant="success" onClick={() => document.getElementById('excel-upload').click()} className="w-full">Parcourir les fichiers</Btn>
         </Card>
@@ -145,10 +145,10 @@ const ExcelIntegration = () => {
             </div>
           </div>
           
-          <div className="bg-slate-950/50 rounded-xl overflow-hidden border border-slate-800">
+          <div className="app-bg rounded-xl overflow-hidden border app-border">
             <div className="overflow-x-auto -mx-1">
             <table className="w-full text-left">
-              <thead className="bg-slate-900 text-[10px] font-black text-slate-500 uppercase tracking-widest border-b border-slate-800">
+              <thead className="app-surface text-[10px] font-black app-text3 uppercase tracking-widest border-b app-border">
                 <tr>
                   <th className="px-6 py-4">Champ Détecté</th>
                   <th className="px-6 py-4">Aperçu Valeur</th>
@@ -159,7 +159,7 @@ const ExcelIntegration = () => {
                 {Object.keys(importData[0]).map((key, i) => (
                   <tr key={i}>
                     <td className="px-6 py-4 font-mono text-xs text-indigo-400">{key}</td>
-                    <td className="px-6 py-4 text-xs text-slate-300">{String(importData[0][key])}</td>
+                    <td className="px-6 py-4 text-xs app-text">{String(importData[0][key])}</td>
                     <td className="px-6 py-4">
                        <Badge variant="success">Auto-Mappé</Badge>
                     </td>

@@ -124,7 +124,7 @@ export default function MentorIA() {
         subtitle="Diagnostic automatique, checklists de phase et coaching proactif"
       />
 
-      <div className="flex gap-2 flex-wrap border-b border-slate-800 pb-4">
+      <div className="flex gap-2 flex-wrap border-b app-border pb-4">
         {[
           { id: "diagnostic", label: "🔍 Diagnostic Projet" },
           { id: "checklist", label: "✅ Checklists de Phase" },
@@ -153,15 +153,15 @@ export default function MentorIA() {
               </div>
               <div className="flex-1">
                 <h2 className="text-xl font-black text-white mb-1">Santé du Projet</h2>
-                <p className="text-xs text-slate-400 mb-3">
+                <p className="text-xs app-text2 mb-3">
                   {diag.alertes.filter(a => a.type === "critique").length > 0 ? "⚠️ Attention requise — alertes critiques détectées" :
                    diag.alertes.length > 0 ? "🟡 Surveillance active — quelques points d'attention" :
                    "✅ Projet en bonne santé"}
                 </p>
                 <div className="flex gap-4 text-xs">
-                  <span className="text-slate-400">Budget : <span className="font-bold text-white">{diag.stats.budgetPct}%</span></span>
-                  <span className="text-slate-400">Tâches : <span className="font-bold text-white">{diag.stats.tachesFaites}/{diag.stats.taches}</span></span>
-                  <span className="text-slate-400">Risques : <span className="font-bold text-red-400">{diag.stats.risquesActifs}</span></span>
+                  <span className="app-text2">Budget : <span className="font-bold text-white">{diag.stats.budgetPct}%</span></span>
+                  <span className="app-text2">Tâches : <span className="font-bold text-white">{diag.stats.tachesFaites}/{diag.stats.taches}</span></span>
+                  <span className="app-text2">Risques : <span className="font-bold text-red-400">{diag.stats.risquesActifs}</span></span>
                 </div>
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function MentorIA() {
           {/* Alertes */}
           {diag.alertes.length > 0 && (
             <div>
-              <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3">Alertes ({diag.alertes.length})</p>
+              <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-3">Alertes ({diag.alertes.length})</p>
               <div className="space-y-3">
                 {diag.alertes.map((a, i) => (
                   <Card key={i} className={`p-4 ${a.type === "critique" ? "border-red-500/30 bg-red-500/5" : a.type === "warning" ? "border-amber-500/30 bg-amber-500/5" : "border-blue-500/30 bg-blue-500/5"}`}>
@@ -178,7 +178,7 @@ export default function MentorIA() {
                       <span className="text-xl flex-shrink-0">{a.icon}</span>
                       <div className="flex-1">
                         <h4 className="text-sm font-bold text-white mb-1">{a.titre}</h4>
-                        <p className="text-xs text-slate-400 mb-2">{a.desc}</p>
+                        <p className="text-xs app-text2 mb-2">{a.desc}</p>
                         <div className="flex items-center justify-between">
                           <p className="text-xs font-bold text-indigo-400">→ {a.action}</p>
                           <Btn variant="ghost" size="sm" onClick={() => navigate(a.module)}>Aller au module →</Btn>
@@ -195,7 +195,7 @@ export default function MentorIA() {
             <Card className="p-6 text-center bg-emerald-500/5 border border-emerald-500/20">
               <span className="text-4xl block mb-2">✅</span>
               <p className="text-white font-bold">Aucune alerte critique</p>
-              <p className="text-xs text-slate-400 mt-1">Le Mentor IA surveille votre projet en continu.</p>
+              <p className="text-xs app-text2 mt-1">Le Mentor IA surveille votre projet en continu.</p>
             </Card>
           )}
         </div>
@@ -205,12 +205,12 @@ export default function MentorIA() {
       {tab === "checklist" && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-entrance">
           <div className="space-y-2">
-            <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-3">Phase du Projet</p>
+            <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-3">Phase du Projet</p>
             {Object.entries(PHASE_META).map(([key, meta]) => {
               const pct = phaseProgress(key);
               return (
                 <button key={key} onClick={() => setCheckPhase(key)}
-                  className={`w-full text-left p-3 rounded-xl border-2 transition-all ${checkPhase === key ? "border-indigo-500 bg-indigo-500/10" : "border-slate-700/50 bg-slate-900/50 hover:border-slate-600"}`}>
+                  className={`w-full text-left p-3 rounded-xl border-2 transition-all ${checkPhase === key ? "border-indigo-500 bg-indigo-500/10" : "app-border app-surface hover:app-border2"}`}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-bold text-white">{meta.label}</span>
                     <span className="text-xs font-black" style={{ color: meta.color }}>{pct}%</span>
@@ -224,14 +224,14 @@ export default function MentorIA() {
           <div className="lg:col-span-2">
             <Card className="p-6" style={{ borderLeft: `4px solid ${PHASE_META[checkPhase].color}` }}>
               <h3 className="text-lg font-black text-white mb-1">{PHASE_META[checkPhase].label}</h3>
-              <p className="text-xs text-slate-400 mb-5">Cochez les éléments validés. Progression : <span className="font-bold text-indigo-400">{phaseProgress(checkPhase)}%</span></p>
+              <p className="text-xs app-text2 mb-5">Cochez les éléments validés. Progression : <span className="font-bold text-indigo-400">{phaseProgress(checkPhase)}%</span></p>
               <div className="space-y-2">
                 {CHECKLISTS[checkPhase].map((item, i) => {
                   const done = checks[`${checkPhase}-${i}`];
                   return (
                     <button key={i} onClick={() => toggleCheck(checkPhase, i)}
-                      className={`w-full text-left p-3 rounded-xl border transition-all flex items-center gap-3 ${done ? "border-emerald-500/40 bg-emerald-500/10" : "border-slate-700/50 bg-slate-800/30 hover:border-slate-600"}`}>
-                      <span className={`w-5 h-5 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 ${done ? "bg-emerald-500 text-white" : "bg-slate-700 text-slate-500"}`}>
+                      className={`w-full text-left p-3 rounded-xl border transition-all flex items-center gap-3 ${done ? "border-emerald-500/40 bg-emerald-500/10" : "app-border app-surface2 hover:app-border2"}`}>
+                      <span className={`w-5 h-5 rounded flex items-center justify-center text-xs font-bold flex-shrink-0 ${done ? "bg-emerald-500 text-white" : "app-surface3 app-text3"}`}>
                         {done ? "✓" : ""}
                       </span>
                       <span className={`text-sm ${done ? "text-emerald-300 line-through opacity-70" : "text-white"}`}>{item}</span>
@@ -253,14 +253,14 @@ export default function MentorIA() {
       {/* ── COACHING ── */}
       {tab === "coaching" && (
         <div className="space-y-4 animate-entrance">
-          <p className="text-sm text-slate-400 mb-2">Le Mentor IA analyse l'état actuel de votre projet et génère des recommandations personnalisées.</p>
+          <p className="text-sm app-text2 mb-2">Le Mentor IA analyse l'état actuel de votre projet et génère des recommandations personnalisées.</p>
           {diag.conseils.map((c, i) => (
             <Card key={i} className="p-5 hover:border-indigo-500/30 transition-all">
               <div className="flex items-start gap-4">
                 <span className="text-2xl flex-shrink-0">{c.icon}</span>
                 <div className="flex-1">
                   <h4 className="text-sm font-bold text-white mb-1">{c.titre}</h4>
-                  <p className="text-xs text-slate-400 mb-2">{c.desc}</p>
+                  <p className="text-xs app-text2 mb-2">{c.desc}</p>
                   <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">{c.pmbok}</span>
                 </div>
               </div>

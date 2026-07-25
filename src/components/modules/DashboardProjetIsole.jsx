@@ -23,7 +23,7 @@ const DashboardProjetIsole = () => {
       <div className="glass-card rounded-2xl p-12 text-center">
         <div className="text-6xl mb-4">📊</div>
         <h2 className="text-2xl font-bold text-white mb-2">Aucun projet sélectionné</h2>
-        <p className="text-slate-400 mb-6">Utilisez le sélecteur en haut pour choisir un projet</p>
+        <p className="app-text2 mb-6">Utilisez le sélecteur en haut pour choisir un projet</p>
         <button 
           onClick={() => navigate('/multiprojets')}
           className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors"
@@ -110,7 +110,7 @@ const DashboardProjetIsole = () => {
           <h1 className="text-3xl font-bold text-white mb-2">
             Dashboard Projet
           </h1>
-          <p className="text-slate-400">
+          <p className="app-text2">
             Vue détaillée de l'exécution et de la performance
           </p>
         </div>
@@ -152,8 +152,8 @@ const DashboardProjetIsole = () => {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white mb-1">{currentProject.nom}</h2>
-              <p className="text-slate-300 mb-2">Chef de projet : {currentProject.chef}</p>
-              <div className="flex items-center gap-4 text-sm text-slate-400">
+              <p className="app-text mb-2">Chef de projet : {currentProject.chef}</p>
+              <div className="flex items-center gap-4 text-sm app-text2">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" />
                   {currentProject.debut ? new Date(currentProject.debut).toLocaleDateString('fr-FR') : 'N/A'}
@@ -169,7 +169,7 @@ const DashboardProjetIsole = () => {
             </div>
           </div>
           <div className="text-right">
-            <p className="text-sm text-slate-400 mb-1">Avancement</p>
+            <p className="text-sm app-text2 mb-1">Avancement</p>
             <p className="text-4xl font-bold text-white">{avancement}%</p>
           </div>
         </div>
@@ -186,7 +186,7 @@ const DashboardProjetIsole = () => {
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-colors whitespace-nowrap ${
                 activeTab === tab.id
                   ? 'bg-indigo-600 text-white'
-                  : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                  : 'app-surface2 app-text hover:app-surface3'
               }`}
             >
               <Icon className="w-4 h-4" />
@@ -242,33 +242,33 @@ const DashboardProjetIsole = () => {
               Earned Value Management (EVM)
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="p-4 bg-slate-800 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">SPI</p>
+              <div className="p-4 app-surface2 rounded-xl">
+                <p className="text-sm app-text2 mb-1">SPI</p>
                 <p className={`text-2xl font-bold ${parseFloat(spi) >= 1 ? 'text-emerald-400' : 'text-red-400'}`}>
                   {spi}
                 </p>
-                <p className="text-xs text-slate-500 mt-1">Schedule Performance</p>
+                <p className="text-xs app-text3 mt-1">Schedule Performance</p>
               </div>
-              <div className="p-4 bg-slate-800 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">CPI</p>
+              <div className="p-4 app-surface2 rounded-xl">
+                <p className="text-sm app-text2 mb-1">CPI</p>
                 <p className={`text-2xl font-bold ${parseFloat(cpi) >= 1 ? 'text-emerald-400' : 'text-red-400'}`}>
                   {cpi}
                 </p>
-                <p className="text-xs text-slate-500 mt-1">Cost Performance</p>
+                <p className="text-xs app-text3 mt-1">Cost Performance</p>
               </div>
-              <div className="p-4 bg-slate-800 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">SV</p>
+              <div className="p-4 app-surface2 rounded-xl">
+                <p className="text-sm app-text2 mb-1">SV</p>
                 <p className={`text-2xl font-bold ${sv >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                   {(sv / 1000000).toFixed(2)}M
                 </p>
-                <p className="text-xs text-slate-500 mt-1">Schedule Variance</p>
+                <p className="text-xs app-text3 mt-1">Schedule Variance</p>
               </div>
-              <div className="p-4 bg-slate-800 rounded-xl">
-                <p className="text-sm text-slate-400 mb-1">CV</p>
+              <div className="p-4 app-surface2 rounded-xl">
+                <p className="text-sm app-text2 mb-1">CV</p>
                 <p className={`text-2xl font-bold ${cv >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                   {(cv / 1000000).toFixed(2)}M
                 </p>
-                <p className="text-xs text-slate-500 mt-1">Cost Variance</p>
+                <p className="text-xs app-text3 mt-1">Cost Variance</p>
               </div>
             </div>
           </Card>
@@ -319,10 +319,10 @@ const DashboardProjetIsole = () => {
           <h3 className="text-xl font-bold text-white mb-4">Tâches du Projet ({taches.length})</h3>
           <div className="space-y-3">
             {taches.slice(0, 10).map((tache, i) => (
-              <div key={i} className="p-4 bg-slate-800 rounded-xl flex items-center justify-between">
+              <div key={i} className="p-4 app-surface2 rounded-xl flex items-center justify-between">
                 <div className="flex-1">
                   <h4 className="font-medium text-white mb-1">{tache.tache}</h4>
-                  <p className="text-sm text-slate-400">{tache.responsable}</p>
+                  <p className="text-sm app-text2">{tache.responsable}</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <Badge variant={
@@ -348,16 +348,16 @@ const DashboardProjetIsole = () => {
         <Card className="p-6 glass-card rounded-2xl">
           <h3 className="text-xl font-bold text-white mb-4">Budget du Projet</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div className="p-6 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-400 mb-2">Budget Total</p>
+            <div className="p-6 app-surface2 rounded-xl">
+              <p className="text-sm app-text2 mb-2">Budget Total</p>
               <p className="text-3xl font-bold text-indigo-400">{((currentProject.budget || 0) / 1000000).toFixed(1)}M FCFA</p>
             </div>
-            <div className="p-6 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-400 mb-2">Consommé</p>
+            <div className="p-6 app-surface2 rounded-xl">
+              <p className="text-sm app-text2 mb-2">Consommé</p>
               <p className="text-3xl font-bold text-orange-400">{(budgetConsomme / 1000000).toFixed(1)}M FCFA</p>
             </div>
-            <div className="p-6 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-400 mb-2">Restant</p>
+            <div className="p-6 app-surface2 rounded-xl">
+              <p className="text-sm app-text2 mb-2">Restant</p>
               <p className="text-3xl font-bold text-emerald-400">
                 {(((currentProject.budget || 0) - budgetConsomme) / 1000000).toFixed(1)}M FCFA
               </p>
@@ -372,7 +372,7 @@ const DashboardProjetIsole = () => {
           <h3 className="text-xl font-bold text-white mb-4">Risques ({risques.length})</h3>
           <div className="space-y-3">
             {risques.filter(r => r.statut === "Actif").map((risque, i) => (
-              <div key={i} className="p-4 bg-slate-800 rounded-xl">
+              <div key={i} className="p-4 app-surface2 rounded-xl">
                 <div className="flex items-start justify-between mb-2">
                   <h4 className="font-medium text-white">{risque.risque}</h4>
                   <Badge variant={
@@ -382,7 +382,7 @@ const DashboardProjetIsole = () => {
                     Score: {risque.gravite * risque.probabilite}/25
                   </Badge>
                 </div>
-                <p className="text-sm text-slate-400">Atténuation: {risque.attenuation}</p>
+                <p className="text-sm app-text2">Atténuation: {risque.attenuation}</p>
               </div>
             ))}
           </div>
@@ -393,20 +393,20 @@ const DashboardProjetIsole = () => {
         <Card className="p-6 glass-card rounded-2xl">
           <h3 className="text-xl font-bold text-white mb-4">Planning</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="p-4 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-400 mb-1">Durée Totale</p>
+            <div className="p-4 app-surface2 rounded-xl">
+              <p className="text-sm app-text2 mb-1">Durée Totale</p>
               <p className="text-2xl font-bold text-white">{joursTotal} jours</p>
             </div>
-            <div className="p-4 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-400 mb-1">Jours Passés</p>
+            <div className="p-4 app-surface2 rounded-xl">
+              <p className="text-sm app-text2 mb-1">Jours Passés</p>
               <p className="text-2xl font-bold text-indigo-400">{joursPasses} jours</p>
             </div>
-            <div className="p-4 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-400 mb-1">Jours Restants</p>
+            <div className="p-4 app-surface2 rounded-xl">
+              <p className="text-sm app-text2 mb-1">Jours Restants</p>
               <p className="text-2xl font-bold text-emerald-400">{joursRestants} jours</p>
             </div>
-            <div className="p-4 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-400 mb-1">% Temps</p>
+            <div className="p-4 app-surface2 rounded-xl">
+              <p className="text-sm app-text2 mb-1">% Temps</p>
               <p className="text-2xl font-bold text-purple-400">{Math.round((joursPasses / joursTotal) * 100)}%</p>
             </div>
           </div>
@@ -424,13 +424,13 @@ const DashboardProjetIsole = () => {
                 const tachesResp = taches.filter(t => t.responsable === responsable);
                 const faites = tachesResp.filter(t => t.statut === "Fait").length;
                 return (
-                  <div key={i} className="p-4 bg-slate-800 rounded-xl flex items-center gap-3">
+                  <div key={i} className="p-4 app-surface2 rounded-xl flex items-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
                       {(responsable || 'U').charAt(0)}
                     </div>
                     <div className="flex-1">
                       <h4 className="font-medium text-white">{responsable}</h4>
-                      <p className="text-sm text-slate-400">{faites}/{tachesResp.length} tâches terminées</p>
+                      <p className="text-sm app-text2">{faites}/{tachesResp.length} tâches terminées</p>
                     </div>
                   </div>
                 );

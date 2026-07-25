@@ -70,43 +70,43 @@ const SmartContracts = ({ data: propData }) => {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 text-center">
+        <div className="app-surface2 border app-border rounded-xl p-4 text-center">
           <div className="text-3xl font-black text-white">{contracts.length}</div>
-          <div className="text-xs text-slate-400 mt-1">Contrats total</div>
+          <div className="text-xs app-text2 mt-1">Contrats total</div>
         </div>
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 text-center">
+        <div className="app-surface2 border app-border rounded-xl p-4 text-center">
           <div className="text-3xl font-black text-emerald-400">{executes}</div>
-          <div className="text-xs text-slate-400 mt-1">Exécutés</div>
+          <div className="text-xs app-text2 mt-1">Exécutés</div>
         </div>
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 text-center">
+        <div className="app-surface2 border app-border rounded-xl p-4 text-center">
           <div className="text-3xl font-black text-amber-400">{enAttente}</div>
-          <div className="text-xs text-slate-400 mt-1">En attente</div>
+          <div className="text-xs app-text2 mt-1">En attente</div>
         </div>
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 text-center">
+        <div className="app-surface2 border app-border rounded-xl p-4 text-center">
           <div className="text-2xl font-black text-indigo-400">{(totalSecurise / 1000000).toFixed(0)}M</div>
-          <div className="text-xs text-slate-400 mt-1">FCFA sécurisés</div>
+          <div className="text-xs app-text2 mt-1">FCFA sécurisés</div>
         </div>
       </div>
 
       {/* Table */}
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-x-auto">
+      <div className="app-surface2 border app-border rounded-xl overflow-x-auto">
         <table className="w-full min-w-[700px]">
           <thead>
-            <tr className="border-b border-slate-700">
+            <tr className="border-b app-border">
               {["Hash Contrat", "Projet", "Montant", "Condition de Trigger", "Date", "Statut", "Action"].map(h => (
-                <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase">{h}</th>
+                <th key={h} className="px-4 py-3 text-left text-xs font-bold app-text2 uppercase">{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {contracts.map((c) => (
-              <tr key={c.id} className="border-b border-slate-700/50 hover:bg-slate-700/30 cursor-pointer"
+              <tr key={c.id} className="border-b app-border hover:app-surface3 cursor-pointer"
                 onClick={() => setSelected(selected?.id === c.id ? null : c)}>
                 <td className="px-4 py-3 text-xs font-mono text-indigo-400">{c.id}</td>
                 <td className="px-4 py-3 text-sm text-slate-200">{c.projet}</td>
                 <td className="px-4 py-3 text-sm font-bold text-emerald-400">{c.montant.toLocaleString()} FCFA</td>
-                <td className="px-4 py-3 text-xs text-slate-400">λ {c.condition}</td>
-                <td className="px-4 py-3 text-xs text-slate-500">{c.date}</td>
+                <td className="px-4 py-3 text-xs app-text2">λ {c.condition}</td>
+                <td className="px-4 py-3 text-xs app-text3">{c.date}</td>
                 <td className="px-4 py-3">
                   <span className="px-2 py-1 rounded-full text-xs font-bold"
                     style={{ background: statusColors[c.statut] + "22", color: statusColors[c.statut] }}>
@@ -129,16 +129,16 @@ const SmartContracts = ({ data: propData }) => {
 
       {/* Detail panel */}
       {selected && (
-        <div className="bg-slate-800/60 border border-indigo-500/30 rounded-xl p-5 space-y-3">
+        <div className="app-surface2 border border-indigo-500/30 rounded-xl p-5 space-y-3">
           <div className="flex justify-between items-start">
             <h3 className="font-bold text-white">{selected.projet} — Détails du contrat</h3>
-            <button onClick={() => setSelected(null)} className="text-slate-500 hover:text-white">✕</button>
+            <button onClick={() => setSelected(null)} className="app-text3 hover:text-white">✕</button>
           </div>
           <div className="font-mono text-xs text-indigo-300 break-all">{selected.hash}</div>
           <div className="grid grid-cols-2 gap-4 text-sm">
-            <div><span className="text-slate-400">Montant sécurisé :</span> <span className="text-emerald-400 font-bold">{selected.montant.toLocaleString()} FCFA</span></div>
-            <div><span className="text-slate-400">Date déploiement :</span> <span className="text-white">{selected.date}</span></div>
-            <div className="col-span-2"><span className="text-slate-400">Condition trigger :</span> <span className="text-amber-300"> {selected.condition}</span></div>
+            <div><span className="app-text2">Montant sécurisé :</span> <span className="text-emerald-400 font-bold">{selected.montant.toLocaleString()} FCFA</span></div>
+            <div><span className="app-text2">Date déploiement :</span> <span className="text-white">{selected.date}</span></div>
+            <div className="col-span-2"><span className="app-text2">Condition trigger :</span> <span className="text-amber-300"> {selected.condition}</span></div>
           </div>
         </div>
       )}

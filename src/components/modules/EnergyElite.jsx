@@ -19,7 +19,7 @@ const EnergyElite = ({ data = {}, setData }) => {
         icon={<Zap className="w-8 h-8 text-amber-500" />}
       />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-2 p-6 glass-card border-slate-800">
+        <Card className="lg:col-span-2 p-6 glass-card app-border">
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={generationData}>
@@ -33,7 +33,7 @@ const EnergyElite = ({ data = {}, setData }) => {
             </ResponsiveContainer>
           </div>
         </Card>
-        <Card className="p-6 glass-card border-slate-800">
+        <Card className="p-6 glass-card app-border">
            <div className="text-center">
               <Battery className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
               <p className="text-3xl font-black text-white">82%</p>

@@ -106,7 +106,7 @@ const PredictionsML = ({ data }) => {
       case "success": return "text-emerald-400";
       case "warning": return "text-yellow-400";
       case "danger": return "text-red-400";
-      default: return "text-slate-400";
+      default: return "app-text2";
     }
   };
 
@@ -115,7 +115,7 @@ const PredictionsML = ({ data }) => {
       case "success": return <ArrowUpRight className="w-5 h-5 text-emerald-400" />;
       case "warning": return <Minus className="w-5 h-5 text-yellow-400" />;
       case "danger": return <ArrowDownRight className="w-5 h-5 text-red-400" />;
-      default: return <Minus className="w-5 h-5 text-slate-400" />;
+      default: return <Minus className="w-5 h-5 app-text2" />;
     }
   };
 
@@ -125,7 +125,7 @@ const PredictionsML = ({ data }) => {
         <div className="text-center">
           <Brain className="w-16 h-16 text-indigo-400 mx-auto mb-4 animate-pulse" />
           <p className="text-lg text-white font-medium">Analyse ML en cours...</p>
-          <p className="text-sm text-slate-400 mt-2">Calcul des prédictions</p>
+          <p className="text-sm app-text2 mt-2">Calcul des prédictions</p>
         </div>
       </div>
     );
@@ -133,7 +133,7 @@ const PredictionsML = ({ data }) => {
 
   if (!predictions) {
     return (
-      <div className="text-center py-12 text-slate-500">
+      <div className="text-center py-12 app-text3">
         <Brain className="w-16 h-16 mx-auto mb-4 opacity-50" />
         <p>Impossible de générer les prédictions</p>
       </div>
@@ -148,7 +148,7 @@ const PredictionsML = ({ data }) => {
         action={
           <div className="flex items-center gap-2">
             <Zap className="w-4 h-4 text-yellow-400" />
-            <span className="text-sm text-slate-300">Confiance: {confiance}%</span>
+            <span className="text-sm app-text">Confiance: {confiance}%</span>
           </div>
         }
       />
@@ -160,7 +160,7 @@ const PredictionsML = ({ data }) => {
             <AlertTriangle className="w-8 h-8 text-red-400 flex-shrink-0" />
             <div>
               <h3 className="text-lg font-bold text-red-400 mb-2">⚠️ Alerte Préditive - Dépassement Budgétaire</h3>
-              <p className="text-slate-300">
+              <p className="app-text">
                 Le modèle prédit un dépassement de <strong className="text-white">{predictions.budget.derive.toFixed(1)}%</strong> 
                 sur le budget total. Budget final estimé : <strong className="text-white">{(predictions.budget.predict / 1000000).toFixed(1)}M FCFA</strong>
               </p>
@@ -183,12 +183,12 @@ const PredictionsML = ({ data }) => {
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-3xl font-black text-white">{Math.round(predictions.healthScore)}</span>
-                <span className="text-[10px] font-bold text-slate-500 uppercase">Score</span>
+                <span className="text-[10px] font-bold app-text3 uppercase">Score</span>
               </div>
            </div>
            <div>
               <h3 className="text-xl font-black text-white mb-2 tracking-tight">Indice de Santé IA</h3>
-              <p className="text-sm text-slate-400 leading-relaxed mb-4">
+              <p className="text-sm app-text2 leading-relaxed mb-4">
                 Score calculé par agrégation de la dérive budgétaire, du retard planning et de la densité des risques critiques.
               </p>
               <div className="flex gap-2">
@@ -212,15 +212,15 @@ const PredictionsML = ({ data }) => {
           </div>
           <div className="space-y-4">
             <div>
-              <div className="flex justify-between text-[10px] font-black text-slate-500 mb-1.5 uppercase">
+              <div className="flex justify-between text-[10px] font-black app-text3 mb-1.5 uppercase">
                 <span>Précision Historique</span>
                 <span>94%</span>
               </div>
-              <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full app-surface2 rounded-full overflow-hidden">
                 <div className="h-full bg-indigo-500 rounded-full" style={{ width: '94%' }} />
               </div>
             </div>
-            <p className="text-xs text-slate-500 italic">
+            <p className="text-xs app-text3 italic">
               * Les prédictions sont basées sur 1000 itérations Monte Carlo pour garantir une précision statistique à 95%.
             </p>
           </div>
@@ -234,7 +234,7 @@ const PredictionsML = ({ data }) => {
             <DollarSign className="w-8 h-8 text-indigo-400" />
             {getStatutIcon(predictions.budget.statut)}
           </div>
-          <p className="text-sm text-slate-400 mb-1">Budget P50 (Médian)</p>
+          <p className="text-sm app-text2 mb-1">Budget P50 (Médian)</p>
           <p className="text-2xl font-bold text-white">
             {(predictions.budget.p50 / 1000000).toFixed(1)}M
           </p>
@@ -248,11 +248,11 @@ const PredictionsML = ({ data }) => {
             <AlertTriangle className="w-8 h-8 text-red-400" />
             <span className="text-[10px] font-black text-red-500">MAX</span>
           </div>
-          <p className="text-sm text-slate-400 mb-1">Budget P90 (Pessimiste)</p>
+          <p className="text-sm app-text2 mb-1">Budget P90 (Pessimiste)</p>
           <p className="text-2xl font-bold text-white">
             {(predictions.budget.p90 / 1000000).toFixed(1)}M
           </p>
-          <p className="text-xs text-slate-500 mt-1">Impact Risques Max</p>
+          <p className="text-xs app-text3 mt-1">Impact Risques Max</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl">
@@ -260,7 +260,7 @@ const PredictionsML = ({ data }) => {
             <Clock className="w-8 h-8 text-purple-400" />
             {getStatutIcon(predictions.planning.retard > 10 ? "danger" : predictions.planning.retard > 0 ? "warning" : "success")}
           </div>
-          <p className="text-sm text-slate-400 mb-1">Date Fin Prédite</p>
+          <p className="text-sm app-text2 mb-1">Date Fin Prédite</p>
           <p className="text-2xl font-bold text-white">
             {new Date(predictions.planning.dateFin).toLocaleDateString('fr-FR')}
           </p>
@@ -274,11 +274,11 @@ const PredictionsML = ({ data }) => {
             <TrendingUp className="w-8 h-8 text-orange-400" />
             <Zap className="w-4 h-4 text-orange-400" />
           </div>
-          <p className="text-sm text-slate-400 mb-1">Risque d'Échec Total</p>
+          <p className="text-sm app-text2 mb-1">Risque d'Échec Total</p>
           <p className="text-2xl font-bold text-white">
             {predictions.risques.probabiliteEchec.toFixed(0)}%
           </p>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs app-text2 mt-1">
             {predictions.risques.critiques} points de défaillance
           </p>
         </Card>
@@ -317,25 +317,25 @@ const PredictionsML = ({ data }) => {
             <BarChart3 className="w-5 h-5 text-orange-400" />
             Distribution Monte Carlo
           </h3>
-          <p className="text-xs text-slate-500 mb-6">Répartition des probabilités sur 1000 scénarios simulés.</p>
+          <p className="text-xs app-text3 mb-6">Répartition des probabilités sur 1000 scénarios simulés.</p>
           <ResponsiveContainer width="100%" height={250}>
             <ReBarChart data={predictions.risques.simulations.slice(0, 15)}>
               <Bar dataKey="val" fill="#f97316" radius={[4, 4, 0, 0]} opacity={0.6} />
               <Tooltip cursor={{fill: 'transparent'}} content={() => null} />
             </ReBarChart>
           </ResponsiveContainer>
-          <div className="mt-6 p-4 bg-slate-800/50 rounded-xl border border-slate-700">
+          <div className="mt-6 p-4 app-surface2 rounded-xl border app-border">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-xs text-slate-400 font-bold uppercase">Zone de Confiance</span>
+              <span className="text-xs app-text2 font-bold uppercase">Zone de Confiance</span>
               <span className="text-xs text-emerald-400">P50 - P90</span>
             </div>
             <div className="flex justify-between items-end">
                <div>
-                 <p className="text-[10px] text-slate-500 uppercase font-black">Probable</p>
+                 <p className="text-[10px] app-text3 uppercase font-black">Probable</p>
                  <p className="text-sm font-bold text-white">{(predictions.budget.p50 / 1000000).toFixed(1)}M</p>
                </div>
                <div className="text-right">
-                 <p className="text-[10px] text-slate-500 uppercase font-black">Risque Max</p>
+                 <p className="text-[10px] app-text3 uppercase font-black">Risque Max</p>
                  <p className="text-sm font-bold text-red-400">{(predictions.budget.p90 / 1000000).toFixed(1)}M</p>
                </div>
             </div>
@@ -352,9 +352,9 @@ const PredictionsML = ({ data }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {predictions.budget.derive > 5 && (
-            <div className="p-4 bg-slate-800/50 rounded-xl">
+            <div className="p-4 app-surface2 rounded-xl">
               <h4 className="font-medium text-orange-400 mb-2">💰 Budget</h4>
-              <ul className="text-sm text-slate-300 space-y-1">
+              <ul className="text-sm app-text space-y-1">
                 <li>• Renégocier contrats fournisseurs</li>
                 <li>• Réduire dépenses non essentielles</li>
                 <li>• Créer réserve imprévus 15%</li>
@@ -363,9 +363,9 @@ const PredictionsML = ({ data }) => {
           )}
 
           {predictions.dateFin.retard > 0 && (
-            <div className="p-4 bg-slate-800/50 rounded-xl">
+            <div className="p-4 app-surface2 rounded-xl">
               <h4 className="font-medium text-red-400 mb-2">⏱️ Planning</h4>
-              <ul className="text-sm text-slate-300 space-y-1">
+              <ul className="text-sm app-text space-y-1">
                 <li>• Paralléliser tâches indépendantes</li>
                 <li>• Renforcer équipe sur critiques</li>
                 <li>• Ajouter buffer 10-15%</li>
@@ -374,9 +374,9 @@ const PredictionsML = ({ data }) => {
           )}
 
           {predictions.risques.critiques > 0 && (
-            <div className="p-4 bg-slate-800/50 rounded-xl">
+            <div className="p-4 app-surface2 rounded-xl">
               <h4 className="font-medium text-red-400 mb-2">⚠️ Risques</h4>
-              <ul className="text-sm text-slate-300 space-y-1">
+              <ul className="text-sm app-text space-y-1">
                 <li>• Activer plans d'atténuation</li>
                 <li>• Monitoring continu accru</li>
                 <li>• Escalade proactive</li>
@@ -384,9 +384,9 @@ const PredictionsML = ({ data }) => {
             </div>
           )}
 
-          <div className="p-4 bg-slate-800/50 rounded-xl">
+          <div className="p-4 app-surface2 rounded-xl">
             <h4 className="font-medium text-emerald-400 mb-2">📊 Optimisation</h4>
-            <ul className="text-sm text-slate-300 space-y-1">
+            <ul className="text-sm app-text space-y-1">
               <li>• Revue hebdo avancement</li>
               <li>• Ajuster ressources selon besoins</li>
               <li>• Anticiper goulots d'étranglement</li>
@@ -401,19 +401,19 @@ const PredictionsML = ({ data }) => {
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
           <div>
-            <p className="text-slate-400 mb-1">Algorithme</p>
+            <p className="app-text2 mb-1">Algorithme</p>
             <p className="text-white font-medium">Régression Linéaire + Random Forest</p>
           </div>
           <div>
-            <p className="text-slate-400 mb-1">Données analysées</p>
+            <p className="app-text2 mb-1">Données analysées</p>
             <p className="text-white font-medium">{data.projets?.length || 0} projets</p>
           </div>
           <div>
-            <p className="text-slate-400 mb-1">Confiance</p>
+            <p className="app-text2 mb-1">Confiance</p>
             <p className="text-white font-medium">{confiance}%</p>
           </div>
           <div>
-            <p className="text-slate-400 mb-1">Dernière MAJ</p>
+            <p className="app-text2 mb-1">Dernière MAJ</p>
             <p className="text-white font-medium">{new Date().toLocaleString('fr-FR')}</p>
           </div>
         </div>

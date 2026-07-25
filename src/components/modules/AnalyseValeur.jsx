@@ -59,19 +59,19 @@ const AnalyseValeur = ({ data = {} }) => {
         <div className="space-y-4">
            <Card className="p-6 glass-card rounded-2xl">
               <div className="text-center mb-6">
-                 <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-1">Ratio Valeur Global</p>
+                 <p className="text-[10px] app-text3 font-black uppercase tracking-widest mb-1">Ratio Valeur Global</p>
                  <p className="text-4xl font-black text-white">{ratio}</p>
                  <Badge variant="success" className="mt-2">Excellent (+0.2)</Badge>
               </div>
-              <div className="space-y-4 pt-4 border-t border-slate-800">
-                 <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Zones d'Inéficience</p>
+              <div className="space-y-4 pt-4 border-t app-border">
+                 <p className="text-xs app-text2 font-bold uppercase tracking-wider">Zones d'Inéficience</p>
                  <div className="p-3 bg-red-600/10 border border-red-500/20 rounded-xl">
                     <p className="text-[11px] text-red-400 font-bold mb-1">Sur-conception : Structure</p>
-                    <p className="text-[10px] text-slate-300">Le coût dépasse la valeur fonctionnelle de 15%. Réduction suggérée.</p>
+                    <p className="text-[10px] app-text">Le coût dépasse la valeur fonctionnelle de 15%. Réduction suggérée.</p>
                  </div>
                  <div className="p-3 bg-emerald-600/10 border border-emerald-500/20 rounded-xl">
                     <p className="text-[11px] text-emerald-400 font-bold mb-1">Opportunité : Design</p>
-                    <p className="text-[10px] text-slate-300">Valeur perçue très haute pour un coût faible. Renforcer l'investissement.</p>
+                    <p className="text-[10px] app-text">Valeur perçue très haute pour un coût faible. Renforcer l'investissement.</p>
                  </div>
               </div>
            </Card>
@@ -81,7 +81,7 @@ const AnalyseValeur = ({ data = {} }) => {
                  <Zap className="w-4 h-4 text-yellow-400" />
                  Algorithme de Simplification
               </h4>
-              <p className="text-xs text-slate-400 mb-4">L'IA suggère 3 modifications de conception pour économiser 8.5M FCFA sans perte de qualité.</p>
+              <p className="text-xs app-text2 mb-4">L'IA suggère 3 modifications de conception pour économiser 8.5M FCFA sans perte de qualité.</p>
               <button type="button" onClick={handleOptimize} disabled={isOptimized} className={`w-full py-2.5 rounded-xl font-bold transition-all text-sm ${isOptimized ? 'bg-emerald-600/20 text-emerald-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700 text-white'}`}>{isOptimized ? "Optimisation Active" : "Appliquer l'Optimisation"}</button>
            </Card>
         </div>

@@ -13,7 +13,7 @@ const Methodologies = ({ data, setData }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {METHODOLOGIES.map(m => (
           <div key={m.id} onClick={() => setData({ ...data, methode: m.label })}
-            className={`p-5 rounded-2xl border transition-all cursor-pointer group ${currentMethode === m.label ? "bg-indigo-600 border-indigo-400 shadow-xl scale-[1.02]" : "bg-slate-800/60 border-slate-700 hover:border-slate-500"}`}>
+            className={`p-5 rounded-2xl border transition-all cursor-pointer group ${currentMethode === m.label ? "bg-indigo-600 border-indigo-400 shadow-xl scale-[1.02]" : "app-surface2 app-border hover:border-slate-500"}`}>
             <div className="flex justify-between items-start mb-4">
               <div className="flex gap-2">
                 {m.icons.map((ic, i) => <span key={i} className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm">{ic}</span>)}
@@ -21,7 +21,7 @@ const Methodologies = ({ data, setData }) => {
               {currentMethode === m.label && <span className="text-[10px] font-black bg-white text-indigo-600 px-2 py-0.5 rounded-full uppercase">Actif</span>}
             </div>
             <h3 className="text-lg font-black text-white mb-2">{m.label}</h3>
-            <p className="text-xs text-slate-300 group-hover:text-white transition-colors">{m.desc}</p>
+            <p className="text-xs app-text group-hover:text-white transition-colors">{m.desc}</p>
 
             <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
               <span className="text-[10px] text-white/60 uppercase font-black">Modules clés</span>
@@ -31,9 +31,9 @@ const Methodologies = ({ data, setData }) => {
         ))}
       </div>
 
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 text-center">
-        <p className="text-sm text-slate-400 mb-2">Méthodologie sélectionnée : <strong className="text-white">{currentMethode}</strong></p>
-        <p className="text-xs text-slate-500 italic max-w-md mx-auto">"La sélection d'une méthodologie personnalise automatiquement vos indicateurs de performance et les vues prioritaires du tableau de bord."</p>
+      <div className="app-surface2 border app-border rounded-xl p-6 text-center">
+        <p className="text-sm app-text2 mb-2">Méthodologie sélectionnée : <strong className="text-white">{currentMethode}</strong></p>
+        <p className="text-xs app-text3 italic max-w-md mx-auto">"La sélection d'une méthodologie personnalise automatiquement vos indicateurs de performance et les vues prioritaires du tableau de bord."</p>
       </div>
     </div>
   );

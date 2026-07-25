@@ -26,21 +26,21 @@ const Problemes = ({ data, setData }) => {
           { label: "En cours", count: data.filter(p => p.statut === "En cours").length, color: "#f59e0b" },
           { label: "Résolus", count: data.filter(p => p.statut === "Résolu").length, color: "#10b981" },
         ].map((s, i) => (
-          <div key={i} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-3 text-center">
+          <div key={i} className="app-surface2 border app-border rounded-xl p-3 text-center">
             <p className="text-2xl font-black" style={{ color: s.color }}>{s.count}</p>
-            <p className="text-xs text-slate-400 mt-1">{s.label}</p>
+            <p className="text-xs app-text2 mt-1">{s.label}</p>
           </div>
         ))}
       </div>
       <div className="flex gap-2 flex-wrap">
         {["Tous", "À faire", "En cours", "Résolu", "Critique", "Haute"].map(f => (
           <button key={f} onClick={() => setFilter(f)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${filter === f ? "bg-indigo-600 border-indigo-500 text-white" : "border-slate-700 text-slate-400 hover:text-white"}`}>{f}</button>
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${filter === f ? "bg-indigo-600 border-indigo-500 text-white" : "app-border app-text2 hover:text-white"}`}>{f}</button>
         ))}
       </div>
       <div className="space-y-3">
         {filtered.map(p => (
-          <div key={p.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 hover:border-slate-600 transition-all"
+          <div key={p.id} className="app-surface2 border app-border rounded-xl p-4 hover:app-border2 transition-all"
             style={{ borderLeftColor: PRIORITE_COLORS[p.priorite], borderLeftWidth: 3 }}>
             <div className="flex justify-between items-start mb-2">
               <div className="flex gap-2 flex-wrap">
@@ -53,7 +53,7 @@ const Problemes = ({ data, setData }) => {
               </div>
             </div>
             <p className="text-sm text-white font-medium mb-1">{p.description}</p>
-            <p className="text-xs text-slate-500">{p.responsable} · Signalé le {p.dateSignalement}</p>
+            <p className="text-xs app-text3">{p.responsable} · Signalé le {p.dateSignalement}</p>
             {p.resolution && <p className="text-xs text-emerald-400 mt-2 bg-emerald-400/10 rounded px-2 py-1">✓ {p.resolution}</p>}
           </div>
         ))}

@@ -72,7 +72,7 @@ const Kanban = ({ data, setData }) => {
           <div
             key={col.key}
             data-col={col.key}
-            className={`bg-slate-800/60 border rounded-xl p-3 transition-colors ${dragOverCol === col.key ? "border-indigo-500 bg-indigo-600/10" : "border-slate-700/50"}`}
+            className={`app-surface2 border rounded-xl p-3 transition-colors ${dragOverCol === col.key ? "border-indigo-500 bg-indigo-600/10" : "app-border"}`}
             onDragOver={e => { e.preventDefault(); setDragOverCol(col.key); }}
             onDragLeave={() => setDragOverCol(null)}
             onDrop={() => onMouseDrop(col.key)}
@@ -80,8 +80,8 @@ const Kanban = ({ data, setData }) => {
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: col.color }} />
-                <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">{col.label}</h3>
-                <span className="text-xs bg-slate-700 text-slate-400 px-1.5 py-0.5 rounded-full">{(data[col.key] || []).length}</span>
+                <h3 className="text-xs font-bold app-text uppercase tracking-wider">{col.label}</h3>
+                <span className="text-xs app-surface3 app-text2 px-1.5 py-0.5 rounded-full">{(data[col.key] || []).length}</span>
               </div>
               <Btn onClick={() => addCard(col.key)} variant="ghost" size="sm">+</Btn>
             </div>
@@ -94,7 +94,7 @@ const Kanban = ({ data, setData }) => {
                   onTouchStart={() => onTouchStart(card.id, col.key)}
                   onTouchMove={onTouchMove}
                   onTouchEnd={onTouchEnd}
-                  className="bg-slate-700/80 border border-slate-600/50 rounded-xl p-3 cursor-grab active:cursor-grabbing hover:border-indigo-500/50 transition-all touch-none select-none"
+                  className="app-surface3 border app-border2 rounded-xl p-3 cursor-grab active:cursor-grabbing hover:border-indigo-500/50 transition-all touch-none select-none"
                 >
                   <div className="flex justify-between items-start mb-2">
                     <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold"
@@ -105,14 +105,14 @@ const Kanban = ({ data, setData }) => {
                   </div>
                   <p className="text-sm text-slate-200 font-medium leading-tight mb-2">{card.titre}</p>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-slate-500">{card.assignee}</span>
+                    <span className="text-xs app-text3">{card.assignee}</span>
                     <span className="text-xs bg-indigo-600/30 text-indigo-300 px-2 py-0.5 rounded-full font-bold">{card.points}pts</span>
                   </div>
                   {/* Boutons de déplacement rapide (accessibilité + mobile) */}
                   <div className="flex gap-1 mt-2 flex-wrap">
                     {columns.filter(c => c.key !== col.key).map(c => (
                       <button key={c.key} onClick={() => moveCard(card.id, col.key, c.key)}
-                        className="text-xs px-1.5 py-0.5 rounded bg-slate-600/50 hover:bg-slate-500 text-slate-400 hover:text-slate-200 transition-colors"
+                        className="text-xs px-1.5 py-0.5 rounded bg-slate-600/50 hover:bg-slate-500 app-text2 hover:text-slate-200 transition-colors"
                         title={`→ ${c.label}`}>→ {c.label.substring(0, 3)}</button>
                     ))}
                   </div>

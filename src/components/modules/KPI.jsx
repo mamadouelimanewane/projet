@@ -30,25 +30,25 @@ const KPI = ({ data, setData }) => {
           const pct = getKpiPct(k);
           const color = getKpiColor(k);
           return (
-            <div key={k.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 relative overflow-hidden cursor-pointer hover:border-indigo-500/40 transition-all"
+            <div key={k.id} className="app-surface2 border app-border rounded-xl p-4 relative overflow-hidden cursor-pointer hover:border-indigo-500/40 transition-all"
               onClick={() => { setForm({ ...k }); setModal("edit"); }}>
               <div className="absolute inset-0 opacity-5" style={{ background: `radial-gradient(circle at 80% 80%, ${color}, transparent)` }} />
               <div className="flex justify-between items-start mb-2">
-                <span className="text-xs text-slate-500 uppercase tracking-wider font-medium">{k.categorie}</span>
+                <span className="text-xs app-text3 uppercase tracking-wider font-medium">{k.categorie}</span>
                 <span className="text-sm" style={{ color: STATUT_COLORS[k.tendance] }}>
                   {k.tendance === "hausse" ? "↑" : k.tendance === "baisse" ? "↓" : "→"}
                 </span>
               </div>
               <div className="text-2xl font-black mb-0.5" style={{ color }}>{k.valeur}{k.unite}</div>
-              <div className="text-xs text-slate-400 mb-3">Cible : {k.cible}{k.unite}</div>
-              <p className="text-xs text-slate-300 font-medium mb-2 leading-tight">{k.nom}</p>
+              <div className="text-xs app-text2 mb-3">Cible : {k.cible}{k.unite}</div>
+              <p className="text-xs app-text font-medium mb-2 leading-tight">{k.nom}</p>
               <ProgressBar value={Math.min(pct, 100)} color={color} />
             </div>
           );
         })}
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-        <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Radar Performance</h3>
+      <div className="app-surface2 border app-border rounded-xl p-5">
+        <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Radar Performance</h3>
         <ResponsiveContainer width="100%" height={280}>
           <RadarChart data={radarData}>
             <PolarGrid stroke="#334155" />

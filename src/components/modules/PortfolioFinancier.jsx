@@ -30,8 +30,8 @@ const PortfolioFinancier = ({ data }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 bg-slate-800/60 border border-slate-700/50 rounded-xl p-6">
-          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider flex items-center gap-2">🔄 Projection du Cashflow (FCFA)</h3>
+        <div className="md:col-span-2 app-surface2 border app-border rounded-xl p-6">
+          <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider flex items-center gap-2">🔄 Projection du Cashflow (FCFA)</h3>
           <ResponsiveContainer width="100%" height={260}>
             <AreaChart data={cashflowData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
@@ -45,15 +45,15 @@ const PortfolioFinancier = ({ data }) => {
           </ResponsiveContainer>
         </div>
 
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6 flex flex-col">
-          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Analyse de Rentabilité par Projet</h3>
+        <div className="app-surface2 border app-border rounded-xl p-6 flex flex-col">
+          <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Analyse de Rentabilité par Projet</h3>
           <div className="space-y-4 flex-1">
             {data.projets.map(p => {
               const prev = p.budget;
               const dep = p.budgetReel;
               const isProfit = dep <= prev;
               return (
-                <div key={p.id} className="border-b border-slate-700/50 pb-3 last:border-0">
+                <div key={p.id} className="border-b app-border pb-3 last:border-0">
                   <div className="flex justify-between items-center mb-1">
                     <span className="text-sm font-bold text-white truncate w-40">{p.nom}</span>
                     <span className={`text-xs font-bold px-2 py-0.5 rounded ${isProfit ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>

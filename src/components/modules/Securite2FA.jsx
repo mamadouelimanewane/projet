@@ -148,8 +148,8 @@ const Securite2FA = async () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-emerald-400">2FA Activée</h3>
-                  <p className="text-sm text-slate-300">Votre compte est sécurisé</p>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-sm app-text">Votre compte est sécurisé</p>
+                  <p className="text-xs app-text3 mt-1">
                     Dernière vérification : {lastVerified ? new Date(lastVerified).toLocaleString('fr-FR') : "Jamais"}
                   </p>
                 </div>
@@ -161,7 +161,7 @@ const Securite2FA = async () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-orange-400">2FA Désactivée</h3>
-                  <p className="text-sm text-slate-300">Votre compte est vulnérable</p>
+                  <p className="text-sm app-text">Votre compte est vulnérable</p>
                 </div>
               </>
             )}
@@ -190,11 +190,11 @@ const Securite2FA = async () => {
           </h3>
 
           <div className="space-y-4">
-            <div className="p-4 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-300 mb-3">
+            <div className="p-4 app-surface2 rounded-xl">
+              <p className="text-sm app-text mb-3">
                 1. Installez Google Authenticator, Authy ou Microsoft Authenticator sur votre téléphone
               </p>
-              <p className="text-sm text-slate-300 mb-3">
+              <p className="text-sm app-text mb-3">
                 2. Scannez ce QR code :
               </p>
               <div className="bg-white p-4 rounded-xl inline-block">
@@ -206,12 +206,12 @@ const Securite2FA = async () => {
               </div>
             </div>
 
-            <div className="p-4 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-300 mb-3">
+            <div className="p-4 app-surface2 rounded-xl">
+              <p className="text-sm app-text mb-3">
                 3. Ou entrez manuellement cette clé :
               </p>
               <div className="flex items-center gap-3">
-                <code className="flex-1 p-3 bg-slate-900 rounded-lg text-indigo-400 font-mono text-sm">
+                <code className="flex-1 p-3 app-surface rounded-lg text-indigo-400 font-mono text-sm">
                   {secretKey}
                 </code>
                 <Btn size="sm" onClick={copySecretKey}>
@@ -237,8 +237,8 @@ const Securite2FA = async () => {
           </h3>
 
           <div className="space-y-4">
-            <div className="p-4 bg-slate-800 rounded-xl">
-              <p className="text-sm text-slate-300 mb-3">
+            <div className="p-4 app-surface2 rounded-xl">
+              <p className="text-sm app-text mb-3">
                 Entrez le code à 6 chiffres affiché dans votre application :
               </p>
               <input
@@ -247,7 +247,7 @@ const Securite2FA = async () => {
                 onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="000000"
                 maxLength="6"
-                className="w-full px-6 py-4 bg-slate-900 border-2 border-slate-700 rounded-xl text-white text-center text-3xl font-mono tracking-widest focus:outline-none focus:border-indigo-500"
+                className="w-full px-6 py-4 app-surface border-2 app-border rounded-xl text-white text-center text-3xl font-mono tracking-widest focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -290,11 +290,11 @@ const Securite2FA = async () => {
 
               <div className="grid grid-cols-2 gap-3">
                 {backupCodes.map((code, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 bg-slate-800 rounded-lg">
+                  <div key={index} className="flex items-center justify-between p-3 app-surface2 rounded-lg">
                     <code className="text-sm text-white font-mono">{code}</code>
                     <button
                       onClick={() => copyBackupCode(code)}
-                      className="text-slate-400 hover:text-indigo-400 transition-colors"
+                      className="app-text2 hover:text-indigo-400 transition-colors"
                     >
                       <Copy className="w-4 h-4" />
                     </button>
@@ -337,9 +337,9 @@ const Securite2FA = async () => {
               desc: "8 codes de backup pour récupérer l'accès si besoin"
             }
           ].map((item, i) => (
-            <div key={i} className="p-4 bg-slate-800/50 rounded-xl">
+            <div key={i} className="p-4 app-surface2 rounded-xl">
               <h4 className="font-medium text-white mb-1">{item.titre}</h4>
-              <p className="text-sm text-slate-400">{item.desc}</p>
+              <p className="text-sm app-text2">{item.desc}</p>
             </div>
           ))}
         </div>

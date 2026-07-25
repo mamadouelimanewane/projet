@@ -15,7 +15,7 @@ const DashboardProjet = ({ data, projetId }) => {
       <div className="glass-card rounded-2xl p-12 text-center">
         <div className="text-6xl mb-4">📊</div>
         <h2 className="text-2xl font-bold text-white mb-2">Projet non trouvé</h2>
-        <p className="text-slate-400 mb-6">Sélectionnez un projet pour voir son tableau de bord</p>
+        <p className="app-text2 mb-6">Sélectionnez un projet pour voir son tableau de bord</p>
         <button 
           onClick={() => navigate('/multiprojets')}
           className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold transition-colors"
@@ -135,12 +135,12 @@ const DashboardProjet = ({ data, projetId }) => {
               <h1 className="text-3xl font-black text-white tracking-tight">{projet.nom}</h1>
               <Badge value={projet.statut} />
             </div>
-            <p className="text-sm text-slate-400">Chef de projet : <span className="text-slate-200 font-bold">{projet.chef}</span></p>
-            <p className="text-xs text-slate-500 mt-1">{projet.debut} → {projet.fin}</p>
+            <p className="text-sm app-text2">Chef de projet : <span className="text-slate-200 font-bold">{projet.chef}</span></p>
+            <p className="text-xs app-text3 mt-1">{projet.debut} → {projet.fin}</p>
           </div>
           <button 
             onClick={() => navigate('/multiprojets')}
-            className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-bold transition-colors"
+            className="px-4 py-2 app-surface3 hover:bg-slate-600 text-white rounded-lg text-sm font-bold transition-colors"
           >
             ← Retour
           </button>
@@ -189,36 +189,36 @@ const DashboardProjet = ({ data, projetId }) => {
       {/* Indicateurs EVM */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="glass-card rounded-xl p-4 text-center">
-          <div className="text-xs font-black text-slate-500 mb-2 uppercase tracking-widest">SPI</div>
+          <div className="text-xs font-black app-text3 mb-2 uppercase tracking-widest">SPI</div>
           <div className="text-3xl font-black" style={{ color: spiValue >= 1 ? "#10b981" : "#f59e0b" }}>
             {spi}
           </div>
-          <div className="text-[10px] text-slate-500 mt-1">
+          <div className="text-[10px] app-text3 mt-1">
             {spiValue >= 1 ? "✅ Dans les délais" : "⚠️ En retard"}
           </div>
         </div>
         <div className="glass-card rounded-xl p-4 text-center">
-          <div className="text-xs font-black text-slate-500 mb-2 uppercase tracking-widest">CPI</div>
+          <div className="text-xs font-black app-text3 mb-2 uppercase tracking-widest">CPI</div>
           <div className="text-3xl font-black" style={{ color: cpiValue >= 1 ? "#10b981" : "#ef4444" }}>
             {cpi}
           </div>
-          <div className="text-[10px] text-slate-500 mt-1">
+          <div className="text-[10px] app-text3 mt-1">
             {cpiValue >= 1 ? "✅ Sous budget" : "⚠️ Dépassement"}
           </div>
         </div>
         <div className="glass-card rounded-xl p-4 text-center">
-          <div className="text-xs font-black text-slate-500 mb-2 uppercase tracking-widest">Budget Restant</div>
+          <div className="text-xs font-black app-text3 mb-2 uppercase tracking-widest">Budget Restant</div>
           <div className="text-2xl font-black text-emerald-400">
             {(budgetRestant / 1000000).toFixed(1)}M
           </div>
-          <div className="text-[10px] text-slate-500 mt-1">FCFA</div>
+          <div className="text-[10px] app-text3 mt-1">FCFA</div>
         </div>
         <div className="glass-card rounded-xl p-4 text-center">
-          <div className="text-xs font-black text-slate-500 mb-2 uppercase tracking-widest">Retards Actifs</div>
+          <div className="text-xs font-black app-text3 mb-2 uppercase tracking-widest">Retards Actifs</div>
           <div className="text-3xl font-black" style={{ color: retardsActifs > 0 ? "#ef4444" : "#10b981" }}>
             {retardsActifs}
           </div>
-          <div className="text-[10px] text-slate-500 mt-1">
+          <div className="text-[10px] app-text3 mt-1">
             {retardsActifs > 0 ? "⚠️ Actions requises" : "✅ Aucun retard"}
           </div>
         </div>
@@ -228,7 +228,7 @@ const DashboardProjet = ({ data, projetId }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Progression prévue vs réelle */}
         <div className="glass-card rounded-2xl p-6">
-          <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Progression Prévue vs Réelle</h3>
+          <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Progression Prévue vs Réelle</h3>
           <ResponsiveContainer width="100%" height={280}>
             <AreaChart data={progressionData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
@@ -260,7 +260,7 @@ const DashboardProjet = ({ data, projetId }) => {
 
         {/* Répartition des tâches par statut */}
         <div className="glass-card rounded-2xl p-6">
-          <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Répartition des Tâches</h3>
+          <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Répartition des Tâches</h3>
           <ResponsiveContainer width="100%" height={280}>
             <PieChart>
               <Pie 
@@ -290,7 +290,7 @@ const DashboardProjet = ({ data, projetId }) => {
             {statutTachesData.map((d, i) => (
               <div key={i} className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: d.color }} />
-                <span className="text-xs font-bold text-slate-400">{d.name}: {d.value}</span>
+                <span className="text-xs font-bold app-text2">{d.name}: {d.value}</span>
               </div>
             ))}
           </div>
@@ -301,7 +301,7 @@ const DashboardProjet = ({ data, projetId }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Budget par catégorie */}
         <div className="glass-card rounded-2xl p-6">
-          <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Budget par Catégorie (M FCFA)</h3>
+          <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Budget par Catégorie (M FCFA)</h3>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={budgetData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" vertical={false} />
@@ -323,17 +323,17 @@ const DashboardProjet = ({ data, projetId }) => {
 
         {/* Performance par priorité */}
         <div className="glass-card rounded-2xl p-6">
-          <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Taux d'Achèvement par Priorité</h3>
+          <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Taux d'Achèvement par Priorité</h3>
           <div className="space-y-4">
             {prioriteData.map((p, i) => {
               const taux = p.total > 0 ? Math.round((p.terminees / p.total) * 100) : 0;
               return (
                 <div key={i}>
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm font-bold text-slate-300">{p.name}</span>
-                    <span className="text-xs font-bold text-slate-400">{p.terminees}/{p.total} ({taux}%)</span>
+                    <span className="text-sm font-bold app-text">{p.name}</span>
+                    <span className="text-xs font-bold app-text2">{p.terminees}/{p.total} ({taux}%)</span>
                   </div>
-                  <div className="w-full bg-slate-700/50 rounded-full h-3 overflow-hidden">
+                  <div className="w-full app-surface3 rounded-full h-3 overflow-hidden">
                     <div 
                       className="h-full rounded-full transition-all duration-500"
                       style={{ 
@@ -351,7 +351,7 @@ const DashboardProjet = ({ data, projetId }) => {
 
       {/* Alertes et problèmes critiques */}
       <div className="glass-card rounded-2xl p-6">
-        <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Alertes & Actions Requises</h3>
+        <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Alertes & Actions Requises</h3>
         <div className="space-y-3">
           {problemesProjet.filter(p => p.statut !== "Résolu").length > 0 ? (
             problemesProjet.filter(p => p.statut !== "Résolu").map(p => (
@@ -361,7 +361,7 @@ const DashboardProjet = ({ data, projetId }) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold text-slate-100">{p.description}</p>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">
+                  <p className="text-[10px] app-text3 font-bold uppercase tracking-widest mt-1">
                     {p.responsable} · Signalé le {p.dateSignalement}
                   </p>
                 </div>
@@ -372,7 +372,7 @@ const DashboardProjet = ({ data, projetId }) => {
             <div className="text-center py-8">
               <div className="text-4xl mb-2">✅</div>
               <p className="text-sm font-bold text-emerald-400">Aucun problème actif</p>
-              <p className="text-xs text-slate-500 mt-1">Tout est sous contrôle</p>
+              <p className="text-xs app-text3 mt-1">Tout est sous contrôle</p>
             </div>
           )}
 
@@ -383,7 +383,7 @@ const DashboardProjet = ({ data, projetId }) => {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold text-slate-100">{retardsActifs} tâche(s) en retard détectée(s)</p>
-                <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">
+                <p className="text-[10px] app-text3 font-bold uppercase tracking-widest mt-1">
                   Consultez le module Délais pour les détails
                 </p>
               </div>
@@ -400,7 +400,7 @@ const DashboardProjet = ({ data, projetId }) => {
 
       {/* Jalons du projet */}
       <div className="glass-card rounded-2xl p-6">
-        <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">
+        <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">
           Jalons ({jalonsAtteints}/{jalonsTotal} atteints)
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -412,7 +412,7 @@ const DashboardProjet = ({ data, projetId }) => {
                   ? "bg-emerald-500/10 border-emerald-500/30" 
                   : j.statut === "En cours"
                   ? "bg-amber-500/10 border-amber-500/30"
-                  : "bg-slate-700/30 border-slate-600/30"
+                  : "app-surface3 app-border2"
               }`}
             >
               <div className="flex items-center gap-2 mb-2">
@@ -421,7 +421,7 @@ const DashboardProjet = ({ data, projetId }) => {
                 }`} />
                 <h4 className="text-sm font-bold text-slate-200 truncate">{j.jalon}</h4>
               </div>
-              <p className="text-[10px] text-slate-500">{j.date}</p>
+              <p className="text-[10px] app-text3">{j.date}</p>
               <Badge value={j.statut} />
             </div>
           ))}
@@ -430,7 +430,7 @@ const DashboardProjet = ({ data, projetId }) => {
 
       {/* Liens rapides vers modules */}
       <div className="glass-card rounded-2xl p-6">
-        <h3 className="text-xs font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Accès Rapide aux Modules</h3>
+        <h3 className="text-xs font-black app-text3 mb-6 uppercase tracking-[0.2em]">Accès Rapide aux Modules</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {[
             { nom: "Tâches", icon: "⊞", route: "/taches", color: "#6366f1" },
@@ -449,11 +449,11 @@ const DashboardProjet = ({ data, projetId }) => {
             <button
               key={m.route}
               onClick={() => navigate(m.route)}
-              className="p-4 rounded-xl bg-slate-700/30 hover:bg-slate-700/50 border border-slate-600/30 hover:border-indigo-500/40 transition-all group text-center"
+              className="p-4 rounded-xl app-surface3 hover:app-surface3 border app-border2 hover:border-indigo-500/40 transition-all group text-center"
               style={{ '--hover-color': m.color }}
             >
               <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{m.icon}</div>
-              <div className="text-xs font-bold text-slate-400 group-hover:text-white transition-colors">{m.nom}</div>
+              <div className="text-xs font-bold app-text2 group-hover:text-white transition-colors">{m.nom}</div>
             </button>
           ))}
         </div>

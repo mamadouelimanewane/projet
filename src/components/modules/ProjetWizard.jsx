@@ -112,12 +112,12 @@ export default function ProjetWizard() {
 
       {/* Progress bar */}
       <div className="space-y-2">
-        <div className="flex justify-between text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+        <div className="flex justify-between text-[10px] app-text3 font-bold uppercase tracking-widest">
           <span>Étape {step + 1} / {ETAPES.length}</span>
           <span>{ETAPES[step].icon} {ETAPES[step].title}</span>
           <span>{progress}%</span>
         </div>
-        <div className="w-full bg-slate-800 rounded-full h-2">
+        <div className="w-full app-surface2 rounded-full h-2">
           <div className="h-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500" style={{ width: `${progress}%` }} />
         </div>
       </div>
@@ -125,7 +125,7 @@ export default function ProjetWizard() {
       {/* Étape navigation mini */}
       <div className="flex gap-2 overflow-x-auto pb-1">
         {ETAPES.map((e, i) => (
-          <div key={i} className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${i === step ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/30 border border-indigo-500" : i < step ? "bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-transparent" : "app-surface text-slate-500 border border-slate-200 dark:border-slate-800"}`}>
+          <div key={i} className={`flex-shrink-0 flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${i === step ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/30 border border-indigo-500" : i < step ? "bg-emerald-100 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/20 dark:text-emerald-400 dark:border-transparent" : "app-surface app-text3 border border-slate-200 dark:app-border"}`}>
             <span>{e.icon}</span>
             <span className="hidden md:inline">{e.title}</span>
           </div>
@@ -135,16 +135,16 @@ export default function ProjetWizard() {
       {/* STEP CONTENT */}
       <div className="glass-card rounded-2xl p-8 min-h-[380px] flex flex-col">
         <h2 className="text-xl font-black text-white mb-1">{ETAPES[step].title}</h2>
-        <p className="text-sm text-slate-400 mb-6">{ETAPES[step].desc}</p>
+        <p className="text-sm app-text2 mb-6">{ETAPES[step].desc}</p>
 
         {/* STEP 0 — Type */}
         {step === 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {PROJECT_TYPES.map(t => (
               <button key={t.id} onClick={() => set("type", t.id)}
-                className={`p-4 rounded-xl border-2 text-left transition-all shadow-sm ${form.type === t.id ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10" : "border-slate-200 bg-white hover:border-indigo-300 dark:border-slate-700/50 dark:bg-slate-900/50 dark:hover:border-slate-600"}`}>
+                className={`p-4 rounded-xl border-2 text-left transition-all shadow-sm ${form.type === t.id ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10" : "border-slate-200 bg-white hover:border-indigo-300 dark:app-border dark:app-surface dark:hover:app-border2"}`}>
                 <p className={`font-bold text-sm ${form.type === t.id ? 'text-indigo-900 dark:text-white' : 'app-text'}`}>{t.label}</p>
-                <p className={`text-xs mt-1 ${form.type === t.id ? 'text-indigo-700 dark:text-slate-400' : 'app-text2'}`}>{t.desc}</p>
+                <p className={`text-xs mt-1 ${form.type === t.id ? 'text-indigo-700 dark:app-text2' : 'app-text2'}`}>{t.desc}</p>
               </button>
             ))}
           </div>
@@ -154,22 +154,22 @@ export default function ProjetWizard() {
         {step === 1 && (
           <div className="space-y-4 flex-1">
             <div className="space-y-1.5">
-              <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Nom du projet *</label>
+              <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Nom du projet *</label>
               <input value={form.nom} onChange={e => set("nom", e.target.value)}
                 placeholder="Ex: Construction École Rurale Thiès"
-                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500" />
+                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
             </div>
             <div className="space-y-1.5">
-              <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Chef de projet *</label>
+              <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Chef de projet *</label>
               <input value={form.chef} onChange={e => set("chef", e.target.value)}
                 placeholder="Ex: Mamadou Wane"
-                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500" />
+                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
             </div>
             <div className="space-y-1.5">
-              <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Description</label>
+              <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Description</label>
               <textarea value={form.description} onChange={e => set("description", e.target.value)}
                 rows={3} placeholder="Décrivez brièvement les objectifs du projet..."
-                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all resize-none dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500" />
+                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all resize-none dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
             </div>
           </div>
         )}
@@ -179,9 +179,9 @@ export default function ProjetWizard() {
           <div className="space-y-3">
             {METHODOLOGIES.map(m => (
               <button key={m.id} onClick={() => set("methodo", m.id)}
-                className={`w-full p-4 rounded-xl border-2 text-left transition-all shadow-sm ${form.methodo === m.id ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10" : "border-slate-200 bg-white hover:border-indigo-300 dark:border-slate-700/50 dark:bg-slate-900/50 dark:hover:border-slate-600"}`}>
+                className={`w-full p-4 rounded-xl border-2 text-left transition-all shadow-sm ${form.methodo === m.id ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-500/10" : "border-slate-200 bg-white hover:border-indigo-300 dark:app-border dark:app-surface dark:hover:app-border2"}`}>
                 <p className={`font-bold text-sm ${form.methodo === m.id ? 'text-indigo-900 dark:text-white' : 'app-text'}`}>{m.label}</p>
-                <p className={`text-xs mt-1 ${form.methodo === m.id ? 'text-indigo-700 dark:text-slate-400' : 'app-text2'}`}>{m.desc}</p>
+                <p className={`text-xs mt-1 ${form.methodo === m.id ? 'text-indigo-700 dark:app-text2' : 'app-text2'}`}>{m.desc}</p>
               </button>
             ))}
             {userMode === "debutant" && (
@@ -197,29 +197,29 @@ export default function ProjetWizard() {
           <div className="space-y-4 flex-1">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Budget (en Millions) *</label>
+                <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Budget (en Millions) *</label>
                 <input type="number" value={form.budget} onChange={e => set("budget", e.target.value)}
                   placeholder="Ex: 150"
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500" />
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Devise</label>
+                <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Devise</label>
                 <select value={form.budgetDevise} onChange={e => set("budgetDevise", e.target.value)}
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white appearance-none dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500">
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white appearance-none dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500">
                   <option>FCFA</option><option>EUR</option><option>USD</option><option>MAD</option>
                 </select>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Date de début *</label>
+                <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Date de début *</label>
                 <input type="date" value={form.debut} onChange={e => set("debut", e.target.value)}
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500" />
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
               </div>
               <div className="space-y-1.5">
-                <label className="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">Date de fin prévue *</label>
+                <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Date de fin prévue *</label>
                 <input type="date" value={form.fin} onChange={e => set("fin", e.target.value)}
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500" />
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
               </div>
             </div>
             {form.budget && (
@@ -238,7 +238,7 @@ export default function ProjetWizard() {
               const selected = form.risquesSelectionnes.includes(r);
               return (
                 <button key={i} onClick={() => set("risquesSelectionnes", selected ? form.risquesSelectionnes.filter(x => x !== r) : [...form.risquesSelectionnes, r])}
-                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 text-slate-700 dark:border-slate-700/50 dark:bg-slate-900/50 dark:hover:border-slate-600 dark:text-white"}`}>
+                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 text-slate-700 dark:app-border dark:app-surface dark:hover:app-border2 dark:text-white"}`}>
                   <span className="text-lg">{selected ? "⚠️" : "○"}</span>
                   <span className="text-sm font-medium">{r}</span>
                 </button>
@@ -250,9 +250,9 @@ export default function ProjetWizard() {
               const selected = form.risquesSelectionnes.includes(r);
               return (
                 <button key={`custom-${i}`} onClick={() => set("risquesSelectionnes", selected ? form.risquesSelectionnes.filter(x => x !== r) : [...form.risquesSelectionnes, r])}
-                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 text-slate-700 dark:border-slate-700/50 dark:bg-slate-900/50 dark:hover:border-slate-600 dark:text-white"}`}>
+                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 text-slate-700 dark:app-border dark:app-surface dark:hover:app-border2 dark:text-white"}`}>
                   <span className="text-lg">{selected ? "⚠️" : "○"}</span>
-                  <span className="text-sm font-medium">{r} <span className="text-[10px] bg-slate-100 text-slate-500 dark:bg-slate-800 px-2 py-0.5 rounded dark:text-slate-400 ml-2">Personnalisé</span></span>
+                  <span className="text-sm font-medium">{r} <span className="text-[10px] bg-slate-100 app-text3 dark:app-surface2 px-2 py-0.5 rounded dark:app-text2 ml-2">Personnalisé</span></span>
                 </button>
               );
             })}
@@ -271,7 +271,7 @@ export default function ProjetWizard() {
                    }
                  }}
                  placeholder="Ajouter un risque spécifique au projet..."
-                 className="flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 transition-all dark:bg-slate-900/50 dark:border-slate-700/50 dark:text-white dark:focus:border-indigo-500"
+                 className="flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500"
                />
                <button 
                  onClick={() => {
@@ -283,7 +283,7 @@ export default function ProjetWizard() {
                    }
                  }}
                  disabled={!form.nouveauRisque.trim()}
-                 className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all disabled:opacity-50 disabled:bg-slate-800 disabled:text-slate-500"
+                 className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl text-sm font-bold transition-all disabled:opacity-50 disabled:app-surface2 disabled:app-text3"
                >
                  + Ajouter
                </button>
@@ -316,8 +316,8 @@ export default function ProjetWizard() {
                   { label: "Tâches générées", value: `${template.taches?.length || 0} activités` },
                   { label: "Risques identifiés", value: `${form.risquesSelectionnes.length} risques` },
                 ].map((item, i) => (
-                  <div key={i} className="p-3 bg-white border border-slate-200 dark:bg-slate-800/50 dark:border-transparent rounded-xl shadow-sm">
-                    <p className="text-[10px] text-slate-500 uppercase font-bold tracking-wider mb-1">{item.label}</p>
+                  <div key={i} className="p-3 bg-white border border-slate-200 dark:app-surface2 dark:border-transparent rounded-xl shadow-sm">
+                    <p className="text-[10px] app-text3 uppercase font-bold tracking-wider mb-1">{item.label}</p>
                     <p className="app-text font-bold text-xs">{item.value}</p>
                   </div>
                 ))}

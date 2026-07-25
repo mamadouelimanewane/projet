@@ -21,7 +21,7 @@ const CalendrierCentral = ({ data }) => {
         <StatCard label="Capacité Équipe" value="78%" sub="Taux d'occupation" color="#f59e0b" icon="⚡" />
       </div>
 
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-6">
+      <div className="app-surface2 border app-border rounded-xl p-6">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-lg font-bold text-white">Semaine Actuelle</h3>
           <div className="flex gap-2">
@@ -32,37 +32,37 @@ const CalendrierCentral = ({ data }) => {
         </div>
 
         {/* Fake Calendar Grid */}
-        <div className="border border-slate-700 rounded-lg overflow-hidden flex flex-col">
+        <div className="border app-border rounded-lg overflow-hidden flex flex-col">
           {/* Header */}
-          <div className="grid grid-cols-5 bg-slate-900/80 border-b border-slate-700">
+          <div className="grid grid-cols-5 app-surface border-b app-border">
             {['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'].map((j, i) => (
-              <div key={j} className="p-3 text-center border-r border-slate-700 last:border-r-0">
-                <p className="text-xs text-slate-400 uppercase tracking-widest">{j}</p>
+              <div key={j} className="p-3 text-center border-r app-border last:border-r-0">
+                <p className="text-xs app-text2 uppercase tracking-widest">{j}</p>
                 <p className="text-lg font-bold text-slate-200 mt-1">{today.getDate() - today.getDay() + 1 + i}</p>
               </div>
             ))}
           </div>
           {/* Body */}
           <div className="grid grid-cols-5 min-h-[300px]">
-            <div className="border-r border-slate-700 p-2 space-y-2">
+            <div className="border-r app-border p-2 space-y-2">
               <div className="bg-indigo-600/20 border border-indigo-500/50 rounded p-2 text-xs">
                 <p className="font-bold text-indigo-400">Démo MVP (Refonte SI)</p>
-                <p className="text-slate-400 mt-1">10:00 - Jean D.</p>
+                <p className="app-text2 mt-1">10:00 - Jean D.</p>
               </div>
             </div>
-            <div className="border-r border-slate-700 p-2 space-y-2 relative">
-              <div className="absolute top-0 left-0 right-0 h-full bg-slate-800/40 pointer-events-none" />
+            <div className="border-r app-border p-2 space-y-2 relative">
+              <div className="absolute top-0 left-0 right-0 h-full app-surface2 pointer-events-none" />
               <div className="relative z-10 bg-emerald-600/20 border border-emerald-500/50 rounded p-2 text-xs">
                 <p className="font-bold text-emerald-400">Jalon: Validation Specs</p>
-                <p className="text-slate-400 mt-1">14:00 - Marie C.</p>
+                <p className="app-text2 mt-1">14:00 - Marie C.</p>
               </div>
             </div>
-            <div className="border-r border-slate-700 p-2 space-y-2">
+            <div className="border-r app-border p-2 space-y-2">
             </div>
-            <div className="border-r border-slate-700 p-2 space-y-2 bg-red-900/10">
+            <div className="border-r app-border p-2 space-y-2 bg-red-900/10">
               <div className="bg-red-600/20 border border-red-500/50 rounded p-2 text-xs relative">
                 <p className="font-bold text-red-400">⚠ Goulot d'étranglement</p>
-                <p className="text-slate-400 mt-1 mb-2">Paul M. est surbooké</p>
+                <p className="app-text2 mt-1 mb-2">Paul M. est surbooké</p>
                 <div className="h-1 bg-red-500/50 rounded-full" />
                 <div className="h-1 bg-fuchsia-500/50 rounded-full mt-1" />
                 <div className="h-1 bg-amber-500/50 rounded-full mt-1" />
@@ -71,7 +71,7 @@ const CalendrierCentral = ({ data }) => {
             <div className="p-2 space-y-2">
               <div className="bg-fuchsia-600/20 border border-fuchsia-500/50 rounded p-2 text-xs">
                 <p className="font-bold text-fuchsia-400">Fin Sprint 3</p>
-                <p className="text-slate-400 mt-1">17:00 - Équipe DevOps</p>
+                <p className="app-text2 mt-1">17:00 - Équipe DevOps</p>
               </div>
             </div>
           </div>

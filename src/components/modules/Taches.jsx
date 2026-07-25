@@ -26,27 +26,27 @@ const Taches = ({ data, setData, projets }) => {
       <SectionHeader title="Suivi des Tâches" subtitle="Toutes les tâches de vos projets en un coup d'œil"
         action={<Btn onClick={() => { setForm({ projet: projets[0]?.nom || "", tache: "", responsable: "", debut: "", fin: "", statut: "À faire", priorite: "Moyenne", progression: 0 }); setModal("add"); }} size="md">+ Ajouter</Btn>} />
       <div className="flex gap-3 flex-wrap">
-        <select className="bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-sm text-slate-300 focus:outline-none focus:border-indigo-500"
+        <select className="app-surface3 border app-border2 rounded-lg px-3 py-2 text-sm app-text focus:outline-none focus:border-indigo-500"
           value={filterProjet} onChange={e => setFilterProjet(e.target.value)}>
           {projetNames.map(p => <option key={p}>{p}</option>)}
         </select>
         {["Tous", "À faire", "En cours", "Fait"].map(s => (
           <button key={s} onClick={() => setFilterStatut(s)}
-            className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${filterStatut === s ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-400 hover:text-white border border-slate-700"}`}>{s}</button>
+            className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${filterStatut === s ? "bg-indigo-600 text-white" : "app-surface2 app-text2 hover:text-white border app-border"}`}>{s}</button>
         ))}
       </div>
       <div className="space-y-2">
         {filtered.map(t => (
-          <div key={t.id} className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-4 hover:border-indigo-500/40 transition-all">
+          <div key={t.id} className="app-surface2 border app-border rounded-xl p-4 hover:border-indigo-500/40 transition-all">
             <div className="flex justify-between items-start mb-2">
               <div className="flex-1 min-w-0 mr-3">
                 <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <span className="text-xs bg-slate-700 text-slate-400 px-2 py-0.5 rounded-full">{t.projet}</span>
+                  <span className="text-xs app-surface3 app-text2 px-2 py-0.5 rounded-full">{t.projet}</span>
                   <Badge value={t.statut} />
                   <Badge value={t.priorite} map={PRIORITE_COLORS} />
                 </div>
                 <p className="text-sm font-semibold text-white">{t.tache}</p>
-                <p className="text-xs text-slate-500">{t.responsable} · {t.debut} → {t.fin}</p>
+                <p className="text-xs app-text3">{t.responsable} · {t.debut} → {t.fin}</p>
               </div>
               <div className="flex gap-2">
                 <Btn onClick={() => { setForm({ ...t }); setModal("edit"); }} variant="ghost">✎</Btn>

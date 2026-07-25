@@ -54,12 +54,12 @@ const EditeurProjet = () => {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Sidebar : Liste des Projets */}
         <div className="space-y-3">
-           <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-2">Sélectionner un Projet</p>
+           <p className="text-[10px] font-black app-text3 uppercase tracking-widest ml-2">Sélectionner un Projet</p>
            {projects.map(p => (
              <button 
                key={p.id}
                onClick={() => setSelectedId(p.id)}
-               className={`w-full p-4 rounded-2xl text-left border-2 transition-all flex items-center justify-between group ${selectedId === p.id ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/30' : 'bg-slate-900 border-slate-800 text-slate-400 hover:border-slate-700'}`}
+               className={`w-full p-4 rounded-2xl text-left border-2 transition-all flex items-center justify-between group ${selectedId === p.id ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg shadow-indigo-600/30' : 'app-surface app-border app-text2 hover:app-border'}`}
              >
                 <div className="overflow-hidden">
                    <p className="font-bold truncate text-sm">{p.archived ? "📦 " : ""}{p.nom}</p>
@@ -119,8 +119,8 @@ const EditeurProjet = () => {
                    value={project.budgetReel || 0} 
                    onChange={(e) => updateProjectField("budgetReel", parseFloat(e.target.value))}
                  />
-                 <div className="pt-4 p-4 bg-slate-900 rounded-xl border border-slate-800">
-                    <p className="text-[10px] text-slate-500 font-bold uppercase mb-1">Ratio de Consommation</p>
+                 <div className="pt-4 p-4 app-surface rounded-xl border app-border">
+                    <p className="text-[10px] app-text3 font-bold uppercase mb-1">Ratio de Consommation</p>
                     <div className="flex items-baseline gap-2">
                        <span className="text-2xl font-black text-white">{((project.budgetReel / project.budget) * 100).toFixed(1)}%</span>
                        <Badge variant={project.budgetReel > project.budget ? "danger" : "success"}>
@@ -148,7 +148,7 @@ const EditeurProjet = () => {
                    onChange={(e) => updateProjectField("fin", e.target.value)}
                  />
                  <div className="pt-4">
-                    <p className="text-[10px] text-slate-500 font-bold uppercase mb-1">Avancement Manuel (%)</p>
+                    <p className="text-[10px] app-text3 font-bold uppercase mb-1">Avancement Manuel (%)</p>
                     <input 
                       type="range" 
                       className="w-full accent-indigo-500" 
@@ -163,9 +163,9 @@ const EditeurProjet = () => {
                  </div>
               </Card>
 
-              <Card className="p-6 glass-card rounded-2xl border-dashed border-2 border-slate-800 flex flex-col items-center justify-center text-center opacity-60">
+              <Card className="p-6 glass-card rounded-2xl border-dashed border-2 app-border flex flex-col items-center justify-center text-center opacity-60">
                  <Settings className="w-12 h-12 text-slate-700 mb-4" />
-                 <h4 className="font-bold text-slate-500">Paramètres Avancés</h4>
+                 <h4 className="font-bold app-text3">Paramètres Avancés</h4>
                  <p className="text-xs text-slate-600 px-8">Configuration des méthodologies, intégrations Slack/Teams et Webhooks spécifiques.</p>
                  <Btn variant="ghost" className="mt-4" size="sm">Déverrouiller</Btn>
               </Card>
@@ -173,7 +173,7 @@ const EditeurProjet = () => {
            
            <div className="flex justify-end gap-4">
               <Btn variant="danger" className="bg-red-600/10 text-red-500 border border-red-500/20" onClick={handleDelete}><Trash2 className="w-4 h-4 mr-2" /> Supprimer ce Projet</Btn>
-              <Btn variant="ghost" className="border border-slate-700" onClick={handleArchiveToggle}>{project.archived ? "↩️ Restaurer ce Projet" : "📦 Archiver ce Projet"}</Btn>
+              <Btn variant="ghost" className="border app-border" onClick={handleArchiveToggle}>{project.archived ? "↩️ Restaurer ce Projet" : "📦 Archiver ce Projet"}</Btn>
               <Btn variant="primary" size="lg" className="px-12" onClick={handleSave}>Mettre à jour le Projet</Btn>
            </div>
         </div>

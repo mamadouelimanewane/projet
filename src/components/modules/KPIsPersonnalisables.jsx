@@ -111,7 +111,7 @@ const KPIsPersonnalisables = async ({ data }) => {
       case "success": return "text-emerald-400";
       case "warning": return "text-yellow-400";
       case "danger": return "text-red-400";
-      default: return "text-slate-400";
+      default: return "app-text2";
     }
   };
 
@@ -224,74 +224,74 @@ const KPIsPersonnalisables = async ({ data }) => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Nom *</label>
+              <label className="block text-sm font-medium app-text mb-2">Nom *</label>
               <input
                 type="text"
                 value={nouveauKPI.nom}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, nom: e.target.value})}
                 placeholder="ex: Taux de Satisfaction"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Unité</label>
+              <label className="block text-sm font-medium app-text mb-2">Unité</label>
               <input
                 type="text"
                 value={nouveauKPI.unite}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, unite: e.target.value})}
                 placeholder="%, €, jours..."
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-slate-300 mb-2">Description</label>
+              <label className="block text-sm font-medium app-text mb-2">Description</label>
               <input
                 type="text"
                 value={nouveauKPI.description}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, description: e.target.value})}
                 placeholder="Description du KPI"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-slate-300 mb-2">Formule de calcul *</label>
+              <label className="block text-sm font-medium app-text mb-2">Formule de calcul *</label>
               <input
                 type="text"
                 value={nouveauKPI.formule}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, formule: e.target.value})}
                 placeholder="ex: moyenne(avancement) ou budgetReel / budgetTotal * 100"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
-              <p className="text-xs text-slate-500 mt-1">
+              <p className="text-xs app-text3 mt-1">
                 Utilisez: moyenne(), somme(), compteur(), etc.
               </p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Objectif</label>
+              <label className="block text-sm font-medium app-text mb-2">Objectif</label>
               <input
                 type="number"
                 value={nouveauKPI.objectif}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, objectif: parseFloat(e.target.value)})}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Seuil Alerte</label>
+              <label className="block text-sm font-medium app-text mb-2">Seuil Alerte</label>
               <input
                 type="number"
                 value={nouveauKPI.seuilAlerte}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, seuilAlerte: parseFloat(e.target.value)})}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Icône</label>
+              <label className="block text-sm font-medium app-text mb-2">Icône</label>
               <div className="grid grid-cols-4 gap-2">
                 {icones.map(icone => (
                   <button
@@ -300,7 +300,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                     className={`p-3 rounded-lg transition-colors ${
                       nouveauKPI.icone === icone
                         ? 'bg-indigo-600 text-white'
-                        : 'bg-slate-800 text-slate-400 hover:bg-slate-700'
+                        : 'app-surface2 app-text2 hover:app-surface3'
                     }`}
                   >
                     {getIcone(icone)}
@@ -310,7 +310,7 @@ const KPIsPersonnalisables = async ({ data }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Couleur</label>
+              <label className="block text-sm font-medium app-text mb-2">Couleur</label>
               <div className="grid grid-cols-4 gap-2">
                 {couleurs.map(couleur => (
                   <button
@@ -355,19 +355,19 @@ const KPIsPersonnalisables = async ({ data }) => {
                   </div>
                   <div>
                     <h4 className="font-bold text-white">{kpi.nom}</h4>
-                    <p className="text-xs text-slate-400">{kpi.description}</p>
+                    <p className="text-xs app-text2">{kpi.description}</p>
                   </div>
                 </div>
                 <div className="flex gap-2">
                   <button
                     onClick={() => editerKPI(kpi)}
-                    className="p-1 text-slate-400 hover:text-indigo-400 transition-colors"
+                    className="p-1 app-text2 hover:text-indigo-400 transition-colors"
                   >
                     <Edit className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => supprimerKPI(kpi.id)}
-                    className="p-1 text-slate-400 hover:text-red-400 transition-colors"
+                    className="p-1 app-text2 hover:text-red-400 transition-colors"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -377,7 +377,7 @@ const KPIsPersonnalisables = async ({ data }) => {
               <div className="mb-4">
                 <div className="flex items-baseline gap-2 mb-2">
                   <span className="text-4xl font-bold text-white">{valeur}</span>
-                  <span className="text-lg text-slate-400">{kpi.unite}</span>
+                  <span className="text-lg app-text2">{kpi.unite}</span>
                 </div>
                 <div className={`text-sm font-medium ${getStatutColor(statut)}`}>
                   {statut === "success" && "✅ Objectif atteint"}
@@ -387,11 +387,11 @@ const KPIsPersonnalisables = async ({ data }) => {
               </div>
 
               <div className="space-y-2">
-                <div className="flex justify-between text-xs text-slate-400">
+                <div className="flex justify-between text-xs app-text2">
                   <span>Progression</span>
                   <span>{pourcentage.toFixed(0)}%</span>
                 </div>
-                <div className="w-full bg-slate-700 rounded-full h-2">
+                <div className="w-full app-surface3 rounded-full h-2">
                   <div
                     className={`h-2 rounded-full transition-all ${getProgressBarColor(statut)}`}
                     style={{ width: `${pourcentage}%`, backgroundColor: kpi.couleur }}
@@ -399,14 +399,14 @@ const KPIsPersonnalisables = async ({ data }) => {
                 </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t border-slate-700 grid grid-cols-2 gap-2 text-xs">
+              <div className="mt-4 pt-4 border-t app-border grid grid-cols-2 gap-2 text-xs">
                 <div>
-                  <span className="text-slate-500">Objectif:</span>
-                  <span className="ml-1 text-slate-300">{kpi.objectif}{kpi.unite}</span>
+                  <span className="app-text3">Objectif:</span>
+                  <span className="ml-1 app-text">{kpi.objectif}{kpi.unite}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500">Alerte:</span>
-                  <span className="ml-1 text-slate-300">{kpi.seuilAlerte}{kpi.unite}</span>
+                  <span className="app-text3">Alerte:</span>
+                  <span className="ml-1 app-text">{kpi.seuilAlerte}{kpi.unite}</span>
                 </div>
               </div>
             </Card>
@@ -415,7 +415,7 @@ const KPIsPersonnalisables = async ({ data }) => {
       </div>
 
       {kpis.filter(k => k.actif).length === 0 && (
-        <Card className="p-12 text-center text-slate-500">
+        <Card className="p-12 text-center app-text3">
           <Target className="w-16 h-16 mx-auto mb-4 opacity-50" />
           <p className="text-lg">Aucun KPI configuré</p>
           <p className="text-sm mt-2">Créez votre premier KPI personnalisé</p>

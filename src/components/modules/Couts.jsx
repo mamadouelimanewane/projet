@@ -28,8 +28,8 @@ const Couts = ({ data, setData }) => {
         <StatCard label="Réel Dépensé" value={`${totalR.toLocaleString()} FCFA`} color={totalR > totalP ? "#ef4444" : "#10b981"} icon="FCFA" />
         <StatCard label="Variance" value={`${variance >= 0 ? "+" : ""}${variance.toLocaleString()} FCFA`} color={variance >= 0 ? "#10b981" : "#ef4444"} icon="Δ" sub={variance >= 0 ? "Économie réalisée" : "Dépassement"} />
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-        <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Analyse Coûts par Phase</h3>
+      <div className="app-surface2 border app-border rounded-xl p-5">
+        <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Analyse Coûts par Phase</h3>
         <ResponsiveContainer width="100%" height={260}>
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -42,20 +42,20 @@ const Couts = ({ data, setData }) => {
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+      <div className="app-surface2 border app-border rounded-xl overflow-hidden">
         <div className="overflow-x-auto -mx-1">
         <table className="w-full">
-          <thead><tr className="border-b border-slate-700">
+          <thead><tr className="border-b app-border">
             {["Phase", "Prévu (FCFA)", "Réel (FCFA)", "Variance (FCFA)", "Statut", "Actions"].map(h => (
-              <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{h}</th>
+              <th key={h} className="px-4 py-3 text-left text-xs font-bold app-text2 uppercase tracking-wider">{h}</th>
             ))}
           </tr></thead>
           <tbody>
             {data.map(c => (
-              <tr key={c.id} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+              <tr key={c.id} className="border-b app-border hover:app-surface3 transition-colors">
                 <td className="px-4 py-3 text-sm font-medium text-slate-200">{c.phase}</td>
-                <td className="px-4 py-3 text-sm text-slate-300">{c.prevu.toLocaleString()} FCFA</td>
-                <td className="px-4 py-3 text-sm text-slate-300">{c.reel.toLocaleString()} FCFA</td>
+                <td className="px-4 py-3 text-sm app-text">{c.prevu.toLocaleString()} FCFA</td>
+                <td className="px-4 py-3 text-sm app-text">{c.reel.toLocaleString()} FCFA</td>
                 <td className="px-4 py-3 text-sm font-bold" style={{ color: c.prevu - c.reel >= 0 ? "#10b981" : "#ef4444" }}>
                   {c.prevu - c.reel >= 0 ? "+" : ""}{(c.prevu - c.reel).toLocaleString()} FCFA
                 </td>

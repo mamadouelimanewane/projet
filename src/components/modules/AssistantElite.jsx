@@ -52,13 +52,13 @@ const AssistantElite = () => {
             <div className={`group relative max-w-[75%] p-4 rounded-2xl shadow-lg transition-all ${
               m.role === "user" 
                 ? "premium-gradient text-white rounded-tr-none" 
-                : "bg-slate-800/80 border border-slate-700/50 text-slate-100 rounded-tl-none"
+                : "app-surface2 border app-border text-slate-100 rounded-tl-none"
             }`}>
               {m.role === "ai" && (
                 <div className="absolute -left-10 top-0 w-8 h-8 rounded-full premium-gradient flex items-center justify-center text-[10px] font-bold text-white shadow-lg">IA</div>
               )}
               {m.role === "user" && (
-                <div className="absolute -right-10 top-0 w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-[10px] font-bold text-white border border-slate-600">MOI</div>
+                <div className="absolute -right-10 top-0 w-8 h-8 rounded-full app-surface3 flex items-center justify-center text-[10px] font-bold text-white border app-border2">MOI</div>
               )}
               <p className="text-sm leading-relaxed">{m.text}</p>
               <p className="text-[9px] opacity-40 mt-2 font-mono uppercase tracking-widest">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
@@ -67,7 +67,7 @@ const AssistantElite = () => {
         ))}
         {isTyping && (
           <div className="flex justify-start">
-             <div className="bg-slate-800/50 border border-slate-700/50 p-4 rounded-2xl rounded-tl-none">
+             <div className="app-surface2 border app-border p-4 rounded-2xl rounded-tl-none">
                 <div className="flex gap-1">
                    <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce" />
                    <div className="w-1.5 h-1.5 bg-indigo-400 rounded-full animate-bounce [animation-delay:200ms]" />
@@ -81,15 +81,15 @@ const AssistantElite = () => {
       <div className="flex gap-3 items-center">
         <div className="flex-1 relative">
           <input
-            className="w-full bg-slate-800/80 border-2 border-slate-700/50 rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-indigo-500/50 transition-all shadow-inner placeholder:text-slate-500"
+            className="w-full app-surface2 border-2 app-border rounded-2xl px-6 py-4 text-sm text-white focus:outline-none focus:border-indigo-500/50 transition-all shadow-inner placeholder:app-text3"
             placeholder="Interrogez l'intelligence de votre organisation..."
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && handleSend()}
           />
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
-             <button className="text-slate-500 hover:text-indigo-400 transition-colors p-1">🎤</button>
-             <button className="text-slate-500 hover:text-indigo-400 transition-colors p-1">📎</button>
+             <button className="app-text3 hover:text-indigo-400 transition-colors p-1">🎤</button>
+             <button className="app-text3 hover:text-indigo-400 transition-colors p-1">📎</button>
           </div>
         </div>
         <Btn onClick={handleSend} variant="primary" size="lg" className="h-[52px] w-[52px] rounded-2xl shadow-indigo-600/30">🚀</Btn>

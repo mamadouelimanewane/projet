@@ -77,7 +77,7 @@ const AnalyticsAvances = ({ data }) => {
             {getTrendIcon(avancementMoyen)}
           </div>
           <p className="text-3xl font-bold text-white mb-1">{avancementMoyen}%</p>
-          <p className="text-sm text-slate-400">Avancement Moyen</p>
+          <p className="text-sm app-text2">Avancement Moyen</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl">
@@ -86,7 +86,7 @@ const AnalyticsAvances = ({ data }) => {
             {getTrendIcon(100 - budgetPct)}
           </div>
           <p className="text-3xl font-bold text-white mb-1">{budgetPct}%</p>
-          <p className="text-sm text-slate-400">Budget Consommé</p>
+          <p className="text-sm app-text2">Budget Consommé</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl">
@@ -95,7 +95,7 @@ const AnalyticsAvances = ({ data }) => {
             {getTrendIcon(tauxReussite)}
           </div>
           <p className="text-3xl font-bold text-white mb-1">{tauxReussite}%</p>
-          <p className="text-sm text-slate-400">Taux de Réussite</p>
+          <p className="text-sm app-text2">Taux de Réussite</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl">
@@ -104,7 +104,7 @@ const AnalyticsAvances = ({ data }) => {
             {getTrendIcon(100 - risquesParScore.critiques * 10)}
           </div>
           <p className="text-3xl font-bold text-white mb-1">{risquesParScore.critiques}</p>
-          <p className="text-sm text-slate-400">Risques Critiques</p>
+          <p className="text-sm app-text2">Risques Critiques</p>
         </Card>
       </div>
 
@@ -112,15 +112,15 @@ const AnalyticsAvances = ({ data }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="p-6 glass-card rounded-2xl text-center">
           <p className="text-4xl font-bold text-indigo-400 mb-2">{totalProjets}</p>
-          <p className="text-slate-300">Total Projets</p>
+          <p className="app-text">Total Projets</p>
         </Card>
         <Card className="p-6 glass-card rounded-2xl text-center">
           <p className="text-4xl font-bold text-emerald-400 mb-2">{projetsActifs}</p>
-          <p className="text-slate-300">Projets Actifs</p>
+          <p className="app-text">Projets Actifs</p>
         </Card>
         <Card className="p-6 glass-card rounded-2xl text-center">
           <p className="text-4xl font-bold text-purple-400 mb-2">{projetTermines}</p>
-          <p className="text-slate-300">Projets Terminés</p>
+          <p className="app-text">Projets Terminés</p>
         </Card>
       </div>
 
@@ -206,10 +206,10 @@ const AnalyticsAvances = ({ data }) => {
           <div className="space-y-4">
             <div>
               <div className="flex justify-between mb-2">
-                <span className="text-sm text-slate-300">Critiques (≥16)</span>
+                <span className="text-sm app-text">Critiques (≥16)</span>
                 <span className="text-sm font-bold text-red-400">{risquesParScore.critiques}</span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-3">
+              <div className="w-full app-surface3 rounded-full h-3">
                 <div 
                   className="bg-red-500 h-3 rounded-full transition-all"
                   style={{ width: `${Math.min(100, risquesParScore.critiques * 20)}%` }}
@@ -219,10 +219,10 @@ const AnalyticsAvances = ({ data }) => {
 
             <div>
               <div className="flex justify-between mb-2">
-                <span className="text-sm text-slate-300">Élevés (12-15)</span>
+                <span className="text-sm app-text">Élevés (12-15)</span>
                 <span className="text-sm font-bold text-orange-400">{risquesParScore.eleves}</span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-3">
+              <div className="w-full app-surface3 rounded-full h-3">
                 <div 
                   className="bg-orange-500 h-3 rounded-full transition-all"
                   style={{ width: `${Math.min(100, risquesParScore.eleves * 15)}%` }}
@@ -232,10 +232,10 @@ const AnalyticsAvances = ({ data }) => {
 
             <div>
               <div className="flex justify-between mb-2">
-                <span className="text-sm text-slate-300">Moyens (6-11)</span>
+                <span className="text-sm app-text">Moyens (6-11)</span>
                 <span className="text-sm font-bold text-yellow-400">{risquesParScore.moyens}</span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-3">
+              <div className="w-full app-surface3 rounded-full h-3">
                 <div 
                   className="bg-yellow-500 h-3 rounded-full transition-all"
                   style={{ width: `${Math.min(100, risquesParScore.moyens * 10)}%` }}
@@ -245,10 +245,10 @@ const AnalyticsAvances = ({ data }) => {
 
             <div>
               <div className="flex justify-between mb-2">
-                <span className="text-sm text-slate-300">Faibles (&lt;6)</span>
+                <span className="text-sm app-text">Faibles (&lt;6)</span>
                 <span className="text-sm font-bold text-emerald-400">{risquesParScore.faibles}</span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-3">
+              <div className="w-full app-surface3 rounded-full h-3">
                 <div 
                   className="bg-emerald-500 h-3 rounded-full transition-all"
                   style={{ width: `${Math.min(100, risquesParScore.faibles * 10)}%` }}
@@ -264,15 +264,15 @@ const AnalyticsAvances = ({ data }) => {
         <h3 className="text-xl font-bold text-white mb-4">Budget Global</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <p className="text-sm text-slate-400 mb-1">Budget Total Planifié</p>
+            <p className="text-sm app-text2 mb-1">Budget Total Planifié</p>
             <p className="text-2xl font-bold text-indigo-400">{(budgetTotal / 1000000).toFixed(1)}M FCFA</p>
           </div>
           <div>
-            <p className="text-sm text-slate-400 mb-1">Budget Consommé</p>
+            <p className="text-sm app-text2 mb-1">Budget Consommé</p>
             <p className="text-2xl font-bold text-orange-400">{(budgetConsomme / 1000000).toFixed(1)}M FCFA</p>
           </div>
           <div>
-            <p className="text-sm text-slate-400 mb-1">Budget Restant</p>
+            <p className="text-sm app-text2 mb-1">Budget Restant</p>
             <p className="text-2xl font-bold text-emerald-400">{((budgetTotal - budgetConsomme) / 1000000).toFixed(1)}M FCFA</p>
           </div>
         </div>

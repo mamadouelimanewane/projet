@@ -181,22 +181,22 @@ const RapportsAutomatiques = async ({ data }) => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Nom du rapport *</label>
+              <label className="block text-sm font-medium app-text mb-2">Nom du rapport *</label>
               <input
                 type="text"
                 value={nouveauRapport.nom}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, nom: e.target.value})}
                 placeholder="ex: Rapport Hebdomadaire"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Type</label>
+              <label className="block text-sm font-medium app-text mb-2">Type</label>
               <select
                 value={nouveauRapport.type}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, type: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               >
                 <option value="pdf">PDF</option>
                 <option value="excel">Excel</option>
@@ -205,11 +205,11 @@ const RapportsAutomatiques = async ({ data }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Fréquence *</label>
+              <label className="block text-sm font-medium app-text mb-2">Fréquence *</label>
               <select
                 value={nouveauRapport.frequence}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, frequence: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               >
                 <option value="quotidien">Quotidien</option>
                 <option value="hebdomadaire">Hebdomadaire</option>
@@ -218,7 +218,7 @@ const RapportsAutomatiques = async ({ data }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium app-text mb-2">
                 Destinataires * (séparés par virgule)
               </label>
               <input
@@ -226,35 +226,35 @@ const RapportsAutomatiques = async ({ data }) => {
                 value={nouveauRapport.destinataires}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, destinataires: e.target.value})}
                 placeholder="email1@example.com, email2@example.com"
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Jour d'envoi</label>
+              <label className="block text-sm font-medium app-text mb-2">Jour d'envoi</label>
               <input
                 type="text"
                 value={nouveauRapport.jour}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, jour: e.target.value})}
                 placeholder="lundi, mardi, 1, 15..."
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Heure d'envoi</label>
+              <label className="block text-sm font-medium app-text mb-2">Heure d'envoi</label>
               <input
                 type="time"
                 value={nouveauRapport.heure}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, heure: e.target.value})}
-                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
 
           {/* Sections */}
           <div className="mb-4">
-            <label className="block text-sm font-medium text-slate-300 mb-2">Sections à inclure</label>
+            <label className="block text-sm font-medium app-text mb-2">Sections à inclure</label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {["resume", "budget", "avancement", "risques", "jalons", "taches", "problemes", "complet"].map(section => (
                 <button
@@ -263,7 +263,7 @@ const RapportsAutomatiques = async ({ data }) => {
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     nouveauRapport.sections.includes(section)
                       ? 'bg-indigo-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      : 'app-surface2 app-text hover:app-surface3'
                   }`}
                 >
                   {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -296,7 +296,7 @@ const RapportsAutomatiques = async ({ data }) => {
             <div className="flex justify-between items-start mb-4">
               <div className="flex-1">
                 <h4 className="text-lg font-bold text-white mb-1">{rapport.nom}</h4>
-                <div className="flex items-center gap-4 text-sm text-slate-400">
+                <div className="flex items-center gap-4 text-sm app-text2">
                   <span className="flex items-center gap-1">
                     <FileText className="w-4 h-4" />
                     {rapport.type.toUpperCase()}
@@ -316,7 +316,7 @@ const RapportsAutomatiques = async ({ data }) => {
                 <button
                   onClick={() => toggleActif(rapport.id)}
                   className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-                    rapport.actif ? 'bg-emerald-600 text-white' : 'bg-slate-600 text-slate-300'
+                    rapport.actif ? 'bg-emerald-600 text-white' : 'bg-slate-600 app-text'
                   }`}
                 >
                   {rapport.actif ? 'Actif' : 'Inactif'}
@@ -332,11 +332,11 @@ const RapportsAutomatiques = async ({ data }) => {
 
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-slate-400">Dernier envoi :</span>
+                <span className="app-text2">Dernier envoi :</span>
                 <span className="ml-2 text-white">{rapport.dernierEnvoi || "Jamais"}</span>
               </div>
               <div>
-                <span className="text-slate-400">Prochain envoi :</span>
+                <span className="app-text2">Prochain envoi :</span>
                 <span className="ml-2 text-indigo-400 font-medium">{rapport.prochainEnvoi}</span>
               </div>
             </div>
@@ -352,7 +352,7 @@ const RapportsAutomatiques = async ({ data }) => {
         </h3>
 
         {historique.length === 0 ? (
-          <Card className="p-6 text-center text-slate-500">
+          <Card className="p-6 text-center app-text3">
             <AlertCircle className="w-12 h-12 mx-auto mb-2 opacity-50" />
             <p>Aucun rapport envoyé pour le moment</p>
           </Card>
@@ -365,13 +365,13 @@ const RapportsAutomatiques = async ({ data }) => {
                 </div>
                 <div>
                   <p className="font-medium text-white">{h.rapportNom}</p>
-                  <p className="text-sm text-slate-400">
+                  <p className="text-sm app-text2">
                     {new Date(h.date).toLocaleString('fr-FR')} • {h.destinataires} destinataire(s)
                   </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm text-slate-400">{h.taille}</span>
+                <span className="text-sm app-text2">{h.taille}</span>
                 <Btn size="sm" variant="ghost">
                   <Download className="w-4 h-4" />
                 </Btn>

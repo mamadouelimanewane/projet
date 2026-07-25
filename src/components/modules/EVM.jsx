@@ -14,11 +14,11 @@ const EVM = ({ data }) => {
       </div>
 
       <div className="glass-card rounded-2xl p-6">
-        <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Matrice de Performance (SPI x CPI)</h3>
-        <div className="bg-slate-900/50 rounded-xl overflow-hidden border border-slate-700/50">
+        <h3 className="text-xs font-black app-text3 mb-8 uppercase tracking-[0.2em]">Matrice de Performance (SPI x CPI)</h3>
+        <div className="app-surface rounded-xl overflow-hidden border app-border">
           <div className="overflow-x-auto -mx-1">
-          <table className="w-full text-left text-sm text-slate-300">
-            <thead className="bg-slate-800/80 text-[10px] uppercase font-bold text-slate-500 border-b border-slate-700/50">
+          <table className="w-full text-left text-sm app-text">
+            <thead className="app-surface2 text-[10px] uppercase font-bold app-text3 border-b app-border">
               <tr>
                 <th className="px-5 py-4">Projet</th>
                 <th className="px-5 py-4 text-right" title="Planned Value">PV (Prévu)</th>
@@ -31,11 +31,11 @@ const EVM = ({ data }) => {
             </thead>
             <tbody className="divide-y divide-slate-800/50">
               {(data || []).map(p => (
-                <tr key={p.id} className="hover:bg-slate-800/30 transition-colors">
+                <tr key={p.id} className="hover:app-surface2 transition-colors">
                   <td className="px-5 py-4 font-bold text-white">{p.projet}</td>
-                  <td className="px-5 py-4 text-right font-mono text-slate-400">{(p.pV / 1000000).toFixed(1)}M</td>
+                  <td className="px-5 py-4 text-right font-mono app-text2">{(p.pV / 1000000).toFixed(1)}M</td>
                   <td className="px-5 py-4 text-right font-mono text-indigo-300 font-bold">{(p.eV / 1000000).toFixed(1)}M</td>
-                  <td className="px-5 py-4 text-right font-mono text-slate-400">{(p.aC / 1000000).toFixed(1)}M</td>
+                  <td className="px-5 py-4 text-right font-mono app-text2">{(p.aC / 1000000).toFixed(1)}M</td>
                   <td className="px-5 py-4 text-center">
                     <span className={`px-2 py-1 rounded-md font-mono text-xs font-bold ${p.spi >= 1 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-red-500/20 text-red-400'}`}>{p.spi}</span>
                   </td>

@@ -296,7 +296,7 @@ Comment puis-je vous aider aujourd'hui ?`,
       line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       // Listes
       if (line.startsWith('- ')) {
-        return <li key={i} className="ml-4 text-slate-300" dangerouslySetInnerHTML={{ __html: line.substring(2) }} />;
+        return <li key={i} className="ml-4 app-text" dangerouslySetInnerHTML={{ __html: line.substring(2) }} />;
       }
       return <p key={i} className="mb-1" dangerouslySetInnerHTML={{ __html: line }} />;
     });
@@ -334,7 +334,7 @@ Comment puis-je vous aider aujourd'hui ?`,
             <div className={`max-w-[70%] space-y-2 ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
               <div className={`p-4 rounded-2xl ${
                 msg.role === 'assistant' 
-                  ? 'bg-slate-800 text-slate-200' 
+                  ? 'app-surface2 text-slate-200' 
                   : 'bg-indigo-600 text-white'
               }`}>
                 <div className="text-sm whitespace-pre-wrap">
@@ -345,18 +345,18 @@ Comment puis-je vous aider aujourd'hui ?`,
               {/* Actions message IA */}
               {msg.role === 'assistant' && (
                 <div className="flex items-center gap-2 px-2">
-                  <button onClick={() => copyMessage(msg.content)} className="text-slate-500 hover:text-slate-300 transition-colors">
+                  <button onClick={() => copyMessage(msg.content)} className="app-text3 hover:app-text transition-colors">
                     <Copy className="w-3 h-3" />
                   </button>
                   <button 
                     onClick={() => giveFeedback(msg.id, 'up')}
-                    className={`transition-colors ${msg.feedback === 'up' ? 'text-emerald-400' : 'text-slate-500 hover:text-slate-300'}`}
+                    className={`transition-colors ${msg.feedback === 'up' ? 'text-emerald-400' : 'app-text3 hover:app-text'}`}
                   >
                     <ThumbsUp className="w-3 h-3" />
                   </button>
                   <button 
                     onClick={() => giveFeedback(msg.id, 'down')}
-                    className={`transition-colors ${msg.feedback === 'down' ? 'text-red-400' : 'text-slate-500 hover:text-slate-300'}`}
+                    className={`transition-colors ${msg.feedback === 'down' ? 'text-red-400' : 'app-text3 hover:app-text'}`}
                   >
                     <ThumbsDown className="w-3 h-3" />
                   </button>
@@ -375,7 +375,7 @@ Comment puis-je vous aider aujourd'hui ?`,
             <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
               <Bot className="w-5 h-5 text-white" />
             </div>
-            <div className="p-4 rounded-2xl bg-slate-800">
+            <div className="p-4 rounded-2xl app-surface2">
               <div className="flex gap-1">
                 <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <div className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
@@ -403,7 +403,7 @@ Comment puis-je vous aider aujourd'hui ?`,
               setInput(suggestion);
               handleSend();
             }}
-            className="px-3 py-1.5 text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full transition-colors border border-slate-700"
+            className="px-3 py-1.5 text-xs app-surface2 hover:app-surface3 app-text rounded-full transition-colors border app-border"
           >
             <Sparkles className="w-3 h-3 inline mr-1" />
             {suggestion}
@@ -419,7 +419,7 @@ Comment puis-je vous aider aujourd'hui ?`,
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           placeholder="Posez votre question..."
-          className="flex-1 px-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+          className="flex-1 px-4 py-3 app-surface2 border app-border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
         />
         <Btn onClick={handleSend} disabled={!input.trim() || isTyping} className="px-6">
           <Send className="w-5 h-5" />

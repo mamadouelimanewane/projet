@@ -36,11 +36,11 @@ const CopilotePredictif = ({ data }) => {
               <h3 className="text-xl font-bold text-white tracking-tight">Insight Stratégique IA</h3>
             </div>
             
-            <div className="space-y-4 text-slate-300 leading-relaxed">
+            <div className="space-y-4 app-text leading-relaxed">
               <p className="text-sm">
                 L'analyse des derniers 3 Sprints révèle une <strong>corrélation directe</strong> entre la baisse de vélocité de 12% et la phase de régression du module Comptabilité. 
               </p>
-              <div className="p-4 rounded-xl bg-slate-900/50 border border-indigo-500/20 font-medium text-indigo-200 text-sm">
+              <div className="p-4 rounded-xl app-surface border border-indigo-500/20 font-medium text-indigo-200 text-sm">
                 💡 Recommandation : Allouer Sophie L. (QA Expert) à 100% sur le projet "Refonte SI" pendant 10 jours pour stabiliser le build.
               </div>
               <p className="text-sm">
@@ -56,7 +56,7 @@ const CopilotePredictif = ({ data }) => {
         </div>
 
         <div className="glass-card rounded-2xl p-8 flex flex-col items-center justify-center">
-          <h3 className="text-[10px] font-black text-slate-500 mb-8 uppercase tracking-[0.2em] self-start">Empreinte Neuronale de l'App</h3>
+          <h3 className="text-[10px] font-black app-text3 mb-8 uppercase tracking-[0.2em] self-start">Empreinte Neuronale de l'App</h3>
           <div className="w-full h-64">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>
@@ -74,20 +74,20 @@ const CopilotePredictif = ({ data }) => {
             </ResponsiveContainer>
           </div>
           <div className="mt-4 text-center">
-            <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">Équilibre Multidimensionnel</p>
+            <p className="text-xs app-text3 font-bold uppercase tracking-widest">Équilibre Multidimensionnel</p>
           </div>
         </div>
       </div>
 
       <div className="glass-card rounded-2xl p-8">
-        <h3 className="text-[10px] font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Arbre de Décision Prédictif (Logic)</h3>
+        <h3 className="text-[10px] font-black app-text3 mb-8 uppercase tracking-[0.2em]">Arbre de Décision Prédictif (Logic)</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-          <div className="p-4 rounded-xl border border-slate-700/50 bg-slate-800/30 text-center relative z-10">
-            <p className="text-xs font-bold text-slate-400 mb-1 uppercase">Entrée</p>
+          <div className="p-4 rounded-xl border app-border app-surface2 text-center relative z-10">
+            <p className="text-xs font-bold app-text2 mb-1 uppercase">Entrée</p>
             <p className="text-sm font-bold text-white">Budget & Scope</p>
           </div>
           <div className="hidden md:flex items-center justify-center absolute inset-0 pointer-events-none">
-             <div className="w-full h-[1px] bg-slate-700/50" />
+             <div className="w-full h-[1px] app-surface3" />
           </div>
           <div className="p-4 rounded-xl border border-indigo-500/30 bg-indigo-500/5 text-center relative z-10">
             <p className="text-xs font-bold text-indigo-400 mb-1 uppercase">Analyse IA</p>

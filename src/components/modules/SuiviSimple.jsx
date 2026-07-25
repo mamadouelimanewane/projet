@@ -25,26 +25,26 @@ const SuiviSimple = ({ data, setData }) => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {["Tous", "À faire", "En cours", "Fait"].map(s => (
           <button key={s} onClick={() => setFilter(s)}
-            className={`p-3 rounded-xl text-sm font-semibold transition-all border ${filter === s ? "bg-indigo-600 border-indigo-500 text-white" : "bg-slate-800/60 border-slate-700/50 text-slate-400 hover:border-slate-500"}`}>
+            className={`p-3 rounded-xl text-sm font-semibold transition-all border ${filter === s ? "bg-indigo-600 border-indigo-500 text-white" : "app-surface2 app-border app-text2 hover:border-slate-500"}`}>
             {s} {s !== "Tous" && <span className="ml-1 text-xs opacity-70">({data.filter(d => d.statut === s).length})</span>}
           </button>
         ))}
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+      <div className="app-surface2 border app-border rounded-xl overflow-hidden">
         <div className="overflow-x-auto -mx-1">
         <table className="w-full">
-          <thead><tr className="border-b border-slate-700">
+          <thead><tr className="border-b app-border">
             {["#", "Tâche", "Responsable", "Date Limite", "Statut", "Priorité", "Actions"].map(h => (
-              <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{h}</th>
+              <th key={h} className="px-4 py-3 text-left text-xs font-bold app-text2 uppercase tracking-wider">{h}</th>
             ))}
           </tr></thead>
           <tbody>
             {filtered.map((item, i) => (
-              <tr key={item.id} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
-                <td className="px-4 py-3 text-xs text-slate-500">{i + 1}</td>
+              <tr key={item.id} className="border-b app-border hover:app-surface3 transition-colors">
+                <td className="px-4 py-3 text-xs app-text3">{i + 1}</td>
                 <td className="px-4 py-3 text-sm text-slate-200 font-medium">{item.tache}</td>
-                <td className="px-4 py-3 text-sm text-slate-400">{item.responsable}</td>
-                <td className="px-4 py-3 text-sm text-slate-400">{item.dateLimite}</td>
+                <td className="px-4 py-3 text-sm app-text2">{item.responsable}</td>
+                <td className="px-4 py-3 text-sm app-text2">{item.dateLimite}</td>
                 <td className="px-4 py-3"><Badge value={item.statut} /></td>
                 <td className="px-4 py-3"><Badge value={item.priorite} map={PRIORITE_COLORS} /></td>
                 <td className="px-4 py-3">

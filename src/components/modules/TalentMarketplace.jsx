@@ -35,11 +35,11 @@ const TalentMarketplace = ({ data = {} }) => {
       {/* Barre de Recherche IA */}
       <Card className="p-4 glass-card rounded-2xl flex items-center gap-4">
         <div className="flex-1 relative">
-           <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
+           <Search className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 app-text3" />
            <input 
              type="text" 
              placeholder="Rechercher une compétence rare ou un profil spécifique (ex: Expert React avec expérience BIM)..." 
-             className="w-full bg-slate-900/50 border border-slate-800 rounded-xl py-3 pl-10 pr-4 text-white text-sm focus:outline-none focus:border-indigo-500"
+             className="w-full app-surface border app-border rounded-xl py-3 pl-10 pr-4 text-white text-sm focus:outline-none focus:border-indigo-500"
            />
         </div>
         <Btn variant="indigo">Analyse IA</Btn>
@@ -52,7 +52,7 @@ const TalentMarketplace = ({ data = {} }) => {
              <Card key={talent.id} className="p-6 glass-card rounded-2xl hover:border-indigo-500/50 transition-all group">
                 <div className="flex items-start justify-between">
                    <div className="flex items-center gap-4">
-                      <div className="w-14 h-14 rounded-2xl bg-slate-800 flex items-center justify-center text-2xl border border-slate-700">
+                      <div className="w-14 h-14 rounded-2xl app-surface2 flex items-center justify-center text-2xl border app-border">
                         {talent.avatar}
                       </div>
                       <div>
@@ -61,7 +61,7 @@ const TalentMarketplace = ({ data = {} }) => {
                       </div>
                    </div>
                    <div className="text-right">
-                      <div className="text-xs text-slate-500 font-bold mb-1 uppercase">Match IA</div>
+                      <div className="text-xs app-text3 font-bold mb-1 uppercase">Match IA</div>
                       <div className="text-2xl font-black text-emerald-400">{talent.match}%</div>
                    </div>
                 </div>
@@ -72,14 +72,14 @@ const TalentMarketplace = ({ data = {} }) => {
                    ))}
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-slate-800/50 flex items-center justify-between">
+                <div className="mt-6 pt-6 border-t app-border flex items-center justify-between">
                    <div className="flex items-center gap-6">
                       <div>
-                         <p className="text-[10px] text-slate-500 font-bold uppercase mb-1">Disponibilité</p>
+                         <p className="text-[10px] app-text3 font-bold uppercase mb-1">Disponibilité</p>
                          <p className="text-xs text-white font-bold">{talent.dispo}</p>
                       </div>
                       <div>
-                         <p className="text-[10px] text-slate-500 font-bold uppercase mb-1">Dernière Mission</p>
+                         <p className="text-[10px] app-text3 font-bold uppercase mb-1">Dernière Mission</p>
                          <p className="text-xs text-white font-bold italic">Projet Renaissance</p>
                       </div>
                    </div>
@@ -104,11 +104,11 @@ const TalentMarketplace = ({ data = {} }) => {
                    { label: "Compliance", val: 64, color: "#ef4444" }
                  ].map(s => (
                    <div key={s.label}>
-                      <div className="flex justify-between text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">
+                      <div className="flex justify-between text-[10px] font-bold app-text2 mb-1 uppercase tracking-widest">
                         <span>{s.label}</span>
                         <span>{s.val}%</span>
                       </div>
-                      <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                      <div className="h-1.5 app-surface2 rounded-full overflow-hidden">
                         <div className="h-full rounded-full" style={{ width: `${s.val}%`, backgroundColor: s.color }} />
                       </div>
                    </div>
@@ -121,7 +121,7 @@ const TalentMarketplace = ({ data = {} }) => {
                 <Zap className="w-5 h-5 text-yellow-400" />
                 Besoin Critique
               </h3>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs app-text leading-relaxed">
                 Le module IA détecte une pénurie imminente d'experts en <strong>Cybersécurité</strong> pour le trimestre prochain.
               </p>
               <Btn variant="indigo" className="w-full mt-4">Lancer Formation</Btn>

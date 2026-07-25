@@ -61,7 +61,7 @@ const SauvegardeExport = async () => {
               <Download className="w-8 h-8 text-indigo-400" />
            </div>
            <h3 className="text-xl font-black text-white mb-2">Exportation "Cold Storage"</h3>
-           <p className="text-sm text-slate-500 mb-8 max-w-sm">
+           <p className="text-sm app-text3 mb-8 max-w-sm">
              Générez un fichier JSON contenant l'intégralité de vos 26 modules, configurations et historiques. Idéal pour l'archivage légal ou le transfert de projet.
            </p>
            <Btn variant="indigo" size="lg" className="w-full" onClick={handleExportJSON} disabled={isExporting}>
@@ -77,7 +77,7 @@ const SauvegardeExport = async () => {
               <RefreshCw className="w-8 h-8 text-emerald-400" />
            </div>
            <h3 className="text-xl font-black text-white mb-2">Restauration Système</h3>
-           <p className="text-sm text-slate-500 mb-8 max-w-sm">
+           <p className="text-sm app-text3 mb-8 max-w-sm">
              Restaurez l'état complet du projet à partir d'une sauvegarde précédente. Les données importées remplaceront instantanément votre espace de travail actuel.
            </p>
            <input type="file" id="import-json" className="hidden" accept=".json" onChange={handleImportJSON} />
@@ -101,11 +101,11 @@ const SauvegardeExport = async () => {
                </div>
                <div>
                   <h4 className="font-bold text-white">Sauvegarde Cloud Automatique</h4>
-                  <p className="text-xs text-slate-400">Le système synchronise vos données toutes les 5 minutes sur l'infrastructure sécurisée.</p>
+                  <p className="text-xs app-text2">Le système synchronise vos données toutes les 5 minutes sur l'infrastructure sécurisée.</p>
                </div>
             </div>
             <div className="w-full md:w-64">
-               <div className="flex justify-between text-[10px] font-black text-slate-500 mb-1 uppercase">
+               <div className="flex justify-between text-[10px] font-black app-text3 mb-1 uppercase">
                   <span>Espace Utilisé</span>
                   <span>14.2 MB / 500 MB</span>
                </div>
@@ -119,17 +119,17 @@ const SauvegardeExport = async () => {
          <Card className="p-5 glass-card rounded-2xl border-l-4 border-l-indigo-500">
             <History className="w-6 h-6 text-indigo-400 mb-3" />
             <h4 className="text-sm font-bold text-white mb-1">Historique des Versions</h4>
-            <p className="text-[10px] text-slate-500 leading-relaxed">Accédez aux snapshots de votre projet sur les 30 derniers jours.</p>
+            <p className="text-[10px] app-text3 leading-relaxed">Accédez aux snapshots de votre projet sur les 30 derniers jours.</p>
          </Card>
          <Card className="p-5 glass-card rounded-2xl border-l-4 border-l-emerald-500">
             <HardDrive className="w-6 h-6 text-emerald-400 mb-3" />
             <h4 className="text-sm font-bold text-white mb-1">Archivage Légal</h4>
-            <p className="text-[10px] text-slate-500 leading-relaxed">Générez un PDF scellé par horodatage pour vos rapports de fin d'année.</p>
+            <p className="text-[10px] app-text3 leading-relaxed">Générez un PDF scellé par horodatage pour vos rapports de fin d'année.</p>
          </Card>
          <Card className="p-5 glass-card rounded-2xl border-l-4 border-l-purple-500">
             <CheckCircle className="w-6 h-6 text-purple-400 mb-3" />
             <h4 className="text-sm font-bold text-white mb-1">Intégrité des Données</h4>
-            <p className="text-[10px] text-slate-500 leading-relaxed">Vérification de la somme de contrôle (SHA-256) sur chaque export.</p>
+            <p className="text-[10px] app-text3 leading-relaxed">Vérification de la somme de contrôle (SHA-256) sur chaque export.</p>
          </Card>
       </div>
     </div>

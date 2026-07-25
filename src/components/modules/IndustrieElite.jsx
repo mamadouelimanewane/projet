@@ -20,7 +20,7 @@ const IndustrieElite = ({ data = {}, setData }) => {
         icon={<Factory className="w-8 h-8 text-indigo-500" />}
       />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-2 p-6 glass-card border-slate-800">
+        <Card className="lg:col-span-2 p-6 glass-card app-border">
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={productionData}>
@@ -33,7 +33,7 @@ const IndustrieElite = ({ data = {}, setData }) => {
             </ResponsiveContainer>
           </div>
         </Card>
-        <Card className="p-6 glass-card border-slate-800 flex flex-col items-center justify-center">
+        <Card className="p-6 glass-card app-border flex flex-col items-center justify-center">
           <div className={`w-32 h-32 rounded-full border-8 ${machineStatus === 'running' ? 'border-emerald-500/20' : 'border-rose-500/20'} flex items-center justify-center mb-6`}>
              <Cpu className={`w-10 h-10 ${machineStatus === 'running' ? 'text-emerald-500' : 'text-rose-500'}`} />
           </div>

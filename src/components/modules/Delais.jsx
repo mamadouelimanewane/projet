@@ -26,28 +26,28 @@ const Delais = ({ data, setData }) => {
         <StatCard label="Retard Moyen" value={`${Math.round(data.filter(d => d.reel).reduce((s, d) => s + getEcart(d.planifie, d.reel), 0) / Math.max(data.filter(d => d.reel).length, 1))}j`} color="#f59e0b" icon="Δ" />
         <StatCard label="À planifier" value={data.filter(d => !d.reel).length} color="#6366f1" icon="◉" />
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+      <div className="app-surface2 border app-border rounded-xl overflow-hidden">
         <div className="overflow-x-auto -mx-1">
         <table className="w-full">
-          <thead><tr className="border-b border-slate-700">
+          <thead><tr className="border-b app-border">
             {["Tâche", "Date Planifiée", "Date Réelle", "Écart", "Responsable", "Impact", "Cause", "Actions"].map(h => (
-              <th key={h} className="px-3 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{h}</th>
+              <th key={h} className="px-3 py-3 text-left text-xs font-bold app-text2 uppercase tracking-wider">{h}</th>
             ))}
           </tr></thead>
           <tbody>
             {data.map(d => {
               const ecart = getEcart(d.planifie, d.reel);
               return (
-                <tr key={d.id} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+                <tr key={d.id} className="border-b app-border hover:app-surface3 transition-colors">
                   <td className="px-3 py-3 text-sm font-medium text-slate-200">{d.tache}</td>
-                  <td className="px-3 py-3 text-sm text-slate-400">{d.planifie}</td>
-                  <td className="px-3 py-3 text-sm text-slate-400">{d.reel || <span className="text-slate-600 italic">En attente</span>}</td>
+                  <td className="px-3 py-3 text-sm app-text2">{d.planifie}</td>
+                  <td className="px-3 py-3 text-sm app-text2">{d.reel || <span className="text-slate-600 italic">En attente</span>}</td>
                   <td className="px-3 py-3 text-sm font-bold" style={{ color: ecart === null ? "#94a3b8" : ecart <= 0 ? "#10b981" : ecart <= 7 ? "#f59e0b" : "#ef4444" }}>
                     {ecart === null ? "-" : ecart === 0 ? "On time" : ecart > 0 ? `+${ecart}j` : `${ecart}j`}
                   </td>
-                  <td className="px-3 py-3 text-sm text-slate-400">{d.responsable}</td>
+                  <td className="px-3 py-3 text-sm app-text2">{d.responsable}</td>
                   <td className="px-3 py-3"><Badge value={d.impact} map={{ "Faible": "#10b981", "Moyen": "#f59e0b", "Fort": "#ef4444", "À déterminer": "#94a3b8" }} /></td>
-                  <td className="px-3 py-3 text-xs text-slate-500 max-w-32 truncate">{d.cause || "-"}</td>
+                  <td className="px-3 py-3 text-xs app-text3 max-w-32 truncate">{d.cause || "-"}</td>
                   <td className="px-3 py-3">
                     <div className="flex gap-2">
                       <Btn onClick={() => { setForm({ ...d }); setModal("edit"); }} variant="ghost">✎</Btn>

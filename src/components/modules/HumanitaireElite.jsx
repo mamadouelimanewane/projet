@@ -44,60 +44,60 @@ const HumanitaireElite = ({ data = {}, setData }) => {
       {/* Report Modal */}
       {showReportModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-           <Card className="w-full max-w-2xl bg-slate-900 border-slate-800 shadow-2xl max-h-[90vh] overflow-hidden flex flex-col">
-              <div className="p-6 border-b border-slate-800 flex justify-between items-center bg-indigo-600/10">
+           <Card className="w-full max-w-2xl app-surface app-border shadow-2xl max-h-[90vh] overflow-hidden flex flex-col">
+              <div className="p-6 border-b app-border flex justify-between items-center bg-indigo-600/10">
                  <div className="flex items-center gap-3">
                     <FileText className="w-6 h-6 text-indigo-400" />
                     <div>
                        <h3 className="text-lg font-black text-white">Rapport d'Impact Mission #442</h3>
-                       <p className="text-[10px] text-slate-400 uppercase font-bold tracking-widest text-indigo-400">Généré par Gravity NGO AI</p>
+                       <p className="text-[10px] app-text2 uppercase font-bold tracking-widest text-indigo-400">Généré par Gravity NGO AI</p>
                     </div>
                  </div>
-                 <button onClick={() => setShowReportModal(false)} className="p-2 hover:bg-slate-800 rounded-full transition-colors text-slate-500">
+                 <button onClick={() => setShowReportModal(false)} className="p-2 hover:app-surface2 rounded-full transition-colors app-text3">
                     <X className="w-5 h-5" />
                  </button>
               </div>
               <div className="flex-1 overflow-y-auto p-8 space-y-8 bg-white/5 custom-scrollbar">
                  <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-1">
-                       <p className="text-[9px] font-black text-slate-500 uppercase">Bailleur Principal</p>
+                       <p className="text-[9px] font-black app-text3 uppercase">Bailleur Principal</p>
                        <p className="text-sm font-bold text-white flex items-center gap-2">🇺🇸 USAID International</p>
                     </div>
                     <div className="space-y-1 text-right">
-                       <p className="text-[9px] font-black text-slate-500 uppercase">Période</p>
+                       <p className="text-[9px] font-black app-text3 uppercase">Période</p>
                        <p className="text-sm font-bold text-white uppercase">Q2 - 2026</p>
                     </div>
                  </div>
                  <div className="space-y-2">
-                    <p className="text-[9px] font-black text-slate-500 uppercase border-b border-slate-800 pb-1">Résumé Exécutif</p>
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className="text-[9px] font-black app-text3 uppercase border-b app-border pb-1">Résumé Exécutif</p>
+                    <p className="text-xs app-text leading-relaxed">
                        La mission de développement agricole en Zone Nord a atteint 92% de ses objectifs initiaux. Le déploiement des nouvelles semences résistantes a bénéficié à 12,450 foyers ruraux. Les audits financiers confirment une transparence totale avec un taux de conformité documentaire de 100%.
                     </p>
                  </div>
                  <div className="grid grid-cols-3 gap-4">
-                    <div className="p-4 bg-slate-800/50 rounded-2xl text-center border border-slate-700">
+                    <div className="p-4 app-surface2 rounded-2xl text-center border app-border">
                        <p className="text-lg font-black text-emerald-400">+15%</p>
-                       <p className="text-[8px] font-black text-slate-500 uppercase">Production</p>
+                       <p className="text-[8px] font-black app-text3 uppercase">Production</p>
                     </div>
-                    <div className="p-4 bg-slate-800/50 rounded-2xl text-center border border-slate-700">
+                    <div className="p-4 app-surface2 rounded-2xl text-center border app-border">
                        <p className="text-lg font-black text-blue-400">12k+</p>
-                       <p className="text-[8px] font-black text-slate-500 uppercase">Bénéficiaires</p>
+                       <p className="text-[8px] font-black app-text3 uppercase">Bénéficiaires</p>
                     </div>
-                    <div className="p-4 bg-slate-800/50 rounded-2xl text-center border border-slate-700">
+                    <div className="p-4 app-surface2 rounded-2xl text-center border app-border">
                        <p className="text-lg font-black text-amber-400">98%</p>
-                       <p className="text-[8px] font-black text-slate-500 uppercase">Satisfaction</p>
+                       <p className="text-[8px] font-black app-text3 uppercase">Satisfaction</p>
                     </div>
                  </div>
                  <div className="space-y-4">
-                    <p className="text-[9px] font-black text-slate-500 uppercase border-b border-slate-800 pb-1">Preuves d'Exécution</p>
+                    <p className="text-[9px] font-black app-text3 uppercase border-b app-border pb-1">Preuves d'Exécution</p>
                     <div className="grid grid-cols-4 gap-2">
                        {[1,2,3,4].map(i => (
-                         <div key={i} className="aspect-square bg-slate-800 rounded-lg flex items-center justify-center text-slate-600 border border-slate-700/50 italic text-[8px]">Photo_{i}.jpg</div>
+                         <div key={i} className="aspect-square app-surface2 rounded-lg flex items-center justify-center text-slate-600 border app-border italic text-[8px]">Photo_{i}.jpg</div>
                        ))}
                     </div>
                  </div>
               </div>
-              <div className="p-6 border-t border-slate-800 flex gap-3 bg-slate-900/50">
+              <div className="p-6 border-t app-border flex gap-3 app-surface">
                  <Btn variant="ghost" className="flex-1 text-xs py-3"><Download className="w-4 h-4 mr-2" /> PDF</Btn>
                  <Btn variant="primary" className="flex-[2] text-xs py-3 shadow-[0_0_20px_rgba(99,102,241,0.3)]"><Send className="w-4 h-4 mr-2" /> Envoyer au Bailleur</Btn>
               </div>
@@ -131,11 +131,11 @@ const HumanitaireElite = ({ data = {}, setData }) => {
           <button 
             key={s.id}
             onClick={() => setSelectedSector(s.label)}
-            className={`p-4 rounded-3xl border-2 transition-all flex items-center gap-4 ${selectedSector === s.label ? 'bg-slate-900 border-rose-500 shadow-xl' : 'bg-slate-900/50 border-slate-800 hover:border-slate-700'}`}
+            className={`p-4 rounded-3xl border-2 transition-all flex items-center gap-4 ${selectedSector === s.label ? 'app-surface border-rose-500 shadow-xl' : 'app-surface app-border hover:app-border'}`}
           >
              <div className="text-2xl">{s.icon}</div>
              <div className="text-left">
-                <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Secteur</p>
+                <p className="text-[10px] font-black app-text3 uppercase tracking-widest">Secteur</p>
                 <p className="text-xs font-black text-white">{s.label}</p>
              </div>
           </button>
@@ -144,7 +144,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Main Impact Chart */}
-        <Card className="lg:col-span-2 p-6 glass-card border-slate-800">
+        <Card className="lg:col-span-2 p-6 glass-card app-border">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-sm font-black uppercase tracking-tighter flex items-center gap-2">
               <PieChart className="w-4 h-4 text-rose-500" />
@@ -152,12 +152,12 @@ const HumanitaireElite = ({ data = {}, setData }) => {
             </h3>
             <div className="flex gap-4 items-center">
                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-slate-800"></div>
-                  <span className="text-[9px] text-slate-500 font-bold uppercase">Coût (M$)</span>
+                  <div className="w-2 h-2 rounded-full app-surface2"></div>
+                  <span className="text-[9px] app-text3 font-bold uppercase">Coût (M$)</span>
                </div>
                <div className="flex items-center gap-1.5">
                   <div className="w-2 h-2 rounded-full bg-rose-500"></div>
-                  <span className="text-[9px] text-slate-500 font-bold uppercase">Bénéficiaires (k)</span>
+                  <span className="text-[9px] app-text3 font-bold uppercase">Bénéficiaires (k)</span>
                </div>
             </div>
           </div>
@@ -177,20 +177,20 @@ const HumanitaireElite = ({ data = {}, setData }) => {
         </Card>
 
         {/* Donor Portfolio */}
-        <Card className="p-6 glass-card border-slate-800 flex flex-col">
+        <Card className="p-6 glass-card app-border flex flex-col">
           <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2 text-blue-400">
             <Landmark className="w-4 h-4" />
             Portefeuille Bailleurs
           </h3>
           <div className="flex-1 space-y-3 overflow-y-auto pr-1 custom-scrollbar">
              {donors.map((donor, i) => (
-               <div key={i} className="p-3 bg-slate-900 border border-slate-800 rounded-2xl hover:border-blue-500/30 transition-all cursor-pointer group">
+               <div key={i} className="p-3 app-surface border app-border rounded-2xl hover:border-blue-500/30 transition-all cursor-pointer group">
                   <div className="flex justify-between items-center">
                      <div className="flex items-center gap-3">
                         <span className="text-lg">{donor.logo}</span>
                         <div>
                            <p className="text-[11px] font-black text-white">{donor.name}</p>
-                           <p className="text-[9px] text-slate-500 uppercase">{donor.projects} Projets Actifs</p>
+                           <p className="text-[9px] app-text3 uppercase">{donor.projects} Projets Actifs</p>
                         </div>
                      </div>
                      <span className="text-xs font-black text-blue-400">{donor.funds} M$</span>
@@ -198,7 +198,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                </div>
              ))}
           </div>
-          <div className="mt-6 pt-6 border-t border-slate-800 text-center">
+          <div className="mt-6 pt-6 border-t app-border text-center">
              <Btn variant="ghost" size="xs" className="w-full">Voir Historique Financements</Btn>
           </div>
         </Card>
@@ -206,7 +206,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
 
       {/* Financial Traceability & Audit */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-         <Card className="p-6 glass-card border-slate-800 bg-gradient-to-br from-slate-900 to-rose-900/10">
+         <Card className="p-6 glass-card app-border bg-gradient-to-br from-slate-900 to-rose-900/10">
             <div className="flex justify-between items-center mb-6">
                <h3 className="text-sm font-black uppercase tracking-tighter flex items-center gap-2">
                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
@@ -220,14 +220,14 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                  { title: "Rapport Trimestriel Santé", donor: "Banque Mondiale", status: "En Cours", date: "J-2" },
                  { title: "Preuve de Paiement Fournisseurs", donor: "AFD", status: "Signé", date: "12 Mai" },
                ].map((item, i) => (
-                 <div key={i} className="flex items-center justify-between p-4 bg-slate-900 border border-slate-800 rounded-2xl hover:border-emerald-500/20 transition-all">
+                 <div key={i} className="flex items-center justify-between p-4 app-surface border app-border rounded-2xl hover:border-emerald-500/20 transition-all">
                     <div className="flex items-center gap-4">
                        <div className="w-8 h-8 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-500">
                           <CheckCircle2 className="w-4 h-4" />
                        </div>
                        <div>
                           <p className="text-xs font-bold text-white">{item.title}</p>
-                          <p className="text-[9px] text-slate-500 uppercase">{item.donor} | {item.date}</p>
+                          <p className="text-[9px] app-text3 uppercase">{item.donor} | {item.date}</p>
                        </div>
                     </div>
                     <Badge variant={item.status === 'Validé' ? 'success' : 'info'}>{item.status}</Badge>
@@ -236,34 +236,34 @@ const HumanitaireElite = ({ data = {}, setData }) => {
             </div>
          </Card>
 
-         <Card className="p-6 glass-card border-slate-800">
+         <Card className="p-6 glass-card app-border">
             <h3 className="text-sm font-black uppercase tracking-tighter mb-6 flex items-center gap-2 text-rose-500">
               <Zap className="w-4 h-4" />
               Indicateurs d'Impact Globaux
             </h3>
             <div className="grid grid-cols-2 gap-4">
-               <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl text-center">
-                  <p className="text-[9px] font-black text-slate-500 uppercase mb-2 tracking-widest">Hectares Cultivés</p>
+               <div className="p-4 app-surface border app-border rounded-2xl text-center">
+                  <p className="text-[9px] font-black app-text3 uppercase mb-2 tracking-widest">Hectares Cultivés</p>
                   <p className="text-2xl font-black text-white">12,450</p>
                   <div className="flex items-center justify-center gap-1 mt-1">
                      <TrendingUp className="w-3 h-3 text-emerald-500" />
                      <span className="text-[9px] font-bold text-emerald-400">+15%</span>
                   </div>
                </div>
-               <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl text-center">
-                  <p className="text-[9px] font-black text-slate-500 uppercase mb-2 tracking-widest">Enfants Scolarisés</p>
+               <div className="p-4 app-surface border app-border rounded-2xl text-center">
+                  <p className="text-[9px] font-black app-text3 uppercase mb-2 tracking-widest">Enfants Scolarisés</p>
                   <p className="text-2xl font-black text-white">45.2k</p>
                   <div className="flex items-center justify-center gap-1 mt-1">
                      <Users className="w-3 h-3 text-blue-400" />
                      <span className="text-[9px] font-bold text-blue-400">88% Target</span>
                   </div>
                </div>
-               <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl text-center">
-                  <p className="text-[9px] font-black text-slate-500 uppercase mb-2 tracking-widest">Points d'Eau Créés</p>
+               <div className="p-4 app-surface border app-border rounded-2xl text-center">
+                  <p className="text-[9px] font-black app-text3 uppercase mb-2 tracking-widest">Points d'Eau Créés</p>
                   <p className="text-2xl font-black text-white">124</p>
                   <Badge variant="info" className="mt-1 text-[7px]">Secteur: Assainissement</Badge>
                </div>
-               <div className="p-4 bg-slate-900 border border-slate-800 rounded-2xl text-center flex flex-col justify-center items-center">
+               <div className="p-4 app-surface border app-border rounded-2xl text-center flex flex-col justify-center items-center">
                   <Globe className="w-6 h-6 text-indigo-400 mb-2" />
                   <p className="text-[9px] font-black text-white uppercase">14 Pays Actifs</p>
                </div>

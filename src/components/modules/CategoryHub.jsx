@@ -597,7 +597,7 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
             {/* CTA BOUTONS NDUGUMi */}
             <div className="flex flex-wrap items-center gap-3 justify-center md:justify-end">
               {/* Sélecteur de thème */}
-              <div className="hidden md:flex items-center gap-1 bg-slate-800/60 border border-slate-700 rounded-lg p-1 mr-2">
+              <div className="hidden md:flex items-center gap-1 app-surface2 border app-border rounded-lg p-1 mr-2">
                 {Object.values(THEMES).map(t => (
                   <button
                     key={t.id}
@@ -676,13 +676,13 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
       {/* RECHERCHE ACCÉLÉRÉE */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 pt-8 pb-4">
         <div className="relative max-w-xl mx-auto">
-          <Search className="w-5 h-5 absolute left-4 top-3.5 text-slate-400 dark:text-slate-500 pointer-events-none" />
+          <Search className="w-5 h-5 absolute left-4 top-3.5 app-text2 dark:app-text3 pointer-events-none" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Rechercher un module, une fonction ou un pôle d'activité..."
-            className="w-full pl-12 pr-4 py-3 app-surface border app-border focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 rounded-xl app-text text-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none transition-all shadow-sm"
+            className="w-full pl-12 pr-4 py-3 app-surface border app-border focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/10 rounded-xl app-text text-sm placeholder:app-text2 dark:placeholder:app-text3 focus:outline-none transition-all shadow-sm"
           />
           {searchTerm && (
             <button 
@@ -701,7 +701,7 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
           {filteredCategories.map((cat, idx) => (
             <div
               key={idx}
-              className="app-surface glass-card border app-border rounded-3xl p-6 flex flex-col justify-between hover:border-indigo-300 dark:hover:border-slate-700 transition-all shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl dark:shadow-lg"
+              className="app-surface glass-card border app-border rounded-3xl p-6 flex flex-col justify-between hover:border-indigo-300 dark:hover:app-border transition-all shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl dark:shadow-lg"
             >
               <div>
                 {/* EN-TÊTE DU PÔLE */}
@@ -715,7 +715,7 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
                       {cat.title}
                     </h2>
                   </div>
-                  <span className="text-xs font-bold app-text2 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full whitespace-nowrap shadow-inner">
+                  <span className="text-xs font-bold app-text2 bg-slate-100 dark:app-surface2 px-2.5 py-1 rounded-full whitespace-nowrap shadow-inner">
                     {cat.badge}
                   </span>
                 </div>
@@ -726,7 +726,7 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
                     <div
                       key={mod.id}
                       onClick={() => onSelectModule(mod.id)}
-                      className="group p-4 rounded-2xl bg-white dark:bg-slate-950/60 hover:bg-slate-50 dark:hover:bg-indigo-950/40 border border-slate-100 dark:border-slate-800/60 hover:border-indigo-300 dark:hover:border-indigo-500/40 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-1"
+                      className="group p-4 rounded-2xl bg-white dark:app-bg hover:bg-slate-50 dark:hover:bg-indigo-950/40 border border-slate-100 dark:app-border hover:border-indigo-300 dark:hover:border-indigo-500/40 cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-1"
                     >
                       <div className="flex items-start gap-3">
                         <span className="text-2xl flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform drop-shadow-sm">
@@ -770,8 +770,8 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
         </div>
 
         {filteredCategories.length === 0 && (
-          <div className="text-center py-16 bg-slate-900/40 rounded-2xl border border-slate-800">
-            <p className="text-slate-400 text-sm mb-3">Aucun pôle ou module ne correspond à "{searchTerm}".</p>
+          <div className="text-center py-16 app-surface rounded-2xl border app-border">
+            <p className="app-text2 text-sm mb-3">Aucun pôle ou module ne correspond à "{searchTerm}".</p>
             <button
               onClick={() => setSearchTerm('')}
               className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl"
@@ -783,7 +783,7 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
       </main>
 
       {/* FOOTER NDUGUMi STYLE */}
-      <footer className="border-t border-slate-800 py-6 text-center text-xs text-slate-500 bg-slate-950">
+      <footer className="border-t app-border py-6 text-center text-xs app-text3 app-bg">
         <p>© 2026 PROJET ÉLITE 3.0 · Platforme Intégrale Enterprise Operating System</p>
       </footer>
     </div>

@@ -40,16 +40,16 @@ const RedTeamAI = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="glass-card rounded-2xl p-8">
-           <h3 className="text-[10px] font-black text-slate-500 mb-6 uppercase tracking-[0.2em]">Sélectionner un Vecteur d'Agression</h3>
+           <h3 className="text-[10px] font-black app-text3 mb-6 uppercase tracking-[0.2em]">Sélectionner un Vecteur d'Agression</h3>
            <div className="space-y-4">
              {SCENARIOS_RED.map(s => (
                <button key={s.id} onClick={() => runStressTest(s)} disabled={running}
-                 className="w-full text-left bg-slate-800/40 hover:bg-red-500/10 border border-slate-700/50 hover:border-red-500/50 p-5 rounded-xl transition-all flex items-center justify-between group">
+                 className="w-full text-left app-surface2 hover:bg-red-500/10 border app-border hover:border-red-500/50 p-5 rounded-xl transition-all flex items-center justify-between group">
                  <div className="flex items-center gap-4">
                    <div className="text-2xl opacity-80 group-hover:scale-110 transition-transform">{s.icon}</div>
                    <div>
                      <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors uppercase tracking-tight">{s.title}</h4>
-                     <p className="text-[10px] text-slate-500 mt-1 uppercase font-bold">Risque de survenance : {s.risk}%</p>
+                     <p className="text-[10px] app-text3 mt-1 uppercase font-bold">Risque de survenance : {s.risk}%</p>
                    </div>
                  </div>
                  <div className="text-xs font-bold text-red-400 group-hover:translate-x-2 transition-all">Lancer →</div>
@@ -58,12 +58,12 @@ const RedTeamAI = () => {
            </div>
         </div>
 
-        <div className="glass-card rounded-2xl p-8 bg-slate-900 border-red-500/20 relative overflow-hidden flex items-center justify-center min-h-[400px]">
+        <div className="glass-card rounded-2xl p-8 app-surface border-red-500/20 relative overflow-hidden flex items-center justify-center min-h-[400px]">
            {running ? (
              <div className="text-center">
-                <div className="w-16 h-16 border-4 border-slate-800 border-t-red-500 rounded-full animate-spin mx-auto mb-6 shadow-[0_0_20px_#ef444433]" />
+                <div className="w-16 h-16 border-4 app-border border-t-red-500 rounded-full animate-spin mx-auto mb-6 shadow-[0_0_20px_#ef444433]" />
                 <p className="text-red-400 font-bold animate-pulse text-lg uppercase tracking-widest">Injection de Chaos...</p>
-                <p className="text-xs text-slate-500 mt-2 uppercase font-black tracking-tighter">Stress-testing de la cascade</p>
+                <p className="text-xs app-text3 mt-2 uppercase font-black tracking-tighter">Stress-testing de la cascade</p>
              </div>
            ) : report ? (
              <div className="w-full space-y-8 animate-entrance relative z-10">
@@ -74,7 +74,7 @@ const RedTeamAI = () => {
                 
                 <div className="space-y-6">
                   <div>
-                    <div className="flex justify-between text-[10px] font-bold text-slate-500 uppercase mb-2">
+                    <div className="flex justify-between text-[10px] font-bold app-text3 uppercase mb-2">
                        <span>Survie Systémique</span>
                        <span>{report.resilience}%</span>
                     </div>
@@ -82,8 +82,8 @@ const RedTeamAI = () => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                     <div className="p-4 bg-slate-800 border border-slate-700 rounded-xl">
-                        <p className="text-[10px] font-bold text-slate-400 mb-2 uppercase">Points de Faiblesse</p>
+                     <div className="p-4 app-surface2 border app-border rounded-xl">
+                        <p className="text-[10px] font-bold app-text2 mb-2 uppercase">Points de Faiblesse</p>
                         <ul className="text-sm text-slate-200 mt-2 space-y-1">
                           {report.bottlenecks.map((b, i) => <li key={i} className="flex items-center gap-2">❌ {b}</li>)}
                         </ul>
@@ -102,7 +102,7 @@ const RedTeamAI = () => {
              <div className="text-center opacity-40">
                <div className="text-6xl mb-6">🧛</div>
                <h3 className="text-xl font-bold text-white mb-2">La Red Team est au repos</h3>
-               <p className="text-sm text-slate-300 max-w-xs mx-auto">Prêt à hacker votre planning pour sauver votre avenir ? Sélectionnez un scénario à gauche.</p>
+               <p className="text-sm app-text max-w-xs mx-auto">Prêt à hacker votre planning pour sauver votre avenir ? Sélectionnez un scénario à gauche.</p>
              </div>
            )}
         </div>

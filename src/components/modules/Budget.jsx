@@ -28,8 +28,8 @@ const Budget = ({ data, setData }) => {
         <StatCard label="Restant" value={`${((totalP - totalR) / 1000).toFixed(0)}k€`} color={totalP - totalR > 0 ? "#10b981" : "#ef4444"} icon="Δ" sub="Solde disponible" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Répartition Budget</h3>
+        <div className="app-surface2 border app-border rounded-xl p-5">
+          <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Répartition Budget</h3>
           <ResponsiveContainer width="100%" height={220}>
             <PieChart>
               <Pie data={pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} dataKey="value">
@@ -40,8 +40,8 @@ const Budget = ({ data, setData }) => {
             </PieChart>
           </ResponsiveContainer>
         </div>
-        <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl p-5">
-          <h3 className="text-sm font-bold text-slate-300 mb-4 uppercase tracking-wider">Prévu vs Réel</h3>
+        <div className="app-surface2 border app-border rounded-xl p-5">
+          <h3 className="text-sm font-bold app-text mb-4 uppercase tracking-wider">Prévu vs Réel</h3>
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={data.map(b => ({ name: b.categorie.substring(0, 10), Prévu: b.planifie, Réel: b.reel }))}>
               <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -54,20 +54,20 @@ const Budget = ({ data, setData }) => {
           </ResponsiveContainer>
         </div>
       </div>
-      <div className="bg-slate-800/60 border border-slate-700/50 rounded-xl overflow-hidden">
+      <div className="app-surface2 border app-border rounded-xl overflow-hidden">
         <div className="overflow-x-auto -mx-1">
         <table className="w-full">
-          <thead><tr className="border-b border-slate-700">
+          <thead><tr className="border-b app-border">
             {["Catégorie", "Planifié", "Réel", "Écart", "Consommé", "Statut", ""].map(h => (
-              <th key={h} className="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{h}</th>
+              <th key={h} className="px-4 py-3 text-left text-xs font-bold app-text2 uppercase tracking-wider">{h}</th>
             ))}
           </tr></thead>
           <tbody>
             {data.map(b => (
-              <tr key={b.id} className="border-b border-slate-700/50 hover:bg-slate-700/30 transition-colors">
+              <tr key={b.id} className="border-b app-border hover:app-surface3 transition-colors">
                 <td className="px-4 py-3 text-sm font-medium text-slate-200">{b.categorie}</td>
-                <td className="px-4 py-3 text-sm text-slate-300">{b.planifie.toLocaleString()}€</td>
-                <td className="px-4 py-3 text-sm text-slate-300">{b.reel.toLocaleString()}€</td>
+                <td className="px-4 py-3 text-sm app-text">{b.planifie.toLocaleString()}€</td>
+                <td className="px-4 py-3 text-sm app-text">{b.reel.toLocaleString()}€</td>
                 <td className="px-4 py-3 text-sm font-bold" style={{ color: b.planifie - b.reel >= 0 ? "#10b981" : "#ef4444" }}>
                   {b.planifie - b.reel >= 0 ? "+" : ""}{(b.planifie - b.reel).toLocaleString()}€
                 </td>

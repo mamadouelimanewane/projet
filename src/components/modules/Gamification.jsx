@@ -151,25 +151,25 @@ const Gamification = ({ data }) => {
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-indigo-600/20 to-purple-600/20">
           <Trophy className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
           <p className="text-4xl font-bold text-white mb-1">{points.toLocaleString()}</p>
-          <p className="text-sm text-slate-300">Points Totaux</p>
+          <p className="text-sm app-text">Points Totaux</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-emerald-600/20 to-teal-600/20">
           <Medal className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
           <p className="text-4xl font-bold text-white mb-1">Niveau {level}</p>
-          <p className="text-sm text-slate-300">{getLevelTitle(level)}</p>
+          <p className="text-sm app-text">{getLevelTitle(level)}</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-orange-600/20 to-red-600/20">
           <Flame className="w-12 h-12 text-orange-400 mx-auto mb-3" />
           <p className="text-4xl font-bold text-white mb-1">{streak}</p>
-          <p className="text-sm text-slate-300">Jours Consécutifs</p>
+          <p className="text-sm app-text">Jours Consécutifs</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-pink-600/20 to-purple-600/20">
           <Award className="w-12 h-12 text-pink-400 mx-auto mb-3" />
           <p className="text-4xl font-bold text-white mb-1">{badges.length}</p>
-          <p className="text-sm text-slate-300">Badges Débloqués</p>
+          <p className="text-sm app-text">Badges Débloqués</p>
         </Card>
       </div>
 
@@ -177,15 +177,15 @@ const Gamification = ({ data }) => {
       <Card className="p-6 glass-card rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-xl font-bold text-white">Progression Niveau {level}</h3>
-          <span className="text-sm text-slate-400">{points}/{pointsPourLevel} points</span>
+          <span className="text-sm app-text2">{points}/{pointsPourLevel} points</span>
         </div>
-        <div className="w-full bg-slate-700 rounded-full h-4 mb-2">
+        <div className="w-full app-surface3 rounded-full h-4 mb-2">
           <div 
             className="bg-gradient-to-r from-indigo-500 to-purple-500 h-4 rounded-full transition-all"
             style={{ width: `${Math.min(100, progression)}%` }}
           />
         </div>
-        <p className="text-sm text-slate-400">
+        <p className="text-sm app-text2">
           {pointsPourLevel - points} points nécessaires pour le niveau {level + 1}
         </p>
       </Card>
@@ -198,7 +198,7 @@ const Gamification = ({ data }) => {
         </h3>
 
         {badges.length === 0 ? (
-          <div className="text-center py-12 text-slate-500">
+          <div className="text-center py-12 app-text3">
             <Award className="w-16 h-16 mx-auto mb-4 opacity-50" />
             <p className="text-lg">Aucun badge débloqué</p>
             <p className="text-sm mt-2">Continuez à utiliser l'application pour gagner des badges !</p>
@@ -211,7 +211,7 @@ const Gamification = ({ data }) => {
                   {getBadgeIcon(badge.icone)}
                 </div>
                 <h4 className="font-bold text-white text-sm mb-1">{badge.nom}</h4>
-                <p className="text-xs text-slate-400 mb-2">{badge.description}</p>
+                <p className="text-xs app-text2 mb-2">{badge.description}</p>
                 <div className="text-xs text-yellow-400 font-medium">
                   +{badge.points} pts
                 </div>
@@ -242,25 +242,25 @@ const Gamification = ({ data }) => {
             }
 
             return (
-              <div key={badge.id} className={`p-4 rounded-xl ${debloque ? 'bg-emerald-600/10 border border-emerald-500/30' : 'bg-slate-800'}`}>
+              <div key={badge.id} className={`p-4 rounded-xl ${debloque ? 'bg-emerald-600/10 border border-emerald-500/30' : 'app-surface2'}`}>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     {debloque ? (
                       <CheckCircle className="w-6 h-6 text-emerald-400" />
                     ) : (
-                      <div className="w-6 h-6 rounded-full bg-slate-700" />
+                      <div className="w-6 h-6 rounded-full app-surface3" />
                     )}
                     <div>
                       <h4 className={`font-medium ${debloque ? 'text-emerald-400' : 'text-white'}`}>
                         {badge.nom}
                       </h4>
-                      <p className="text-xs text-slate-400">{badge.desc}</p>
+                      <p className="text-xs app-text2">{badge.desc}</p>
                     </div>
                   </div>
                   <span className="text-sm font-bold text-yellow-400">{badge.requis}</span>
                 </div>
                 {!debloque && (
-                  <div className="w-full bg-slate-700 rounded-full h-2">
+                  <div className="w-full app-surface3 rounded-full h-2">
                     <div 
                       className="bg-indigo-500 h-2 rounded-full transition-all"
                       style={{ width: `${progression}%` }}
@@ -289,15 +289,15 @@ const Gamification = ({ data }) => {
             { nom: "Sophie L.", points: 1800, level: 2, avatar: "👩‍💼" },
           ].sort((a, b) => b.points - a.points).slice(0, 5).map((user, i) => (
             <div key={i} className={`flex items-center gap-4 p-4 rounded-xl ${
-              user.nom === "Vous" ? 'bg-indigo-600/20 border border-indigo-500/50' : 'bg-slate-800'
+              user.nom === "Vous" ? 'bg-indigo-600/20 border border-indigo-500/50' : 'app-surface2'
             }`}>
-              <div className="text-2xl font-bold text-slate-400 w-8">
+              <div className="text-2xl font-bold app-text2 w-8">
                 {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}`}
               </div>
               <div className="text-3xl">{user.avatar}</div>
               <div className="flex-1">
                 <h4 className="font-bold text-white">{user.nom}</h4>
-                <p className="text-xs text-slate-400">Niveau {user.level}</p>
+                <p className="text-xs app-text2">Niveau {user.level}</p>
               </div>
               <div className="text-right">
                 <p className="font-bold text-yellow-400">{user.points.toLocaleString()} pts</p>
@@ -325,8 +325,8 @@ const Gamification = ({ data }) => {
             { action: "Connexion quotidienne", points: "+10 pts" },
             { action: "Streak 7 jours", points: "+500 pts" },
           ].map((item, i) => (
-            <div key={i} className="flex items-center justify-between p-3 bg-slate-800/50 rounded-lg">
-              <span className="text-sm text-slate-300">{item.action}</span>
+            <div key={i} className="flex items-center justify-between p-3 app-surface2 rounded-lg">
+              <span className="text-sm app-text">{item.action}</span>
               <span className="text-sm font-bold text-yellow-400">{item.points}</span>
             </div>
           ))}
