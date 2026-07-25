@@ -307,17 +307,20 @@ export default function App() {
                {/* Project Context Switcher */}
                <div className="hidden sm:block"><ProjectSelector /></div>
 
-               {/* Sélecteur de thème */}
-               <div className="hidden md:flex items-center gap-1 app-surface border app-border rounded-lg p-1 shadow-sm">
-                 {Object.values(THEMES).map(t => (
-                   <button
-                     key={t.id}
-                     onClick={() => switchTheme(t.id)}
-                     title={t.nom}
-                     className={`w-5 h-5 rounded-md border-2 transition-all ${currentTheme === t.id ? 'border-indigo-500 dark:border-white scale-110' : 'border-transparent hover:border-slate-400'}`}
-                     style={{ background: `linear-gradient(135deg, ${t.preview[0]} 0%, ${t.preview[1]} 60%, ${t.preview[2]} 100%)` }}
-                   />
-                 ))}
+               {/* Sélecteur de thème Smart */}
+               <div className="hidden md:flex items-center gap-1 app-surface border app-border rounded-xl p-1 shadow-sm">
+                 <button onClick={() => switchTheme('daylight')} title="Clair Pro" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'daylight' ? 'bg-indigo-50 dark:bg-indigo-600 text-indigo-600 dark:text-white shadow-sm border border-indigo-200 dark:border-indigo-500' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>☀️</span> <span className="hidden lg:inline">Clair</span>
+                 </button>
+                 <button onClick={() => switchTheme('dark')} title="Sombre" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'dark' ? 'bg-slate-800 text-white shadow-sm border border-slate-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>🌙</span> <span className="hidden lg:inline">Sombre</span>
+                 </button>
+                 <button onClick={() => switchTheme('midnight')} title="Midnight" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'midnight' ? 'bg-blue-900 text-blue-200 shadow-sm border border-blue-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>🌌</span> <span className="hidden lg:inline">Nuit</span>
+                 </button>
+                 <button onClick={() => switchTheme('sunset')} title="Sunset" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'sunset' ? 'bg-rose-900 text-rose-200 shadow-sm border border-rose-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>🌆</span> <span className="hidden lg:inline">Sunset</span>
+                 </button>
                </div>
                {/* Sélecteur de langue */}
                <LanguageSelector />

@@ -101,19 +101,19 @@ const Kanban = ({ data, setData }) => {
                       style={{ backgroundColor: (PRIORITE_COLORS[card.priorite] || "#888") + "22", color: PRIORITE_COLORS[card.priorite] || "#888" }}>
                       {card.priorite}
                     </span>
-                    <button onClick={() => delCard(card.id, col.key)} className="text-slate-600 hover:text-red-400 text-lg leading-none">×</button>
+                    <button onClick={() => delCard(card.id, col.key)} className="app-text2 hover:text-red-500 text-lg leading-none transition-colors">×</button>
                   </div>
-                  <p className="text-sm text-slate-200 font-medium leading-tight mb-2">{card.titre}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs app-text3">{card.assignee}</span>
-                    <span className="text-xs bg-indigo-600/30 text-indigo-300 px-2 py-0.5 rounded-full font-bold">{card.points}pts</span>
+                  <p className="text-sm font-bold app-text leading-tight mb-3">{card.titre}</p>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-xs font-medium app-text2">{card.assignee || "Non assigné"}</span>
+                    <span className="text-xs bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded-md font-black border border-indigo-500/20">{card.points} pts</span>
                   </div>
                   {/* Boutons de déplacement rapide (accessibilité + mobile) */}
-                  <div className="flex gap-1 mt-2 flex-wrap">
+                  <div className="flex gap-1.5 mt-3 pt-3 border-t app-border flex-wrap">
                     {columns.filter(c => c.key !== col.key).map(c => (
                       <button key={c.key} onClick={() => moveCard(card.id, col.key, c.key)}
-                        className="text-xs px-1.5 py-0.5 rounded bg-slate-600/50 hover:bg-slate-500 app-text2 hover:text-slate-200 transition-colors"
-                        title={`→ ${c.label}`}>→ {c.label.substring(0, 3)}</button>
+                        className="text-[10px] font-bold px-2 py-1 rounded-md app-surface2 border app-border hover:border-indigo-500/30 app-text2 hover:app-text transition-colors shadow-sm"
+                        title={`Déplacer vers ${c.label}`}>→ {c.label.substring(0, 5)}</button>
                     ))}
                   </div>
                 </div>
