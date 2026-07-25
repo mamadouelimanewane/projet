@@ -240,15 +240,15 @@ export default function App() {
             })}
           </nav>
           {/* Student Badge Footer */}
-          <div className="p-4 mt-auto border-t border-slate-800 bg-slate-900/50">
+          <div className="p-4 mt-auto border-t app-border app-surface2">
             <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center' : 'gap-3'}`}>
-              <div className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center text-xl bg-slate-800 border border-slate-700 shadow-inner" title={`${badge.label} - ${universityPoints} points`}>
+              <div className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center text-xl app-surface border app-border shadow-inner" title={`${badge.label} - ${universityPoints} points`}>
                 {badge.icon}
               </div>
               {!isSidebarCollapsed && (
                 <div className="overflow-hidden">
-                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
-                  <p className="text-xs font-bold text-white truncate">{badge.label}</p>
+                  <p className="text-[10px] font-black app-text2 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
+                  <p className="text-xs font-bold app-text truncate">{badge.label}</p>
                   <p className="text-[9px] font-bold" style={{ color: badge.color }}>{universityPoints} points</p>
                 </div>
               )}
@@ -256,8 +256,8 @@ export default function App() {
           </div>
           
           {!isSidebarCollapsed && (
-            <div className="p-3 border-t border-slate-800">
-              <div className="text-xs text-slate-600">● Système synchronisé</div>
+            <div className="p-3 border-t app-border">
+              <div className="text-xs app-text2">● Système synchronisé</div>
             </div>
           )}
         </aside>
@@ -281,15 +281,15 @@ export default function App() {
             <div className="hidden md:flex flex-1 max-w-md mx-6">
               <button 
                 onClick={() => setIsSearchOpen(true)}
-                className="w-full flex items-center justify-between px-3 py-1.5 bg-slate-900/50 border border-slate-700/50 hover:border-indigo-500/50 rounded-lg text-slate-400 text-sm transition-colors"
+                className="w-full flex items-center justify-between px-3 py-1.5 app-surface border app-border hover:border-indigo-400 rounded-lg app-text2 text-sm transition-colors shadow-sm"
               >
                 <div className="flex items-center gap-2">
                   <span>🔍</span>
                   <span>Rechercher un module...</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <kbd className="px-1.5 py-0.5 bg-slate-800 rounded text-[10px] font-mono">Ctrl</kbd>
-                  <kbd className="px-1.5 py-0.5 bg-slate-800 rounded text-[10px] font-mono">K</kbd>
+                  <kbd className="px-1.5 py-0.5 app-surface2 border app-border rounded text-[10px] font-mono shadow-inner">Ctrl</kbd>
+                  <kbd className="px-1.5 py-0.5 app-surface2 border app-border rounded text-[10px] font-mono shadow-inner">K</kbd>
                 </div>
               </button>
             </div>
@@ -308,13 +308,13 @@ export default function App() {
                <div className="hidden sm:block"><ProjectSelector /></div>
 
                {/* Sélecteur de thème */}
-               <div className="hidden md:flex items-center gap-1 bg-slate-800/60 border border-slate-700 rounded-lg p-1">
+               <div className="hidden md:flex items-center gap-1 app-surface border app-border rounded-lg p-1 shadow-sm">
                  {Object.values(THEMES).map(t => (
                    <button
                      key={t.id}
                      onClick={() => switchTheme(t.id)}
                      title={t.nom}
-                     className={`w-5 h-5 rounded-md border-2 transition-all ${currentTheme === t.id ? 'border-white scale-110' : 'border-transparent hover:border-slate-400'}`}
+                     className={`w-5 h-5 rounded-md border-2 transition-all ${currentTheme === t.id ? 'border-indigo-500 dark:border-white scale-110' : 'border-transparent hover:border-slate-400'}`}
                      style={{ background: `linear-gradient(135deg, ${t.preview[0]} 0%, ${t.preview[1]} 60%, ${t.preview[2]} 100%)` }}
                    />
                  ))}
@@ -342,19 +342,19 @@ export default function App() {
           
           {/* SEARCH MODAL (COMMAND PALETTE) */}
           {isSearchOpen && (
-            <div className="fixed inset-0 z-[100] flex items-start justify-center pt-20 px-4 bg-slate-950/80 backdrop-blur-sm" onClick={() => setIsSearchOpen(false)}>
-              <div className="w-full max-w-xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
-                <div className="p-4 border-b border-slate-800 flex items-center gap-3">
-                  <span className="text-slate-400">🔍</span>
+            <div className="fixed inset-0 z-[100] flex items-start justify-center pt-20 px-4 bg-slate-900/20 dark:bg-slate-950/80 backdrop-blur-sm" onClick={() => setIsSearchOpen(false)}>
+              <div className="w-full max-w-xl app-surface border app-border rounded-2xl shadow-2xl overflow-hidden flex flex-col" onClick={(e) => e.stopPropagation()}>
+                <div className="p-4 border-b app-border flex items-center gap-3">
+                  <span className="app-text2">🔍</span>
                   <input 
                     type="text" 
                     placeholder="Rechercher un module (ex: Gantt, IA, Budget...)" 
-                    className="flex-1 bg-transparent border-none outline-none text-white placeholder-slate-500"
+                    className="flex-1 bg-transparent border-none outline-none app-text placeholder-slate-400 dark:placeholder-slate-500"
                     autoFocus
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <button onClick={() => setIsSearchOpen(false)} className="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded text-xs text-slate-400">Échap</button>
+                  <button onClick={() => setIsSearchOpen(false)} className="px-2 py-1 app-surface2 hover:border-slate-300 border app-border rounded text-xs app-text2">Échap</button>
                 </div>
                 <div className="max-h-[60vh] overflow-y-auto p-2">
                   {MODULES.filter(m => !m.isHeader && (m.label.toLowerCase().includes(searchQuery.toLowerCase()) || m.id.toLowerCase().includes(searchQuery.toLowerCase())))
@@ -367,15 +367,15 @@ export default function App() {
                           setIsSearchOpen(false);
                           setSearchQuery("");
                         }}
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-indigo-600/20 hover:text-indigo-300 rounded-xl text-left transition-colors text-slate-300 group"
+                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-indigo-50 dark:hover:bg-indigo-600/20 app-text hover:text-indigo-700 dark:hover:text-indigo-300 rounded-xl text-left transition-colors group"
                       >
                         <span className="text-xl group-hover:scale-110 transition-transform">{m.icon}</span>
                         <span className="font-medium">{m.label}</span>
-                        <span className="ml-auto text-xs text-slate-500">Aller vers →</span>
+                        <span className="ml-auto text-xs app-text2">Aller vers →</span>
                       </button>
                   ))}
                   {MODULES.filter(m => !m.isHeader && (m.label.toLowerCase().includes(searchQuery.toLowerCase()) || m.id.toLowerCase().includes(searchQuery.toLowerCase()))).length === 0 && (
-                    <div className="p-8 text-center text-slate-500">
+                    <div className="p-8 text-center app-text2">
                       Aucun module trouvé pour "{searchQuery}"
                     </div>
                   )}

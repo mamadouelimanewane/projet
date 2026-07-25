@@ -33,17 +33,17 @@ const Dashboard = ({ data }) => {
       <div className="space-y-8 animate-entrance">
         <SectionHeader title="Bienvenue Débutant 🌱" subtitle="Commencez votre voyage dans la gestion de projet" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="glass-card rounded-2xl p-8 bg-indigo-600/5 border border-indigo-500/20 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center text-3xl mx-auto mb-4">🧭</div>
-            <h3 className="text-xl font-bold text-white mb-2">Suivre le Guide</h3>
-            <p className="text-sm text-slate-400 mb-6">Apprenez les bases théoriques et pratiques en 5 minutes.</p>
-            <button onClick={() => navigate('/guide')} className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold transition-all">Ouvrir le Guide</button>
+          <div className="app-surface rounded-2xl p-8 border app-border text-center shadow-sm">
+            <div className="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-center text-3xl mx-auto mb-4">🧭</div>
+            <h3 className="text-xl font-bold app-text mb-2">Suivre le Guide</h3>
+            <p className="text-sm app-text2 mb-6">Apprenez les bases théoriques et pratiques en 5 minutes.</p>
+            <button onClick={() => navigate('/guide')} className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-all shadow-sm">Ouvrir le Guide</button>
           </div>
-          <div className="glass-card rounded-2xl p-8 bg-emerald-600/5 border border-emerald-500/20 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4">🚀</div>
-            <h3 className="text-xl font-bold text-white mb-2">Créer un Projet</h3>
-            <p className="text-sm text-slate-400 mb-6">Utilisez notre assistant guidé pour lancer votre idée.</p>
-            <button onClick={() => navigate('/nouveau-projet')} className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 rounded-xl font-bold transition-all">Lancer le Wizard</button>
+          <div className="app-surface rounded-2xl p-8 border app-border text-center shadow-sm">
+            <div className="w-16 h-16 rounded-2xl bg-emerald-50 dark:bg-emerald-600/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/30 flex items-center justify-center text-3xl mx-auto mb-4">🚀</div>
+            <h3 className="text-xl font-bold app-text mb-2">Créer un Projet</h3>
+            <p className="text-sm app-text2 mb-6">Utilisez notre assistant guidé pour lancer votre idée.</p>
+            <button onClick={() => navigate('/nouveau-projet')} className="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold transition-all shadow-sm">Lancer le Wizard</button>
           </div>
         </div>
         <div className="glass-card rounded-2xl p-6">
@@ -69,16 +69,16 @@ const Dashboard = ({ data }) => {
           <StatCard label="Rapports Prêts" value="1" sub="Rapport Star Academy" color="#10b981" icon="📄" />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="glass-card rounded-2xl p-6 border border-indigo-500/30">
-            <h3 className="text-sm font-black text-white mb-4">Dernière Simulation Terrain</h3>
-            <div className="p-4 bg-slate-800/50 rounded-xl mb-4">
-              <p className="text-xs text-slate-300">"Le Client Change d'Avis"</p>
-              <p className="text-[10px] text-indigo-400 font-bold uppercase mt-1">Score : 10/10 (Expert)</p>
+          <div className="glass-card rounded-2xl p-6 border app-border hover:border-indigo-500/30 transition-colors">
+            <h3 className="text-sm font-black app-text mb-4">Dernière Simulation Terrain</h3>
+            <div className="p-4 app-surface2 rounded-xl mb-4 border app-border">
+              <p className="text-xs app-text2">"Le Client Change d'Avis"</p>
+              <p className="text-[10px] text-indigo-600 dark:text-indigo-400 font-bold uppercase mt-1">Score : 10/10 (Expert)</p>
             </div>
-            <button onClick={() => navigate('/espace-universitaire')} className="text-xs font-bold text-indigo-400 hover:underline">Accéder au simulateur →</button>
+            <button onClick={() => navigate('/espace-universitaire')} className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">Accéder au simulateur →</button>
           </div>
-          <div className="glass-card rounded-2xl p-6 border border-emerald-500/30">
-            <h3 className="text-sm font-black text-white mb-4">Préparation Certification</h3>
+          <div className="glass-card rounded-2xl p-6 border app-border hover:border-emerald-500/30 transition-colors">
+            <h3 className="text-sm font-black app-text mb-4">Préparation Certification</h3>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">CAPM</div>
               <div className="flex-1"><ProgressBar value={45} color="#10b981" /></div>
@@ -107,14 +107,14 @@ const Dashboard = ({ data }) => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="glass-card rounded-2xl p-6">
-            <h3 className="text-xs font-black text-slate-500 uppercase mb-4 tracking-widest">Analyse du Chemin Critique</h3>
-            <p className="text-sm text-slate-300 mb-4">Le projet "Star Academy" a 3 tâches sur le chemin critique. Tout retard impactera la livraison finale.</p>
-            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 bg-slate-800 rounded-lg text-xs font-bold hover:bg-slate-700 transition-all">Voir le diagramme CPM →</button>
+            <h3 className="text-xs font-black app-text2 uppercase mb-4 tracking-widest">Analyse du Chemin Critique</h3>
+            <p className="text-sm app-text mb-4">Le projet "Star Academy" a 3 tâches sur le chemin critique. Tout retard impactera la livraison finale.</p>
+            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 app-surface2 border app-border text-indigo-600 dark:text-indigo-400 rounded-lg text-xs font-bold hover:bg-indigo-50 dark:hover:bg-slate-800 transition-all">Voir le diagramme CPM →</button>
           </div>
           <div className="glass-card rounded-2xl p-6">
-            <h3 className="text-xs font-black text-slate-500 uppercase mb-4 tracking-widest">Gouvernance RACI</h3>
-            <p className="text-sm text-slate-300 mb-4">La matrice RACI est définie pour 85% des activités. 2 tâches n'ont pas d'Approbateur assigné.</p>
-            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 bg-slate-800 rounded-lg text-xs font-bold hover:bg-slate-700 transition-all">Gérer les responsabilités →</button>
+            <h3 className="text-xs font-black app-text2 uppercase mb-4 tracking-widest">Gouvernance RACI</h3>
+            <p className="text-sm app-text mb-4">La matrice RACI est définie pour 85% des activités. 2 tâches n'ont pas d'Approbateur assigné.</p>
+            <button onClick={() => navigate('/outils-expert')} className="px-4 py-2 app-surface2 border app-border text-indigo-600 dark:text-indigo-400 rounded-lg text-xs font-bold hover:bg-indigo-50 dark:hover:bg-slate-800 transition-all">Gérer les responsabilités →</button>
           </div>
         </div>
       </div>
@@ -218,24 +218,24 @@ const Dashboard = ({ data }) => {
         </div>
 
         <div className="md:col-span-2 glass-card rounded-2xl p-6 animate-entrance [animation-delay:400ms]">
-          <h3 className="text-xs font-black text-slate-500 mb-8 uppercase tracking-[0.2em]">Intelligence & Alertes</h3>
+          <h3 className="text-xs font-black app-text2 mb-8 uppercase tracking-[0.2em]">Intelligence & Alertes</h3>
           <div className="space-y-3">
             {data?.problemes?.filter(p => p.statut !== "Résolu" && (p.priorite === "Critique" || p.priorite === "Haute")).map(p => (
-              <div key={p.id} className="group flex items-start gap-5 p-4 rounded-xl bg-slate-800/40 border border-slate-700/30 hover:border-indigo-500/30 transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-xl text-red-500">⚠</div>
+              <div key={p.id} className="group flex items-start gap-5 p-4 rounded-xl app-surface border app-border hover:border-indigo-300 dark:hover:border-indigo-500/30 transition-all duration-300 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-red-500/10 border border-red-200 dark:border-transparent flex items-center justify-center text-xl text-red-600 dark:text-red-500">⚠</div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-100 truncate tracking-tight">{p.description}</p>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1.5">{p.responsable} · {p.dateSignalement}</p>
+                  <p className="text-sm font-bold app-text truncate tracking-tight">{p.description}</p>
+                  <p className="text-[10px] app-text2 font-bold uppercase tracking-widest mt-1.5">{p.responsable} · {p.dateSignalement}</p>
                 </div>
                 <Badge value={p.priorite} />
               </div>
             ))}
             {data?.risques?.filter(r => (r.gravite || 0) * (r.probabilite || 0) >= 8).map(r => (
-              <div key={r.id} className="group flex items-start gap-5 p-4 rounded-xl bg-indigo-500/5 border border-indigo-500/10 hover:border-indigo-500/30 transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-xl text-indigo-400">⛨</div>
+              <div key={r.id} className="group flex items-start gap-5 p-4 rounded-xl app-surface2 border app-border hover:border-indigo-300 dark:hover:border-indigo-500/30 transition-all duration-300 shadow-sm">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-200 dark:border-transparent flex items-center justify-center text-xl text-indigo-600 dark:text-indigo-400">⛨</div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-indigo-100/90 truncate tracking-tight">Risque : {r.risque}</p>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1.5">Impact Score : {(r.gravite || 0) * (r.probabilite || 0)}/25</p>
+                  <p className="text-sm font-bold app-text truncate tracking-tight">Risque : {r.risque}</p>
+                  <p className="text-[10px] app-text2 font-bold uppercase tracking-widest mt-1.5">Impact Score : {(r.gravite || 0) * (r.probabilite || 0)}/25</p>
                 </div>
                 <Badge value="Actif" />
               </div>
