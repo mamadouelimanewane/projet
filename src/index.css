@@ -61,6 +61,43 @@ body {
 [data-theme="midnight"] .border-slate-700,
 [data-theme="midnight"] .border-slate-800  { border-color: var(--app-border) !important; }
 
+/* ── Thème Clair Pro (daylight) : surcharges Tailwind ───────────────────── */
+[data-theme="daylight"] .bg-slate-950,
+[data-theme="daylight"] .bg-slate-950\/80,
+[data-theme="daylight"] .bg-slate-950\/60,
+[data-theme="daylight"] .bg-slate-900\/60,
+[data-theme="daylight"] .bg-slate-900\/80,
+[data-theme="daylight"] .bg-\[\#0b0f19\] { background-color: var(--app-bg) !important; }
+
+[data-theme="daylight"] .bg-slate-900,
+[data-theme="daylight"] .bg-slate-900\/98,
+[data-theme="daylight"] .bg-slate-900\/50,
+[data-theme="daylight"] .bg-slate-950\/40,
+[data-theme="daylight"] .bg-slate-800\/60,
+[data-theme="daylight"] .bg-slate-800\/50,
+[data-theme="daylight"] .bg-slate-800 { background-color: var(--app-surface) !important; }
+
+[data-theme="daylight"] .bg-slate-700,
+[data-theme="daylight"] .bg-slate-700\/80,
+[data-theme="daylight"] .bg-slate-700\/50 { background-color: var(--app-surface2) !important; }
+
+[data-theme="daylight"] .text-white,
+[data-theme="daylight"] .text-slate-300,
+[data-theme="daylight"] .text-slate-200 { color: var(--app-text) !important; }
+
+[data-theme="daylight"] .text-slate-400,
+[data-theme="daylight"] .text-slate-500 { color: var(--app-text2) !important; }
+
+[data-theme="daylight"] .border-slate-800,
+[data-theme="daylight"] .border-slate-800\/80,
+[data-theme="daylight"] .border-slate-800\/60,
+[data-theme="daylight"] .border-slate-700,
+[data-theme="daylight"] .border-slate-700\/50,
+[data-theme="daylight"] .border-slate-700\/80 { border-color: var(--app-border) !important; }
+
+[data-theme="daylight"] .border-slate-600 { border-color: var(--app-border2) !important; }
+
+
 /* ── Composants thémés ──────────────────────────────────────────────────── */
 .glass-card {
   background: var(--app-surface3);

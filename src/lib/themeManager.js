@@ -65,6 +65,27 @@ export const THEMES = {
       '--app-hover':        'rgba(26,58,110,0.7)',
       '--app-shadow':       '0 8px 32px rgba(3,7,17,0.7)',
     }
+  },
+  daylight: {
+    id: 'daylight',
+    nom: 'Clair Pro',
+    description: 'Interface lumineuse professionnelle',
+    preview: ['#f8fafc', '#f1f5f9', '#e2e8f0'],
+    vars: {
+      '--app-bg':           '#f8fafc',
+      '--app-surface':      '#ffffff',
+      '--app-surface2':     '#f1f5f9',
+      '--app-surface3':     'rgba(255,255,255,0.75)',
+      '--app-border':       'rgba(148,163,184,0.3)',
+      '--app-border2':      'rgba(100,116,139,0.4)',
+      '--app-text':         '#0f172a',
+      '--app-text2':        '#334155',
+      '--app-text3':        '#475569',
+      '--app-topbar':       'rgba(248,250,252,0.95)',
+      '--app-sidebar':      'rgba(248,250,252,0.98)',
+      '--app-hover':        'rgba(226,232,240,0.7)',
+      '--app-shadow':       '0 4px 16px rgba(0,0,0,0.06)',
+    }
   }
 };
 
