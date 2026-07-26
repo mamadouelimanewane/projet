@@ -25,9 +25,32 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* ── Thème SAP Fiori (daylight) : Surcharges strictes ──────────────────── */
+[data-theme="daylight"] .glass-card {
+  backdrop-filter: none !important;
+  background: var(--app-surface) !important;
+  border-radius: 0.375rem !important; /* rounded-md */
+}
 
+/* Annuler les gros arrondis pour un style Enterprise Flat (SAP) */
+[data-theme="daylight"] .rounded-3xl,
+[data-theme="daylight"] .rounded-2xl,
+[data-theme="daylight"] .rounded-xl,
+[data-theme="daylight"] .rounded-lg {
+  border-radius: 0.375rem !important; 
+}
 
+/* Annuler les gradients et effets néon */
+[data-theme="daylight"] .premium-gradient {
+  background: var(--couleur-principale) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
 
+[data-theme="daylight"] .neon-glow {
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
 /* ── Composants thémés ──────────────────────────────────────────────────── */
 .glass-card {
   background: var(--app-surface3);

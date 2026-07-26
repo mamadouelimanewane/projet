@@ -72,19 +72,20 @@ export const THEMES = {
     description: 'Style Bleu Ciel / Smart',
     preview: ['#e0f2fe', '#ffffff', '#bae6fd'],
     vars: {
-      '--app-bg':           '#e0f2fe',
-      '--app-surface':      '#ffffff',
-      '--app-surface2':     '#f0f9ff',
-      '--app-surface3':     'rgba(255,255,255,0.7)',
-      '--app-border':       'rgba(186,230,253,0.8)',
-      '--app-border2':      'rgba(125,211,252,0.8)',
-      '--app-text':         '#0f172a', // text-slate-950 (très lisible)
-      '--app-text2':        '#334155', // text-slate-700
-      '--app-text3':        '#475569', // text-slate-600
-      '--app-topbar':       'rgba(255,255,255,0.92)',
-      '--app-sidebar':      'rgba(240,249,255,0.95)',
-      '--app-hover':        'rgba(224,242,254,0.8)',
-      '--app-shadow':       '0 10px 40px rgba(2,132,199,0.1), 0 2px 10px rgba(2,132,199,0.06)',
+      '--app-bg':           '#f3f4f6', // SAP Fiori Horizon background
+      '--app-surface':      '#ffffff', // SAP Card background
+      '--app-surface2':     '#f8fafc',
+      '--app-surface3':     '#ffffff', // No transparency in SAP Fiori
+      '--app-border':       '#e5e7eb', // subtle border
+      '--app-border2':      '#d1d5db',
+      '--app-text':         '#1d2d3e', // SAP Dark Blue/Black
+      '--app-text2':        '#4b5563', // SAP gray
+      '--app-text3':        '#6b7280',
+      '--app-topbar':       '#ffffff', // Solid white topbar
+      '--app-sidebar':      '#ffffff', // Not used since sidebar is hardcoded dark
+      '--app-hover':        '#f1f5f9',
+      '--app-shadow':       '0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)', // Flat subtle shadow
+      '--couleur-principale': '#0070f2', // SAP Primary Blue
     }
   }
 };
