@@ -78,9 +78,9 @@ export const THEMES = {
       '--app-surface3':     'rgba(255,255,255,0.7)',
       '--app-border':       'rgba(186,230,253,0.8)',
       '--app-border2':      'rgba(125,211,252,0.8)',
-      '--app-text':         '#0c4a6e',
-      '--app-text2':        '#0369a1',
-      '--app-text3':        '#0284c7',
+      '--app-text':         '#0f172a', // text-slate-950 (très lisible)
+      '--app-text2':        '#334155', // text-slate-700
+      '--app-text3':        '#475569', // text-slate-600
       '--app-topbar':       'rgba(255,255,255,0.92)',
       '--app-sidebar':      'rgba(240,249,255,0.95)',
       '--app-hover':        'rgba(224,242,254,0.8)',
