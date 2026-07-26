@@ -199,7 +199,7 @@ export default function App() {
           fixed inset-y-0 left-0 z-50 md:relative 
           ${isSidebarCollapsed ? 'w-20' : 'w-72 md:w-56 lg:w-64'}
           ${mobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-          flex-shrink-0 backdrop-blur-xl border-r app-sidebar 
+          flex-shrink-0 backdrop-blur-xl border-r bg-slate-950 border-slate-800 
           flex flex-col transition-all duration-300 ease-in-out
         `}>
           <div className="p-4 border-b border-slate-800 flex items-center justify-between">
@@ -215,7 +215,7 @@ export default function App() {
               <button onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)} className="hidden md:flex text-slate-500 hover:text-white transition-colors" title="Réduire/Agrandir le menu">
                 {isSidebarCollapsed ? '➔' : '🡐'}
               </button>
-              <button onClick={() => setMobileMenuOpen(false)} className="md:hidden text-slate-500">✕</button>
+              <button onClick={() => setMobileMenuOpen(false)} className="md:hidden text-slate-500 hover:text-white transition-colors">✕</button>
             </div>
           </div>
           <nav className="flex-1 p-2 space-y-0.5 overflow-y-auto overflow-x-hidden custom-scrollbar">
@@ -240,15 +240,15 @@ export default function App() {
             })}
           </nav>
           {/* Student Badge Footer */}
-          <div className="p-4 mt-auto border-t app-border app-surface2">
+          <div className="p-4 mt-auto border-t border-slate-800 bg-slate-900/50">
             <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center' : 'gap-3'}`}>
-              <div className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center text-xl app-surface border app-border shadow-inner" title={`${badge.label} - ${universityPoints} points`}>
+              <div className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center text-xl bg-slate-800 border border-slate-700 shadow-inner" title={`${badge.label} - ${universityPoints} points`}>
                 {badge.icon}
               </div>
               {!isSidebarCollapsed && (
                 <div className="overflow-hidden">
-                  <p className="text-[10px] font-black app-text2 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
-                  <p className="text-xs font-bold app-text truncate">{badge.label}</p>
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Badge Universitaire</p>
+                  <p className="text-xs font-bold text-white truncate">{badge.label}</p>
                   <p className="text-[9px] font-bold" style={{ color: badge.color }}>{universityPoints} points</p>
                 </div>
               )}
@@ -308,18 +308,18 @@ export default function App() {
                <div className="hidden sm:block"><ProjectSelector /></div>
 
                {/* Sélecteur de thème Smart */}
-               <div className="hidden md:flex items-center gap-1 app-surface border app-border rounded-xl p-1 shadow-sm">
-                 <button onClick={() => switchTheme('daylight')} title="Clair Pro" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'daylight' ? 'bg-indigo-50 dark:bg-indigo-600 text-indigo-600 dark:text-white shadow-sm border border-indigo-200 dark:border-indigo-500' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
-                   <span>☀️</span> <span className="hidden lg:inline">Clair</span>
+               <div className="flex items-center gap-1 app-surface border app-border rounded-xl p-1 shadow-sm">
+                 <button onClick={() => switchTheme('daylight')} title="Clair Pro" className={`px-2 md:px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'daylight' ? 'bg-indigo-50 dark:bg-indigo-600 text-indigo-600 dark:text-white shadow-sm border border-indigo-200 dark:border-indigo-500' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>☀️</span> <span className="hidden xl:inline">Clair</span>
                  </button>
-                 <button onClick={() => switchTheme('dark')} title="Sombre" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'dark' ? 'bg-slate-800 text-white shadow-sm border border-slate-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
-                   <span>🌙</span> <span className="hidden lg:inline">Sombre</span>
+                 <button onClick={() => switchTheme('dark')} title="Sombre" className={`px-2 md:px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'dark' ? 'bg-slate-800 text-white shadow-sm border border-slate-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>🌙</span> <span className="hidden xl:inline">Sombre</span>
                  </button>
-                 <button onClick={() => switchTheme('midnight')} title="Midnight" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'midnight' ? 'bg-blue-900 text-blue-200 shadow-sm border border-blue-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
-                   <span>🌌</span> <span className="hidden lg:inline">Nuit</span>
+                 <button onClick={() => switchTheme('midnight')} title="Midnight" className={`px-2 md:px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'midnight' ? 'bg-blue-900 text-blue-200 shadow-sm border border-blue-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>🌌</span> <span className="hidden xl:inline">Nuit</span>
                  </button>
-                 <button onClick={() => switchTheme('sunset')} title="Sunset" className={`px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'sunset' ? 'bg-rose-900 text-rose-200 shadow-sm border border-rose-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
-                   <span>🌆</span> <span className="hidden lg:inline">Sunset</span>
+                 <button onClick={() => switchTheme('sunset')} title="Sunset" className={`px-2 md:px-2.5 py-1.5 rounded-lg flex items-center gap-1.5 text-xs font-bold transition-all ${currentTheme === 'sunset' ? 'bg-rose-900 text-rose-200 shadow-sm border border-rose-700' : 'app-text2 hover:app-text hover:bg-slate-100 dark:hover:bg-slate-800'}`}>
+                   <span>🌆</span> <span className="hidden xl:inline">Sunset</span>
                  </button>
                </div>
                {/* Sélecteur de langue */}
