@@ -71,7 +71,7 @@ const SmartContracts = ({ data: propData }) => {
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="app-surface2 border app-border rounded-xl p-4 text-center">
-          <div className="text-3xl font-black text-white">{contracts.length}</div>
+          <div className="text-3xl font-black app-text">{contracts.length}</div>
           <div className="text-xs app-text2 mt-1">Contrats total</div>
         </div>
         <div className="app-surface2 border app-border rounded-xl p-4 text-center">
@@ -103,7 +103,7 @@ const SmartContracts = ({ data: propData }) => {
               <tr key={c.id} className="border-b app-border hover:app-surface3 cursor-pointer"
                 onClick={() => setSelected(selected?.id === c.id ? null : c)}>
                 <td className="px-4 py-3 text-xs font-mono text-indigo-400">{c.id}</td>
-                <td className="px-4 py-3 text-sm text-slate-200">{c.projet}</td>
+                <td className="px-4 py-3 text-sm app-text">{c.projet}</td>
                 <td className="px-4 py-3 text-sm font-bold text-emerald-400">{c.montant.toLocaleString()} FCFA</td>
                 <td className="px-4 py-3 text-xs app-text2">λ {c.condition}</td>
                 <td className="px-4 py-3 text-xs app-text3">{c.date}</td>
@@ -131,13 +131,13 @@ const SmartContracts = ({ data: propData }) => {
       {selected && (
         <div className="app-surface2 border border-indigo-500/30 rounded-xl p-5 space-y-3">
           <div className="flex justify-between items-start">
-            <h3 className="font-bold text-white">{selected.projet} — Détails du contrat</h3>
-            <button onClick={() => setSelected(null)} className="app-text3 hover:text-white">✕</button>
+            <h3 className="font-bold app-text">{selected.projet} — Détails du contrat</h3>
+            <button onClick={() => setSelected(null)} className="app-text3 hover:app-text">✕</button>
           </div>
           <div className="font-mono text-xs text-indigo-300 break-all">{selected.hash}</div>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div><span className="app-text2">Montant sécurisé :</span> <span className="text-emerald-400 font-bold">{selected.montant.toLocaleString()} FCFA</span></div>
-            <div><span className="app-text2">Date déploiement :</span> <span className="text-white">{selected.date}</span></div>
+            <div><span className="app-text2">Date déploiement :</span> <span className="app-text">{selected.date}</span></div>
             <div className="col-span-2"><span className="app-text2">Condition trigger :</span> <span className="text-amber-300"> {selected.condition}</span></div>
           </div>
         </div>

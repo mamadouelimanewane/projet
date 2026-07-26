@@ -74,7 +74,7 @@ const ThemesPersonnalisation = () => {
 
       {/* ── Sélecteur de thème ─────────────────────────────────────────── */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-6 flex items-center gap-2">
           <Palette className="w-5 h-5 text-indigo-400" />
           Thème d'affichage
         </h3>
@@ -115,7 +115,7 @@ const ThemesPersonnalisation = () => {
                   {/* Badge actif */}
                   {active && (
                     <div className="absolute top-2 right-2 w-6 h-6 bg-indigo-600 rounded-full flex items-center justify-center">
-                      <Check className="w-3 h-3 text-white" />
+                      <Check className="w-3 h-3 app-text" />
                     </div>
                   )}
                 </div>
@@ -146,7 +146,7 @@ const ThemesPersonnalisation = () => {
 
       {/* ── Couleur principale ─────────────────────────────────────────── */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <Palette className="w-5 h-5 text-emerald-400" />
           Couleur d'accent
         </h3>
@@ -164,7 +164,7 @@ const ThemesPersonnalisation = () => {
               }`}
               style={{ background: c.value }}
             >
-              {couleurPrincipale === c.value && <Check className="w-4 h-4 text-white" />}
+              {couleurPrincipale === c.value && <Check className="w-4 h-4 app-text" />}
             </button>
           ))}
         </div>
@@ -172,7 +172,7 @@ const ThemesPersonnalisation = () => {
 
       {/* ── Taille de police ───────────────────────────────────────────── */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4">Taille de police</h3>
+        <h3 className="text-xl font-bold app-text mb-4">Taille de police</h3>
         <div className="grid grid-cols-3 gap-4">
           {tailles.map((t) => (
             <button
@@ -184,7 +184,7 @@ const ThemesPersonnalisation = () => {
                   : "app-border app-surface2 hover:app-border2"
               }`}
             >
-              <p style={{ fontSize: t.px }} className="font-medium text-white">Aa</p>
+              <p style={{ fontSize: t.px }} className="font-medium app-text">Aa</p>
               <p className="text-sm app-text2 mt-2">{t.nom}</p>
             </button>
           ))}
@@ -193,7 +193,7 @@ const ThemesPersonnalisation = () => {
 
       {/* ── Options avancées ───────────────────────────────────────────── */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4">Options avancées</h3>
+        <h3 className="text-xl font-bold app-text mb-4">Options avancées</h3>
         <div className="space-y-4">
           {[
             { label: "Mode compact", desc: "Réduit les espacements", val: compactMode, set: setCompactMode },
@@ -201,7 +201,7 @@ const ThemesPersonnalisation = () => {
           ].map((opt) => (
             <div key={opt.label} className="flex items-center justify-between p-4 app-surface2 rounded-xl">
               <div>
-                <p className="font-medium text-white">{opt.label}</p>
+                <p className="font-medium app-text">{opt.label}</p>
                 <p className="text-sm app-text2">{opt.desc}</p>
               </div>
               <button

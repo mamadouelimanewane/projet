@@ -76,7 +76,7 @@ const GenieCivilElite = ({ data }) => {
                 <div className="relative h-20 app-surface2 border app-border rounded-2xl overflow-hidden shadow-inner">
                    <div className="absolute inset-y-0 left-0 bg-emerald-500/30" style={{ width: `${(types.infrastructure?.lineaireActuel/types.infrastructure?.lineaireTotal)*100}%` }} />
                    <div className="absolute inset-0 flex items-center justify-between px-6 z-10">
-                      <span className="text-[10px] font-mono text-white app-surface px-2 py-1 rounded">PK 0</span>
+                      <span className="text-[10px] font-mono app-text app-surface px-2 py-1 rounded">PK 0</span>
                       <div className="flex-1 border-t border-dashed app-border2 mx-4 relative">
                          <div className="absolute top-1/2 -translate-y-1/2 left-1/4 w-3 h-3 bg-indigo-500 rounded-full shadow-[0_0_10px_#6366f1]" />
                          <div className="absolute top-1/2 -translate-y-1/2 right-4 text-[9px] text-indigo-400 font-bold uppercase italic">Front de travail actif PK 14.5</div>
@@ -87,7 +87,7 @@ const GenieCivilElite = ({ data }) => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                    <div className="p-5 app-surface border app-border rounded-xl">
-                      <h4 className="text-[10px] uppercase font-black text-slate-600 mb-4 tracking-widest">Terrassement Global</h4>
+                      <h4 className="text-[10px] uppercase font-black app-text3 mb-4 tracking-widest">Terrassement Global</h4>
                       <div className="flex flex-col gap-4">
                          <div>
                             <div className="flex justify-between text-[10px] app-text2 font-bold mb-1"><span>DÉBLAIS</span><span>45%</span></div>
@@ -101,8 +101,8 @@ const GenieCivilElite = ({ data }) => {
                    </div>
                    <div className="p-5 app-surface border app-border rounded-xl flex items-center gap-6">
                       <div className="flex-1">
-                         <h4 className="text-[10px] uppercase font-black text-slate-600 mb-2 tracking-widest">Parc Roulant</h4>
-                         <p className="text-sm font-bold text-white mb-2">91% de Disponibilité</p>
+                         <h4 className="text-[10px] uppercase font-black app-text3 mb-2 tracking-widest">Parc Roulant</h4>
+                         <p className="text-sm font-bold app-text mb-2">91% de Disponibilité</p>
                          <p className="text-[10px] app-text3">12/14 machines opérationnelles sur site.</p>
                       </div>
                       <div className="text-3xl grayscale opacity-40">🚜</div>
@@ -115,7 +115,7 @@ const GenieCivilElite = ({ data }) => {
                    {types.batiment?.avancementTCE.map((t, i) => (
                       <div key={i} className="p-4 app-surface2 border app-border rounded-xl relative group hover:border-indigo-500/40 transition-all">
                          <div className="flex justify-between items-center mb-3">
-                            <span className="text-xs font-bold text-white uppercase tracking-tighter">{t.corps}</span>
+                            <span className="text-xs font-bold app-text uppercase tracking-tighter">{t.corps}</span>
                             <span className="text-xs font-black text-indigo-400">{t.progress}%</span>
                          </div>
                          <ProgressBar value={t.progress} color={t.color} />
@@ -126,7 +126,7 @@ const GenieCivilElite = ({ data }) => {
                    <div className="flex items-center gap-6 relative z-10">
                       <div className="text-4xl">🏡</div>
                       <div>
-                        <h4 className="text-sm font-bold text-white">État des Levées de Réserves</h4>
+                        <h4 className="text-sm font-bold app-text">État des Levées de Réserves</h4>
                         <p className="text-xs app-text3 mt-1 max-w-[400px]">Sur les 12 villas de luxe, 8 sont en phase "Peinture/Finitions". Aucune réserve bloquante à la livraison J+30.</p>
                       </div>
                       <Btn variant="primary" size="xs" className="ml-auto">Inspecter Villas →</Btn>
@@ -153,13 +153,13 @@ const GenieCivilElite = ({ data }) => {
                 </ResponsiveContainer>
              </div>
              <div className="mt-4 p-4 app-surface border app-border rounded-xl text-center">
-                <p className="text-[9px] uppercase font-black text-slate-600 mb-1 tracking-widest">Budget Libéré</p>
+                <p className="text-[9px] uppercase font-black app-text3 mb-1 tracking-widest">Budget Libéré</p>
                 <p className="text-lg font-black text-emerald-400">{(fin.decaissat/1000000).toFixed(0)}M FCFA</p>
              </div>
            </div>
            
            <div className="mt-6 pt-6 border-t app-border">
-              <p className="text-[10px] uppercase font-black text-slate-600 mb-4 tracking-widest">Human Capital Engine</p>
+              <p className="text-[10px] uppercase font-black app-text3 mb-4 tracking-widest">Human Capital Engine</p>
               <div className="flex items-center gap-4">
                  <div className="flex-1">
                     <ProgressBar value={rh.localContent} color="#6366f1" />
@@ -180,7 +180,7 @@ const GenieCivilElite = ({ data }) => {
                 <div key={d.id} className="flex items-center gap-4 p-3 app-surface border app-border rounded-xl hover:border-indigo-500/30 transition-all cursor-pointer group">
                    <div className="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-lg grayscale group-hover:grayscale-0 transition-all">📄</div>
                    <div className="flex-1 min-w-0">
-                      <p className="text-[11px] font-bold text-white truncate">{d.nom}</p>
+                      <p className="text-[11px] font-bold app-text truncate">{d.nom}</p>
                       <p className="text-[9px] app-text3 uppercase font-black">{d.categorie}</p>
                    </div>
                 </div>

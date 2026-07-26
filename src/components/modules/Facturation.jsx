@@ -36,7 +36,7 @@ const Facturation = ({ data }) => {
           <tbody>
             {data.map(f => (
               <tr key={f.id} className="border-b app-border hover:app-surface3">
-                <td className="px-4 py-3 text-sm font-medium text-white">{f.id}</td>
+                <td className="px-4 py-3 text-sm font-medium app-text">{f.id}</td>
                 <td className="px-4 py-3 text-sm app-text2">{f.client}</td>
                 <td className="px-4 py-3 text-sm app-text2">{f.projet}</td>
                 <td className="px-4 py-3 text-sm font-bold text-indigo-400">{f.montant.toLocaleString()} FCFA</td>

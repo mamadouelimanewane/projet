@@ -25,7 +25,7 @@ const Simulateur = ({ data }) => {
         {SCENARIOS.map(s => (
           <button key={s.id} onClick={() => setActiveScenario(activeScenario === s.id ? null : s.id)}
             className={`p-4 rounded-xl border transition-all text-left ${activeScenario === s.id ? "bg-indigo-600 border-indigo-400 shadow-lg" : "app-surface2 app-border hover:border-slate-500"}`}>
-            <h3 className="text-sm font-bold text-white mb-1">{s.label}</h3>
+            <h3 className="text-sm font-bold app-text mb-1">{s.label}</h3>
             <p className="text-xs app-text2 leading-tight">{s.desc}</p>
           </button>
         ))}
@@ -33,7 +33,7 @@ const Simulateur = ({ data }) => {
 
       <div className="app-surface2 border app-border rounded-2xl p-6">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-base font-bold text-white">Résultat de la Simulation</h3>
+          <h3 className="text-base font-bold app-text">Résultat de la Simulation</h3>
           {activeScenario && <Btn variant="ghost" onClick={() => setActiveScenario(null)}>Réinitialiser</Btn>}
         </div>
 
@@ -43,12 +43,12 @@ const Simulateur = ({ data }) => {
               <p className="text-xs app-text3 uppercase font-bold tracking-widest mb-2">{s.label}</p>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-slate-600">Actuel</p>
+                  <p className="text-xs app-text3">Actuel</p>
                   <p className="text-sm font-bold app-text2">{s.base}</p>
                 </div>
                 <div className="text-xl">➔</div>
                 <div className="text-right">
-                  <p className="text-xs text-slate-600">Simulé</p>
+                  <p className="text-xs app-text3">Simulé</p>
                   <p className="text-lg font-black" style={{ color: s.color }}>{s.sim}</p>
                 </div>
               </div>

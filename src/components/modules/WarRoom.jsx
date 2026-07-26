@@ -28,7 +28,7 @@ const WarRoom = () => {
             <div className="text-xs app-text2"><span className="text-fuchsia-400 font-bold">Système</span> : Dépassement budgétaire détecté - il y a 10m</div>
           </div>
           <div className="mt-4 pt-4 border-t app-border">
-            <input className="w-full app-surface border app-border rounded-lg px-3 py-2 text-sm text-white" placeholder="Message rapide à l'équipe..." />
+            <input className="w-full app-surface border app-border rounded-lg px-3 py-2 text-sm app-text" placeholder="Message rapide à l'équipe..." />
           </div>
         </div>
       </div>

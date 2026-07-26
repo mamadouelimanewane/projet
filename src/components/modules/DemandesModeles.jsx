@@ -29,7 +29,7 @@ const DemandesModeles = ({ data, setData }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 app-surface2 border app-border rounded-xl overflow-hidden shadow-xl">
           <div className="px-5 py-4 border-b app-border app-surface flex justify-between items-center">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">Triage des Demandes (Intake Queue)</h3>
+            <h3 className="text-sm font-bold app-text flex items-center gap-2">Triage des Demandes (Intake Queue)</h3>
             <Btn variant="ghost" size="sm">Filtrer</Btn>
           </div>
           <div className="overflow-x-auto -mx-1">
@@ -47,7 +47,7 @@ const DemandesModeles = ({ data, setData }) => {
               {data.map(d => (
                 <tr key={d.id} className="border-b app-border hover:app-surface3 group transition-colors">
                   <td className="px-4 py-3">
-                    <p className="text-sm font-bold text-slate-200">{d.titre}</p>
+                    <p className="text-sm font-bold app-text">{d.titre}</p>
                     <p className="text-[10px] app-text3 mt-1">Échéance: {d.date}</p>
                   </td>
                   <td className="px-4 py-3 text-xs app-text">{d.demandeur}</td>
@@ -71,14 +71,14 @@ const DemandesModeles = ({ data, setData }) => {
             {["🚀 Déploiement Logiciel IT", "📣 Lancement de Campagne", "🏢 Ouverture de Boutique", "🛡️ Audit de Conformité"].map((tpl, i) => (
               <div key={i} className="border app-border rounded-lg p-3 hover:border-indigo-500/50 cursor-pointer transition-colors app-surface flex items-center justify-between group">
                 <div>
-                  <p className="text-sm font-bold text-slate-200 group-hover:text-indigo-300 transition-colors">{tpl}</p>
+                  <p className="text-sm font-bold app-text group-hover:text-indigo-300 transition-colors">{tpl}</p>
                   <p className="text-[10px] app-text3 mt-1">Inclus: 12 tâches, 4 jalons</p>
                 </div>
                 <Btn variant="ghost" size="sm" className="opacity-50 group-hover:opacity-100 transition-opacity">→</Btn>
               </div>
             ))}
           </div>
-          <Btn onClick={() => alert("Ouverture de l'éditeur de modèles PMO...")} className="w-full mt-4 app-surface hover:app-surface2 text-slate-200 border app-border2 border-dashed">+ Créer un Modèle</Btn>
+          <Btn onClick={() => alert("Ouverture de l'éditeur de modèles PMO...")} className="w-full mt-4 app-surface hover:app-surface2 app-text border app-border2 border-dashed">+ Créer un Modèle</Btn>
         </div>
       </div>
     </div>

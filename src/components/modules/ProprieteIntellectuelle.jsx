@@ -32,29 +32,29 @@ const ProprieteIntellectuelle = ({ data = {} }) => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <FileKey className="w-8 h-8 text-indigo-400 mb-2" />
-           <p className="text-2xl font-black text-white">4</p>
+           <p className="text-2xl font-black app-text">4</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Brevets</p>
         </Card>
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <Bookmark className="w-8 h-8 text-emerald-400 mb-2" />
-           <p className="text-2xl font-black text-white">12</p>
+           <p className="text-2xl font-black app-text">12</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Marques</p>
         </Card>
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <Lock className="w-8 h-8 text-red-400 mb-2" />
-           <p className="text-2xl font-black text-white">8</p>
+           <p className="text-2xl font-black app-text">8</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Secrets</p>
         </Card>
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <Scale className="w-8 h-8 text-purple-400 mb-2" />
-           <p className="text-2xl font-black text-white">100%</p>
+           <p className="text-2xl font-black app-text">100%</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Couverture IP</p>
         </Card>
       </div>
 
       <Card className="glass-card rounded-2xl overflow-hidden" noPadding>
           <div className="p-4 border-b app-border flex items-center justify-between">
-             <h3 className="font-bold text-white">Registre des Actifs Immatériels</h3>
+             <h3 className="font-bold app-text">Registre des Actifs Immatériels</h3>
              <div className="flex gap-2">
                 <Btn size="sm" variant="ghost">Filtrer</Btn>
                 <Btn size="sm" variant="ghost">Exporter</Btn>
@@ -75,7 +75,7 @@ const ProprieteIntellectuelle = ({ data = {} }) => {
               {assets.map(asset => (
                 <tr key={asset.id} className="hover:app-surface2 transition-colors group">
                   <td className="px-6 py-4">
-                    <span className="text-sm font-bold text-white">{asset.titre}</span>
+                    <span className="text-sm font-bold app-text">{asset.titre}</span>
                   </td>
                   <td className="px-6 py-4 text-xs">
                     <Badge value={asset.type} variant="indigo" />
@@ -102,7 +102,7 @@ const ProprieteIntellectuelle = ({ data = {} }) => {
            <div className="flex items-center gap-4">
               <ShieldCheck className="w-8 h-8 text-red-400" />
               <div>
-                 <h4 className="font-bold text-white">Monitoring Active IP Guard</h4>
+                 <h4 className="font-bold app-text">Monitoring Active IP Guard</h4>
                  <p className="text-xs app-text2">Scan continu du Web et du Darknet pour détecter des fuites de secrets industriels.</p>
               </div>
               <div className="ml-auto">

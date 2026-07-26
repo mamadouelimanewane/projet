@@ -60,7 +60,7 @@ const MultiProjets = ({ data, setData }) => {
             <div key={p.id} className="app-surface2 border app-border rounded-xl p-5 hover:border-indigo-500/50 transition-all">
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <h3 className="text-base font-bold text-white">{p.nom}</h3>
+                  <h3 className="text-base font-bold app-text">{p.nom}</h3>
                   <p className="text-xs app-text2 mt-0.5">Chef : {p.chef}</p>
                 </div>
                 <div className="flex gap-2">

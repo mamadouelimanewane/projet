@@ -76,7 +76,7 @@ const AnalyticsAvances = ({ data }) => {
             <Target className="w-8 h-8 text-indigo-400" />
             {getTrendIcon(avancementMoyen)}
           </div>
-          <p className="text-3xl font-bold text-white mb-1">{avancementMoyen}%</p>
+          <p className="text-3xl font-bold app-text mb-1">{avancementMoyen}%</p>
           <p className="text-sm app-text2">Avancement Moyen</p>
         </Card>
 
@@ -85,7 +85,7 @@ const AnalyticsAvances = ({ data }) => {
             <BarChart3 className="w-8 h-8 text-emerald-400" />
             {getTrendIcon(100 - budgetPct)}
           </div>
-          <p className="text-3xl font-bold text-white mb-1">{budgetPct}%</p>
+          <p className="text-3xl font-bold app-text mb-1">{budgetPct}%</p>
           <p className="text-sm app-text2">Budget Consommé</p>
         </Card>
 
@@ -94,7 +94,7 @@ const AnalyticsAvances = ({ data }) => {
             <PieChart className="w-8 h-8 text-purple-400" />
             {getTrendIcon(tauxReussite)}
           </div>
-          <p className="text-3xl font-bold text-white mb-1">{tauxReussite}%</p>
+          <p className="text-3xl font-bold app-text mb-1">{tauxReussite}%</p>
           <p className="text-sm app-text2">Taux de Réussite</p>
         </Card>
 
@@ -103,7 +103,7 @@ const AnalyticsAvances = ({ data }) => {
             <AlertTriangle className="w-8 h-8 text-orange-400" />
             {getTrendIcon(100 - risquesParScore.critiques * 10)}
           </div>
-          <p className="text-3xl font-bold text-white mb-1">{risquesParScore.critiques}</p>
+          <p className="text-3xl font-bold app-text mb-1">{risquesParScore.critiques}</p>
           <p className="text-sm app-text2">Risques Critiques</p>
         </Card>
       </div>
@@ -126,7 +126,7 @@ const AnalyticsAvances = ({ data }) => {
 
       {/* Graphique Évolution Budget */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <LineChart className="w-5 h-5 text-indigo-400" />
           Évolution Budget vs Réel (6 derniers mois)
         </h3>
@@ -148,7 +148,7 @@ const AnalyticsAvances = ({ data }) => {
 
       {/* Graphique Avancement par Projet */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <BarChart3 className="w-5 h-5 text-emerald-400" />
           Avancement par Projet (Top 8)
         </h3>
@@ -170,7 +170,7 @@ const AnalyticsAvances = ({ data }) => {
       {/* Graphique Répartition Budget */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
             <PieChart className="w-5 h-5 text-purple-400" />
             Répartition Budget par Catégorie
           </h3>
@@ -199,7 +199,7 @@ const AnalyticsAvances = ({ data }) => {
 
         {/* Analyse Risques */}
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5 text-orange-400" />
             Distribution des Risques
           </h3>
@@ -261,7 +261,7 @@ const AnalyticsAvances = ({ data }) => {
 
       {/* Budget total */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4">Budget Global</h3>
+        <h3 className="text-xl font-bold app-text mb-4">Budget Global</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
             <p className="text-sm app-text2 mb-1">Budget Total Planifié</p>

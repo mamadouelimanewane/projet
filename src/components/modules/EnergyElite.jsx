@@ -36,7 +36,7 @@ const EnergyElite = ({ data = {}, setData }) => {
         <Card className="p-6 glass-card app-border">
            <div className="text-center">
               <Battery className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
-              <p className="text-3xl font-black text-white">82%</p>
+              <p className="text-3xl font-black app-text">82%</p>
               <p className="text-[10px] font-black text-emerald-400 uppercase">Stockage Batterie</p>
            </div>
         </Card>

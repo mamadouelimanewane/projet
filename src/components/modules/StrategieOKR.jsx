@@ -19,7 +19,7 @@ const StrategieOKR = ({ data }) => {
                 <Badge value={okr.statut} map={{ "En bonne voie": "#10b981", "En cours": "#f59e0b", "En retard": "#ef4444" }} />
               </div>
 
-              <h3 className="text-xl font-black text-white mb-2 leading-tight">{okr.objectif}</h3>
+              <h3 className="text-xl font-black app-text mb-2 leading-tight">{okr.objectif}</h3>
 
               <div className="mt-6 space-y-2">
                 <div className="flex justify-between text-xs">

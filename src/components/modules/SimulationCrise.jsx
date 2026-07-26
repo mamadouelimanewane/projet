@@ -40,8 +40,8 @@ const SimulationCrise = ({ data = {} }) => {
                 </div>
                 <Badge value={s.gravite} />
              </div>
-             <h4 className="font-black text-white mb-2 leading-tight">{s.titre}</h4>
-             <p className="text-xs app-text2 mb-6">Impact Estimé : <strong className="text-white">{s.impact}</strong></p>
+             <h4 className="font-black app-text mb-2 leading-tight">{s.titre}</h4>
+             <p className="text-xs app-text2 mb-6">Impact Estimé : <strong className="app-text">{s.impact}</strong></p>
              <Btn variant="danger" className="w-full" onClick={() => handleSimulate(s.id)}>
                {isSimulating && activeScenario === s.id ? <RefreshCw className="w-4 h-4 animate-spin mr-2" /> : <Play className="w-4 h-4 mr-2" />}
                Lancer Stress-Test
@@ -54,7 +54,7 @@ const SimulationCrise = ({ data = {} }) => {
         <Card className="p-8 glass-card rounded-2xl border-2 border-red-500/30 animate-entrance">
            <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="text-center md:text-left space-y-2">
-                 <h3 className="text-2xl font-black text-white">Résultats du Stress-Test</h3>
+                 <h3 className="text-2xl font-black app-text">Résultats du Stress-Test</h3>
                  <p className="app-text2">Analyse de résilience du portefeuille Projet Élite.</p>
                  <div className="pt-4 flex gap-4">
                     <div className="p-4 app-surface rounded-xl border app-border">
@@ -69,7 +69,7 @@ const SimulationCrise = ({ data = {} }) => {
               </div>
               <div className="flex-1 w-full space-y-6">
                  <div>
-                    <div className="flex justify-between text-xs font-bold text-white mb-2">
+                    <div className="flex justify-between text-xs font-bold app-text mb-2">
                        <span>Portefeuille (Post-Choc)</span>
                        <span className="text-red-400">-58.2M FCFA</span>
                     </div>

@@ -39,7 +39,7 @@ const TalentMarketplace = ({ data = {} }) => {
            <input 
              type="text" 
              placeholder="Rechercher une compétence rare ou un profil spécifique (ex: Expert React avec expérience BIM)..." 
-             className="w-full app-surface border app-border rounded-xl py-3 pl-10 pr-4 text-white text-sm focus:outline-none focus:border-indigo-500"
+             className="w-full app-surface border app-border rounded-xl py-3 pl-10 pr-4 app-text text-sm focus:outline-none focus:border-indigo-500"
            />
         </div>
         <Btn variant="indigo">Analyse IA</Btn>
@@ -56,7 +56,7 @@ const TalentMarketplace = ({ data = {} }) => {
                         {talent.avatar}
                       </div>
                       <div>
-                         <h4 className="font-black text-white text-lg">{talent.nom}</h4>
+                         <h4 className="font-black app-text text-lg">{talent.nom}</h4>
                          <p className="text-xs text-indigo-400 font-bold uppercase tracking-wider">{talent.role}</p>
                       </div>
                    </div>
@@ -76,11 +76,11 @@ const TalentMarketplace = ({ data = {} }) => {
                    <div className="flex items-center gap-6">
                       <div>
                          <p className="text-[10px] app-text3 font-bold uppercase mb-1">Disponibilité</p>
-                         <p className="text-xs text-white font-bold">{talent.dispo}</p>
+                         <p className="text-xs app-text font-bold">{talent.dispo}</p>
                       </div>
                       <div>
                          <p className="text-[10px] app-text3 font-bold uppercase mb-1">Dernière Mission</p>
-                         <p className="text-xs text-white font-bold italic">Projet Renaissance</p>
+                         <p className="text-xs app-text font-bold italic">Projet Renaissance</p>
                       </div>
                    </div>
                    <Btn size="sm">Affecter</Btn>
@@ -92,7 +92,7 @@ const TalentMarketplace = ({ data = {} }) => {
         {/* Statistiques / Skills Matrix */}
         <div className="space-y-4">
            <Card className="p-6 glass-card rounded-2xl">
-              <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+              <h3 className="font-bold app-text mb-6 flex items-center gap-2">
                 <Brain className="w-5 h-5 text-indigo-400" />
                 Matrice des Compétences
               </h3>
@@ -117,7 +117,7 @@ const TalentMarketplace = ({ data = {} }) => {
            </Card>
 
            <Card className="p-6 glass-card rounded-2xl bg-gradient-to-br from-indigo-600/10 to-purple-600/10 border border-indigo-500/30">
-              <h3 className="font-bold text-white mb-2 flex items-center gap-2">
+              <h3 className="font-bold app-text mb-2 flex items-center gap-2">
                 <Zap className="w-5 h-5 text-yellow-400" />
                 Besoin Critique
               </h3>

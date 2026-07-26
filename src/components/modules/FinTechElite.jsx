@@ -39,7 +39,7 @@ const FinTechElite = ({ data = {}, setData }) => {
             <div className="z-10 flex justify-between items-start">
                <div>
                   <p className="text-[10px] font-black text-amber-500 uppercase tracking-widest">Compte Business Elite</p>
-                  <h3 className="text-3xl font-black text-white mt-1">{balance.toLocaleString('fr-FR', { style: 'currency', currency: 'XOF' })}</h3>
+                  <h3 className="text-3xl font-black app-text mt-1">{balance.toLocaleString('fr-FR', { style: 'currency', currency: 'XOF' })}</h3>
                </div>
                <div className="w-12 h-8 bg-amber-500/20 rounded-lg border border-amber-500/30 flex items-center justify-center">
                   <Lock className="w-4 h-4 text-amber-500" />
@@ -49,7 +49,7 @@ const FinTechElite = ({ data = {}, setData }) => {
             <div className="z-10 space-y-4">
                <div className="flex gap-2">
                   <Btn variant="primary" className="flex-1 bg-amber-500 hover:bg-amber-600 border-none text-xs"><ArrowUpRight className="w-4 h-4 mr-2" /> Envoyer</Btn>
-                  <Btn variant="outline" className="flex-1 border-white/10 text-white text-xs"><ArrowDownLeft className="w-4 h-4 mr-2" /> Recevoir</Btn>
+                  <Btn variant="outline" className="flex-1 border-white/10 app-text text-xs"><ArrowDownLeft className="w-4 h-4 mr-2" /> Recevoir</Btn>
                </div>
                <div className="p-4 bg-white/5 backdrop-blur-md rounded-2xl border border-white/5">
                   <div className="flex justify-between items-center mb-2">
@@ -77,7 +77,7 @@ const FinTechElite = ({ data = {}, setData }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                <Card className="p-6 glass-card app-border h-[220px]">
                   <div className="flex justify-between items-center mb-6">
-                     <h4 className="text-xs font-black text-white uppercase tracking-widest flex items-center gap-2"><Repeat className="w-4 h-4 text-indigo-400" /> Flux de Trésorerie</h4>
+                     <h4 className="text-xs font-black app-text uppercase tracking-widest flex items-center gap-2"><Repeat className="w-4 h-4 text-indigo-400" /> Flux de Trésorerie</h4>
                      <Badge variant="info">Hebdo</Badge>
                   </div>
                   <div className="h-32">
@@ -99,7 +99,7 @@ const FinTechElite = ({ data = {}, setData }) => {
                   <div className="w-16 h-16 bg-amber-500/10 rounded-3xl flex items-center justify-center border border-amber-500/30 mb-4">
                      <QrCode className="w-8 h-8 text-amber-500" />
                   </div>
-                  <h4 className="text-sm font-black text-white uppercase tracking-tighter">Payer par QR Code</h4>
+                  <h4 className="text-sm font-black app-text uppercase tracking-tighter">Payer par QR Code</h4>
                   <p className="text-[10px] app-text3 mt-1">Acceptez ou envoyez des paiements instantanés sur le terrain.</p>
                   <Btn variant="ghost" size="xs" className="mt-4 text-amber-500 border-amber-500/20">Générer mon Code</Btn>
                </Card>
@@ -107,7 +107,7 @@ const FinTechElite = ({ data = {}, setData }) => {
 
             <Card className="p-6 glass-card app-border overflow-hidden">
                <div className="flex justify-between items-center mb-6">
-                  <h4 className="text-xs font-black text-white uppercase tracking-widest">Transactions Récentes</h4>
+                  <h4 className="text-xs font-black app-text uppercase tracking-widest">Transactions Récentes</h4>
                   <Btn variant="ghost" size="xs">Extraire Relevé</Btn>
                </div>
                <div className="space-y-4">
@@ -118,7 +118,7 @@ const FinTechElite = ({ data = {}, setData }) => {
                              {t.type === 'in' ? <ArrowDownLeft className="w-5 h-5" /> : <ArrowUpRight className="w-5 h-5" />}
                           </div>
                           <div>
-                             <p className="text-xs font-black text-white group-hover:text-indigo-400 transition-colors">{t.label}</p>
+                             <p className="text-xs font-black app-text group-hover:text-indigo-400 transition-colors">{t.label}</p>
                              <p className="text-[10px] app-text3 uppercase font-bold">{t.category} • {t.date}</p>
                           </div>
                        </div>
@@ -136,19 +136,19 @@ const FinTechElite = ({ data = {}, setData }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
          <Card className="p-6 app-border app-surface flex flex-col items-center text-center">
             <Smartphone className="w-10 h-10 text-indigo-400 mb-4" />
-            <h5 className="text-xs font-black text-white uppercase mb-2">Micro-Crédit Agri</h5>
+            <h5 className="text-xs font-black app-text uppercase mb-2">Micro-Crédit Agri</h5>
             <p className="text-[10px] app-text3">Demandez un financement en 30s basé sur vos prévisions de récolte.</p>
             <Btn variant="outline" size="xs" className="mt-4 border-indigo-500/20 text-indigo-400">Demander</Btn>
          </Card>
          <Card className="p-6 app-border app-surface flex flex-col items-center text-center">
             <ShieldCheck className="w-10 h-10 text-emerald-400 mb-4" />
-            <h5 className="text-xs font-black text-white uppercase mb-2">Assurance Paramétrique</h5>
+            <h5 className="text-xs font-black app-text uppercase mb-2">Assurance Paramétrique</h5>
             <p className="text-[10px] app-text3">Indemnisation automatique par satellite en cas de sécheresse.</p>
             <Btn variant="outline" size="xs" className="mt-4 border-emerald-500/20 text-emerald-400">Vérifier</Btn>
          </Card>
          <Card className="p-6 app-border app-surface flex flex-col items-center text-center">
             <PieChart className="w-10 h-10 text-amber-400 mb-4" />
-            <h5 className="text-xs font-black text-white uppercase mb-2">Épargne de Précision</h5>
+            <h5 className="text-xs font-black app-text uppercase mb-2">Épargne de Précision</h5>
             <p className="text-[10px] app-text3">Épargnez automatiquement une partie de chaque vente.</p>
             <Btn variant="outline" size="xs" className="mt-4 border-amber-500/20 text-amber-400">Configurer</Btn>
          </Card>

@@ -54,7 +54,7 @@ const QualiteConformite = ({ data = {} }) => {
                <ClipboardCheck className="w-5 h-5 text-indigo-400" />
              </div>
              <div>
-               <p className="text-2xl font-bold text-white">12</p>
+               <p className="text-2xl font-bold app-text">12</p>
                <p className="text-xs app-text3">85% de réussite au premier passage</p>
              </div>
           </div>
@@ -67,7 +67,7 @@ const QualiteConformite = ({ data = {} }) => {
                <AlertCircle className="w-5 h-5 text-red-400" />
              </div>
              <div>
-               <p className="text-2xl font-bold text-white">{data.nonConformites || 2}</p>
+               <p className="text-2xl font-bold app-text">{data.nonConformites || 2}</p>
                <p className="text-xs app-text3">-50% par rapport au mois dernier</p>
              </div>
           </div>
@@ -105,7 +105,7 @@ const QualiteConformite = ({ data = {} }) => {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <FileText className="w-4 h-4 app-text3" />
-                      <span className="text-sm font-bold text-white">{audit.titre}</span>
+                      <span className="text-sm font-bold app-text">{audit.titre}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4 text-xs app-text2">{audit.date}</td>
@@ -119,7 +119,7 @@ const QualiteConformite = ({ data = {} }) => {
                         {audit.score}/100
                       </span>
                     ) : (
-                      <span className="text-xs text-slate-600">--</span>
+                      <span className="text-xs app-text3">--</span>
                     )}
                   </td>
                 </tr>
@@ -135,7 +135,7 @@ const QualiteConformite = ({ data = {} }) => {
            {nonConformites.map(nc => (
              <Card key={nc.id} className="p-5 glass-card rounded-2xl border-l-4 border-l-red-500">
                 <div className="flex justify-between items-start mb-3">
-                  <h4 className="font-bold text-white">{nc.titre}</h4>
+                  <h4 className="font-bold app-text">{nc.titre}</h4>
                   <Badge value={nc.gravite} />
                 </div>
                 <p className="text-xs app-text3 mb-4">Détectée le {nc.date}</p>

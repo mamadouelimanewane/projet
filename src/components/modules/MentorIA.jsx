@@ -148,19 +148,19 @@ export default function MentorIA() {
                     strokeWidth="3" strokeDasharray={`${diag.stats.avancement}, 100`} strokeLinecap="round" />
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-lg font-black text-white">{diag.stats.avancement}%</span>
+                  <span className="text-lg font-black app-text">{diag.stats.avancement}%</span>
                 </div>
               </div>
               <div className="flex-1">
-                <h2 className="text-xl font-black text-white mb-1">Santé du Projet</h2>
+                <h2 className="text-xl font-black app-text mb-1">Santé du Projet</h2>
                 <p className="text-xs app-text2 mb-3">
                   {diag.alertes.filter(a => a.type === "critique").length > 0 ? "⚠️ Attention requise — alertes critiques détectées" :
                    diag.alertes.length > 0 ? "🟡 Surveillance active — quelques points d'attention" :
                    "✅ Projet en bonne santé"}
                 </p>
                 <div className="flex gap-4 text-xs">
-                  <span className="app-text2">Budget : <span className="font-bold text-white">{diag.stats.budgetPct}%</span></span>
-                  <span className="app-text2">Tâches : <span className="font-bold text-white">{diag.stats.tachesFaites}/{diag.stats.taches}</span></span>
+                  <span className="app-text2">Budget : <span className="font-bold app-text">{diag.stats.budgetPct}%</span></span>
+                  <span className="app-text2">Tâches : <span className="font-bold app-text">{diag.stats.tachesFaites}/{diag.stats.taches}</span></span>
                   <span className="app-text2">Risques : <span className="font-bold text-red-400">{diag.stats.risquesActifs}</span></span>
                 </div>
               </div>
@@ -177,7 +177,7 @@ export default function MentorIA() {
                     <div className="flex items-start gap-3">
                       <span className="text-xl flex-shrink-0">{a.icon}</span>
                       <div className="flex-1">
-                        <h4 className="text-sm font-bold text-white mb-1">{a.titre}</h4>
+                        <h4 className="text-sm font-bold app-text mb-1">{a.titre}</h4>
                         <p className="text-xs app-text2 mb-2">{a.desc}</p>
                         <div className="flex items-center justify-between">
                           <p className="text-xs font-bold text-indigo-400">→ {a.action}</p>
@@ -194,7 +194,7 @@ export default function MentorIA() {
           {diag.alertes.length === 0 && (
             <Card className="p-6 text-center bg-emerald-500/5 border border-emerald-500/20">
               <span className="text-4xl block mb-2">✅</span>
-              <p className="text-white font-bold">Aucune alerte critique</p>
+              <p className="app-text font-bold">Aucune alerte critique</p>
               <p className="text-xs app-text2 mt-1">Le Mentor IA surveille votre projet en continu.</p>
             </Card>
           )}
@@ -212,7 +212,7 @@ export default function MentorIA() {
                 <button key={key} onClick={() => setCheckPhase(key)}
                   className={`w-full text-left p-3 rounded-xl border-2 transition-all ${checkPhase === key ? "border-indigo-500 bg-indigo-500/10" : "app-border app-surface hover:app-border2"}`}>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-bold text-white">{meta.label}</span>
+                    <span className="text-sm font-bold app-text">{meta.label}</span>
                     <span className="text-xs font-black" style={{ color: meta.color }}>{pct}%</span>
                   </div>
                   <ProgressBar value={pct} color={meta.color} />
@@ -223,7 +223,7 @@ export default function MentorIA() {
 
           <div className="lg:col-span-2">
             <Card className="p-6" style={{ borderLeft: `4px solid ${PHASE_META[checkPhase].color}` }}>
-              <h3 className="text-lg font-black text-white mb-1">{PHASE_META[checkPhase].label}</h3>
+              <h3 className="text-lg font-black app-text mb-1">{PHASE_META[checkPhase].label}</h3>
               <p className="text-xs app-text2 mb-5">Cochez les éléments validés. Progression : <span className="font-bold text-indigo-400">{phaseProgress(checkPhase)}%</span></p>
               <div className="space-y-2">
                 {CHECKLISTS[checkPhase].map((item, i) => {
@@ -259,7 +259,7 @@ export default function MentorIA() {
               <div className="flex items-start gap-4">
                 <span className="text-2xl flex-shrink-0">{c.icon}</span>
                 <div className="flex-1">
-                  <h4 className="text-sm font-bold text-white mb-1">{c.titre}</h4>
+                  <h4 className="text-sm font-bold app-text mb-1">{c.titre}</h4>
                   <p className="text-xs app-text2 mb-2">{c.desc}</p>
                   <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">{c.pmbok}</span>
                 </div>

@@ -20,19 +20,19 @@ const Methodologies = ({ data, setData }) => {
               </div>
               {currentMethode === m.label && <span className="text-[10px] font-black bg-white text-indigo-600 px-2 py-0.5 rounded-full uppercase">Actif</span>}
             </div>
-            <h3 className="text-lg font-black text-white mb-2">{m.label}</h3>
-            <p className="text-xs app-text group-hover:text-white transition-colors">{m.desc}</p>
+            <h3 className="text-lg font-black app-text mb-2">{m.label}</h3>
+            <p className="text-xs app-text group-hover:app-text transition-colors">{m.desc}</p>
 
             <div className="mt-4 pt-4 border-t border-white/10 flex items-center justify-between">
-              <span className="text-[10px] text-white/60 uppercase font-black">Modules clés</span>
-              <p className="text-[10px] text-white/80">{m.label === "Agile / Scrum" ? "Sprint, Kanban, Vélocité" : m.label === "Waterfall (Cascade)" ? "Gantt, Jalons, Budget" : "Tous les outils"}</p>
+              <span className="text-[10px] app-text/60 uppercase font-black">Modules clés</span>
+              <p className="text-[10px] app-text/80">{m.label === "Agile / Scrum" ? "Sprint, Kanban, Vélocité" : m.label === "Waterfall (Cascade)" ? "Gantt, Jalons, Budget" : "Tous les outils"}</p>
             </div>
           </div>
         ))}
       </div>
 
       <div className="app-surface2 border app-border rounded-xl p-6 text-center">
-        <p className="text-sm app-text2 mb-2">Méthodologie sélectionnée : <strong className="text-white">{currentMethode}</strong></p>
+        <p className="text-sm app-text2 mb-2">Méthodologie sélectionnée : <strong className="app-text">{currentMethode}</strong></p>
         <p className="text-xs app-text3 italic max-w-md mx-auto">"La sélection d'une méthodologie personnalise automatiquement vos indicateurs de performance et les vues prioritaires du tableau de bord."</p>
       </div>
     </div>

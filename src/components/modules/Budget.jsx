@@ -65,7 +65,7 @@ const Budget = ({ data, setData }) => {
           <tbody>
             {data.map(b => (
               <tr key={b.id} className="border-b app-border hover:app-surface3 transition-colors">
-                <td className="px-4 py-3 text-sm font-medium text-slate-200">{b.categorie}</td>
+                <td className="px-4 py-3 text-sm font-medium app-text">{b.categorie}</td>
                 <td className="px-4 py-3 text-sm app-text">{b.planifie.toLocaleString()}€</td>
                 <td className="px-4 py-3 text-sm app-text">{b.reel.toLocaleString()}€</td>
                 <td className="px-4 py-3 text-sm font-bold" style={{ color: b.planifie - b.reel >= 0 ? "#10b981" : "#ef4444" }}>

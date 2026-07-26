@@ -63,7 +63,7 @@ const EditeurProjet = () => {
              >
                 <div className="overflow-hidden">
                    <p className="font-bold truncate text-sm">{p.archived ? "📦 " : ""}{p.nom}</p>
-                   <p className={`text-[10px] ${selectedId === p.id ? 'text-indigo-200' : 'text-slate-600'}`}>{p.chef}</p>
+                   <p className={`text-[10px] ${selectedId === p.id ? 'text-indigo-200' : 'app-text3'}`}>{p.chef}</p>
                 </div>
                 <div className={`w-2 h-2 rounded-full ${p.statut === 'En cours' ? 'bg-emerald-400' : 'bg-slate-600'}`} />
              </button>
@@ -77,7 +77,7 @@ const EditeurProjet = () => {
               <Card className="p-6 glass-card rounded-2xl space-y-4">
                  <div className="flex items-center gap-2 text-indigo-400 mb-2">
                     <Info className="w-5 h-5" />
-                    <h3 className="font-bold text-white">Informations Générales</h3>
+                    <h3 className="font-bold app-text">Informations Générales</h3>
                  </div>
                  <Input 
                    label="Nom du Projet" 
@@ -105,7 +105,7 @@ const EditeurProjet = () => {
               <Card className="p-6 glass-card rounded-2xl space-y-4">
                  <div className="flex items-center gap-2 text-emerald-400 mb-2">
                     <DollarSign className="w-5 h-5" />
-                    <h3 className="font-bold text-white">Dimensions Financières</h3>
+                    <h3 className="font-bold app-text">Dimensions Financières</h3>
                  </div>
                  <Input 
                    label="Budget Alloué (FCFA)" 
@@ -122,7 +122,7 @@ const EditeurProjet = () => {
                  <div className="pt-4 p-4 app-surface rounded-xl border app-border">
                     <p className="text-[10px] app-text3 font-bold uppercase mb-1">Ratio de Consommation</p>
                     <div className="flex items-baseline gap-2">
-                       <span className="text-2xl font-black text-white">{((project.budgetReel / project.budget) * 100).toFixed(1)}%</span>
+                       <span className="text-2xl font-black app-text">{((project.budgetReel / project.budget) * 100).toFixed(1)}%</span>
                        <Badge variant={project.budgetReel > project.budget ? "danger" : "success"}>
                           {project.budgetReel > project.budget ? "Surcoût" : "Optimal"}
                        </Badge>
@@ -133,7 +133,7 @@ const EditeurProjet = () => {
               <Card className="p-6 glass-card rounded-2xl space-y-4">
                  <div className="flex items-center gap-2 text-purple-400 mb-2">
                     <Calendar className="w-5 h-5" />
-                    <h3 className="font-bold text-white">Échéancier & Délais</h3>
+                    <h3 className="font-bold app-text">Échéancier & Délais</h3>
                  </div>
                  <Input 
                    label="Date de Début" 
@@ -164,9 +164,9 @@ const EditeurProjet = () => {
               </Card>
 
               <Card className="p-6 glass-card rounded-2xl border-dashed border-2 app-border flex flex-col items-center justify-center text-center opacity-60">
-                 <Settings className="w-12 h-12 text-slate-700 mb-4" />
+                 <Settings className="w-12 h-12 app-text3 mb-4" />
                  <h4 className="font-bold app-text3">Paramètres Avancés</h4>
-                 <p className="text-xs text-slate-600 px-8">Configuration des méthodologies, intégrations Slack/Teams et Webhooks spécifiques.</p>
+                 <p className="text-xs app-text3 px-8">Configuration des méthodologies, intégrations Slack/Teams et Webhooks spécifiques.</p>
                  <Btn variant="ghost" className="mt-4" size="sm">Déverrouiller</Btn>
               </Card>
            </div>

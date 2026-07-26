@@ -18,7 +18,7 @@ const PortailClient = ({ data }) => {
           {data.projets.filter(p => p.statut !== "Terminé").map(p => (
             <div key={p.id}>
               <div className="flex justify-between items-center mb-1">
-                <span className="text-sm font-bold text-white">{p.nom}</span>
+                <span className="text-sm font-bold app-text">{p.nom}</span>
                 <span className="text-sm font-bold text-indigo-400">{p.avancement}%</span>
               </div>
               <ProgressBar value={p.avancement} color="#6366f1" />

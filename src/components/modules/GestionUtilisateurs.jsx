@@ -24,22 +24,22 @@ const GestionUtilisateurs = ({ data = {} }) => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <Users className="w-8 h-8 text-indigo-400 mb-2" />
-           <p className="text-2xl font-black text-white">{users.length}</p>
+           <p className="text-2xl font-black app-text">{users.length}</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Utilisateurs</p>
         </Card>
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <Shield className="w-8 h-8 text-emerald-400 mb-2" />
-           <p className="text-2xl font-black text-white">4</p>
+           <p className="text-2xl font-black app-text">4</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Rôles Définis</p>
         </Card>
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <Lock className="w-8 h-8 text-purple-400 mb-2" />
-           <p className="text-2xl font-black text-white">99.9%</p>
+           <p className="text-2xl font-black app-text">99.9%</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Sûreté Identity</p>
         </Card>
         <Card className="p-5 glass-card rounded-2xl flex flex-col items-center justify-center text-center">
            <Activity className="w-8 h-8 text-orange-400 mb-2" />
-           <p className="text-2xl font-black text-white">12</p>
+           <p className="text-2xl font-black app-text">12</p>
            <p className="text-[10px] app-text3 uppercase font-bold tracking-widest">Sessions Actives</p>
         </Card>
       </div>
@@ -66,7 +66,7 @@ const GestionUtilisateurs = ({ data = {} }) => {
                       {user.nom.charAt(0)}
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-white">{user.nom}</p>
+                      <p className="text-sm font-bold app-text">{user.nom}</p>
                       <p className="text-[10px] app-text3 font-mono">{user.email}</p>
                     </div>
                   </div>
@@ -80,8 +80,8 @@ const GestionUtilisateurs = ({ data = {} }) => {
                 <td className="px-6 py-4 text-xs app-text3">{user.derniereConnexion}</td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button className="p-1.5 hover:app-surface3 rounded-lg app-text2 hover:text-white"><Key className="w-4 h-4" /></button>
-                    <button className="p-1.5 hover:app-surface3 rounded-lg app-text2 hover:text-white"><Edit className="w-4 h-4" /></button>
+                    <button className="p-1.5 hover:app-surface3 rounded-lg app-text2 hover:app-text"><Key className="w-4 h-4" /></button>
+                    <button className="p-1.5 hover:app-surface3 rounded-lg app-text2 hover:app-text"><Edit className="w-4 h-4" /></button>
                     <button className="p-1.5 hover:bg-red-900/30 rounded-lg app-text2 hover:text-red-400"><Trash2 className="w-4 h-4" /></button>
                   </div>
                 </td>
@@ -95,14 +95,14 @@ const GestionUtilisateurs = ({ data = {} }) => {
       {/* SECTION PRIVILÈGES */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
          <Card className="p-6 glass-card rounded-2xl border-t-2 border-t-indigo-500">
-            <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+            <h3 className="font-bold app-text mb-6 flex items-center gap-2">
                <Shield className="w-5 h-5 text-indigo-400" />
                Configuration des Permissions par Rôle
             </h3>
             <div className="space-y-4">
                {roles.map(role => (
                  <div key={role} className="flex items-center justify-between p-3 app-surface rounded-xl border app-border">
-                    <span className="text-sm font-bold text-white">{role}</span>
+                    <span className="text-sm font-bold app-text">{role}</span>
                     <div className="flex gap-2">
                        <div className="px-2 py-0.5 bg-emerald-500/10 text-[9px] text-emerald-400 rounded font-black border border-emerald-500/20">LECTURE</div>
                        {role !== 'Viewer' && <div className="px-2 py-0.5 bg-blue-500/10 text-[9px] text-blue-400 rounded font-black border border-blue-500/20">ÉDITION</div>}
@@ -114,7 +114,7 @@ const GestionUtilisateurs = ({ data = {} }) => {
          </Card>
 
          <Card className="p-6 glass-card rounded-2xl border-t-2 border-t-orange-500">
-            <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+            <h3 className="font-bold app-text mb-6 flex items-center gap-2">
                <Activity className="w-5 h-5 text-orange-400" />
                Audit Log (Activités Récentes)
             </h3>
@@ -127,7 +127,7 @@ const GestionUtilisateurs = ({ data = {} }) => {
                ].map((log, i) => (
                  <div key={i} className="text-xs flex justify-between border-b app-border pb-2">
                     <span className="app-text2"><strong className="app-text">{log.user}</strong> : {log.action}</span>
-                    <span className="text-slate-600 font-mono">{log.time}</span>
+                    <span className="app-text3 font-mono">{log.time}</span>
                  </div>
                ))}
             </div>

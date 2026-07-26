@@ -81,7 +81,7 @@ const RefineryElite = ({ data = {}, setData }) => {
               <span className="text-[10px] font-black app-text3 uppercase tracking-widest">{kpi.label}</span>
             </div>
             <div>
-              <span className="text-2xl font-black text-white tabular-nums">{kpi.value}</span>
+              <span className="text-2xl font-black app-text tabular-nums">{kpi.value}</span>
               <p className="text-[9px] font-bold app-text3 uppercase mt-1">{kpi.sub}</p>
             </div>
           </Card>
@@ -128,7 +128,7 @@ const RefineryElite = ({ data = {}, setData }) => {
                <div key={i} className="space-y-1.5">
                   <div className="flex justify-between items-center">
                      <span className="text-[10px] font-black app-text2 uppercase">{item.label}</span>
-                     <span className="text-[10px] font-black text-white">{item.progress}%</span>
+                     <span className="text-[10px] font-black app-text">{item.progress}%</span>
                   </div>
                   <div className="w-full h-2 app-surface2 rounded-full overflow-hidden border app-border">
                      <div className={`${item.color} h-full rounded-full transition-all duration-1000 shadow-[0_0_10px_rgba(0,0,0,0.5)]`} style={{ width: `${item.progress}%` }} />
@@ -138,7 +138,7 @@ const RefineryElite = ({ data = {}, setData }) => {
              <div className="p-4 bg-amber-500/5 border border-amber-500/20 rounded-2xl flex items-center gap-3 mt-4 group cursor-pointer hover:bg-amber-500/10 transition-all">
                 <Truck className="w-5 h-5 text-amber-500 group-hover:translate-x-1 transition-transform" />
                 <div>
-                   <p className="text-[10px] font-black text-white uppercase">Prochain Chargement</p>
+                   <p className="text-[10px] font-black app-text uppercase">Prochain Chargement</p>
                    <p className="text-[9px] app-text2">Terminal 04 | J-1 (12:00)</p>
                 </div>
              </div>
@@ -165,7 +165,7 @@ const RefineryElite = ({ data = {}, setData }) => {
                     <p className="text-[10px] font-black text-rose-400 uppercase tracking-widest">Alerte Gaz H2S</p>
                     <Badge variant="error" className="animate-bounce">CRITIQUE</Badge>
                  </div>
-                 <p className="text-xs text-white font-bold">Secteur Raffinage Nord - Vérification Requise</p>
+                 <p className="text-xs app-text font-bold">Secteur Raffinage Nord - Vérification Requise</p>
                  <div className="flex gap-2 mt-4">
                     <Btn variant="primary" className="flex-1 text-[10px] h-9">Activer Protocoles</Btn>
                     <Btn variant="ghost" className="flex-1 text-[10px] h-9 app-surface">Check Capteurs</Btn>
@@ -174,7 +174,7 @@ const RefineryElite = ({ data = {}, setData }) => {
               <div className="flex items-center justify-between p-3 app-surface border app-border rounded-xl hover:border-amber-500/30 transition-all">
                  <div className="flex items-center gap-3">
                     <Thermometer className="w-4 h-4 text-amber-500" />
-                    <span className="text-xs font-bold text-white">Température Colonne #3</span>
+                    <span className="text-xs font-bold app-text">Température Colonne #3</span>
                  </div>
                  <span className="text-xs font-black text-amber-400 tabular-nums">{liveMetrics.temp.toFixed(1)}°C</span>
               </div>
@@ -195,7 +195,7 @@ const RefineryElite = ({ data = {}, setData }) => {
                      <Clock className="w-8 h-8" />
                   </div>
                   <div className="flex-1">
-                     <p className="text-xs font-black text-white">Maintenance Annuelle - Unité 02</p>
+                     <p className="text-xs font-black app-text">Maintenance Annuelle - Unité 02</p>
                      <p className="text-[9px] app-text3 uppercase font-bold">Début : 15 Septembre 2026</p>
                      <div className="w-full h-1 app-surface2 rounded-full mt-2">
                         <div className="bg-blue-500 h-full w-[25%] rounded-full shadow-[0_0_10px_#3b82f6]" />
@@ -205,7 +205,7 @@ const RefineryElite = ({ data = {}, setData }) => {
                <div className="grid grid-cols-2 gap-3">
                   <div className="p-3 app-surface border app-border rounded-xl text-center">
                      <p className="text-[8px] font-black app-text3 uppercase mb-1">Pièces en commande</p>
-                     <p className="text-[12px] font-bold text-white">14 / 20</p>
+                     <p className="text-[12px] font-bold app-text">14 / 20</p>
                   </div>
                   <div className="p-3 app-surface border app-border rounded-xl text-center">
                      <p className="text-[8px] font-black app-text3 uppercase mb-1">Équipe Technique</p>

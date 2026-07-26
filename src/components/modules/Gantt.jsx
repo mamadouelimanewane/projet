@@ -132,7 +132,7 @@ const Gantt = ({ data, setData }) => {
                   <div className="flex items-center gap-3 min-w-0 pr-2">
                     <div className="w-3 h-3 rounded-full flex-shrink-0 shadow-[0_0_8px_currentColor]" style={{ backgroundColor: task.couleur, color: task.couleur }} />
                     <div className="min-w-0">
-                      <p className="text-sm font-bold text-slate-200 truncate">{task.tache}</p>
+                      <p className="text-sm font-bold app-text truncate">{task.tache}</p>
                       <p className="text-[10px] app-text2 font-mono mt-0.5 truncate">{task.responsable}</p>
                     </div>
                   </div>
@@ -192,7 +192,7 @@ const Gantt = ({ data, setData }) => {
 
           <div className="mt-4">
             <label className="block text-xs app-text2 mb-1 font-medium">Dépend de la tâche (Optionnel)</label>
-            <select className="w-full app-surface3 border app-border2 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-indigo-500" value={form.dependance || ""} onChange={e => setForm({ ...form, dependance: e.target.value })}>
+            <select className="w-full app-surface3 border app-border2 rounded-lg px-3 py-2 app-text text-sm focus:outline-none focus:border-indigo-500" value={form.dependance || ""} onChange={e => setForm({ ...form, dependance: e.target.value })}>
               <option value="">-- Aucune Dépendance --</option>
               {data.filter(d => d.id !== form.id).map(d => <option key={d.id} value={d.id}>{d.tache}</option>)}
             </select>

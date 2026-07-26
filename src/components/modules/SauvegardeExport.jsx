@@ -60,7 +60,7 @@ const SauvegardeExport = async () => {
            <div className="w-16 h-16 rounded-2xl bg-indigo-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Download className="w-8 h-8 text-indigo-400" />
            </div>
-           <h3 className="text-xl font-black text-white mb-2">Exportation "Cold Storage"</h3>
+           <h3 className="text-xl font-black app-text mb-2">Exportation "Cold Storage"</h3>
            <p className="text-sm app-text3 mb-8 max-w-sm">
              Générez un fichier JSON contenant l'intégralité de vos 26 modules, configurations et historiques. Idéal pour l'archivage légal ou le transfert de projet.
            </p>
@@ -68,7 +68,7 @@ const SauvegardeExport = async () => {
               {isExporting ? <RefreshCw className="w-5 h-5 animate-spin" /> : <FileJson className="w-5 h-5 mr-2" />}
               Télécharger le Bundle (.json)
            </Btn>
-           <p className="text-[10px] text-slate-600 mt-4 uppercase font-bold tracking-widest">Dernier export : {lastBackup}</p>
+           <p className="text-[10px] app-text3 mt-4 uppercase font-bold tracking-widest">Dernier export : {lastBackup}</p>
         </Card>
 
         {/* IMPORTATION / RESTAURATION */}
@@ -76,7 +76,7 @@ const SauvegardeExport = async () => {
            <div className="w-16 h-16 rounded-2xl bg-emerald-600/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <RefreshCw className="w-8 h-8 text-emerald-400" />
            </div>
-           <h3 className="text-xl font-black text-white mb-2">Restauration Système</h3>
+           <h3 className="text-xl font-black app-text mb-2">Restauration Système</h3>
            <p className="text-sm app-text3 mb-8 max-w-sm">
              Restaurez l'état complet du projet à partir d'une sauvegarde précédente. Les données importées remplaceront instantanément votre espace de travail actuel.
            </p>
@@ -100,7 +100,7 @@ const SauvegardeExport = async () => {
                   <Database className="w-6 h-6 text-indigo-400" />
                </div>
                <div>
-                  <h4 className="font-bold text-white">Sauvegarde Cloud Automatique</h4>
+                  <h4 className="font-bold app-text">Sauvegarde Cloud Automatique</h4>
                   <p className="text-xs app-text2">Le système synchronise vos données toutes les 5 minutes sur l'infrastructure sécurisée.</p>
                </div>
             </div>
@@ -118,17 +118,17 @@ const SauvegardeExport = async () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
          <Card className="p-5 glass-card rounded-2xl border-l-4 border-l-indigo-500">
             <History className="w-6 h-6 text-indigo-400 mb-3" />
-            <h4 className="text-sm font-bold text-white mb-1">Historique des Versions</h4>
+            <h4 className="text-sm font-bold app-text mb-1">Historique des Versions</h4>
             <p className="text-[10px] app-text3 leading-relaxed">Accédez aux snapshots de votre projet sur les 30 derniers jours.</p>
          </Card>
          <Card className="p-5 glass-card rounded-2xl border-l-4 border-l-emerald-500">
             <HardDrive className="w-6 h-6 text-emerald-400 mb-3" />
-            <h4 className="text-sm font-bold text-white mb-1">Archivage Légal</h4>
+            <h4 className="text-sm font-bold app-text mb-1">Archivage Légal</h4>
             <p className="text-[10px] app-text3 leading-relaxed">Générez un PDF scellé par horodatage pour vos rapports de fin d'année.</p>
          </Card>
          <Card className="p-5 glass-card rounded-2xl border-l-4 border-l-purple-500">
             <CheckCircle className="w-6 h-6 text-purple-400 mb-3" />
-            <h4 className="text-sm font-bold text-white mb-1">Intégrité des Données</h4>
+            <h4 className="text-sm font-bold app-text mb-1">Intégrité des Données</h4>
             <p className="text-[10px] app-text3 leading-relaxed">Vérification de la somme de contrôle (SHA-256) sur chaque export.</p>
          </Card>
       </div>

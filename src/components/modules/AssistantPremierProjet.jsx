@@ -41,7 +41,7 @@ const AssistantPremierProjet = () => {
               </div>
               <ChevronRight className="w-5 h-5 text-indigo-400 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Créer un Projet</h3>
+            <h3 className="text-xl font-bold app-text mb-2">Créer un Projet</h3>
             <p className="text-sm app-text2">
               Lancez votre premier projet en quelques clics. Définissez le budget, le calendrier et invitez votre équipe.
             </p>
@@ -54,7 +54,7 @@ const AssistantPremierProjet = () => {
               </div>
               <ChevronRight className="w-5 h-5 app-text2 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">Suivre le Tutoriel</h3>
+            <h3 className="text-xl font-bold app-text mb-2">Suivre le Tutoriel</h3>
             <p className="text-sm app-text2">
               Découvrez les 20 fonctionnalités avancées grâce à notre guide interactif pour débutants.
             </p>
@@ -65,10 +65,10 @@ const AssistantPremierProjet = () => {
         {/* Bot Assistant Prompt */}
         <div className="mt-12 p-4 app-surface2 rounded-xl border app-border inline-flex items-center gap-4 text-left mx-auto">
           <div className="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg">
-            <span className="text-sm font-bold text-white">IA</span>
+            <span className="text-sm font-bold app-text">IA</span>
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-200">Besoin d'aide pour commencer ?</p>
+            <p className="text-sm font-medium app-text">Besoin d'aide pour commencer ?</p>
             <p className="text-xs app-text2">Ouvrez l'Assistant IA dans le menu pour des conseils personnalisés.</p>
           </div>
         </div>

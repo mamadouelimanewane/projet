@@ -23,7 +23,7 @@ const CalendrierCentral = ({ data }) => {
 
       <div className="app-surface2 border app-border rounded-xl p-6">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-lg font-bold text-white">Semaine Actuelle</h3>
+          <h3 className="text-lg font-bold app-text">Semaine Actuelle</h3>
           <div className="flex gap-2">
             <Btn variant="ghost">◀</Btn>
             <Btn variant="ghost">Aujourd'hui</Btn>
@@ -38,7 +38,7 @@ const CalendrierCentral = ({ data }) => {
             {['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi'].map((j, i) => (
               <div key={j} className="p-3 text-center border-r app-border last:border-r-0">
                 <p className="text-xs app-text2 uppercase tracking-widest">{j}</p>
-                <p className="text-lg font-bold text-slate-200 mt-1">{today.getDate() - today.getDay() + 1 + i}</p>
+                <p className="text-lg font-bold app-text mt-1">{today.getDate() - today.getDay() + 1 + i}</p>
               </div>
             ))}
           </div>

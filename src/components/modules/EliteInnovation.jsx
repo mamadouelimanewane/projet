@@ -94,7 +94,7 @@ export default function EliteInnovation() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="p-6 bg-gradient-to-br from-indigo-900/20 to-slate-900 border-indigo-500/20">
-                <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                <h4 className="text-sm font-bold app-text mb-2 flex items-center gap-2">
                   <Globe className="w-4 h-4 text-indigo-400" /> Géolocalisation BIM
                 </h4>
                 <p className="text-xs app-text2 mb-4">Visualisation temps-réel de l'avancement physique du chantier (Star Academy).</p>
@@ -105,7 +105,7 @@ export default function EliteInnovation() {
                 </div>
               </Card>
               <Card className="p-6 bg-gradient-to-br from-purple-900/20 to-slate-900 border-purple-500/20">
-                <h4 className="text-sm font-bold text-white mb-2 flex items-center gap-2">
+                <h4 className="text-sm font-bold app-text mb-2 flex items-center gap-2">
                   <Cpu className="w-4 h-4 text-purple-400" /> Analyse de Flux
                 </h4>
                 <p className="text-xs app-text2 mb-4">Optimisation automatique de l'allocation des ressources via moteur IA.</p>
@@ -154,9 +154,9 @@ export default function EliteInnovation() {
             {!certified ? (
               <>
                 <div className="w-24 h-24 rounded-full app-surface2 flex items-center justify-center mx-auto mb-6 shadow-2xl border border-white/10">
-                  <ShieldCheck className={`w-12 h-12 ${certifying ? 'text-indigo-400 animate-spin' : 'text-slate-600'}`} />
+                  <ShieldCheck className={`w-12 h-12 ${certifying ? 'text-indigo-400 animate-spin' : 'app-text3'}`} />
                 </div>
-                <h2 className="text-2xl font-black text-white mb-4">Sceau de Diamant</h2>
+                <h2 className="text-2xl font-black app-text mb-4">Sceau de Diamant</h2>
                 <p className="text-sm app-text2 mb-8 max-w-md mx-auto">
                   Certifiez l'intégrité de votre projet. Ce processus ancre les données financières et stratégiques dans un registre décentralisé pour une transparence totale.
                 </p>
@@ -169,7 +169,7 @@ export default function EliteInnovation() {
                 <div className="w-24 h-24 rounded-full bg-indigo-600/20 flex items-center justify-center mx-auto mb-6 shadow-[0_0_50px_rgba(79,70,229,0.3)] border border-indigo-500">
                   <Sparkles className="w-12 h-12 text-indigo-400" />
                 </div>
-                <h2 className="text-2xl font-black text-white mb-2">Projet Certifié Élite</h2>
+                <h2 className="text-2xl font-black app-text mb-2">Projet Certifié Élite</h2>
                 <p className="text-sm text-emerald-400 font-bold mb-6">ID de Bloc : #ELITE-2026-9912-AF</p>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-black">
                   <ShieldCheck className="w-4 h-4" /> AUTHENTICITÉ GARANTIE
@@ -198,11 +198,11 @@ export default function EliteInnovation() {
                <div key={i} className="flex items-center gap-4 p-4 glass-card rounded-xl border border-white/5 hover:border-indigo-500/30 transition-all">
                  <div className="w-10 h-10 rounded-lg app-surface2 flex items-center justify-center text-[10px] font-mono text-indigo-400 border app-border">{log.id}</div>
                  <div className="flex-1">
-                   <p className="text-sm font-bold text-white">{log.event}</p>
+                   <p className="text-sm font-bold app-text">{log.event}</p>
                    <p className="text-[10px] app-text3">{log.actor} · {log.timestamp}</p>
                  </div>
                  <div className="text-right">
-                   <p className="text-[10px] font-mono text-slate-600 mb-1">{log.hash}</p>
+                   <p className="text-[10px] font-mono app-text3 mb-1">{log.hash}</p>
                    <Badge value="Vérifié" />
                  </div>
                </div>
@@ -216,7 +216,7 @@ export default function EliteInnovation() {
         <div className="space-y-6 animate-entrance">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="p-8">
-              <h3 className="text-lg font-black text-white mb-2">Simulations Monte-Carlo</h3>
+              <h3 className="text-lg font-black app-text mb-2">Simulations Monte-Carlo</h3>
               <p className="text-sm app-text2 mb-6">Calcul de la probabilité de réussite sur 10 000 itérations aléatoires.</p>
               <ResponsiveContainer width="100%" height={250}>
                 <AreaChart data={[
@@ -240,18 +240,18 @@ export default function EliteInnovation() {
 
             <div className="space-y-6">
               <Card className="p-6 border-indigo-500/20 bg-indigo-500/5">
-                <h4 className="text-sm font-bold text-white mb-4">Stratégies d'Optimisation IA</h4>
+                <h4 className="text-sm font-bold app-text mb-4">Stratégies d'Optimisation IA</h4>
                 <div className="space-y-3">
                   <button className="w-full text-left p-3 rounded-lg app-surface2 border app-border hover:border-indigo-500 transition-all">
-                    <p className="text-xs font-bold text-white">1. Fast-Tracking (Parallélisation)</p>
+                    <p className="text-xs font-bold app-text">1. Fast-Tracking (Parallélisation)</p>
                     <p className="text-[10px] app-text3">Gain estimé : 18 jours · Risque Qualité : +15%</p>
                   </button>
                   <button className="w-full text-left p-3 rounded-lg app-surface2 border app-border hover:border-indigo-500 transition-all">
-                    <p className="text-xs font-bold text-white">2. Crashing (Injection Ressources)</p>
+                    <p className="text-xs font-bold app-text">2. Crashing (Injection Ressources)</p>
                     <p className="text-[10px] app-text3">Gain estimé : 25 jours · Coût additionnel : 14M FCFA</p>
                   </button>
                   <button className="w-full text-left p-3 rounded-lg app-surface2 border app-border hover:border-indigo-500 transition-all">
-                    <p className="text-xs font-bold text-white">3. Scénario Pessimiste (Risque Max)</p>
+                    <p className="text-xs font-bold app-text">3. Scénario Pessimiste (Risque Max)</p>
                     <p className="text-[10px] app-text3">Retard estimé : 40 jours · Budget : +22%</p>
                   </button>
                 </div>

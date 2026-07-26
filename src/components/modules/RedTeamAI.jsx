@@ -48,7 +48,7 @@ const RedTeamAI = () => {
                  <div className="flex items-center gap-4">
                    <div className="text-2xl opacity-80 group-hover:scale-110 transition-transform">{s.icon}</div>
                    <div>
-                     <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors uppercase tracking-tight">{s.title}</h4>
+                     <h4 className="text-sm font-bold app-text group-hover:text-red-400 transition-colors uppercase tracking-tight">{s.title}</h4>
                      <p className="text-[10px] app-text3 mt-1 uppercase font-bold">Risque de survenance : {s.risk}%</p>
                    </div>
                  </div>
@@ -68,7 +68,7 @@ const RedTeamAI = () => {
            ) : report ? (
              <div className="w-full space-y-8 animate-entrance relative z-10">
                 <div className="text-center">
-                   <h3 className="text-2xl font-black text-white mb-2 uppercase tracking-tight">Rapport d'Impact {report.icon}</h3>
+                   <h3 className="text-2xl font-black app-text mb-2 uppercase tracking-tight">Rapport d'Impact {report.icon}</h3>
                    <Badge value="Critique (Zone de Rupture)" map={{ "Critique (Zone de Rupture)": "#ef4444" }} />
                 </div>
                 
@@ -84,7 +84,7 @@ const RedTeamAI = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                      <div className="p-4 app-surface2 border app-border rounded-xl">
                         <p className="text-[10px] font-bold app-text2 mb-2 uppercase">Points de Faiblesse</p>
-                        <ul className="text-sm text-slate-200 mt-2 space-y-1">
+                        <ul className="text-sm app-text mt-2 space-y-1">
                           {report.bottlenecks.map((b, i) => <li key={i} className="flex items-center gap-2">❌ {b}</li>)}
                         </ul>
                      </div>
@@ -101,7 +101,7 @@ const RedTeamAI = () => {
            ) : (
              <div className="text-center opacity-40">
                <div className="text-6xl mb-6">🧛</div>
-               <h3 className="text-xl font-bold text-white mb-2">La Red Team est au repos</h3>
+               <h3 className="text-xl font-bold app-text mb-2">La Red Team est au repos</h3>
                <p className="text-sm app-text max-w-xs mx-auto">Prêt à hacker votre planning pour sauver votre avenir ? Sélectionnez un scénario à gauche.</p>
              </div>
            )}

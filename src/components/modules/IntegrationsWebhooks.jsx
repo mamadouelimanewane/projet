@@ -32,7 +32,7 @@ const IntegrationsWebhooks = ({ data, setData }) => {
           <div key={i.name} className={`border rounded-xl p-5 flex items-start gap-4 transition-all hover:app-surface2 ${i.active ? "app-surface2 border-indigo-500/50" : "app-surface app-border"}`}>
             <div className={`text-3xl ${i.active ? "" : "grayscale opacity-40"}`}>{i.icon}</div>
             <div className="flex-1">
-              <h3 className="text-sm font-bold text-white">{i.name}</h3>
+              <h3 className="text-sm font-bold app-text">{i.name}</h3>
               <p className="text-xs app-text2 mt-1 line-clamp-2">{i.desc}</p>
               <div className="mt-4">
                 {i.active ? (
@@ -48,7 +48,7 @@ const IntegrationsWebhooks = ({ data, setData }) => {
 
       <div className="app-surface2 border app-border rounded-xl overflow-hidden">
         <div className="px-5 py-4 border-b app-border flex justify-between items-center app-surface">
-          <h3 className="text-sm font-bold text-white">Endpoints Webhooks Configurés</h3>
+          <h3 className="text-sm font-bold app-text">Endpoints Webhooks Configurés</h3>
           <span className="text-xs app-text2">{data.length} actifs</span>
         </div>
         <div className="overflow-x-auto -mx-1">
@@ -61,7 +61,7 @@ const IntegrationsWebhooks = ({ data, setData }) => {
               const color = w.statut === "Connecté" ? "#10b981" : w.statut === "Erreur" ? "#ef4444" : "#f59e0b";
               return (
                 <tr key={w.id} className="border-b app-border hover:app-surface3">
-                  <td className="px-4 py-3 text-sm font-bold text-white">{w.nom}</td>
+                  <td className="px-4 py-3 text-sm font-bold app-text">{w.nom}</td>
                   <td className="px-4 py-3 text-xs text-indigo-300 font-mono truncate max-w-[200px]">{w.url}</td>
                   <td className="px-4 py-3 text-xs app-text"><span className="app-surface3 px-2 py-1 rounded app-text">{w.event}</span></td>
                   <td className="px-4 py-3"><Badge value={w.statut} map={{ "Connecté": "#10b981", "Erreur": "#ef4444", "En pause": "#f59e0b" }} /></td>

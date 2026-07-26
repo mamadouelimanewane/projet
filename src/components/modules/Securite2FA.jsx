@@ -144,7 +144,7 @@ const Securite2FA = async () => {
             {twoFAEnabled ? (
               <>
                 <div className="w-16 h-16 rounded-full bg-emerald-600 flex items-center justify-center">
-                  <Shield className="w-8 h-8 text-white" />
+                  <Shield className="w-8 h-8 app-text" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-emerald-400">2FA Activée</h3>
@@ -157,7 +157,7 @@ const Securite2FA = async () => {
             ) : (
               <>
                 <div className="w-16 h-16 rounded-full bg-orange-600 flex items-center justify-center">
-                  <AlertTriangle className="w-8 h-8 text-white" />
+                  <AlertTriangle className="w-8 h-8 app-text" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-orange-400">2FA Désactivée</h3>
@@ -184,7 +184,7 @@ const Securite2FA = async () => {
       {/* Setup 2FA */}
       {setupPhase === 1 && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
             <Smartphone className="w-5 h-5 text-indigo-400" />
             Étape 1 : Configurez votre application d'authentification
           </h3>
@@ -231,7 +231,7 @@ const Securite2FA = async () => {
       {/* Vérification */}
       {setupPhase === 2 && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
             <Key className="w-5 h-5 text-emerald-400" />
             Étape 2 : Vérifiez le code
           </h3>
@@ -247,7 +247,7 @@ const Securite2FA = async () => {
                 onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="000000"
                 maxLength="6"
-                className="w-full px-6 py-4 app-surface border-2 app-border rounded-xl text-white text-center text-3xl font-mono tracking-widest focus:outline-none focus:border-indigo-500"
+                className="w-full px-6 py-4 app-surface border-2 app-border rounded-xl app-text text-center text-3xl font-mono tracking-widest focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -268,7 +268,7 @@ const Securite2FA = async () => {
       {setupPhase === 3 && (
         <Card className="p-6 glass-card rounded-2xl">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2">
+            <h3 className="text-xl font-bold app-text flex items-center gap-2">
               <CheckCircle className="w-5 h-5 text-emerald-400" />
               Codes de Backup
             </h3>
@@ -291,7 +291,7 @@ const Securite2FA = async () => {
               <div className="grid grid-cols-2 gap-3">
                 {backupCodes.map((code, index) => (
                   <div key={index} className="flex items-center justify-between p-3 app-surface2 rounded-lg">
-                    <code className="text-sm text-white font-mono">{code}</code>
+                    <code className="text-sm app-text font-mono">{code}</code>
                     <button
                       onClick={() => copyBackupCode(code)}
                       className="app-text2 hover:text-indigo-400 transition-colors"
@@ -313,7 +313,7 @@ const Securite2FA = async () => {
 
       {/* Informations sécurité */}
       <Card className="p-6 glass-card rounded-2xl bg-gradient-to-br from-indigo-600/10 to-purple-600/10 border border-indigo-500/30">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <Shield className="w-5 h-5 text-indigo-400" />
           Pourquoi activer la 2FA ?
         </h3>
@@ -338,7 +338,7 @@ const Securite2FA = async () => {
             }
           ].map((item, i) => (
             <div key={i} className="p-4 app-surface2 rounded-xl">
-              <h4 className="font-medium text-white mb-1">{item.titre}</h4>
+              <h4 className="font-medium app-text mb-1">{item.titre}</h4>
               <p className="text-sm app-text2">{item.desc}</p>
             </div>
           ))}

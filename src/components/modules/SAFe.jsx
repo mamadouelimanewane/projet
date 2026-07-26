@@ -19,7 +19,7 @@ const SAFe = ({ data }) => {
             <div key={train.id} className="app-surface2 border app-border rounded-xl p-5">
               <div className="flex justify-between items-center mb-4">
                 <div>
-                  <h4 className="text-lg font-bold text-white">{train.train}</h4>
+                  <h4 className="text-lg font-bold app-text">{train.train}</h4>
                   <p className="text-xs app-text2 mt-1">Séquence : {train.pi} · {train.iteration}</p>
                 </div>
                 <Badge value={train.status} map={{ "En bonne voie": "#10b981", "Risque de retard": "#f59e0b" }} />

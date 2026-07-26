@@ -17,7 +17,7 @@ const JumeauNumerique = ({ data = {} }) => {
            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=2000&auto=format&fit=crop')] opacity-20 bg-cover bg-center" />
            <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
               <Box className="w-24 h-24 text-indigo-500 mb-6 animate-pulse" />
-              <p className="text-xl font-black text-white">Moteur 3D Star Engine v2</p>
+              <p className="text-xl font-black app-text">Moteur 3D Star Engine v2</p>
               <p className="text-sm app-text3 mt-2">Chargement de la structure Star Academy...</p>
            </div>
            
@@ -25,7 +25,7 @@ const JumeauNumerique = ({ data = {} }) => {
            <div className="absolute top-4 left-4 z-20 space-y-2">
               <div className="p-2 app-bg backdrop-blur border app-border rounded-lg flex items-center gap-2">
                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                 <span className="text-[10px] text-white font-bold uppercase tracking-widest">Capteurs IoT Actifs (142)</span>
+                 <span className="text-[10px] app-text font-bold uppercase tracking-widest">Capteurs IoT Actifs (142)</span>
               </div>
            </div>
 
@@ -39,7 +39,7 @@ const JumeauNumerique = ({ data = {} }) => {
         {/* Données IoT / Capteurs */}
         <div className="space-y-4">
            <Card className="p-6 glass-card rounded-2xl">
-              <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+              <h3 className="font-bold app-text mb-6 flex items-center gap-2">
                 <Cpu className="w-5 h-5 text-indigo-400" />
                 Métriques de Structure
               </h3>
@@ -47,21 +47,21 @@ const JumeauNumerique = ({ data = {} }) => {
                  <div>
                     <div className="flex justify-between text-xs mb-2">
                        <span className="app-text2">Contrainte Structurelle</span>
-                       <span className="text-white font-bold">12% / 100</span>
+                       <span className="app-text font-bold">12% / 100</span>
                     </div>
                     <ProgressBar value={12} color="#10b981" />
                  </div>
                  <div>
                     <div className="flex justify-between text-xs mb-2">
                        <span className="app-text2">Température Béton (Séchage)</span>
-                       <span className="text-white font-bold">24°C</span>
+                       <span className="app-text font-bold">24°C</span>
                     </div>
                     <ProgressBar value={45} color="#3b82f6" />
                  </div>
                  <div>
                     <div className="flex justify-between text-xs mb-2">
                        <span className="app-text2">Consommation Énergie Chantier</span>
-                       <span className="text-white font-bold">14.2 kWh</span>
+                       <span className="app-text font-bold">14.2 kWh</span>
                     </div>
                     <ProgressBar value={30} color="#f59e0b" />
                  </div>
@@ -69,7 +69,7 @@ const JumeauNumerique = ({ data = {} }) => {
            </Card>
 
            <Card className="p-6 glass-card rounded-2xl app-surface">
-              <h3 className="font-bold text-white mb-4">Journal d'Alertes Twin</h3>
+              <h3 className="font-bold app-text mb-4">Journal d'Alertes Twin</h3>
               <div className="space-y-3">
                  {[
                    { msg: "Vibration anormale Grue #2", time: "14:02", status: "warning" },

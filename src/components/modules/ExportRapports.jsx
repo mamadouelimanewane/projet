@@ -372,7 +372,7 @@ const ExportRapports = ({ data }) => {
         <div className="glass-card rounded-2xl p-8 border-2 border-transparent hover:border-red-500/30 transition-all">
           <div className="text-center">
             <div className="text-6xl mb-4">📄</div>
-            <h3 className="text-xl font-bold text-white mb-2">Rapport PDF Complet</h3>
+            <h3 className="text-xl font-bold app-text mb-2">Rapport PDF Complet</h3>
             <p className="text-sm app-text2 mb-6">
               Rapport professionnel avec tous les indicateurs, graphiques et tableaux
             </p>
@@ -404,7 +404,7 @@ const ExportRapports = ({ data }) => {
         <div className="glass-card rounded-2xl p-8 border-2 border-transparent hover:border-emerald-500/30 transition-all">
           <div className="text-center">
             <div className="text-6xl mb-4">📊</div>
-            <h3 className="text-xl font-bold text-white mb-2">Rapport Excel Complet</h3>
+            <h3 className="text-xl font-bold app-text mb-2">Rapport Excel Complet</h3>
             <p className="text-sm app-text2 mb-6">
               Fichier Excel multi-feuilles avec toutes les données structurées
             </p>
@@ -452,15 +452,15 @@ const ExportRapports = ({ data }) => {
         <h3 className="text-sm font-bold app-text mb-4">📋 Conseils d'Utilisation</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs app-text2">
           <div className="p-4 app-surface2 rounded-lg">
-            <div className="font-bold text-white mb-2">📄 PDF</div>
+            <div className="font-bold app-text mb-2">📄 PDF</div>
             <p>Idéal pour les rapports officiels, présentations comité, archivage documentaire</p>
           </div>
           <div className="p-4 app-surface2 rounded-lg">
-            <div className="font-bold text-white mb-2">📊 Excel</div>
+            <div className="font-bold app-text mb-2">📊 Excel</div>
             <p>Parfait pour analyses approfondies, graphiques personnalisés, calculs avancés</p>
           </div>
           <div className="p-4 app-surface2 rounded-lg">
-            <div className="font-bold text-white mb-2">📁 CSV</div>
+            <div className="font-bold app-text mb-2">📁 CSV</div>
             <p>Export rapide pour imports dans d'autres systèmes, bases de données, CRM</p>
           </div>
         </div>

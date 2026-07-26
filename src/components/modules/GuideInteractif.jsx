@@ -196,7 +196,7 @@ const GuideInteractif = () => {
                     {e.id}
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-white">{e.phase}</p>
+                    <p className="text-sm font-bold app-text">{e.phase}</p>
                     <span className={`text-[9px] font-black uppercase px-2 py-0.5 rounded-full border ${NIVEAU_COLORS[e.niveau]}`}>{e.niveau}</span>
                   </div>
                 </div>
@@ -210,14 +210,14 @@ const GuideInteractif = () => {
             <div className="glass-card rounded-2xl p-6" style={{ borderLeft: `4px solid ${etape.color}` }}>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h2 className="text-2xl font-black text-white mb-1">{etape.phase}</h2>
+                  <h2 className="text-2xl font-black app-text mb-1">{etape.phase}</h2>
                   <p className="app-text2 text-sm">{etape.description}</p>
                 </div>
                 <span className={`text-[10px] font-black uppercase px-2 py-1 rounded-full border flex-shrink-0 ${NIVEAU_COLORS[etape.niveau]}`}>{etape.niveau}</span>
               </div>
               <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: etape.color + "15" }}>
                 <p className="text-[11px] font-bold uppercase tracking-widest mb-1" style={{ color: etape.color }}>Question clé</p>
-                <p className="text-white font-bold text-sm italic">"{etape.question}"</p>
+                <p className="app-text font-bold text-sm italic">"{etape.question}"</p>
               </div>
             </div>
 
@@ -243,7 +243,7 @@ const GuideInteractif = () => {
                 <p className="text-[10px] font-black app-text3 uppercase tracking-widest mb-2">Livrable attendu</p>
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">📄</span>
-                  <span className="text-white font-bold text-sm">{etape.livrable}</span>
+                  <span className="app-text font-bold text-sm">{etape.livrable}</span>
                 </div>
               </div>
               <div className="glass-card rounded-2xl p-5 bg-indigo-500/5 border border-indigo-500/20">
@@ -251,7 +251,7 @@ const GuideInteractif = () => {
                   Concept clé
                   <TooltipInfo term={etape.definitionCle.term} definition={etape.definitionCle.def} />
                 </p>
-                <span className="text-white font-bold text-sm">{etape.definitionCle.term}</span>
+                <span className="app-text font-bold text-sm">{etape.definitionCle.term}</span>
                 <p className="text-xs app-text2 mt-1">{etape.definitionCle.def}</p>
               </div>
             </div>
@@ -269,7 +269,7 @@ const GuideInteractif = () => {
             >
               <div className="text-left">
                 <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest mb-1">Pratiquer maintenant</p>
-                <p className="text-white font-bold">Ouvrir : {etape.outilLabel}</p>
+                <p className="app-text font-bold">Ouvrir : {etape.outilLabel}</p>
               </div>
               <span className="text-indigo-400 group-hover:translate-x-2 transition-transform text-xl">→</span>
             </button>
@@ -303,7 +303,7 @@ const GuideInteractif = () => {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl">{c.icon}</span>
                 <div>
-                  <h3 className="text-lg font-black text-white">{c.title}</h3>
+                  <h3 className="text-lg font-black app-text">{c.title}</h3>
                   <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full app-surface2 app-text2">{c.pmbok}</span>
                 </div>
               </div>
@@ -342,7 +342,7 @@ const GuideInteractif = () => {
 
               {/* Question */}
               <div className="p-5 app-surface2 border app-border rounded-2xl">
-                <h4 className="text-lg font-bold text-white leading-relaxed">{QUIZ_QUESTIONS[quizIdx].q}</h4>
+                <h4 className="text-lg font-bold app-text leading-relaxed">{QUIZ_QUESTIONS[quizIdx].q}</h4>
               </div>
 
               {/* Options */}
@@ -350,11 +350,11 @@ const GuideInteractif = () => {
                 {QUIZ_QUESTIONS[quizIdx].options.map((opt, i) => {
                   const isSelected = selectedOpt === i;
                   const revealed = selectedOpt !== null;
-                  let cls = "app-border app-surface2 hover:border-indigo-500/50 text-slate-200";
+                  let cls = "app-border app-surface2 hover:border-indigo-500/50 app-text";
                   if (revealed) {
                     if (opt.correct) cls = "border-emerald-500 bg-emerald-500/10 text-emerald-200";
                     else if (isSelected) cls = "border-red-500 bg-red-500/10 text-red-300 opacity-60";
-                    else cls = "app-border app-surface text-slate-600 opacity-30 pointer-events-none";
+                    else cls = "app-border app-surface app-text3 opacity-30 pointer-events-none";
                   }
                   return (
                     <div key={i}>
@@ -392,7 +392,7 @@ const GuideInteractif = () => {
           ) : (
             <div className="text-center py-8">
               <div className="text-7xl mb-6">{score >= 3 ? "🏆" : score >= 2 ? "🥈" : "📚"}</div>
-              <h2 className="text-3xl font-black text-white mb-2">
+              <h2 className="text-3xl font-black app-text mb-2">
                 {score >= 3 ? "Excellent !" : score >= 2 ? "Bien joué !" : "Continuez à apprendre !"}
               </h2>
               <p className="app-text2 mb-2">Score : <span className="text-indigo-400 font-black text-2xl">{score} / {QUIZ_QUESTIONS.length}</span></p>

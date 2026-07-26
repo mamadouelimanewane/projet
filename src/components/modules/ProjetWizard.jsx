@@ -134,7 +134,7 @@ export default function ProjetWizard() {
 
       {/* STEP CONTENT */}
       <div className="glass-card rounded-2xl p-8 min-h-[380px] flex flex-col">
-        <h2 className="text-xl font-black text-white mb-1">{ETAPES[step].title}</h2>
+        <h2 className="text-xl font-black app-text mb-1">{ETAPES[step].title}</h2>
         <p className="text-sm app-text2 mb-6">{ETAPES[step].desc}</p>
 
         {/* STEP 0 — Type */}
@@ -157,19 +157,19 @@ export default function ProjetWizard() {
               <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Nom du projet *</label>
               <input value={form.nom} onChange={e => set("nom", e.target.value)}
                 placeholder="Ex: Construction École Rurale Thiès"
-                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
+                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500" />
             </div>
             <div className="space-y-1.5">
               <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Chef de projet *</label>
               <input value={form.chef} onChange={e => set("chef", e.target.value)}
                 placeholder="Ex: Mamadou Wane"
-                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
+                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500" />
             </div>
             <div className="space-y-1.5">
               <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Description</label>
               <textarea value={form.description} onChange={e => set("description", e.target.value)}
                 rows={3} placeholder="Décrivez brièvement les objectifs du projet..."
-                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all resize-none dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
+                className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all resize-none dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500" />
             </div>
           </div>
         )}
@@ -200,12 +200,12 @@ export default function ProjetWizard() {
                 <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Budget (en Millions) *</label>
                 <input type="number" value={form.budget} onChange={e => set("budget", e.target.value)}
                   placeholder="Ex: 150"
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500" />
               </div>
               <div className="space-y-1.5">
                 <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Devise</label>
                 <select value={form.budgetDevise} onChange={e => set("budgetDevise", e.target.value)}
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white appearance-none dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500">
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white appearance-none dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500">
                   <option>FCFA</option><option>EUR</option><option>USD</option><option>MAD</option>
                 </select>
               </div>
@@ -214,17 +214,17 @@ export default function ProjetWizard() {
               <div className="space-y-1.5">
                 <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Date de début *</label>
                 <input type="date" value={form.debut} onChange={e => set("debut", e.target.value)}
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500" />
               </div>
               <div className="space-y-1.5">
                 <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider">Date de fin prévue *</label>
                 <input type="date" value={form.fin} onChange={e => set("fin", e.target.value)}
-                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500" />
+                  className="w-full bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:bg-white transition-all dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500" />
               </div>
             </div>
             {form.budget && (
               <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
-                <p className="text-xs font-bold text-emerald-400">Budget saisi : <span className="text-white text-sm">{parseFloat(form.budget).toLocaleString('fr-FR')} Millions {form.budgetDevise}</span></p>
+                <p className="text-xs font-bold text-emerald-400">Budget saisi : <span className="app-text text-sm">{parseFloat(form.budget).toLocaleString('fr-FR')} Millions {form.budgetDevise}</span></p>
               </div>
             )}
           </div>
@@ -238,7 +238,7 @@ export default function ProjetWizard() {
               const selected = form.risquesSelectionnes.includes(r);
               return (
                 <button key={i} onClick={() => set("risquesSelectionnes", selected ? form.risquesSelectionnes.filter(x => x !== r) : [...form.risquesSelectionnes, r])}
-                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 text-slate-700 dark:app-border dark:app-surface dark:hover:app-border2 dark:text-white"}`}>
+                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 app-text3 dark:app-border dark:app-surface dark:hover:app-border2 dark:text-white"}`}>
                   <span className="text-lg">{selected ? "⚠️" : "○"}</span>
                   <span className="text-sm font-medium">{r}</span>
                 </button>
@@ -250,7 +250,7 @@ export default function ProjetWizard() {
               const selected = form.risquesSelectionnes.includes(r);
               return (
                 <button key={`custom-${i}`} onClick={() => set("risquesSelectionnes", selected ? form.risquesSelectionnes.filter(x => x !== r) : [...form.risquesSelectionnes, r])}
-                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 text-slate-700 dark:app-border dark:app-surface dark:hover:app-border2 dark:text-white"}`}>
+                  className={`w-full p-3 rounded-xl border-2 text-left transition-all flex items-center gap-3 shadow-sm ${selected ? "border-orange-500 bg-orange-50 text-orange-900 dark:bg-orange-500/10 dark:text-white" : "border-slate-200 bg-white hover:border-orange-300 app-text3 dark:app-border dark:app-surface dark:hover:app-border2 dark:text-white"}`}>
                   <span className="text-lg">{selected ? "⚠️" : "○"}</span>
                   <span className="text-sm font-medium">{r} <span className="text-[10px] bg-slate-100 app-text3 dark:app-surface2 px-2 py-0.5 rounded dark:app-text2 ml-2">Personnalisé</span></span>
                 </button>
@@ -271,7 +271,7 @@ export default function ProjetWizard() {
                    }
                  }}
                  placeholder="Ajouter un risque spécifique au projet..."
-                 className="flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 transition-all dark:app-surface dark:app-border dark:text-white dark:focus:border-indigo-500"
+                 className="flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-indigo-500 transition-all dark:app-surface dark:app-border dark:app-text dark:focus:border-indigo-500"
                />
                <button 
                  onClick={() => {

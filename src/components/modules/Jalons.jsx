@@ -30,7 +30,7 @@ const Jalons = ({ data, setData }) => {
                   style={{ borderLeftColor: color, borderLeftWidth: 3 }}>
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-sm font-bold text-white">{j.jalon}</h3>
+                      <h3 className="text-sm font-bold app-text">{j.jalon}</h3>
                       <p className="text-xs app-text3 mt-0.5">{j.date} · {j.responsable}</p>
                       {j.notes && <p className="text-xs app-text2 mt-1 italic">{j.notes}</p>}
                     </div>

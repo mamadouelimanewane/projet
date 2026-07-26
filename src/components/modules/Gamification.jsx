@@ -150,25 +150,25 @@ const Gamification = ({ data }) => {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-indigo-600/20 to-purple-600/20">
           <Trophy className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
-          <p className="text-4xl font-bold text-white mb-1">{points.toLocaleString()}</p>
+          <p className="text-4xl font-bold app-text mb-1">{points.toLocaleString()}</p>
           <p className="text-sm app-text">Points Totaux</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-emerald-600/20 to-teal-600/20">
           <Medal className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
-          <p className="text-4xl font-bold text-white mb-1">Niveau {level}</p>
+          <p className="text-4xl font-bold app-text mb-1">Niveau {level}</p>
           <p className="text-sm app-text">{getLevelTitle(level)}</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-orange-600/20 to-red-600/20">
           <Flame className="w-12 h-12 text-orange-400 mx-auto mb-3" />
-          <p className="text-4xl font-bold text-white mb-1">{streak}</p>
+          <p className="text-4xl font-bold app-text mb-1">{streak}</p>
           <p className="text-sm app-text">Jours Consécutifs</p>
         </Card>
 
         <Card className="p-6 glass-card rounded-2xl text-center bg-gradient-to-br from-pink-600/20 to-purple-600/20">
           <Award className="w-12 h-12 text-pink-400 mx-auto mb-3" />
-          <p className="text-4xl font-bold text-white mb-1">{badges.length}</p>
+          <p className="text-4xl font-bold app-text mb-1">{badges.length}</p>
           <p className="text-sm app-text">Badges Débloqués</p>
         </Card>
       </div>
@@ -176,7 +176,7 @@ const Gamification = ({ data }) => {
       {/* Progression Level */}
       <Card className="p-6 glass-card rounded-2xl">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-bold text-white">Progression Niveau {level}</h3>
+          <h3 className="text-xl font-bold app-text">Progression Niveau {level}</h3>
           <span className="text-sm app-text2">{points}/{pointsPourLevel} points</span>
         </div>
         <div className="w-full app-surface3 rounded-full h-4 mb-2">
@@ -192,7 +192,7 @@ const Gamification = ({ data }) => {
 
       {/* Badges débloqués */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <Star className="w-5 h-5 text-yellow-400" />
           Badges Débloqués ({badges.length})
         </h3>
@@ -210,7 +210,7 @@ const Gamification = ({ data }) => {
                 <div className="text-indigo-400 mb-2 flex justify-center">
                   {getBadgeIcon(badge.icone)}
                 </div>
-                <h4 className="font-bold text-white text-sm mb-1">{badge.nom}</h4>
+                <h4 className="font-bold app-text text-sm mb-1">{badge.nom}</h4>
                 <p className="text-xs app-text2 mb-2">{badge.description}</p>
                 <div className="text-xs text-yellow-400 font-medium">
                   +{badge.points} pts
@@ -223,7 +223,7 @@ const Gamification = ({ data }) => {
 
       {/* Badges à débloquer */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <Target className="w-5 h-5 text-indigo-400" />
           Objectifs à Atteindre
         </h3>
@@ -275,7 +275,7 @@ const Gamification = ({ data }) => {
 
       {/* Leaderboard (simulation) */}
       <Card className="p-6 glass-card rounded-2xl">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <Users className="w-5 h-5 text-purple-400" />
           Classement (Top 5)
         </h3>
@@ -296,7 +296,7 @@ const Gamification = ({ data }) => {
               </div>
               <div className="text-3xl">{user.avatar}</div>
               <div className="flex-1">
-                <h4 className="font-bold text-white">{user.nom}</h4>
+                <h4 className="font-bold app-text">{user.nom}</h4>
                 <p className="text-xs app-text2">Niveau {user.level}</p>
               </div>
               <div className="text-right">
@@ -309,7 +309,7 @@ const Gamification = ({ data }) => {
 
       {/* Comment gagner des points */}
       <Card className="p-6 glass-card rounded-2xl bg-gradient-to-br from-yellow-600/10 to-orange-600/10 border border-yellow-500/30">
-        <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-yellow-400" />
           Comment Gagner des Points
         </h3>

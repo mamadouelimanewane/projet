@@ -62,7 +62,7 @@ const LandingPage = ({ onEnter }) => {
         </div>
       </div>
 
-      <div className="absolute bottom-6 text-xs font-mono text-slate-600">
+      <div className="absolute bottom-6 text-xs font-mono app-text3">
         © 2026 Système d'Information Élite · Accès Sécurisé
       </div>
     </div>

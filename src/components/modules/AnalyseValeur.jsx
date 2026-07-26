@@ -35,7 +35,7 @@ const AnalyseValeur = ({ data = {} }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Graphique Coût vs Valeur */}
         <Card className="lg:col-span-2 p-6 glass-card rounded-2xl">
-           <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+           <h3 className="font-bold app-text mb-6 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-indigo-400" />
               Comparaison Coût / Valeur par Fonction
            </h3>
@@ -60,7 +60,7 @@ const AnalyseValeur = ({ data = {} }) => {
            <Card className="p-6 glass-card rounded-2xl">
               <div className="text-center mb-6">
                  <p className="text-[10px] app-text3 font-black uppercase tracking-widest mb-1">Ratio Valeur Global</p>
-                 <p className="text-4xl font-black text-white">{ratio}</p>
+                 <p className="text-4xl font-black app-text">{ratio}</p>
                  <Badge variant="success" className="mt-2">Excellent (+0.2)</Badge>
               </div>
               <div className="space-y-4 pt-4 border-t app-border">
@@ -77,7 +77,7 @@ const AnalyseValeur = ({ data = {} }) => {
            </Card>
 
            <Card className="p-6 glass-card rounded-2xl bg-indigo-600/5 border-indigo-500/20">
-              <h4 className="font-bold text-white mb-2 flex items-center gap-2">
+              <h4 className="font-bold app-text mb-2 flex items-center gap-2">
                  <Zap className="w-4 h-4 text-yellow-400" />
                  Algorithme de Simplification
               </h4>

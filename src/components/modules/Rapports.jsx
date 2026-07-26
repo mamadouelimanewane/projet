@@ -9,7 +9,7 @@ const Rapports = () => {
       <SectionHeader title="Générateur de Rapports" subtitle="Préparez vos supports pour le comité de pilotage" action={<Btn onClick={() => alert("Génération d'un nouveau rapport en cours...")} size="md">Nouveau Rapport</Btn>} />
       <div className="app-surface2 border app-border rounded-xl p-6 flex flex-col items-center justify-center text-center min-h-[300px]">
         <div className="text-5xl mb-4">📊</div>
-        <h3 className="text-lg font-bold text-white mb-2">Sélectionnez les données à exporter</h3>
+        <h3 className="text-lg font-bold app-text mb-2">Sélectionnez les données à exporter</h3>
         <p className="text-sm app-text2 mb-6 max-w-md">Combinez Gantt, Avancement, Budget et Risques en un document PDF ou Excel aux couleurs de votre entreprise.</p>
         <div className="flex gap-4">
           <Btn className="bg-red-600 hover:bg-red-500 text-white">Export PDF</Btn>

@@ -242,7 +242,7 @@ const ChatTempsReel = ({ data }) => {
         {/* Sidebar salons */}
         <Card className="hidden md:flex w-64 p-4 glass-card rounded-2xl flex-col">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-white flex items-center gap-2">
+            <h3 className="font-bold app-text flex items-center gap-2">
               <Hash className="w-4 h-4" />
               Salons
             </h3>
@@ -264,7 +264,7 @@ const ChatTempsReel = ({ data }) => {
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="font-medium text-white text-sm">{salon.nom}</span>
+                  <span className="font-medium app-text text-sm">{salon.nom}</span>
                   {messages[salon.id]?.filter(m => !m.lu).length > 0 && (
                     <span className="px-2 py-0.5 bg-indigo-600 text-white text-xs rounded-full">
                       {messages[salon.id].filter(m => !m.lu).length}
@@ -297,7 +297,7 @@ const ChatTempsReel = ({ data }) => {
           {/* Header salon */}
           <div className="p-4 border-b app-border flex items-center justify-between">
             <div>
-              <h3 className="font-bold text-white">
+              <h3 className="font-bold app-text">
                 {salons.find(s => s.id === salonActif)?.nom}
               </h3>
               <p className="text-xs app-text2">
@@ -324,7 +324,7 @@ const ChatTempsReel = ({ data }) => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Rechercher dans les messages..."
-                  className="w-full pl-10 pr-4 py-2 app-surface2 border app-border rounded-lg text-sm text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full pl-10 pr-4 py-2 app-surface2 border app-border rounded-lg text-sm app-text focus:outline-none focus:border-indigo-500"
                 />
               </div>
             </div>
@@ -339,13 +339,13 @@ const ChatTempsReel = ({ data }) => {
                 </div>
                 <div className={`max-w-[70%] ${msg.user === user ? 'items-end' : 'items-start'}`}>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-medium text-white">{msg.user}</span>
+                    <span className="text-sm font-medium app-text">{msg.user}</span>
                     <span className="text-xs app-text3">{formatHeure(msg.timestamp)}</span>
                   </div>
                   <div className={`p-3 rounded-xl ${
                     msg.user === user
                       ? 'bg-indigo-600 text-white'
-                      : 'app-surface2 text-slate-200'
+                      : 'app-surface2 app-text'
                   }`}>
                     <p className="text-sm">{msg.content}</p>
                   </div>
@@ -406,7 +406,7 @@ const ChatTempsReel = ({ data }) => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && envoyerMessage()}
                 placeholder="Écrire un message..."
-                className="flex-1 px-3 py-2 app-surface2 border app-border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm"
+                className="flex-1 px-3 py-2 app-surface2 border app-border rounded-xl app-text placeholder-slate-500 focus:outline-none focus:border-indigo-500 text-sm"
               />
               <Btn size="sm" variant="ghost">
                 <Smile className="w-4 h-4" />

@@ -43,7 +43,7 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
                 <div className="p-2 app-surface2 rounded-lg">{kpi.icon}</div>
                 <span className="text-[10px] font-black app-text3 uppercase tracking-widest">{kpi.label}</span>
              </div>
-             <span className="text-2xl font-black text-white">{kpi.value}</span>
+             <span className="text-2xl font-black app-text">{kpi.value}</span>
           </Card>
         ))}
       </div>
@@ -98,11 +98,11 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
            <div className="mt-4 space-y-2">
               <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center justify-between">
                  <span className="text-[10px] font-black text-emerald-400 uppercase">Santé Globale</span>
-                 <span className="text-xs font-black text-white">OPTIMAL</span>
+                 <span className="text-xs font-black app-text">OPTIMAL</span>
               </div>
               <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-between">
                  <span className="text-[10px] font-black text-amber-400 uppercase">Point de Vigilance</span>
-                 <span className="text-xs font-black text-white">RECRUTEMENT</span>
+                 <span className="text-xs font-black app-text">RECRUTEMENT</span>
               </div>
            </div>
         </Card>
@@ -118,9 +118,9 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
             </h3>
             <div className="flex flex-col items-center justify-center py-6 text-center">
                <div className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(99,102,241,0.5)] mb-4 animate-float">
-                  <ShieldCheck className="w-12 h-12 text-white" />
+                  <ShieldCheck className="w-12 h-12 app-text" />
                </div>
-               <p className="text-xs font-black text-white uppercase mb-1">Certificat d'Excellence Opérationnelle</p>
+               <p className="text-xs font-black app-text uppercase mb-1">Certificat d'Excellence Opérationnelle</p>
                <p className="text-[10px] app-text3 font-mono mb-4 italic">Hash: 0x9f9...dE21 (Verified by Blockchain)</p>
                <Btn variant="primary" className="w-full text-xs py-3">Générer Preuve de Confiance</Btn>
             </div>
@@ -140,7 +140,7 @@ const StrategicWarRoom = ({ data = {}, setData }) => {
                  <div key={i} className="flex items-center justify-between p-4 app-surface border app-border rounded-2xl">
                     <div className="flex items-center gap-3">
                        <div className="p-2 app-surface2 rounded-lg">{item.icon}</div>
-                       <span className="text-xs font-black text-white">{item.label}</span>
+                       <span className="text-xs font-black app-text">{item.label}</span>
                     </div>
                     <Badge variant="info" className="text-[8px] uppercase">{item.status}</Badge>
                  </div>

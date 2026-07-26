@@ -122,11 +122,11 @@ const DocumentsGED = ({ data = [] }) => {
                 }`}>
                   {d.nom.endsWith('.pdf') ? '📄' : d.nom.endsWith('.xlsx') ? '📊' : '📁'}
                 </div>
-                <div className="text-[10px] font-black text-slate-600 uppercase tracking-widest">{d.taille}</div>
+                <div className="text-[10px] font-black app-text3 uppercase tracking-widest">{d.taille}</div>
               </div>
 
               <div className="space-y-1 mb-6">
-                <h4 className="text-sm font-bold text-white truncate" title={d.nom}>{d.nom}</h4>
+                <h4 className="text-sm font-bold app-text truncate" title={d.nom}>{d.nom}</h4>
                 <p className="text-[10px] text-indigo-400 font-bold uppercase">{d.projet}</p>
                 <div className="flex items-center gap-2 mt-2">
                    <span className="text-[9px] app-surface2 px-2 py-0.5 rounded border app-border app-text2">{d.type}</span>
@@ -136,7 +136,7 @@ const DocumentsGED = ({ data = [] }) => {
               <div className="flex justify-between items-center pt-4 border-t app-border">
                 <div className="text-[9px] app-text3">Par {d.auteur || 'Auto-IA'} • {d.date}</div>
                 <div className="flex gap-2">
-                  <button className="app-text3 hover:text-white transition-colors">👁️</button>
+                  <button className="app-text3 hover:app-text transition-colors">👁️</button>
                   <button className="app-text3 hover:text-indigo-400 transition-colors">📥</button>
                 </div>
               </div>
@@ -148,7 +148,7 @@ const DocumentsGED = ({ data = [] }) => {
           {filteredDocs.length === 0 && (
             <div className="col-span-full py-20 text-center opacity-40">
               <div className="text-5xl mb-4">🔍</div>
-              <p className="text-sm text-white">Aucun document ne correspond à votre recherche.</p>
+              <p className="text-sm app-text">Aucun document ne correspond à votre recherche.</p>
             </div>
           )}
         </div>
@@ -158,7 +158,7 @@ const DocumentsGED = ({ data = [] }) => {
       {isOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="app-surface border app-border rounded-2xl w-full max-w-md p-6 shadow-2xl animate-entrance">
-            <h3 className="text-xl font-bold text-white mb-4">Ajouter un Document</h3>
+            <h3 className="text-xl font-bold app-text mb-4">Ajouter un Document</h3>
             
             <form onSubmit={handleSubmit} className="space-y-4">
               {!currentProject && (
@@ -167,7 +167,7 @@ const DocumentsGED = ({ data = [] }) => {
                   <select 
                     value={newDoc.projet}
                     onChange={(e) => setNewDoc({...newDoc, projet: e.target.value})}
-                    className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                    className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                   >
                     <option value="">Sélectionner un projet</option>
                     {globalData.projets?.filter(p => !p.archived).map(p => (
@@ -184,7 +184,7 @@ const DocumentsGED = ({ data = [] }) => {
                   value={newDoc.nom}
                   onChange={(e) => setNewDoc({...newDoc, nom: e.target.value})}
                   placeholder="Ex: Plan de masse"
-                  className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
@@ -193,7 +193,7 @@ const DocumentsGED = ({ data = [] }) => {
                 <select 
                   value={newDoc.type}
                   onChange={(e) => setNewDoc({...newDoc, type: e.target.value})}
-                  className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                 >
                   <option value="Technique">Technique</option>
                   <option value="Officiel">Officiel</option>

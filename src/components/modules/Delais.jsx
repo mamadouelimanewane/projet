@@ -39,9 +39,9 @@ const Delais = ({ data, setData }) => {
               const ecart = getEcart(d.planifie, d.reel);
               return (
                 <tr key={d.id} className="border-b app-border hover:app-surface3 transition-colors">
-                  <td className="px-3 py-3 text-sm font-medium text-slate-200">{d.tache}</td>
+                  <td className="px-3 py-3 text-sm font-medium app-text">{d.tache}</td>
                   <td className="px-3 py-3 text-sm app-text2">{d.planifie}</td>
-                  <td className="px-3 py-3 text-sm app-text2">{d.reel || <span className="text-slate-600 italic">En attente</span>}</td>
+                  <td className="px-3 py-3 text-sm app-text2">{d.reel || <span className="app-text3 italic">En attente</span>}</td>
                   <td className="px-3 py-3 text-sm font-bold" style={{ color: ecart === null ? "#94a3b8" : ecart <= 0 ? "#10b981" : ecart <= 7 ? "#f59e0b" : "#ef4444" }}>
                     {ecart === null ? "-" : ecart === 0 ? "On time" : ecart > 0 ? `+${ecart}j` : `${ecart}j`}
                   </td>

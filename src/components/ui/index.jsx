@@ -79,8 +79,8 @@ const Modal = ({ title, onClose, children }) => (
     <div className="absolute inset-0 app-bg backdrop-blur-md" onClick={onClose} />
     <div className="relative glass-card border app-border rounded-3xl w-full max-w-lg shadow-2xl animate-entrance overflow-hidden">
       <div className="flex justify-between items-center p-6 border-b app-border">
-        <h3 className="text-xl font-bold text-white tracking-tight">{title}</h3>
-        <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full app-surface2 app-text2 hover:text-white transition-colors">×</button>
+        <h3 className="text-xl font-bold app-text tracking-tight">{title}</h3>
+        <button onClick={onClose} className="w-8 h-8 flex items-center justify-center rounded-full app-surface2 app-text2 hover:app-text transition-colors">×</button>
       </div>
       <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto custom-scrollbar">{children}</div>
     </div>
@@ -90,16 +90,16 @@ const Modal = ({ title, onClose, children }) => (
 const Input = ({ label, ...props }) => (
   <div className="space-y-1.5">
     {label && <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider ml-1">{label}</label>}
-    <input className="w-full app-surface border app-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all" {...props} />
+    <input className="w-full app-surface border app-border rounded-xl px-4 py-2.5 app-text text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all" {...props} />
   </div>
 );
 
 const Select = ({ label, options, ...props }) => (
   <div className="space-y-1.5">
     {label && <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider ml-1">{label}</label>}
-    <select className="w-full app-surface border app-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all appearance-none cursor-pointer" {...props}>
+    <select className="w-full app-surface border app-border rounded-xl px-4 py-2.5 app-text text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all appearance-none cursor-pointer" {...props}>
       {options.map(o => (
-        <option key={o} value={o} className="app-surface text-white">{o}</option>
+        <option key={o} value={o} className="app-surface app-text">{o}</option>
       ))}
     </select>
   </div>
@@ -108,7 +108,7 @@ const Select = ({ label, options, ...props }) => (
 const Textarea = ({ label, ...props }) => (
   <div className="space-y-1.5">
     {label && <label className="block text-[10px] app-text3 font-bold uppercase tracking-wider ml-1">{label}</label>}
-    <textarea className="w-full app-surface border app-border rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all resize-none" rows={3} {...props} />
+    <textarea className="w-full app-surface border app-border rounded-xl px-4 py-2.5 app-text text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 transition-all resize-none" rows={3} {...props} />
   </div>
 );
 
@@ -145,7 +145,7 @@ const Btn = ({ children, onClick, variant = "primary", size = "sm", className = 
 const SectionHeader = ({ title, subtitle, action }) => (
   <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-3 md:gap-4 animate-entrance">
     <div className="min-w-0 flex-1">
-      <h2 className="text-xl md:text-3xl font-black text-white tracking-tight leading-none truncate">{title}</h2>
+      <h2 className="text-xl md:text-3xl font-black app-text tracking-tight leading-none truncate">{title}</h2>
       {subtitle && <p className="text-[10px] md:text-xs app-text3 font-medium mt-1 md:mt-2 uppercase tracking-widest line-clamp-1">{subtitle}</p>}
     </div>
     <div className="flex-shrink-0 w-full md:w-auto">{action}</div>

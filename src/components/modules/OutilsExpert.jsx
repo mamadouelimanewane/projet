@@ -135,7 +135,7 @@ export default function OutilsExpert() {
             </Card>
             <Card className="p-4 text-center">
               <p className="text-[10px] app-text3 uppercase font-bold mb-1">Tâches Totales</p>
-              <p className="text-2xl font-black text-white">{cpmTasks.length}</p>
+              <p className="text-2xl font-black app-text">{cpmTasks.length}</p>
             </Card>
             <Card className="p-4 text-center">
               <p className="text-[10px] app-text3 uppercase font-bold mb-1">Marge Max</p>
@@ -164,7 +164,7 @@ export default function OutilsExpert() {
                         className={`absolute top-0 h-full rounded-lg flex items-center px-2 transition-all ${t.critique ? "bg-red-500/80" : "bg-indigo-500/60"}`}
                         style={{ left: `${offset}%`, width: `${Math.max(pct, 3)}%` }}
                       >
-                        <span className="text-[9px] font-black text-white whitespace-nowrap">{t.duree}j</span>
+                        <span className="text-[9px] font-black app-text whitespace-nowrap">{t.duree}j</span>
                       </div>
                       {t.marge > 0 && (
                         <div
@@ -225,7 +225,7 @@ export default function OutilsExpert() {
               <tbody>
                 {raciData.map((row, actIdx) => (
                   <tr key={actIdx} className="border-t app-border">
-                    <td className="py-2 pr-4 text-xs text-white font-medium">{row.activite}</td>
+                    <td className="py-2 pr-4 text-xs app-text font-medium">{row.activite}</td>
                     {ROLES.map(role => {
                       const val = row.roles[role] || "";
                       const color = RACI_COLORS[val] || "transparent";

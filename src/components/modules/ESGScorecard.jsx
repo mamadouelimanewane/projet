@@ -39,7 +39,7 @@ const ESGScorecard = ({ data = {} }) => {
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className="text-4xl font-black text-white">82</span>
+                <span className="text-4xl font-black app-text">82</span>
                 <span className="text-[10px] font-bold app-text3 uppercase">/ 100</span>
               </div>
            </div>
@@ -50,7 +50,7 @@ const ESGScorecard = ({ data = {} }) => {
                     <div className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }} />
                     {item.name}
                  </div>
-                 <span className="text-white font-bold">{item.value}%</span>
+                 <span className="app-text font-bold">{item.value}%</span>
                </div>
              ))}
            </div>
@@ -66,7 +66,7 @@ const ESGScorecard = ({ data = {} }) => {
                     <Leaf className="w-5 h-5 text-emerald-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">Environnement</h4>
+                    <h4 className="font-bold app-text">Environnement</h4>
                     <p className="text-xs app-text3">Bilan carbone et gestion des ressources</p>
                   </div>
                 </div>
@@ -75,12 +75,12 @@ const ESGScorecard = ({ data = {} }) => {
               <div className="grid grid-cols-2 gap-8">
                  <div>
                     <p className="text-[10px] font-black app-text3 uppercase mb-2">Émissions CO2 (t eq CO2)</p>
-                    <p className="text-2xl font-bold text-white">{data.carbone || 124} <span className="text-xs app-text3">t</span></p>
+                    <p className="text-2xl font-bold app-text">{data.carbone || 124} <span className="text-xs app-text3">t</span></p>
                     <ProgressBar value={75} color="#10b981" />
                  </div>
                  <div>
                     <p className="text-[10px] font-black app-text3 uppercase mb-2">Recyclage Déchets</p>
-                    <p className="text-2xl font-bold text-white">68%</p>
+                    <p className="text-2xl font-bold app-text">68%</p>
                     <ProgressBar value={68} color="#10b981" />
                  </div>
               </div>
@@ -94,7 +94,7 @@ const ESGScorecard = ({ data = {} }) => {
                     <Users className="w-5 h-5 text-blue-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">Social</h4>
+                    <h4 className="font-bold app-text">Social</h4>
                     <p className="text-xs app-text3">Équité, formation et emploi local</p>
                   </div>
                 </div>
@@ -103,12 +103,12 @@ const ESGScorecard = ({ data = {} }) => {
               <div className="grid grid-cols-2 gap-8">
                  <div>
                     <p className="text-[10px] font-black app-text3 uppercase mb-2">Emploi Local</p>
-                    <p className="text-2xl font-bold text-white">85%</p>
+                    <p className="text-2xl font-bold app-text">85%</p>
                     <ProgressBar value={85} color="#3b82f6" />
                  </div>
                  <div>
                     <p className="text-[10px] font-black app-text3 uppercase mb-2">Mixité (F/H)</p>
-                    <p className="text-2xl font-bold text-white">42%</p>
+                    <p className="text-2xl font-bold app-text">42%</p>
                     <ProgressBar value={42} color="#3b82f6" />
                  </div>
               </div>
@@ -122,7 +122,7 @@ const ESGScorecard = ({ data = {} }) => {
                     <Shield className="w-5 h-5 text-purple-400" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">Gouvernance</h4>
+                    <h4 className="font-bold app-text">Gouvernance</h4>
                     <p className="text-xs app-text3">Éthique des affaires et transparence</p>
                   </div>
                 </div>
@@ -131,12 +131,12 @@ const ESGScorecard = ({ data = {} }) => {
               <div className="grid grid-cols-2 gap-8">
                  <div>
                     <p className="text-[10px] font-black app-text3 uppercase mb-2">Transparence</p>
-                    <p className="text-2xl font-bold text-white">98%</p>
+                    <p className="text-2xl font-bold app-text">98%</p>
                     <ProgressBar value={98} color="#a855f7" />
                  </div>
                  <div>
                     <p className="text-[10px] font-black app-text3 uppercase mb-2">Indépendance Board</p>
-                    <p className="text-2xl font-bold text-white">75%</p>
+                    <p className="text-2xl font-bold app-text">75%</p>
                     <ProgressBar value={75} color="#a855f7" />
                  </div>
               </div>

@@ -44,7 +44,7 @@ const Agile = ({ data, setData }) => {
           </div>
           <div className="app-surface2 border app-border rounded-xl p-5">
             <div className="flex justify-between items-center mb-1">
-              <h3 className="text-sm font-bold text-white">{sprint.nom} — {sprint.objectif}</h3>
+              <h3 className="text-sm font-bold app-text">{sprint.nom} — {sprint.objectif}</h3>
               <span className="text-xs app-text2">{sprint.debut} → {sprint.fin}</span>
             </div>
             <ProgressBar value={Math.round((donePoints / Math.max(totalPoints, 1)) * 100)} color="#6366f1" />
@@ -54,7 +54,7 @@ const Agile = ({ data, setData }) => {
                   <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold"
                     style={{ backgroundColor: "#6366f122", color: "#a78bfa" }}>{st.points}</div>
                   <div className="flex-1">
-                    <p className="text-sm text-slate-200 font-medium">{st.titre}</p>
+                    <p className="text-sm app-text font-medium">{st.titre}</p>
                     <p className="text-xs app-text3">{st.assignee}</p>
                   </div>
                   <select value={st.statut} onChange={e => updateStory(st.id, e.target.value)}

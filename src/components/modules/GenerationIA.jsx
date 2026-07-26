@@ -82,7 +82,7 @@ const GenerationIA = () => {
             {/* Report Header */}
             <div className="flex justify-between items-start border-b app-border pb-8">
               <div>
-                <h1 className="text-3xl font-black text-white italic tracking-tighter">PROJET ÉLITE <span className="text-indigo-500">| RAPPORT</span></h1>
+                <h1 className="text-3xl font-black app-text italic tracking-tighter">PROJET ÉLITE <span className="text-indigo-500">| RAPPORT</span></h1>
                 <p className="text-indigo-400 font-bold uppercase tracking-widest text-xs mt-2">{activeReport}</p>
               </div>
               <div className="text-right">
@@ -148,7 +148,7 @@ const GenerationIA = () => {
                     <tbody className="divide-y divide-slate-800/50">
                       {data.projets.map(p => (
                         <tr key={p.id}>
-                          <td className="px-5 py-4 text-white font-bold">{p.nom}</td>
+                          <td className="px-5 py-4 app-text font-bold">{p.nom}</td>
                           <td className="px-5 py-4 text-indigo-400">{p.avancement}%</td>
                           <td className="px-5 py-4 app-text">{(p.budgetTotal/1000000).toFixed(0)}M</td>
                           <td className="px-5 py-4">
@@ -165,11 +165,11 @@ const GenerationIA = () => {
               {/* CEO Signature Block */}
               <div className="pt-20 flex justify-between items-end italic app-text3">
                 <div>
-                   <p className="text-[10px] uppercase font-black tracking-widest text-slate-700">Approbation Directoire</p>
+                   <p className="text-[10px] uppercase font-black tracking-widest app-text3">Approbation Directoire</p>
                    <div className="mt-4 w-40 h-[1px] app-surface2" />
                 </div>
                 <div className="text-right">
-                   <p className="text-[10px] uppercase font-black tracking-widest text-slate-700">Cachet Projet Élite</p>
+                   <p className="text-[10px] uppercase font-black tracking-widest app-text3">Cachet Projet Élite</p>
                    <div className="mt-4 w-40 h-[1px] app-surface2" />
                 </div>
               </div>

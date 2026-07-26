@@ -39,7 +39,7 @@ const OceanTechElite = ({ data = {}, setData }) => {
               <span className="text-[10px] font-black app-text3 uppercase tracking-widest">{kpi.label}</span>
             </div>
             <div>
-              <span className="text-2xl font-black text-white">{kpi.value}</span>
+              <span className="text-2xl font-black app-text">{kpi.value}</span>
               <p className="text-[9px] font-bold app-text3 uppercase mt-1">{kpi.sub}</p>
             </div>
           </Card>
@@ -125,7 +125,7 @@ const OceanTechElite = ({ data = {}, setData }) => {
               ].map((zone, i) => (
                 <div key={i} className="p-4 app-surface rounded-2xl border app-border">
                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-xs font-black text-white">{zone.zone}</span>
+                      <span className="text-xs font-black app-text">{zone.zone}</span>
                       <Badge variant={zone.status === 'Normal' ? 'success' : zone.status === 'Alerte' ? 'warning' : 'error'} className="text-[8px] uppercase">{zone.status}</Badge>
                    </div>
                    <div className="w-full h-1.5 app-surface2 rounded-full overflow-hidden">
@@ -144,7 +144,7 @@ const OceanTechElite = ({ data = {}, setData }) => {
             <div className="grid grid-cols-2 gap-4">
                <div className="p-4 app-surface rounded-2xl border app-border text-center">
                   <p className="text-[9px] font-black app-text3 uppercase mb-1">Température Eau</p>
-                  <p className="text-xl font-black text-white">24.5°C</p>
+                  <p className="text-xl font-black app-text">24.5°C</p>
                </div>
                <div className="p-4 app-surface rounded-2xl border app-border text-center">
                   <p className="text-[9px] font-black app-text3 uppercase mb-1">Salinité</p>

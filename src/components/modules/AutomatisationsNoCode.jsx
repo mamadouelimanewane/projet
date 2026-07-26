@@ -17,22 +17,22 @@ const AutomatisationsNoCode = ({ data, setData }) => {
   };
   return (
     <div className="space-y-6">
-      <SectionHeader title="Automatisations & Règles No-Code" subtitle="Éliminez le travail manuel en créant des règles logiques 'Si ceci, Alors cela'" action={<Btn onClick={addAutomation} size="md" className="bg-gradient-to-r from-fuchsia-600 to-indigo-600 shadow-lg shadow-fuchsia-600/30 text-white font-bold border-0">+ Nouvelle automatisation</Btn>} />
+      <SectionHeader title="Automatisations & Règles No-Code" subtitle="Éliminez le travail manuel en créant des règles logiques 'Si ceci, Alors cela'" action={<Btn onClick={addAutomation} size="md" className="bg-gradient-to-r from-fuchsia-600 to-indigo-600 shadow-lg shadow-fuchsia-600/30 app-text font-bold border-0">+ Nouvelle automatisation</Btn>} />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
         <div className="app-surface2 border app-border rounded-xl p-6 shadow-xl relative overflow-hidden group">
           <div className="absolute -right-6 -top-6 text-7xl opacity-5 group-hover:scale-110 transition-transform group-hover:text-indigo-400">🤖</div>
-          <h3 className="text-3xl font-black text-white mb-1">24k</h3>
+          <h3 className="text-3xl font-black app-text mb-1">24k</h3>
           <p className="text-sm app-text2 font-medium">Actions exécutées ce mois</p>
         </div>
         <div className="app-surface2 border app-border rounded-xl p-6 shadow-xl relative overflow-hidden group">
           <div className="absolute -right-6 -top-6 text-7xl opacity-5 group-hover:scale-110 transition-transform group-hover:text-amber-400">⏱️</div>
-          <h3 className="text-3xl font-black text-white mb-1">160h</h3>
+          <h3 className="text-3xl font-black app-text mb-1">160h</h3>
           <p className="text-sm app-text2 font-medium">Temps humain économisé</p>
         </div>
         <div className="app-surface2 border app-border rounded-xl p-6 shadow-xl relative overflow-hidden group">
           <div className="absolute -right-6 -top-6 text-7xl opacity-5 group-hover:scale-110 transition-transform group-hover:text-emerald-400">⚡</div>
-          <h3 className="text-3xl font-black text-white mb-1">{data.filter(d => d.active).length}</h3>
+          <h3 className="text-3xl font-black app-text mb-1">{data.filter(d => d.active).length}</h3>
           <p className="text-sm app-text2 font-medium">Règles actives (Globales)</p>
         </div>
       </div>
@@ -51,7 +51,7 @@ const AutomatisationsNoCode = ({ data, setData }) => {
             {/* Content Column */}
             <div className="flex-1 p-5 flex flex-col md:flex-row gap-4 items-center">
               <div className="flex-1 min-w-0 w-full">
-                <h3 className="text-base font-bold text-white mb-3 flex items-center gap-2">
+                <h3 className="text-base font-bold app-text mb-3 flex items-center gap-2">
                   {rule.nom}
                   {!rule.active && <span className="text-[10px] app-surface3 px-2 py-0.5 rounded app-text">DÉSACTIVÉ</span>}
                 </h3>
@@ -71,7 +71,7 @@ const AutomatisationsNoCode = ({ data, setData }) => {
               </div>
 
               <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <Btn variant="ghost" size="sm" className="app-surface2 app-text hover:text-white">✏️ Éditer</Btn>
+                <Btn variant="ghost" size="sm" className="app-surface2 app-text hover:app-text">✏️ Éditer</Btn>
               </div>
             </div>
           </div>

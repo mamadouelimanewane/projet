@@ -327,14 +327,14 @@ Comment puis-je vous aider aujourd'hui ?`,
             <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
               msg.role === 'assistant' ? 'bg-indigo-600' : 'bg-slate-600'
             }`}>
-              {msg.role === 'assistant' ? <Bot className="w-5 h-5 text-white" /> : <User className="w-5 h-5 text-white" />}
+              {msg.role === 'assistant' ? <Bot className="w-5 h-5 app-text" /> : <User className="w-5 h-5 app-text" />}
             </div>
 
             {/* Message */}
             <div className={`max-w-[70%] space-y-2 ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
               <div className={`p-4 rounded-2xl ${
                 msg.role === 'assistant' 
-                  ? 'app-surface2 text-slate-200' 
+                  ? 'app-surface2 app-text' 
                   : 'bg-indigo-600 text-white'
               }`}>
                 <div className="text-sm whitespace-pre-wrap">
@@ -360,7 +360,7 @@ Comment puis-je vous aider aujourd'hui ?`,
                   >
                     <ThumbsDown className="w-3 h-3" />
                   </button>
-                  <span className="text-xs text-slate-600 ml-2">
+                  <span className="text-xs app-text3 ml-2">
                     {new Date(msg.timestamp).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
@@ -373,7 +373,7 @@ Comment puis-je vous aider aujourd'hui ?`,
         {isTyping && (
           <div className="flex gap-3">
             <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center">
-              <Bot className="w-5 h-5 text-white" />
+              <Bot className="w-5 h-5 app-text" />
             </div>
             <div className="p-4 rounded-2xl app-surface2">
               <div className="flex gap-1">
@@ -419,7 +419,7 @@ Comment puis-je vous aider aujourd'hui ?`,
           onChange={(e) => setInput(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && handleSend()}
           placeholder="Posez votre question..."
-          className="flex-1 px-4 py-3 app-surface2 border app-border rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+          className="flex-1 px-4 py-3 app-surface2 border app-border rounded-xl app-text placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
         />
         <Btn onClick={handleSend} disabled={!input.trim() || isTyping} className="px-6">
           <Send className="w-5 h-5" />

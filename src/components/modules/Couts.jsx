@@ -53,7 +53,7 @@ const Couts = ({ data, setData }) => {
           <tbody>
             {data.map(c => (
               <tr key={c.id} className="border-b app-border hover:app-surface3 transition-colors">
-                <td className="px-4 py-3 text-sm font-medium text-slate-200">{c.phase}</td>
+                <td className="px-4 py-3 text-sm font-medium app-text">{c.phase}</td>
                 <td className="px-4 py-3 text-sm app-text">{c.prevu.toLocaleString()} FCFA</td>
                 <td className="px-4 py-3 text-sm app-text">{c.reel.toLocaleString()} FCFA</td>
                 <td className="px-4 py-3 text-sm font-bold" style={{ color: c.prevu - c.reel >= 0 ? "#10b981" : "#ef4444" }}>

@@ -177,7 +177,7 @@ const RapportsAutomatiques = async ({ data }) => {
       {/* Formulaire création */}
       {showForm && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Nouveau Rapport Planifié</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Nouveau Rapport Planifié</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
@@ -187,7 +187,7 @@ const RapportsAutomatiques = async ({ data }) => {
                 value={nouveauRapport.nom}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, nom: e.target.value})}
                 placeholder="ex: Rapport Hebdomadaire"
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -196,7 +196,7 @@ const RapportsAutomatiques = async ({ data }) => {
               <select
                 value={nouveauRapport.type}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, type: e.target.value})}
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               >
                 <option value="pdf">PDF</option>
                 <option value="excel">Excel</option>
@@ -209,7 +209,7 @@ const RapportsAutomatiques = async ({ data }) => {
               <select
                 value={nouveauRapport.frequence}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, frequence: e.target.value})}
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               >
                 <option value="quotidien">Quotidien</option>
                 <option value="hebdomadaire">Hebdomadaire</option>
@@ -226,7 +226,7 @@ const RapportsAutomatiques = async ({ data }) => {
                 value={nouveauRapport.destinataires}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, destinataires: e.target.value})}
                 placeholder="email1@example.com, email2@example.com"
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -237,7 +237,7 @@ const RapportsAutomatiques = async ({ data }) => {
                 value={nouveauRapport.jour}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, jour: e.target.value})}
                 placeholder="lundi, mardi, 1, 15..."
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -247,7 +247,7 @@ const RapportsAutomatiques = async ({ data }) => {
                 type="time"
                 value={nouveauRapport.heure}
                 onChange={(e) => setNouveauRapport({...nouveauRapport, heure: e.target.value})}
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
           </div>
@@ -286,7 +286,7 @@ const RapportsAutomatiques = async ({ data }) => {
 
       {/* Rapports planifiés */}
       <div className="space-y-4">
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text flex items-center gap-2">
           <Calendar className="w-5 h-5 text-indigo-400" />
           Rapports Planifiés ({rapportsPlanifies.length})
         </h3>
@@ -295,7 +295,7 @@ const RapportsAutomatiques = async ({ data }) => {
           <Card key={rapport.id} className={`p-6 glass-card rounded-2xl border-l-4 ${rapport.actif ? 'border-l-emerald-500' : 'border-l-slate-500'}`}>
             <div className="flex justify-between items-start mb-4">
               <div className="flex-1">
-                <h4 className="text-lg font-bold text-white mb-1">{rapport.nom}</h4>
+                <h4 className="text-lg font-bold app-text mb-1">{rapport.nom}</h4>
                 <div className="flex items-center gap-4 text-sm app-text2">
                   <span className="flex items-center gap-1">
                     <FileText className="w-4 h-4" />
@@ -333,7 +333,7 @@ const RapportsAutomatiques = async ({ data }) => {
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="app-text2">Dernier envoi :</span>
-                <span className="ml-2 text-white">{rapport.dernierEnvoi || "Jamais"}</span>
+                <span className="ml-2 app-text">{rapport.dernierEnvoi || "Jamais"}</span>
               </div>
               <div>
                 <span className="app-text2">Prochain envoi :</span>
@@ -346,7 +346,7 @@ const RapportsAutomatiques = async ({ data }) => {
 
       {/* Historique */}
       <div className="space-y-4">
-        <h3 className="text-xl font-bold text-white flex items-center gap-2">
+        <h3 className="text-xl font-bold app-text flex items-center gap-2">
           <Send className="w-5 h-5 text-emerald-400" />
           Historique des Envois ({historique.length})
         </h3>
@@ -361,10 +361,10 @@ const RapportsAutomatiques = async ({ data }) => {
             <Card key={h.id} className="p-4 glass-card rounded-xl flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center">
-                  <CheckCircle className="w-5 h-5 text-white" />
+                  <CheckCircle className="w-5 h-5 app-text" />
                 </div>
                 <div>
-                  <p className="font-medium text-white">{h.rapportNom}</p>
+                  <p className="font-medium app-text">{h.rapportNom}</p>
                   <p className="text-sm app-text2">
                     {new Date(h.date).toLocaleString('fr-FR')} • {h.destinataires} destinataire(s)
                   </p>

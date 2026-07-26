@@ -96,7 +96,7 @@ const FeuillesTemps = ({ data = [] }) => {
               {localData.map(t => (
                 <tr key={t.id} className="border-b app-border hover:app-surface3">
                   <td className="px-4 py-3 text-sm app-text2">{t.date}</td>
-                  <td className="px-4 py-3 text-sm font-bold text-white">{t.membre}</td>
+                  <td className="px-4 py-3 text-sm font-bold app-text">{t.membre}</td>
                   <td className="px-4 py-3 text-sm app-text">{t.tache}</td>
                   <td className="px-4 py-3 text-sm font-bold text-indigo-400">{t.heures}h</td>
                   <td className="px-4 py-3">
@@ -121,7 +121,7 @@ const FeuillesTemps = ({ data = [] }) => {
       {isOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="app-surface border app-border rounded-2xl w-full max-w-md p-6 shadow-2xl animate-entrance">
-            <h3 className="text-xl font-bold text-white mb-4">Saisir des Heures</h3>
+            <h3 className="text-xl font-bold app-text mb-4">Saisir des Heures</h3>
             
             <form onSubmit={handleSubmit} className="space-y-4">
               {!currentProject && (
@@ -130,7 +130,7 @@ const FeuillesTemps = ({ data = [] }) => {
                   <select 
                     value={newEntry.projet}
                     onChange={(e) => setNewEntry({...newEntry, projet: e.target.value})}
-                    className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                    className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                   >
                     <option value="">Sélectionner un projet</option>
                     {globalData.projets?.filter(p => !p.archived).map(p => (
@@ -146,7 +146,7 @@ const FeuillesTemps = ({ data = [] }) => {
                   type="date" 
                   value={newEntry.date}
                   onChange={(e) => setNewEntry({...newEntry, date: e.target.value})}
-                  className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
@@ -157,7 +157,7 @@ const FeuillesTemps = ({ data = [] }) => {
                   value={newEntry.membre}
                   onChange={(e) => setNewEntry({...newEntry, membre: e.target.value})}
                   placeholder="Nom du collaborateur"
-                  className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
@@ -168,7 +168,7 @@ const FeuillesTemps = ({ data = [] }) => {
                   value={newEntry.tache}
                   onChange={(e) => setNewEntry({...newEntry, tache: e.target.value})}
                   placeholder="Description de la tâche"
-                  className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                  className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
@@ -181,7 +181,7 @@ const FeuillesTemps = ({ data = [] }) => {
                     value={newEntry.heures}
                     onChange={(e) => setNewEntry({...newEntry, heures: e.target.value})}
                     placeholder="Ex: 4.5"
-                    className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                    className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                   />
                 </div>
 
@@ -190,7 +190,7 @@ const FeuillesTemps = ({ data = [] }) => {
                   <select 
                     value={newEntry.type}
                     onChange={(e) => setNewEntry({...newEntry, type: e.target.value})}
-                    className="w-full app-surface2 border app-border rounded-lg p-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+                    className="w-full app-surface2 border app-border rounded-lg p-2.5 app-text text-sm focus:outline-none focus:border-indigo-500"
                   >
                     <option value="Facturable">Facturable</option>
                     <option value="Non facturable">Non facturable</option>

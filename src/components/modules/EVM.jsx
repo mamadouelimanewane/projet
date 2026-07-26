@@ -32,7 +32,7 @@ const EVM = ({ data }) => {
             <tbody className="divide-y divide-slate-800/50">
               {(data || []).map(p => (
                 <tr key={p.id} className="hover:app-surface2 transition-colors">
-                  <td className="px-5 py-4 font-bold text-white">{p.projet}</td>
+                  <td className="px-5 py-4 font-bold app-text">{p.projet}</td>
                   <td className="px-5 py-4 text-right font-mono app-text2">{(p.pV / 1000000).toFixed(1)}M</td>
                   <td className="px-5 py-4 text-right font-mono text-indigo-300 font-bold">{(p.eV / 1000000).toFixed(1)}M</td>
                   <td className="px-5 py-4 text-right font-mono app-text2">{(p.aC / 1000000).toFixed(1)}M</td>

@@ -65,7 +65,7 @@ const Ressources = ({ data, setData }) => {
               <div className="flex-1 min-w-0">
                 <div className="flex justify-between items-center mb-1">
                   <div>
-                    <span className="text-sm font-bold text-white">{r.membre}</span>
+                    <span className="text-sm font-bold app-text">{r.membre}</span>
                     <span className="text-xs app-text3 ml-2">{r.role} · {r.specialite}</span>
                   </div>
                   <div className="flex gap-2">

@@ -42,7 +42,7 @@ const SuiviSimple = ({ data, setData }) => {
             {filtered.map((item, i) => (
               <tr key={item.id} className="border-b app-border hover:app-surface3 transition-colors">
                 <td className="px-4 py-3 text-xs app-text3">{i + 1}</td>
-                <td className="px-4 py-3 text-sm text-slate-200 font-medium">{item.tache}</td>
+                <td className="px-4 py-3 text-sm app-text font-medium">{item.tache}</td>
                 <td className="px-4 py-3 text-sm app-text2">{item.responsable}</td>
                 <td className="px-4 py-3 text-sm app-text2">{item.dateLimite}</td>
                 <td className="px-4 py-3"><Badge value={item.statut} /></td>

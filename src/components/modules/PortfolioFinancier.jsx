@@ -55,7 +55,7 @@ const PortfolioFinancier = ({ data }) => {
               return (
                 <div key={p.id} className="border-b app-border pb-3 last:border-0">
                   <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm font-bold text-white truncate w-40">{p.nom}</span>
+                    <span className="text-sm font-bold app-text truncate w-40">{p.nom}</span>
                     <span className={`text-xs font-bold px-2 py-0.5 rounded ${isProfit ? "bg-emerald-500/20 text-emerald-400" : "bg-red-500/20 text-red-400"}`}>
                       {isProfit ? "+" : "-"}{Math.abs(prev - dep).toLocaleString()} F
                     </span>

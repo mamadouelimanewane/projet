@@ -37,7 +37,7 @@ const Workflows = ({ data = [], setData }) => {
             <div key={w.id} className="app-surface2 border app-border rounded-xl p-4 flex justify-between items-center hover:border-indigo-500/40">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-sm font-bold text-white">{w.nom}</h3>
+                  <h3 className="text-sm font-bold app-text">{w.nom}</h3>
                   <Badge value={w.statut} map={{ "Actif": "#10b981", "Inactif": "#64748b" }} />
                 </div>
                 <p className="text-xs app-text2">Si <strong className="text-indigo-400">{w.declencheur}</strong> alors <strong className="text-indigo-400">{w.action}</strong></p>

@@ -14,7 +14,7 @@ const DashboardProjet = ({ data, projetId }) => {
     return (
       <div className="glass-card rounded-2xl p-12 text-center">
         <div className="text-6xl mb-4">📊</div>
-        <h2 className="text-2xl font-bold text-white mb-2">Projet non trouvé</h2>
+        <h2 className="text-2xl font-bold app-text mb-2">Projet non trouvé</h2>
         <p className="app-text2 mb-6">Sélectionnez un projet pour voir son tableau de bord</p>
         <button 
           onClick={() => navigate('/multiprojets')}
@@ -132,15 +132,15 @@ const DashboardProjet = ({ data, projetId }) => {
         <div className="flex justify-between items-start">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <h1 className="text-3xl font-black text-white tracking-tight">{projet.nom}</h1>
+              <h1 className="text-3xl font-black app-text tracking-tight">{projet.nom}</h1>
               <Badge value={projet.statut} />
             </div>
-            <p className="text-sm app-text2">Chef de projet : <span className="text-slate-200 font-bold">{projet.chef}</span></p>
+            <p className="text-sm app-text2">Chef de projet : <span className="app-text font-bold">{projet.chef}</span></p>
             <p className="text-xs app-text3 mt-1">{projet.debut} → {projet.fin}</p>
           </div>
           <button 
             onClick={() => navigate('/multiprojets')}
-            className="px-4 py-2 app-surface3 hover:bg-slate-600 text-white rounded-lg text-sm font-bold transition-colors"
+            className="px-4 py-2 app-surface3 hover:bg-slate-600 app-text rounded-lg text-sm font-bold transition-colors"
           >
             ← Retour
           </button>
@@ -360,7 +360,7 @@ const DashboardProjet = ({ data, projetId }) => {
                   ⚠
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-bold text-slate-100">{p.description}</p>
+                  <p className="text-sm font-bold app-text">{p.description}</p>
                   <p className="text-[10px] app-text3 font-bold uppercase tracking-widest mt-1">
                     {p.responsable} · Signalé le {p.dateSignalement}
                   </p>
@@ -382,7 +382,7 @@ const DashboardProjet = ({ data, projetId }) => {
                 ⏱
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold text-slate-100">{retardsActifs} tâche(s) en retard détectée(s)</p>
+                <p className="text-sm font-bold app-text">{retardsActifs} tâche(s) en retard détectée(s)</p>
                 <p className="text-[10px] app-text3 font-bold uppercase tracking-widest mt-1">
                   Consultez le module Délais pour les détails
                 </p>
@@ -419,7 +419,7 @@ const DashboardProjet = ({ data, projetId }) => {
                 <div className={`w-2 h-2 rounded-full ${
                   j.statut === "Atteint" ? "bg-emerald-400" : j.statut === "En cours" ? "bg-amber-400" : "bg-slate-500"
                 }`} />
-                <h4 className="text-sm font-bold text-slate-200 truncate">{j.jalon}</h4>
+                <h4 className="text-sm font-bold app-text truncate">{j.jalon}</h4>
               </div>
               <p className="text-[10px] app-text3">{j.date}</p>
               <Badge value={j.statut} />
@@ -453,7 +453,7 @@ const DashboardProjet = ({ data, projetId }) => {
               style={{ '--hover-color': m.color }}
             >
               <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">{m.icon}</div>
-              <div className="text-xs font-bold app-text2 group-hover:text-white transition-colors">{m.nom}</div>
+              <div className="text-xs font-bold app-text2 group-hover:app-text transition-colors">{m.nom}</div>
             </button>
           ))}
         </div>

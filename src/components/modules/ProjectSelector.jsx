@@ -153,7 +153,7 @@ export const ProjectSelector = () => {
           {!currentProject ? "Σ" : currentProject.nom.charAt(0).toUpperCase()}
         </div>
         <div className="text-left">
-          <p className="text-sm font-medium text-white truncate max-w-[200px]">
+          <p className="text-sm font-medium app-text truncate max-w-[200px]">
             {!currentProject ? "Tous les projets" : currentProject.nom}
           </p>
           <p className="text-xs app-text2">{!currentProject ? "Vue Globale" : currentProject.chef}</p>
@@ -174,7 +174,7 @@ export const ProjectSelector = () => {
           <div className="absolute top-full right-0 mt-2 w-96 app-surface backdrop-blur-xl border app-border rounded-2xl shadow-2xl z-50 overflow-hidden">
             {/* Header */}
             <div className="p-4 border-b app-border">
-              <h3 className="text-lg font-bold text-white mb-3">Changer de Projet</h3>
+              <h3 className="text-lg font-bold app-text mb-3">Changer de Projet</h3>
               
               {/* Recherche */}
               <div className="relative">
@@ -184,7 +184,7 @@ export const ProjectSelector = () => {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Rechercher un projet..."
-                  className="w-full pl-10 pr-4 py-2.5 app-surface2 border app-border rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className="w-full pl-10 pr-4 py-2.5 app-surface2 border app-border rounded-xl text-sm app-text placeholder-slate-500 focus:outline-none focus:border-indigo-500"
                   autoFocus
                 />
               </div>
@@ -201,10 +201,10 @@ export const ProjectSelector = () => {
                 <div className="flex items-start gap-3">
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white flex-shrink-0 ${!selectedProjectId ? 'bg-indigo-600' : 'app-surface3'}`}>
                     Σ
-                    {!selectedProjectId && <Check className="w-4 h-4 absolute text-white" />}
+                    {!selectedProjectId && <Check className="w-4 h-4 absolute app-text" />}
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-semibold text-white">Tous les projets</h4>
+                    <h4 className="font-semibold app-text">Tous les projets</h4>
                     <p className="text-xs app-text2">Synthèse consolidée du portefeuille</p>
                   </div>
                 </div>
@@ -236,13 +236,13 @@ export const ProjectSelector = () => {
                             : 'app-surface3'
                         }`}>
                           {projet.nom.charAt(0).toUpperCase()}
-                          {isSelected && <Check className="w-4 h-4 absolute text-white" />}
+                          {isSelected && <Check className="w-4 h-4 absolute app-text" />}
                         </div>
 
                         {/* Info projet */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1">
-                            <h4 className="font-semibold text-white truncate">{projet.nom}</h4>
+                            <h4 className="font-semibold app-text truncate">{projet.nom}</h4>
                             {isSelected && (
                               <span className="px-2 py-0.5 bg-indigo-600 text-white text-[10px] rounded-full uppercase font-bold">
                                 Actif

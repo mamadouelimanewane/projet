@@ -208,13 +208,13 @@ Bonne gestion de projet ! 🎉`,
           <Card className="p-6 glass-card rounded-2xl bg-gradient-to-r from-indigo-600/20 to-purple-600/20 border border-indigo-500/30">
             <div className="flex items-start justify-between">
               <div>
-                <h3 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                <h3 className="text-lg font-bold app-text mb-2 flex items-center gap-2">
                   <Lightbulb className="w-5 h-5 text-yellow-400" />
                   Astuce du Jour
                 </h3>
                 <p className="app-text">{currentTip}</p>
               </div>
-              <button onClick={() => setShowTips(false)} className="app-text2 hover:text-white">
+              <button onClick={() => setShowTips(false)} className="app-text2 hover:app-text">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -223,7 +223,7 @@ Bonne gestion de projet ! 🎉`,
 
         {/* Progression */}
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Votre Progression</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Votre Progression</h3>
           
           <div className="mb-4">
             <div className="flex justify-between text-sm mb-2">
@@ -263,7 +263,7 @@ Bonne gestion de projet ! 🎉`,
 
         {/* Guides rapides */}
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Guides Rapides</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Guides Rapides</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -277,7 +277,7 @@ Bonne gestion de projet ! 🎉`,
                 href={`#${guide.lien}`}
                 className="p-4 app-surface2 hover:app-surface3 rounded-xl transition-colors border app-border hover:border-indigo-500/50"
               >
-                <h4 className="font-medium text-white mb-1">{guide.titre}</h4>
+                <h4 className="font-medium app-text mb-1">{guide.titre}</h4>
                 <p className="text-sm app-text2">{guide.desc}</p>
               </a>
             ))}
@@ -295,16 +295,16 @@ Bonne gestion de projet ! 🎉`,
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center">
-              <IconComponent className="w-6 h-6 text-white" />
+              <IconComponent className="w-6 h-6 app-text" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white">{steps[currentStep].title}</h3>
+              <h3 className="text-xl font-bold app-text">{steps[currentStep].title}</h3>
               <p className="text-sm app-text2">{steps[currentStep].description}</p>
             </div>
           </div>
           <button
             onClick={() => setShowOnboarding(false)}
-            className="app-text2 hover:text-white transition-colors"
+            className="app-text2 hover:app-text transition-colors"
           >
             <X className="w-6 h-6" />
           </button>

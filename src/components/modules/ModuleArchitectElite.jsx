@@ -86,9 +86,9 @@ const ModuleArchitectElite = ({ data = {}, setData }) => {
               <div className="text-center space-y-4 animate-in zoom-in duration-700">
                  <div className="w-32 h-32 bg-white rounded-[40px] flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(168,85,247,0.5)] border-4 border-purple-500 relative">
                     <Rocket className="w-16 h-16 text-purple-600 animate-bounce" />
-                    <div className="absolute -top-4 -right-4 bg-emerald-500 p-2 rounded-full"><CheckCircle2 className="w-6 h-6 text-white" /></div>
+                    <div className="absolute -top-4 -right-4 bg-emerald-500 p-2 rounded-full"><CheckCircle2 className="w-6 h-6 app-text" /></div>
                  </div>
-                 <h2 className="text-5xl font-black text-white uppercase tracking-tighter shadow-xl">MISSION ACCOMPLIE</h2>
+                 <h2 className="text-5xl font-black app-text uppercase tracking-tighter shadow-xl">MISSION ACCOMPLIE</h2>
                  <p className="text-purple-300 font-bold uppercase tracking-widest">Votre Module est désormais en ligne</p>
               </div>
            </div>
@@ -142,13 +142,13 @@ const ModuleArchitectElite = ({ data = {}, setData }) => {
                             <Btn variant="primary" className="w-full" onClick={() => setIsSigned(true)} disabled={!signatureText}><PenTool className="w-4 h-4 mr-2" /> Signer & Valider</Btn>
                          </div>
                        ) : (
-                         <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 italic font-mono text-xl text-slate-700">{signatureText}</div>
+                         <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 italic font-mono text-xl app-text3">{signatureText}</div>
                        )}
                     </div>
                  </div>
               </div>
               <div className="p-8 app-surface border-t app-border flex gap-4">
-                 <Btn variant="ghost" className="flex-1 text-xs py-4 text-white" onClick={() => { setShowQuoteModal(false); setIsSigned(false); }}>Fermer</Btn>
+                 <Btn variant="ghost" className="flex-1 text-xs py-4 app-text" onClick={() => { setShowQuoteModal(false); setIsSigned(false); }}>Fermer</Btn>
               </div>
            </Card>
         </div>
@@ -178,7 +178,7 @@ const ModuleArchitectElite = ({ data = {}, setData }) => {
                     {versions.map((v) => (
                        <button key={v.id} onClick={() => setGeneratedConfig(v)} className={`w-full p-4 rounded-2xl border text-left transition-all ${generatedConfig.id === v.id ? 'app-surface app-border shadow-xl' : 'app-bg app-border hover:app-border'}`}>
                           <div className="flex justify-between items-center mb-1">
-                             <span className="text-[10px] font-black text-white">{v.version}</span>
+                             <span className="text-[10px] font-black app-text">{v.version}</span>
                              <span className="text-[10px] font-black text-emerald-500">{formatCurrency(v.budget.total)}</span>
                           </div>
                           <p className="text-[11px] font-bold app-text2 truncate">{v.name}</p>
@@ -195,12 +195,12 @@ const ModuleArchitectElite = ({ data = {}, setData }) => {
                       <div className="flex gap-6">
                          <div className="w-16 h-16 bg-purple-600/20 rounded-3xl flex items-center justify-center border border-purple-500/30"><Sparkles className="w-8 h-8 text-purple-400" /></div>
                          <div>
-                            <h3 className="text-2xl font-black text-white uppercase tracking-tighter">Décrivez votre Vision</h3>
+                            <h3 className="text-2xl font-black app-text uppercase tracking-tighter">Décrivez votre Vision</h3>
                          </div>
                       </div>
                       <Btn variant="outline" size="xs" onClick={handleRunDemo}><Play className="w-3 h-3 mr-1" /> Démo Portuaire</Btn>
                    </div>
-                   <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Décrivez votre centre d'activité..." className="w-full h-48 app-bg border-2 app-border rounded-[32px] p-8 text-slate-200 text-lg focus:outline-none focus:border-purple-600 transition-all shadow-inner placeholder:text-slate-700" />
+                   <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Décrivez votre centre d'activité..." className="w-full h-48 app-bg border-2 app-border rounded-[32px] p-8 app-text text-lg focus:outline-none focus:border-purple-600 transition-all shadow-inner placeholder:app-text3" />
                    <Btn variant="primary" className="w-full mt-8 py-8 text-xl font-black rounded-3xl shadow-purple-900/20" onClick={handleAIAnalysis} disabled={isAnalyzing || !prompt}>
                       {isAnalyzing ? <Loader2 className="w-8 h-8 animate-spin" /> : <Zap className="w-8 h-8 mr-3" />}
                       {isAnalyzing ? "Synthèse Neuronale..." : "Générer l'Architecture"}
@@ -215,7 +215,7 @@ const ModuleArchitectElite = ({ data = {}, setData }) => {
                             <div className="w-20 h-20 bg-gradient-to-tr from-purple-600 to-indigo-600 rounded-[28px] flex items-center justify-center text-4xl shadow-2xl border border-white/10">{generatedConfig.icon}</div>
                             <div>
                                <div className="flex items-center gap-3">
-                                  <h3 className="text-3xl font-black text-white tracking-tighter">{generatedConfig.name}</h3>
+                                  <h3 className="text-3xl font-black app-text tracking-tighter">{generatedConfig.name}</h3>
                                   <Badge variant="primary" className="px-3 py-1 text-xs">{generatedConfig.version}</Badge>
                                </div>
                                <div className="flex gap-4 mt-2">
@@ -226,7 +226,7 @@ const ModuleArchitectElite = ({ data = {}, setData }) => {
                          </div>
                          <div className="text-right">
                             <p className="text-[10px] font-black app-text3 uppercase mb-1">Investissement</p>
-                            <p className="text-3xl font-black text-white tracking-tighter">{formatCurrency(generatedConfig.budget.total)}</p>
+                            <p className="text-3xl font-black app-text tracking-tighter">{formatCurrency(generatedConfig.budget.total)}</p>
                             <Btn variant="outline" size="xs" className="mt-4" onClick={() => setShowQuoteModal(true)}><PenTool className="w-3 h-3 mr-1" /> {isSigned ? "Voir Devis Signé" : "Devis & Signature"}</Btn>
                          </div>
                       </div>

@@ -45,7 +45,7 @@ const GreenPMO = ({ data }) => {
             <tbody className="divide-y divide-slate-800/50">
               {(data || []).map(p => (
                 <tr key={p.id} className="hover:app-surface2 transition-colors">
-                  <td className="px-5 py-4 font-bold text-white">{p.projet}</td>
+                  <td className="px-5 py-4 font-bold app-text">{p.projet}</td>
                   <td className="px-5 py-4">{p.categorie}</td>
                   <td className="px-5 py-4 text-right font-mono text-indigo-300">{p.empreinteReel} {p.unite}</td>
                   <td className="px-5 py-4">

@@ -22,7 +22,7 @@ const DashboardProjetIsole = () => {
     return (
       <div className="glass-card rounded-2xl p-12 text-center">
         <div className="text-6xl mb-4">📊</div>
-        <h2 className="text-2xl font-bold text-white mb-2">Aucun projet sélectionné</h2>
+        <h2 className="text-2xl font-bold app-text mb-2">Aucun projet sélectionné</h2>
         <p className="app-text2 mb-6">Utilisez le sélecteur en haut pour choisir un projet</p>
         <button 
           onClick={() => navigate('/multiprojets')}
@@ -107,7 +107,7 @@ const DashboardProjetIsole = () => {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-3xl font-bold app-text mb-2">
             Dashboard Projet
           </h1>
           <p className="app-text2">
@@ -147,11 +147,11 @@ const DashboardProjetIsole = () => {
       <Card className="bg-gradient-to-r from-indigo-600/10 to-purple-600/10 border-indigo-500/30">
         <div className="flex items-start justify-between">
           <div className="flex items-start gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-2xl">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center app-text font-bold text-2xl">
               {(currentProject.nom || 'P').charAt(0).toUpperCase()}
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white mb-1">{currentProject.nom}</h2>
+              <h2 className="text-2xl font-bold app-text mb-1">{currentProject.nom}</h2>
               <p className="app-text mb-2">Chef de projet : {currentProject.chef}</p>
               <div className="flex items-center gap-4 text-sm app-text2">
                 <span className="flex items-center gap-1">
@@ -170,7 +170,7 @@ const DashboardProjetIsole = () => {
           </div>
           <div className="text-right">
             <p className="text-sm app-text2 mb-1">Avancement</p>
-            <p className="text-4xl font-bold text-white">{avancement}%</p>
+            <p className="text-4xl font-bold app-text">{avancement}%</p>
           </div>
         </div>
       </Card>
@@ -237,7 +237,7 @@ const DashboardProjetIsole = () => {
 
           {/* EVM */}
           <Card className="p-6 glass-card rounded-2xl">
-            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <h3 className="text-xl font-bold app-text mb-4 flex items-center gap-2">
               <Activity className="w-5 h-5 text-indigo-400" />
               Earned Value Management (EVM)
             </h3>
@@ -276,7 +276,7 @@ const DashboardProjetIsole = () => {
           {/* Graphiques */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
-              <h3 className="text-lg font-bold text-white mb-4">Répartition Tâches</h3>
+              <h3 className="text-lg font-bold app-text mb-4">Répartition Tâches</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <PieChart>
                   <Pie
@@ -299,7 +299,7 @@ const DashboardProjetIsole = () => {
             </Card>
 
         <Card>
-              <h3 className="text-lg font-bold text-white mb-4">Évolution Avancement</h3>
+              <h3 className="text-lg font-bold app-text mb-4">Évolution Avancement</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <AreaChart data={avancementData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
@@ -316,12 +316,12 @@ const DashboardProjetIsole = () => {
 
       {activeTab === "taches" && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Tâches du Projet ({taches.length})</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Tâches du Projet ({taches.length})</h3>
           <div className="space-y-3">
             {taches.slice(0, 10).map((tache, i) => (
               <div key={i} className="p-4 app-surface2 rounded-xl flex items-center justify-between">
                 <div className="flex-1">
-                  <h4 className="font-medium text-white mb-1">{tache.tache}</h4>
+                  <h4 className="font-medium app-text mb-1">{tache.tache}</h4>
                   <p className="text-sm app-text2">{tache.responsable}</p>
                 </div>
                 <div className="flex items-center gap-3">
@@ -346,7 +346,7 @@ const DashboardProjetIsole = () => {
 
       {activeTab === "budget" && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Budget du Projet</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Budget du Projet</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <div className="p-6 app-surface2 rounded-xl">
               <p className="text-sm app-text2 mb-2">Budget Total</p>
@@ -369,12 +369,12 @@ const DashboardProjetIsole = () => {
 
       {activeTab === "risques" && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Risques ({risques.length})</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Risques ({risques.length})</h3>
           <div className="space-y-3">
             {risques.filter(r => r.statut === "Actif").map((risque, i) => (
               <div key={i} className="p-4 app-surface2 rounded-xl">
                 <div className="flex items-start justify-between mb-2">
-                  <h4 className="font-medium text-white">{risque.risque}</h4>
+                  <h4 className="font-medium app-text">{risque.risque}</h4>
                   <Badge variant={
                     risque.gravite * risque.probabilite >= 16 ? "danger" :
                     risque.gravite * risque.probabilite >= 12 ? "warning" : "default"
@@ -391,11 +391,11 @@ const DashboardProjetIsole = () => {
 
       {activeTab === "delais" && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Planning</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Planning</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div className="p-4 app-surface2 rounded-xl">
               <p className="text-sm app-text2 mb-1">Durée Totale</p>
-              <p className="text-2xl font-bold text-white">{joursTotal} jours</p>
+              <p className="text-2xl font-bold app-text">{joursTotal} jours</p>
             </div>
             <div className="p-4 app-surface2 rounded-xl">
               <p className="text-sm app-text2 mb-1">Jours Passés</p>
@@ -415,7 +415,7 @@ const DashboardProjetIsole = () => {
 
       {activeTab === "equipe" && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">Équipe Projet</h3>
+          <h3 className="text-xl font-bold app-text mb-4">Équipe Projet</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {taches.map(t => t.responsable)
               .filter((v, i, a) => a.indexOf(v) === i)
@@ -425,11 +425,11 @@ const DashboardProjetIsole = () => {
                 const faites = tachesResp.filter(t => t.statut === "Fait").length;
                 return (
                   <div key={i} className="p-4 app-surface2 rounded-xl flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center app-text font-bold">
                       {(responsable || 'U').charAt(0)}
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-medium text-white">{responsable}</h4>
+                      <h4 className="font-medium app-text">{responsable}</h4>
                       <p className="text-sm app-text2">{faites}/{tachesResp.length} tâches terminées</p>
                     </div>
                   </div>

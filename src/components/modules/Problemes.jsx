@@ -52,7 +52,7 @@ const Problemes = ({ data, setData }) => {
                 <Btn onClick={() => setData(data.filter(d => d.id !== p.id))} variant="danger">✕</Btn>
               </div>
             </div>
-            <p className="text-sm text-white font-medium mb-1">{p.description}</p>
+            <p className="text-sm app-text font-medium mb-1">{p.description}</p>
             <p className="text-xs app-text3">{p.responsable} · Signalé le {p.dateSignalement}</p>
             {p.resolution && <p className="text-xs text-emerald-400 mt-2 bg-emerald-400/10 rounded px-2 py-1">✓ {p.resolution}</p>}
           </div>

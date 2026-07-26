@@ -38,7 +38,7 @@ const SmartCityElite = ({ data = {}, setData }) => {
               <span className="text-[10px] font-black app-text3 uppercase tracking-widest">{kpi.label}</span>
             </div>
             <div>
-              <span className="text-2xl font-black text-white">{kpi.value}</span>
+              <span className="text-2xl font-black app-text">{kpi.value}</span>
               <p className="text-[9px] font-bold app-text3 uppercase mt-1">{kpi.sub}</p>
             </div>
           </Card>
@@ -100,7 +100,7 @@ const SmartCityElite = ({ data = {}, setData }) => {
                      <div className="flex items-center gap-3">
                         <div className="p-1.5 app-surface2 rounded-lg">{item.icon}</div>
                         <div>
-                           <p className="text-[10px] font-black text-white">{item.label}</p>
+                           <p className="text-[10px] font-black app-text">{item.label}</p>
                            <p className={`text-[9px] font-bold ${item.color}`}>{item.status}</p>
                         </div>
                      </div>
@@ -124,7 +124,7 @@ const SmartCityElite = ({ data = {}, setData }) => {
               <div className="p-4 app-surface border app-border rounded-2xl">
                  <p className="text-[10px] font-black app-text3 uppercase mb-2">Bus en Circulation</p>
                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-black text-white">124</span>
+                    <span className="text-2xl font-black app-text">124</span>
                     <Badge variant="success" className="text-[8px]">On-Time</Badge>
                  </div>
               </div>
@@ -158,7 +158,7 @@ const SmartCityElite = ({ data = {}, setData }) => {
                      <Thermometer className="w-6 h-6 text-emerald-400" />
                      <div>
                         <p className="text-[10px] font-black app-text3 uppercase mb-0.5">Température Urbaine</p>
-                        <p className="text-lg font-black text-white">28.4°C</p>
+                        <p className="text-lg font-black app-text">28.4°C</p>
                      </div>
                   </div>
                   <div className="text-right">
@@ -169,11 +169,11 @@ const SmartCityElite = ({ data = {}, setData }) => {
                <div className="flex items-center gap-3">
                   <div className="flex-1 p-3 app-surface border app-border rounded-xl text-center">
                      <p className="text-[8px] font-black app-text3 uppercase mb-1">Recyclage</p>
-                     <p className="text-[12px] font-bold text-white">62%</p>
+                     <p className="text-[12px] font-bold app-text">62%</p>
                   </div>
                   <div className="flex-1 p-3 app-surface border app-border rounded-xl text-center">
                      <p className="text-[8px] font-black app-text3 uppercase mb-1">Solaire Urbain</p>
-                     <p className="text-[12px] font-bold text-white">12.4 MWh</p>
+                     <p className="text-[12px] font-bold app-text">12.4 MWh</p>
                   </div>
                </div>
                <Btn variant="outline" className="w-full text-xs py-3 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/5">Rapport Durabilité Ville</Btn>

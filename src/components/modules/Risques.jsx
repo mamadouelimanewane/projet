@@ -69,7 +69,7 @@ const Risques = ({ data, setData }) => {
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center text-lg font-black flex-shrink-0"
                   style={{ backgroundColor: getScoreColor(score) + "22", color: getScoreColor(score) }}>{score}</div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-white font-medium truncate">{r.risque}</p>
+                  <p className="text-sm app-text font-medium truncate">{r.risque}</p>
                   <p className="text-xs app-text3">G:{r.gravite} × P:{r.probabilite} = <span style={{ color: getScoreColor(score) }}>{getScoreLabel(score)}</span></p>
                 </div>
                 <div className="flex gap-1">
@@ -86,11 +86,11 @@ const Risques = ({ data, setData }) => {
           <Input label="Risque" value={form.risque || ""} onChange={e => setForm({ ...form, risque: e.target.value })} />
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs app-text2 mb-1 font-medium">Gravité (1-5) : <strong className="text-white">{form.gravite}</strong></label>
+              <label className="block text-xs app-text2 mb-1 font-medium">Gravité (1-5) : <strong className="app-text">{form.gravite}</strong></label>
               <input type="range" min="1" max="5" value={form.gravite || 3} onChange={e => setForm({ ...form, gravite: Number(e.target.value) })} className="w-full accent-indigo-500" />
             </div>
             <div>
-              <label className="block text-xs app-text2 mb-1 font-medium">Probabilité (1-5) : <strong className="text-white">{form.probabilite}</strong></label>
+              <label className="block text-xs app-text2 mb-1 font-medium">Probabilité (1-5) : <strong className="app-text">{form.probabilite}</strong></label>
               <input type="range" min="1" max="5" value={form.probabilite || 3} onChange={e => setForm({ ...form, probabilite: Number(e.target.value) })} className="w-full accent-indigo-500" />
             </div>
           </div>

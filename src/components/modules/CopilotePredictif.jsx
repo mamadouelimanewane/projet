@@ -33,7 +33,7 @@ const CopilotePredictif = ({ data }) => {
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center text-xl text-indigo-400">✧</div>
-              <h3 className="text-xl font-bold text-white tracking-tight">Insight Stratégique IA</h3>
+              <h3 className="text-xl font-bold app-text tracking-tight">Insight Stratégique IA</h3>
             </div>
             
             <div className="space-y-4 app-text leading-relaxed">
@@ -84,7 +84,7 @@ const CopilotePredictif = ({ data }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
           <div className="p-4 rounded-xl border app-border app-surface2 text-center relative z-10">
             <p className="text-xs font-bold app-text2 mb-1 uppercase">Entrée</p>
-            <p className="text-sm font-bold text-white">Budget & Scope</p>
+            <p className="text-sm font-bold app-text">Budget & Scope</p>
           </div>
           <div className="hidden md:flex items-center justify-center absolute inset-0 pointer-events-none">
              <div className="w-full h-[1px] app-surface3" />

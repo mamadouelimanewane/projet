@@ -218,7 +218,7 @@ const KPIsPersonnalisables = async ({ data }) => {
       {/* Formulaire */}
       {showForm && (
         <Card className="p-6 glass-card rounded-2xl">
-          <h3 className="text-xl font-bold text-white mb-4">
+          <h3 className="text-xl font-bold app-text mb-4">
             {editingId ? "Modifier le KPI" : "Nouveau KPI"}
           </h3>
           
@@ -230,7 +230,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                 value={nouveauKPI.nom}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, nom: e.target.value})}
                 placeholder="ex: Taux de Satisfaction"
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -241,7 +241,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                 value={nouveauKPI.unite}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, unite: e.target.value})}
                 placeholder="%, €, jours..."
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -252,7 +252,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                 value={nouveauKPI.description}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, description: e.target.value})}
                 placeholder="Description du KPI"
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -263,7 +263,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                 value={nouveauKPI.formule}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, formule: e.target.value})}
                 placeholder="ex: moyenne(avancement) ou budgetReel / budgetTotal * 100"
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
               <p className="text-xs app-text3 mt-1">
                 Utilisez: moyenne(), somme(), compteur(), etc.
@@ -276,7 +276,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                 type="number"
                 value={nouveauKPI.objectif}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, objectif: parseFloat(e.target.value)})}
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -286,7 +286,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                 type="number"
                 value={nouveauKPI.seuilAlerte}
                 onChange={(e) => setNouveauKPI({...nouveauKPI, seuilAlerte: parseFloat(e.target.value)})}
-                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl text-white focus:outline-none focus:border-indigo-500"
+                className="w-full px-4 py-3 app-surface2 border app-border rounded-xl app-text focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -354,7 +354,7 @@ const KPIsPersonnalisables = async ({ data }) => {
                     {getIcone(kpi.icone)}
                   </div>
                   <div>
-                    <h4 className="font-bold text-white">{kpi.nom}</h4>
+                    <h4 className="font-bold app-text">{kpi.nom}</h4>
                     <p className="text-xs app-text2">{kpi.description}</p>
                   </div>
                 </div>
@@ -376,7 +376,7 @@ const KPIsPersonnalisables = async ({ data }) => {
 
               <div className="mb-4">
                 <div className="flex items-baseline gap-2 mb-2">
-                  <span className="text-4xl font-bold text-white">{valeur}</span>
+                  <span className="text-4xl font-bold app-text">{valeur}</span>
                   <span className="text-lg app-text2">{kpi.unite}</span>
                 </div>
                 <div className={`text-sm font-medium ${getStatutColor(statut)}`}>

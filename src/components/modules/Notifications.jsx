@@ -235,7 +235,7 @@ const Notifications = ({ data }) => {
       {/* Statistiques */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="glass-card rounded-xl p-4">
-          <div className="text-2xl font-bold text-white">{unreadCount}</div>
+          <div className="text-2xl font-bold app-text">{unreadCount}</div>
           <div className="text-xs app-text2">Non lues</div>
         </div>
         <div className="glass-card rounded-xl p-4">
@@ -243,7 +243,7 @@ const Notifications = ({ data }) => {
           <div className="text-xs app-text2">Critiques</div>
         </div>
         <div className="glass-card rounded-xl p-4">
-          <div className="text-2xl font-bold text-white">{activeNotifications.length}</div>
+          <div className="text-2xl font-bold app-text">{activeNotifications.length}</div>
           <div className="text-xs app-text2">Total Actives</div>
         </div>
         <div className="glass-card rounded-xl p-4">
@@ -277,7 +277,7 @@ const Notifications = ({ data }) => {
         {activeNotifications.length === 0 ? (
           <div className="glass-card rounded-2xl p-12 text-center">
             <div className="text-6xl mb-4">🔔</div>
-            <h3 className="text-xl font-bold text-white mb-2">Aucune notification</h3>
+            <h3 className="text-xl font-bold app-text mb-2">Aucune notification</h3>
             <p className="app-text2">Tout est sous contrôle !</p>
           </div>
         ) : (
@@ -346,7 +346,7 @@ const Notifications = ({ data }) => {
               onChange={e => setNewNotif({...newNotif, titre: e.target.value})}
             />
             <textarea
-              className="w-full p-3 app-surface2 border app-border rounded-lg text-white text-sm"
+              className="w-full p-3 app-surface2 border app-border rounded-lg app-text text-sm"
               rows="3"
               placeholder="Message..."
               value={newNotif.message}
@@ -387,7 +387,7 @@ const Notifications = ({ data }) => {
         <Modal title="Configuration Notifications" onClose={() => setConfigModal(false)}>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <span className="text-sm text-white">Alertes Email</span>
+              <span className="text-sm app-text">Alertes Email</span>
               <input 
                 type="checkbox" 
                 checked={config.emailAlerts}
@@ -396,7 +396,7 @@ const Notifications = ({ data }) => {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-white">Notifications Push</span>
+              <span className="text-sm app-text">Notifications Push</span>
               <input 
                 type="checkbox" 
                 checked={config.pushNotifications}
@@ -405,7 +405,7 @@ const Notifications = ({ data }) => {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-white">Rapport Quotidien</span>
+              <span className="text-sm app-text">Rapport Quotidien</span>
               <input 
                 type="checkbox" 
                 checked={config.dailyReport}
@@ -414,7 +414,7 @@ const Notifications = ({ data }) => {
               />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm text-white">Rapport Hebdomadaire</span>
+              <span className="text-sm app-text">Rapport Hebdomadaire</span>
               <input 
                 type="checkbox" 
                 checked={config.weeklyReport}
@@ -423,7 +423,7 @@ const Notifications = ({ data }) => {
               />
             </div>
             <div className="pt-4 border-t app-border">
-              <label className="text-sm text-white block mb-2">Seuil Alerte Budget (%)</label>
+              <label className="text-sm app-text block mb-2">Seuil Alerte Budget (%)</label>
               <input 
                 type="range" 
                 min="50" 

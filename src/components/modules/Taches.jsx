@@ -45,7 +45,7 @@ const Taches = ({ data, setData, projets }) => {
                   <Badge value={t.statut} />
                   <Badge value={t.priorite} map={PRIORITE_COLORS} />
                 </div>
-                <p className="text-sm font-semibold text-white">{t.tache}</p>
+                <p className="text-sm font-semibold app-text">{t.tache}</p>
                 <p className="text-xs app-text3">{t.responsable} · {t.debut} → {t.fin}</p>
               </div>
               <div className="flex gap-2">

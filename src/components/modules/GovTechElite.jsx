@@ -84,7 +84,7 @@ const GovTechElite = ({ data = {}, setData }) => {
                 className="flex items-center gap-2 app-surface border app-border px-3 py-1.5 rounded-xl hover:border-indigo-500 transition-all shadow-lg"
               >
                  <span className="text-xl leading-none">{currentConfig.flag}</span>
-                 <span className="text-[10px] font-black text-white uppercase tracking-widest">{selectedCountry}</span>
+                 <span className="text-[10px] font-black app-text uppercase tracking-widest">{selectedCountry}</span>
                  <ChevronDown className={`w-3 h-3 app-text3 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               {isCountryDropdownOpen && (
@@ -96,7 +96,7 @@ const GovTechElite = ({ data = {}, setData }) => {
                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-indigo-600/20 text-left transition-all border-b app-border last:border-0"
                      >
                         <span className="text-lg">{countryConfigs[country].flag}</span>
-                        <span className="text-[10px] font-black text-white uppercase tracking-widest">{country}</span>
+                        <span className="text-[10px] font-black app-text uppercase tracking-widest">{country}</span>
                      </button>
                    ))}
                 </div>
@@ -122,12 +122,12 @@ const GovTechElite = ({ data = {}, setData }) => {
           <div key={i} className="p-4 app-surface border-2 app-border rounded-2xl group hover:border-indigo-500/50 transition-all">
              <div className="flex justify-between items-start mb-2">
                 <div className={`w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-lg`}>
-                   <Zap className="w-4 h-4 text-white" />
+                   <Zap className="w-4 h-4 app-text" />
                 </div>
                 <Badge variant="info" className="text-[8px] uppercase">Priorité {i+1}</Badge>
              </div>
              <p className="text-[9px] font-black app-text3 uppercase tracking-widest">Pilier Stratégique</p>
-             <p className="text-xs font-black text-white">{pillar}</p>
+             <p className="text-xs font-black app-text">{pillar}</p>
           </div>
         ))}
       </div>
@@ -174,14 +174,14 @@ const GovTechElite = ({ data = {}, setData }) => {
                          <tbody className="divide-y divide-slate-800">
                             {ministries.map((m, i) => (
                                <tr key={i} className="hover:app-surface2 transition-colors">
-                                  <td className="py-3 text-[11px] font-bold text-white">{m.name}</td>
+                                  <td className="py-3 text-[11px] font-bold app-text">{m.name}</td>
                                   <td className="py-3 text-[11px] app-text">{m.budget}M</td>
                                   <td className="py-3">
                                      <div className="flex items-center gap-2">
                                         <div className="w-16 h-1 app-surface2 rounded-full overflow-hidden">
                                            <div className="h-full bg-indigo-500" style={{ width: `${m.progress}%` }} />
                                         </div>
-                                        <span className="text-[10px] font-black text-white">{m.progress}%</span>
+                                        <span className="text-[10px] font-black app-text">{m.progress}%</span>
                                      </div>
                                   </td>
                                   <td className="py-3 text-right">
@@ -207,11 +207,11 @@ const GovTechElite = ({ data = {}, setData }) => {
         <div className="space-y-6">
            <Card className="p-6 glass-card app-border bg-gradient-to-br from-indigo-900/20 to-slate-900">
               <div className="flex items-center gap-3 mb-6">
-                 <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl shadow-xl backdrop-blur-md border border-white/10 text-white">
+                 <div className="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-2xl shadow-xl backdrop-blur-md border border-white/10 app-text">
                     {currentConfig.flag}
                  </div>
                  <div>
-                    <h4 className="text-sm font-black text-white uppercase tracking-tighter">{selectedCountry}</h4>
+                    <h4 className="text-sm font-black app-text uppercase tracking-tighter">{selectedCountry}</h4>
                     <p className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Dashboard Exécutif</p>
                  </div>
               </div>
@@ -226,7 +226,7 @@ const GovTechElite = ({ data = {}, setData }) => {
                          {kpi.icon}
                          <span className="text-[10px] font-bold app-text2 uppercase">{kpi.label}</span>
                       </div>
-                      <span className="text-xs font-black text-white">{kpi.value}</span>
+                      <span className="text-xs font-black app-text">{kpi.value}</span>
                    </div>
                  ))}
               </div>

@@ -610,7 +610,7 @@ export default function CategoryHub({ onSelectModule, onGoToDashboard, onBackToL
               </div>
               <button
                 onClick={() => onSelectModule('nouveau-projet')}
-                className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white rounded-xl font-bold text-xs shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
+                className="flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 app-text rounded-xl font-bold text-xs shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
               >
                 <span>⚡</span>
                 <span>Pocket Wizard (5s)</span>

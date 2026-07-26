@@ -49,7 +49,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                  <div className="flex items-center gap-3">
                     <FileText className="w-6 h-6 text-indigo-400" />
                     <div>
-                       <h3 className="text-lg font-black text-white">Rapport d'Impact Mission #442</h3>
+                       <h3 className="text-lg font-black app-text">Rapport d'Impact Mission #442</h3>
                        <p className="text-[10px] app-text2 uppercase font-bold tracking-widest text-indigo-400">Généré par Gravity NGO AI</p>
                     </div>
                  </div>
@@ -61,11 +61,11 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                  <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-1">
                        <p className="text-[9px] font-black app-text3 uppercase">Bailleur Principal</p>
-                       <p className="text-sm font-bold text-white flex items-center gap-2">🇺🇸 USAID International</p>
+                       <p className="text-sm font-bold app-text flex items-center gap-2">🇺🇸 USAID International</p>
                     </div>
                     <div className="space-y-1 text-right">
                        <p className="text-[9px] font-black app-text3 uppercase">Période</p>
-                       <p className="text-sm font-bold text-white uppercase">Q2 - 2026</p>
+                       <p className="text-sm font-bold app-text uppercase">Q2 - 2026</p>
                     </div>
                  </div>
                  <div className="space-y-2">
@@ -92,7 +92,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                     <p className="text-[9px] font-black app-text3 uppercase border-b app-border pb-1">Preuves d'Exécution</p>
                     <div className="grid grid-cols-4 gap-2">
                        {[1,2,3,4].map(i => (
-                         <div key={i} className="aspect-square app-surface2 rounded-lg flex items-center justify-center text-slate-600 border app-border italic text-[8px]">Photo_{i}.jpg</div>
+                         <div key={i} className="aspect-square app-surface2 rounded-lg flex items-center justify-center app-text3 border app-border italic text-[8px]">Photo_{i}.jpg</div>
                        ))}
                     </div>
                  </div>
@@ -136,7 +136,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
              <div className="text-2xl">{s.icon}</div>
              <div className="text-left">
                 <p className="text-[10px] font-black app-text3 uppercase tracking-widest">Secteur</p>
-                <p className="text-xs font-black text-white">{s.label}</p>
+                <p className="text-xs font-black app-text">{s.label}</p>
              </div>
           </button>
         ))}
@@ -189,7 +189,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                      <div className="flex items-center gap-3">
                         <span className="text-lg">{donor.logo}</span>
                         <div>
-                           <p className="text-[11px] font-black text-white">{donor.name}</p>
+                           <p className="text-[11px] font-black app-text">{donor.name}</p>
                            <p className="text-[9px] app-text3 uppercase">{donor.projects} Projets Actifs</p>
                         </div>
                      </div>
@@ -226,7 +226,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                           <CheckCircle2 className="w-4 h-4" />
                        </div>
                        <div>
-                          <p className="text-xs font-bold text-white">{item.title}</p>
+                          <p className="text-xs font-bold app-text">{item.title}</p>
                           <p className="text-[9px] app-text3 uppercase">{item.donor} | {item.date}</p>
                        </div>
                     </div>
@@ -244,7 +244,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
             <div className="grid grid-cols-2 gap-4">
                <div className="p-4 app-surface border app-border rounded-2xl text-center">
                   <p className="text-[9px] font-black app-text3 uppercase mb-2 tracking-widest">Hectares Cultivés</p>
-                  <p className="text-2xl font-black text-white">12,450</p>
+                  <p className="text-2xl font-black app-text">12,450</p>
                   <div className="flex items-center justify-center gap-1 mt-1">
                      <TrendingUp className="w-3 h-3 text-emerald-500" />
                      <span className="text-[9px] font-bold text-emerald-400">+15%</span>
@@ -252,7 +252,7 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                </div>
                <div className="p-4 app-surface border app-border rounded-2xl text-center">
                   <p className="text-[9px] font-black app-text3 uppercase mb-2 tracking-widest">Enfants Scolarisés</p>
-                  <p className="text-2xl font-black text-white">45.2k</p>
+                  <p className="text-2xl font-black app-text">45.2k</p>
                   <div className="flex items-center justify-center gap-1 mt-1">
                      <Users className="w-3 h-3 text-blue-400" />
                      <span className="text-[9px] font-bold text-blue-400">88% Target</span>
@@ -260,12 +260,12 @@ const HumanitaireElite = ({ data = {}, setData }) => {
                </div>
                <div className="p-4 app-surface border app-border rounded-2xl text-center">
                   <p className="text-[9px] font-black app-text3 uppercase mb-2 tracking-widest">Points d'Eau Créés</p>
-                  <p className="text-2xl font-black text-white">124</p>
+                  <p className="text-2xl font-black app-text">124</p>
                   <Badge variant="info" className="mt-1 text-[7px]">Secteur: Assainissement</Badge>
                </div>
                <div className="p-4 app-surface border app-border rounded-2xl text-center flex flex-col justify-center items-center">
                   <Globe className="w-6 h-6 text-indigo-400 mb-2" />
-                  <p className="text-[9px] font-black text-white uppercase">14 Pays Actifs</p>
+                  <p className="text-[9px] font-black app-text uppercase">14 Pays Actifs</p>
                </div>
             </div>
          </Card>

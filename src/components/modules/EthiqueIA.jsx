@@ -36,7 +36,7 @@ const EthiqueIA = ({ data = {} }) => {
               <Badge variant="success">Protégé</Badge>
            </div>
            <h3 className="text-sm font-black app-text3 uppercase tracking-widest mb-1">Score d'Équité (Fairness)</h3>
-           <p className="text-4xl font-black text-white">{data.equite || 96}%</p>
+           <p className="text-4xl font-black app-text">{data.equite || 96}%</p>
            <p className="text-xs app-text3 mt-2">Absence de biais discriminatoires détectée dans les prédictions RH et Budget.</p>
         </Card>
 
@@ -49,7 +49,7 @@ const EthiqueIA = ({ data = {} }) => {
               <Badge variant="info">XAI Active</Badge>
            </div>
            <h3 className="text-sm font-black app-text3 uppercase tracking-widest mb-1">Indice de Transparence</h3>
-           <p className="text-4xl font-black text-white">{data.transparence || 98}%</p>
+           <p className="text-4xl font-black app-text">{data.transparence || 98}%</p>
            <p className="text-xs app-text3 mt-2">Capacité d'explication des décisions algorithmiques (Explainable AI).</p>
         </Card>
 
@@ -62,7 +62,7 @@ const EthiqueIA = ({ data = {} }) => {
               <Badge variant="indigo">Sécurisé</Badge>
            </div>
            <h3 className="text-sm font-black app-text3 uppercase tracking-widest mb-1">Robustesse Adversaire</h3>
-           <p className="text-4xl font-black text-white">{robustesse}%</p>
+           <p className="text-4xl font-black app-text">{robustesse}%</p>
            <p className="text-xs app-text3 mt-2">Résistance aux tentatives de manipulation des données d'entraînement.</p>
         </Card>
       </div>
@@ -70,27 +70,27 @@ const EthiqueIA = ({ data = {} }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
          {/* Monitoring des Biais */}
          <Card className="p-6 glass-card rounded-2xl">
-            <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+            <h3 className="font-bold app-text mb-6 flex items-center gap-2">
                <Activity className="w-5 h-5 text-indigo-400" />
                Détection de Dérive (Bias Drift)
             </h3>
             <div className="space-y-6">
                <div>
-                  <div className="flex justify-between text-xs mb-2 font-bold text-white">
+                  <div className="flex justify-between text-xs mb-2 font-bold app-text">
                      <span>Biais de Genre</span>
                      <span className="text-emerald-400">0.01% (Négligeable)</span>
                   </div>
                   <ProgressBar value={1} color="#10b981" />
                </div>
                <div>
-                  <div className="flex justify-between text-xs mb-2 font-bold text-white">
+                  <div className="flex justify-between text-xs mb-2 font-bold app-text">
                      <span>Biais de Localisation</span>
                      <span className="text-yellow-400">2.4% (Surveillance)</span>
                   </div>
                   <ProgressBar value={24} color="#f59e0b" />
                </div>
                <div>
-                  <div className="flex justify-between text-xs mb-2 font-bold text-white">
+                  <div className="flex justify-between text-xs mb-2 font-bold app-text">
                      <span>Biais de Formation</span>
                      <span className="text-emerald-400">0.05% (Négligeable)</span>
                   </div>
@@ -101,7 +101,7 @@ const EthiqueIA = ({ data = {} }) => {
 
          {/* Certificats d'Éthique */}
          <Card className="p-6 glass-card rounded-2xl">
-            <h3 className="font-bold text-white mb-6 flex items-center gap-2">
+            <h3 className="font-bold app-text mb-6 flex items-center gap-2">
                <CheckCircle className="w-5 h-5 text-emerald-400" />
                Certifications de Confiance IA
             </h3>
@@ -113,7 +113,7 @@ const EthiqueIA = ({ data = {} }) => {
                ].map((c, i) => (
                  <div key={i} className="p-4 app-surface rounded-xl border app-border flex items-center justify-between group hover:border-indigo-500/30 transition-all">
                     <div>
-                       <p className="text-sm font-bold text-white">{c.label}</p>
+                       <p className="text-sm font-bold app-text">{c.label}</p>
                        <p className="text-[10px] app-text3">Dernière vérification : {c.date}</p>
                     </div>
                     <Badge value={c.status} />
@@ -127,7 +127,7 @@ const EthiqueIA = ({ data = {} }) => {
       <Card className="p-6 glass-card rounded-2xl bg-indigo-600/5 border border-indigo-500/20 flex items-start gap-4">
          <Info className="w-8 h-8 text-indigo-400 flex-shrink-0" />
          <div>
-            <h4 className="font-bold text-white">Principe d'Explicabilité (XAI)</h4>
+            <h4 className="font-bold app-text">Principe d'Explicabilité (XAI)</h4>
             <p className="text-xs app-text2 leading-relaxed">
                Toutes les prédictions générées par le module <strong>Predictions ML</strong> sont auditables. Vous pouvez demander à tout moment "Pourquoi cette prédiction ?" pour obtenir le détail des variables d'influence.
             </p>

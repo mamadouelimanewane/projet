@@ -116,7 +116,7 @@ const ExcelIntegration = () => {
            <div className="w-16 h-16 rounded-2xl bg-indigo-600/20 flex items-center justify-center mb-4">
               <Download className="w-8 h-8 text-indigo-400" />
            </div>
-           <h3 className="text-xl font-bold text-white mb-2">Exporter le Template</h3>
+           <h3 className="text-xl font-bold app-text mb-2">Exporter le Template</h3>
            <p className="text-sm app-text3 mb-6">Téléchargez la structure actuelle de vos {importLevel} pour modification externe.</p>
            <Btn variant="indigo" onClick={handleExport} className="w-full">Générer .xlsx</Btn>
         </Card>
@@ -125,7 +125,7 @@ const ExcelIntegration = () => {
            <div className="w-16 h-16 rounded-2xl bg-emerald-600/20 flex items-center justify-center mb-4">
               <Upload className="w-8 h-8 text-emerald-400" />
            </div>
-           <h3 className="text-xl font-bold text-white mb-2">Importer des Données</h3>
+           <h3 className="text-xl font-bold app-text mb-2">Importer des Données</h3>
            <p className="text-sm app-text3 mb-6">Importation massive dans le module {importLevel}.</p>
            <input type="file" id="excel-upload" className="hidden" accept=".xlsx, .xls, .csv" onChange={handleFileUpload} />
            <Btn variant="success" onClick={() => document.getElementById('excel-upload').click()} className="w-full">Parcourir les fichiers</Btn>
@@ -137,7 +137,7 @@ const ExcelIntegration = () => {
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-3">
                <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-               <h3 className="text-lg font-bold text-white">Analyse des données ({importData.length} lignes)</h3>
+               <h3 className="text-lg font-bold app-text">Analyse des données ({importData.length} lignes)</h3>
             </div>
             <div className="flex gap-2">
                <Btn variant="ghost" onClick={() => setImportData([])}>Annuler</Btn>
